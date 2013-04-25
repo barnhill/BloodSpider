@@ -1,0 +1,26 @@
+﻿<Window x:Class="GlucaTrackWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="GlucaTrack Personal" 
+        Height="425" 
+        Width="625" 
+        Icon="/GlucaTrackWPF;component/Assets/Images/blood.ico" 
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="GlobalResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo Description="GlucaTrack Local Glucose Reporting Application" ProgressValue="50" ProgressState="Normal" />
+    </Window.TaskbarItemInfo>
+    <Window.Background>
+        <ImageBrush ImageSource="{StaticResource BackgroundSource}" Stretch="Fill"/>
+    </Window.Background>
+    <Grid>
+        <ContentControl/>
+    </Grid>
+</Window>

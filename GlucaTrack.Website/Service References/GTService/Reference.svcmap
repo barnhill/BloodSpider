@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2ba9ec07-f568-4506-a21e-c4fb945fb11e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:49563/GTService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GTService.xsd" MetadataType="Schema" ID="637def8c-4f95-4cc5-830c-071366f7e48a" SourceId="1" SourceUrl="http://localhost:49563/GTService.svc?xsd=xsd4" />
+    <MetadataFile FileName="Records.xsd" MetadataType="Schema" ID="dbd12dfa-d261-405b-b73f-ac6857da0ac8" SourceId="1" SourceUrl="http://localhost:49563/GTService.svc?xsd=xsd5" />
+    <MetadataFile FileName="GTService1.xsd" MetadataType="Schema" ID="d5f0cdb4-53fe-4e62-b3f8-a5155236a9ba" SourceId="1" SourceUrl="http://localhost:49563/GTService.svc?xsd=xsd0" />
+    <MetadataFile FileName="GTService2.xsd" MetadataType="Schema" ID="95f3a223-782c-46cd-b46d-41d2e4081bba" SourceId="1" SourceUrl="http://localhost:49563/GTService.svc?xsd=xsd1" />
+    <MetadataFile FileName="Common.xsd" MetadataType="Schema" ID="82bd6cd2-5d0b-4f41-b4b1-31cf3cdb1c1c" SourceId="1" SourceUrl="http://localhost:49563/GTService.svc?xsd=xsd2" />
+    <MetadataFile FileName="GTService3.xsd" MetadataType="Schema" ID="c8a4e0df-beeb-4a1e-89f0-f30014ae278d" SourceId="1" SourceUrl="http://localhost:49563/GTService.svc?xsd=xsd3" />
+    <MetadataFile FileName="GTService.disco" MetadataType="Disco" ID="276754db-1b9c-4c4e-ad51-ef59e28d4ac4" SourceId="1" SourceUrl="http://localhost:49563/GTService.svc?disco" />
+    <MetadataFile FileName="GTService.wsdl" MetadataType="Wsdl" ID="397cb710-42aa-49c2-9701-c05bcbb4969f" SourceId="1" SourceUrl="http://localhost:49563/GTService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

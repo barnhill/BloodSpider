@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:l="clr-namespace:GlucaTrackWPF.Converters">
+    <ImageSource x:Key="BackgroundSource">/Assets/Images/world-map-background_small.jpg</ImageSource>
+    <system:String x:Key="CopyrightText">Copyright GlucaTrack 2013</system:String>
+    <l:boolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+</ResourceDictionary>

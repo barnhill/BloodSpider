@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="GlucaTrack.Services" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="GlucaTrack.Services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="GlucaTrack.Services/Imports">
+      <xsd:import schemaLocation="http://pnuema/GlucaTrack_ServiceLibrary/GlucaTrack.Services.GTService.svc?xsd=xsd0" namespace="GlucaTrack.Services" />
+      <xsd:import schemaLocation="http://pnuema/GlucaTrack_ServiceLibrary/GlucaTrack.Services.GTService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://pnuema/GlucaTrack_ServiceLibrary/GlucaTrack.Services.GTService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://pnuema/GlucaTrack_ServiceLibrary/GlucaTrack.Services.GTService.svc?xsd=xsd2" namespace="http://tempuri.org/DSUser.xsd" />
+      <xsd:import schemaLocation="http://pnuema/GlucaTrack_ServiceLibrary/GlucaTrack.Services.GTService.svc?xsd=xsd3" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IGTService_ValidateLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateLogin" />
+  </wsdl:message>
+  <wsdl:message name="IGTService_ValidateLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGTService_ValidateLogin_ExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/System" name="detail" element="q1:Exception" />
+  </wsdl:message>
+  <wsdl:portType msc:usingSession="true" name="IGTService">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ValidateLogin">
+      <wsdl:input wsaw:Action="GlucaTrack.Services/IGTService/ValidateLogin" message="tns:IGTService_ValidateLogin_InputMessage" />
+      <wsdl:output wsaw:Action="GlucaTrack.Services/IGTService/ValidateLoginResponse" message="tns:IGTService_ValidateLogin_OutputMessage" />
+      <wsdl:fault wsaw:Action="GlucaTrack.Services/IGTService/ValidateLoginExceptionFault" name="ExceptionFault" message="tns:IGTService_ValidateLogin_ExceptionFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

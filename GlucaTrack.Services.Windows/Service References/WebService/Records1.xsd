@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://tempuri.org/Records.xsd" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:mstns="http://tempuri.org/Records.xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://tempuri.org/Records.xsd" id="Records" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element msdata:IsDataSet="true" msdata:UseCurrentLocale="true" name="Records">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Record">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Timestamp" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="Glucose" type="xs:int" />
+              <xs:element minOccurs="0" name="Units" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique msdata:PrimaryKey="true" name="Constraint1">
+      <xs:selector xpath=".//mstns:Record" />
+      <xs:field xpath="mstns:Timestamp" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

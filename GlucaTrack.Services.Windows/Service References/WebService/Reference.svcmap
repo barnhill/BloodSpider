@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ae69a199-c3ba-4d4f-81e3-1ba3f680dbdf" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://www.glucatrack.com/service/GTService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GTService1.disco" MetadataType="Disco" ID="aaf12938-087d-417d-bf45-95b9893064be" SourceId="1" SourceUrl="http://www.glucatrack.com/service/GTService.svc?disco" />
+    <MetadataFile FileName="GTService4.xsd" MetadataType="Schema" ID="2c8a3863-f85e-48b9-98e2-529f47d044b1" SourceId="1" SourceUrl="http://www.glucatrack.com/service/GTService.svc?xsd=xsd4" />
+    <MetadataFile FileName="GTService.wsdl" MetadataType="Wsdl" ID="aa328399-ca24-453b-b425-53941836fbcf" SourceId="1" SourceUrl="http://www.glucatrack.com/service/GTService.svc?wsdl" />
+    <MetadataFile FileName="GTService41.xsd" MetadataType="Schema" ID="eb238aad-39f9-48d3-aa85-9e306c3b3a83" SourceId="1" SourceUrl="http://www.glucatrack.com/service/GTService.svc?xsd=xsd1" />
+    <MetadataFile FileName="GTService42.xsd" MetadataType="Schema" ID="299c423b-89ea-4071-9e91-647c4d118d84" SourceId="1" SourceUrl="http://www.glucatrack.com/service/GTService.svc?xsd=xsd3" />
+    <MetadataFile FileName="Common.xsd" MetadataType="Schema" ID="ee9e720d-4853-4f9b-9945-39c15e6042a3" SourceId="1" SourceUrl="http://www.glucatrack.com/service/GTService.svc?xsd=xsd2" />
+    <MetadataFile FileName="Records1.xsd" MetadataType="Schema" ID="5cb27a5c-7b34-4a57-81f7-da71efbc77a9" SourceId="1" SourceUrl="http://www.glucatrack.com/service/GTService.svc?xsd=xsd5" />
+    <MetadataFile FileName="GTService43.xsd" MetadataType="Schema" ID="3cb569a7-a131-4623-9d48-4862243d2350" SourceId="1" SourceUrl="http://www.glucatrack.com/service/GTService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

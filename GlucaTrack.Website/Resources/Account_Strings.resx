@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Button_Continue" xml:space="preserve">
+    <value>Continue</value>
+    <comment>Continue button text</comment>
+  </data>
+  <data name="Button_FinishRegistration" xml:space="preserve">
+    <value>Finish Registration</value>
+    <comment>Button to finish registration on the last page of registration</comment>
+  </data>
+  <data name="Button_Login" xml:space="preserve">
+    <value>    Sign in    </value>
+    <comment>Login button</comment>
+  </data>
+  <data name="Header_RegistrationStep1" xml:space="preserve">
+    <value>Registration Step 1</value>
+    <comment>Header for registration step 1</comment>
+  </data>
+  <data name="Label_Address1" xml:space="preserve">
+    <value>Address line 1</value>
+    <comment>1st line of address on 2nd page of registration</comment>
+  </data>
+  <data name="Label_Address1_RequiredError" xml:space="preserve">
+    <value>Address 1 is required.</value>
+    <comment>Address 1 required field on 2nd page of registration</comment>
+  </data>
+  <data name="Label_Address2" xml:space="preserve">
+    <value>Address line 2</value>
+    <comment>2nd line of address on 2nd page of registration</comment>
+  </data>
+  <data name="Label_Birthdate" xml:space="preserve">
+    <value>Birthdate</value>
+    <comment>Label for the birthdate field.</comment>
+  </data>
+  <data name="Label_Birthdate_RequiredError" xml:space="preserve">
+    <value>Birthdate is required.</value>
+    <comment>Displays if the user does not enter a birthdate.</comment>
+  </data>
+  <data name="Label_City" xml:space="preserve">
+    <value>City</value>
+    <comment>City label on 2nd page of registration</comment>
+  </data>
+  <data name="Label_City_RequiredError" xml:space="preserve">
+    <value>City is required.</value>
+    <comment>City required field on 2nd page of registration</comment>
+  </data>
+  <data name="Label_ConfirmPassword" xml:space="preserve">
+    <value>Confirm password</value>
+    <comment>Label for the confirm password fields</comment>
+  </data>
+  <data name="Label_ConfirmPassword_RequiredError" xml:space="preserve">
+    <value>Confirm password is required.</value>
+    <comment>Displays if the user does not enter a confirmation of the password.</comment>
+  </data>
+  <data name="Label_Country" xml:space="preserve">
+    <value>Country</value>
+    <comment>Country label on 2nd page of registration</comment>
+  </data>
+  <data name="Label_Country_RequiredError" xml:space="preserve">
+    <value>Country is required.</value>
+    <comment>Country required field on 2nd page of registration</comment>
+  </data>
+  <data name="Label_DiabetesType" xml:space="preserve">
+    <value>Type of diabetes</value>
+    <comment>Type of diabetes label on 2nd page of registration</comment>
+  </data>
+  <data name="Label_DiabetesType_RequiredError" xml:space="preserve">
+    <value>Diabetes type is required.</value>
+    <comment>Type of diabetes required field on 2nd page of registration</comment>
+  </data>
+  <data name="Label_DontHaveAccount" xml:space="preserve">
+    <value>Don't have an account?</value>
+    <comment>Displays below the Sign in button on the login page to see if the user needs to sign up for a new account.</comment>
+  </data>
+  <data name="Label_EmailAddress" xml:space="preserve">
+    <value>Email address</value>
+    <comment>Label for the email address fields</comment>
+  </data>
+  <data name="Label_EmailAddress_RequiredError" xml:space="preserve">
+    <value>Email is required.</value>
+    <comment>Displays if the user does not enter an email.</comment>
+  </data>
+  <data name="Label_EmailFormat_Error" xml:space="preserve">
+    <value>Invalid email address format.</value>
+    <comment>Displays if the email address does not meet the requirements for a valid email address format.</comment>
+  </data>
+  <data name="Label_Firstname" xml:space="preserve">
+    <value>First name</value>
+    <comment>First name label on the 2nd page of registration</comment>
+  </data>
+  <data name="Label_Firstname_RequiredError" xml:space="preserve">
+    <value>First name is required.</value>
+    <comment>First name is required field on 2nd page of registration</comment>
+  </data>
+  <data name="Label_GoodbyeMessage" xml:space="preserve">
+    <value>See you later, {0}.</value>
+    <comment>Displays on the logout screen when the user is logging out.</comment>
+  </data>
+  <data name="Label_IncomeRange" xml:space="preserve">
+    <value>Income Range</value>
+    <comment>Displays on the 2nd page of registration screens.</comment>
+  </data>
+  <data name="Label_IncomeRange_RequiredError" xml:space="preserve">
+    <value>Income Range is required.</value>
+    <comment>Displays on the 2nd page of the registration screens.</comment>
+  </data>
+  <data name="Label_Lastname" xml:space="preserve">
+    <value>Last name</value>
+    <comment>Last name label on the 2nd page of registration</comment>
+  </data>
+  <data name="Label_Lastname_RequiredError" xml:space="preserve">
+    <value>Last name is required.</value>
+    <comment>Last name is required field on 2nd page of registration</comment>
+  </data>
+  <data name="Label_Middlename" xml:space="preserve">
+    <value>Middle name</value>
+    <comment>Middle name label on the 2nd page of registration</comment>
+  </data>
+  <data name="Label_Middlename_RequiredError" xml:space="preserve">
+    <value>Middle name is required.</value>
+    <comment>Middle name is required field on 2nd page of registration</comment>
+  </data>
+  <data name="Label_Password" xml:space="preserve">
+    <value>Password</value>
+    <comment>Label for the password fields</comment>
+  </data>
+  <data name="Label_PasswordCompare_Error" xml:space="preserve">
+    <value>The password and confirmation password do not match.</value>
+    <comment>Displays if the two passwords do not match</comment>
+  </data>
+  <data name="Label_PasswordLength_Error" xml:space="preserve">
+    <value>Password must be at least 6 nonblank characters.</value>
+    <comment>Displays if the user enters a password that is too short.</comment>
+  </data>
+  <data name="Label_Password_RequiredError" xml:space="preserve">
+    <value>Password is required.</value>
+    <comment>Displays if the user does not enter a password.</comment>
+  </data>
+  <data name="Label_Race" xml:space="preserve">
+    <value>Race</value>
+    <comment>Displays on the 2nd registration screen</comment>
+  </data>
+  <data name="Label_Race_RequiredError" xml:space="preserve">
+    <value>Race is required.</value>
+    <comment>Displays on the 2nd page of the registration screens.</comment>
+  </data>
+  <data name="Label_RegisterLink" xml:space="preserve">
+    <value>Sign up now</value>
+    <comment>Register link</comment>
+  </data>
+  <data name="Label_Registration2MessageInfo" xml:space="preserve">
+    <value>This information will help us trend data across the world geographically.</value>
+    <comment>Displays on page 2 of the registration process</comment>
+  </data>
+  <data name="Label_RegistrationMessageInfo" xml:space="preserve">
+    <value>Passwords are required to be a minimum of 6 characters in length.</value>
+    <comment>Note to the user on the registration step 1 screen that lets the user know the password rules</comment>
+  </data>
+  <data name="Label_RememberMe" xml:space="preserve">
+    <value>Remember me?</value>
+    <comment>Remember me checkbox</comment>
+  </data>
+  <data name="Label_Sex" xml:space="preserve">
+    <value>Sex/Gender</value>
+    <comment>Displays on the 2nd page of the registration screens</comment>
+  </data>
+  <data name="Label_Sex_RequiredError" xml:space="preserve">
+    <value>Sex is required.</value>
+    <comment>Displays on the 2nd page of the registration screens.</comment>
+  </data>
+  <data name="Label_State" xml:space="preserve">
+    <value>State/Province/Region</value>
+    <comment>State label on 2nd page of registration</comment>
+  </data>
+  <data name="Label_State_RequiredError" xml:space="preserve">
+    <value>State is required.</value>
+    <comment>State required field on 2nd page of registration</comment>
+  </data>
+  <data name="Label_Timezone" xml:space="preserve">
+    <value>Timezone</value>
+    <comment>Displays on the 2nd page of registration above the timezone selection dropdown.</comment>
+  </data>
+  <data name="Label_Timezone_RequiredError" xml:space="preserve">
+    <value>Timezone is required.</value>
+    <comment>Timezone required field on the 2nd page of registration.</comment>
+  </data>
+  <data name="Label_Username" xml:space="preserve">
+    <value>Username</value>
+    <comment>Label for the username fields</comment>
+  </data>
+  <data name="Label_Username_RequiredError" xml:space="preserve">
+    <value>User name is required.</value>
+    <comment>Displays if the user does not enter a user name.</comment>
+  </data>
+  <data name="Label_WelcomeRegistrationComplete" xml:space="preserve">
+    <value>Welcome {0}, Registration is complete.  You will now be redirected to the main page.</value>
+    <comment>Displays on the registration complete page.</comment>
+  </data>
+  <data name="Label_Zipcode" xml:space="preserve">
+    <value>Zip/Postal Code</value>
+    <comment>Zipcode label on 2nd page of registration</comment>
+  </data>
+  <data name="Label_Zipcode_RequiredError" xml:space="preserve">
+    <value>Zipcode is required.</value>
+    <comment>Zipcode required field on 2nd page of registration</comment>
+  </data>
+  <data name="Login_Failure" xml:space="preserve">
+    <value>Login failed.</value>
+    <comment>Displays if the login failed on the login screen.</comment>
+  </data>
+  <data name="Username_Available" xml:space="preserve">
+    <value>Username available!</value>
+    <comment>Displays on the registration screen if the username is available to be registered</comment>
+  </data>
+  <data name="Username_Blank" xml:space="preserve">
+    <value>Username can not be blank.</value>
+    <comment>Displays on the registration screen if the user enters a blank username</comment>
+  </data>
+  <data name="Username_NotAvailable" xml:space="preserve">
+    <value>Username taken, sorry.</value>
+    <comment>Displays on the registration screen if the username is already taken</comment>
+  </data>
+</root>

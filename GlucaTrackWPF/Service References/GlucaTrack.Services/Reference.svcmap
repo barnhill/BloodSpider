@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ac384dde-7d9a-4e6a-bbc5-fb38e9b71912" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/GlucaTrack_ServiceLibrary/GlucaTrack.Services.GTService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GlucaTrack.wsdl" MetadataType="Wsdl" ID="ebb32018-3577-4cd8-abd6-a1f37a9d784c" SourceId="1" SourceUrl="http://pnuema/GlucaTrack_ServiceLibrary/GlucaTrack.Services.GTService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="GlucaTrack.disco" MetadataType="Disco" ID="55bd2f6a-dd4b-467a-b6a3-72168acbdab3" SourceId="1" SourceUrl="http://pnuema/GlucaTrack_ServiceLibrary/GlucaTrack.Services.GTService.svc?disco" />
+    <MetadataFile FileName="GTService.wsdl" MetadataType="Wsdl" ID="48717429-b2eb-46cb-81e9-638cd75384ae" SourceId="1" SourceUrl="http://pnuema/GlucaTrack_ServiceLibrary/GlucaTrack.Services.GTService.svc?wsdl" />
+    <MetadataFile FileName="DSUser.xsd" MetadataType="Schema" ID="70b3349f-5a2f-4bb6-a516-ecf4d0aab12b" SourceId="1" SourceUrl="http://pnuema/GlucaTrack_ServiceLibrary/GlucaTrack.Services.GTService.svc?xsd=xsd2" />
+    <MetadataFile FileName="GlucaTrack.xsd" MetadataType="Schema" ID="01e75f2d-31c6-4bfa-baaa-d3d7809c0d54" SourceId="1" SourceUrl="http://pnuema/GlucaTrack_ServiceLibrary/GlucaTrack.Services.GTService.svc?xsd=xsd3" />
+    <MetadataFile FileName="GlucaTrack1.xsd" MetadataType="Schema" ID="8d9c3bde-c029-4876-88b4-4ecef32558a8" SourceId="1" SourceUrl="http://pnuema/GlucaTrack_ServiceLibrary/GlucaTrack.Services.GTService.svc?xsd=xsd0" />
+    <MetadataFile FileName="GlucaTrack2.xsd" MetadataType="Schema" ID="9a02f92f-0d0b-4f44-b7c5-265916de386b" SourceId="1" SourceUrl="http://pnuema/GlucaTrack_ServiceLibrary/GlucaTrack.Services.GTService.svc?xsd=xsd1" />
+    <MetadataFile FileName="GlucaTrack3.xsd" MetadataType="Schema" ID="25e23278-4273-45e0-9395-9e40d958c053" SourceId="1" SourceUrl="http://pnuema/GlucaTrack_ServiceLibrary/GlucaTrack.Services.GTService.svc?xsd=xsd4" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

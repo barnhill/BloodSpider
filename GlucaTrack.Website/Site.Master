@@ -1,0 +1,74 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="GlucaTrack.Website.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title><%: Page.Title %> - Test. Upload. Track.</title>
+    <link href="~/Styles/site.css" rel="stylesheet" /> 
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-40393707-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+</script>
+</head>
+<body>
+    <form runat="server">
+    <asp:ScriptManager runat="server">
+    </asp:ScriptManager>
+    <header>
+            <div class="Header_color">        
+                <div class="Header">
+                    <div class="Logo_Area">
+                        <a href="#"><img src="/Images/master/logo.png" /></a>
+                    </div>            
+                    <div id="Menu" class="Menu_Area">
+                        <div id="NotLoggedIn" class="Log_Area" runat="server">
+                            <asp:HyperLink runat="server" ID="LoginButton" CssClass="LogButton" NavigateUrl="~/Account/Login.aspx">Log in</asp:HyperLink>
+                            <asp:HyperLink runat="server" ID="RegisterButton" CssClass="LogButton" NavigateUrl="~/Account/Register.aspx">Register</asp:HyperLink>
+                        </div>
+                        <div id="LoggedIn" class="Log_Area" runat="server">
+                            <p style="font-size: small;">
+                                <asp:Label ID="WelcomeMessage" runat="server"/>
+                                <asp:HyperLink runat="server" ID="MyDataButton" CssClass="LogButton" NavigateUrl="~/Content/Main.aspx">My Data</asp:HyperLink>
+                                <asp:HyperLink runat="server" ID="LogoutButton" CssClass="LogButton" NavigateUrl="~/Account/Logout.aspx">Log out</asp:HyperLink>
+                            </p>
+                        </div>
+                        <a href="/" class="MenuButton"><asp:Label runat="server" ID="lblHome">Home</asp:Label></a>
+                        <a href="/Download" class="MenuButton"><asp:Label runat="server" ID="lblDownload">Download</asp:Label></a>
+                        <a href="/About.aspx" class="MenuButton"><asp:Label runat="server" ID="lblAbout">About</asp:Label></a>
+                        <a href="/Contact.aspx" class="MenuButton"><asp:Label runat="server" ID="lblContact">Contact</asp:Label></a>
+                    </div>
+                </div>
+            </div>
+    </header>
+    <div id="body">
+        <div class="Content_Color">
+            <div class="Content">
+                <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+                    <section class="content-wrapper main-content clear-fix">
+                        <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+                    </section>
+            </div>
+        </div>
+    </div>
+        <div class="Footer_RedLine" />
+        <div class="Footer">
+            <p>
+                <asp:Label runat="server" ID="lblCopyright">[Copyright]</asp:Label> <%: DateTime.Now.Year %>
+            </p>
+        </div>
+    </form>
+</body>
+</html>
