@@ -132,6 +132,8 @@
     <Content Include="Images\grid_style\grd_pgr.png" />
     <Content Include="Images\master\logo.png" />
     <Content Include="Images\testcontent.png" />
+    <None Include="Service References\GTService\Common1.xsd" />
+    <Content Include="Service References\GTService\GTService1.disco" />
     <Content Include="Styles\site.css" />
     <Content Include="Styles\site1.css" />
     <Content Include="Images\unused\background\blood_hand.jpg" />
@@ -181,30 +183,28 @@
     <Content Include="Service References\GTService\GlucaTrack.Website.GTService.Records.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\GTService\GTService.disco" />
-    <Content Include="Service References\GTService\configuration91.svcinfo" />
-    <Content Include="Service References\GTService\configuration.svcinfo" />
-    <Content Include="Service References\GTService\Reference.svcmap">
+    <None Include="Service References\GTService\configuration91.svcinfo" />
+    <None Include="Service References\GTService\configuration.svcinfo" />
+    <Content Include="Service References\GTService\GTService1.wsdl" />
+    <None Include="Service References\GTService\GTService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GTService\GTService41.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GTService\GTService42.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GTService\GTService43.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GTService\Records1.xsd" />
+    <None Include="Service References\GTService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <Content Include="Styles\dashboard.css" />
     <Content Include="Web.config" />
-    <None Include="Service References\GTService\Common.xsd" />
-    <Content Include="Service References\GTService\GTService.wsdl" />
-    <None Include="Service References\GTService\GTService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GTService\GTService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GTService\GTService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GTService\GTService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GTService\Records.xsd" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\Register2.aspx.cs">
