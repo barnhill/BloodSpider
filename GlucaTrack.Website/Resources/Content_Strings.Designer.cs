@@ -124,38 +124,11 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 year.
-        /// </summary>
-        internal static string Option_1year {
-            get {
-                return ResourceManager.GetString("Option_1year", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 30 days.
-        /// </summary>
-        internal static string Option_30days {
-            get {
-                return ResourceManager.GetString("Option_30days", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 3d Graphs.
         /// </summary>
         internal static string Option_3DGraphs {
             get {
                 return ResourceManager.GetString("Option_3DGraphs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 7 days.
-        /// </summary>
-        internal static string Option_7days {
-            get {
-                return ResourceManager.GetString("Option_7days", resourceCulture);
             }
         }
     }

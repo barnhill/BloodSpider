@@ -125,6 +125,12 @@
     <Content Include="Contact.aspx" />
     <Content Include="Content\Main.aspx" />
     <Content Include="Account\Logout.aspx" />
+    <None Include="jQuery\Content\Scripts\jquery-1.7.1-vsdoc.js" />
+    <Content Include="Images\icons\calendar.png" />
+    <Content Include="jQuery\Content\Scripts\jquery-1.7.1.js" />
+    <Content Include="jQuery\Content\Scripts\jquery-1.7.1.min.js" />
+    <None Include="jQuery\Tools\jquery-1.7.1.intellisense.js" />
+    <Content Include="UserControls\DateRangePicker.ascx" />
     <Content Include="Images\icons\down-green.png" />
     <Content Include="Images\icons\up-red.png" />
     <Content Include="Images\grid_style\grd_alt.png" />
@@ -132,6 +138,9 @@
     <Content Include="Images\grid_style\grd_pgr.png" />
     <Content Include="Images\master\logo.png" />
     <Content Include="Images\testcontent.png" />
+    <Content Include="jQuery\Tools\common.ps1" />
+    <Content Include="jQuery\Tools\install.ps1" />
+    <Content Include="jQuery\Tools\uninstall.ps1" />
     <None Include="Service References\GTService\Common1.xsd" />
     <Content Include="Service References\GTService\GTService1.disco" />
     <Content Include="Styles\site.css" />
@@ -256,6 +265,13 @@
     </Compile>
     <Compile Include="Content\Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DateRangePicker.ascx.cs">
+      <DependentUpon>DateRangePicker.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\DateRangePicker.ascx.designer.cs">
+      <DependentUpon>DateRangePicker.ascx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

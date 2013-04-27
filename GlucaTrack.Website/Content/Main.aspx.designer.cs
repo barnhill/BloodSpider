@@ -49,31 +49,13 @@ namespace GlucaTrack.Website.Content {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divTopOptions;
         
         /// <summary>
-        /// link7_Days control.
+        /// drPicker control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button link7_Days;
-        
-        /// <summary>
-        /// link30_Days control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button link30_Days;
-        
-        /// <summary>
-        /// link1_Year control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button link1_Year;
+        protected global::GlucaTrack.Website.DateRangePicker drPicker;
         
         /// <summary>
         /// div3dGraphs control.

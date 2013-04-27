@@ -38,38 +38,27 @@ namespace GlucaTrack.Website.Content
 
             SetResources();
 
-            try
-            {
-                if (Session["NumDaysView"] != null)
-                    Session["NumDaysView"] = 7;
-                else
-                    Session.Add("NumDaysView", 7);
+            this.drPicker.ToDate = DateTime.Today;
+            this.drPicker.FromDate = drPicker.ToDate.AddDays(-7);
 
-                PopulateDashboard(Resources.Content_Strings.Option_7days);
-            }
-            catch { }
+            PopulateDashboard();
         }
 
         private void SetResources()
         {
-            string spaces = "  ";
-            this.link7_Days.Text = spaces + Resources.Content_Strings.Option_7days + spaces;
-            this.link30_Days.Text = spaces + Resources.Content_Strings.Option_30days + spaces;
-            this.link1_Year.Text = spaces + Resources.Content_Strings.Option_1year + spaces;
-
             this.Label_Enable3dGraphs.Text = Resources.Content_Strings.Option_3DGraphs;
         }
 
-        private void PopulateDashboard(string text)
+        private void PopulateDashboard()
         {
             var series = chtLastXDays.Series["LastXDays_Series"];
             series.XValueType = ChartValueType.Date;
 
-            using (QueriesTableAdapters.sp_GetDataForTimeframeTableAdapter ta = new QueriesTableAdapters.sp_GetDataForTimeframeTableAdapter())
+            using (QueriesTableAdapters.sp_GetDataForLastXDaysTableAdapter ta = new QueriesTableAdapters.sp_GetDataForLastXDaysTableAdapter())
             {
-                using (Queries.sp_GetDataForTimeframeDataTable dt = new Queries.sp_GetDataForTimeframeDataTable())
+                using (Queries.sp_GetDataForLastXDaysDataTable dt = new Queries.sp_GetDataForLastXDaysDataTable())
                 {
-                    ta.Fill(dt, LoginRow.user_id, Convert.ToInt32(Session["NumDaysView"]));
+                    ta.Fill(dt, LoginRow.user_id, drPicker.ToDate, drPicker.DaysInRange);
 
                     //TODO: move these sections to separate functions to clean this function up
 
@@ -78,7 +67,6 @@ namespace GlucaTrack.Website.Content
                     chtLastXDays.Series["LastXDays_Series"].YValueMembers = "Glucose";
                     chtLastXDays.Series["LastXDays_Series"].IsValueShownAsLabel = true;
                     chtLastXDays.Width = (int)(Math.Round(Request.Browser.ScreenPixelsWidth * 0.85, 0, MidpointRounding.AwayFromZero));
-                    chtLastXDays.Titles.First().Text = "Last " + text;
                     chtLastXDays.DataSource = dt;
                     chtLastXDays.DataBind();
 
@@ -117,36 +105,6 @@ namespace GlucaTrack.Website.Content
         protected void Enable3dGraphs_CheckedChanged(object sender, EventArgs e)
         {
             chtLastXDays.ChartAreas["LastXDays_ChartArea"].Area3DStyle.Enable3D = Enable3dGraphs.Checked;
-        }
-
-        protected void link7_Days_Click(object sender, EventArgs e)
-        {
-            if (Session["NumDaysView"] != null)
-                Session["NumDaysView"] = 7;
-            else
-                Session.Add("NumDaysView", 7);
-
-            PopulateDashboard(Resources.Content_Strings.Option_7days);
-        }
-
-        protected void link30_Days_Click(object sender, EventArgs e)
-        {
-            if (Session["NumDaysView"] != null)
-                Session["NumDaysView"] = 30;
-            else
-                Session.Add("NumDaysView", 30);
-
-            PopulateDashboard(Resources.Content_Strings.Option_30days);
-        }
-
-        protected void link1_Year_Click(object sender, EventArgs e)
-        {
-            if (Session["NumDaysView"] != null)
-                Session["NumDaysView"] = 365;
-            else
-                Session.Add("NumDaysView", 365);
-
-            PopulateDashboard(Resources.Content_Strings.Option_1year);
         }
 
         protected void gridValues_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -190,7 +148,7 @@ namespace GlucaTrack.Website.Content
             PercentHigh = 0;
         }
 
-        private void CalculatePieChart(Queries.sp_GetDataForTimeframeDataTable dt, DateTime Start, DateTime Stop)
+        private void CalculatePieChart(Queries.sp_GetDataForLastXDaysDataTable dt, DateTime Start, DateTime Stop)
         {
             //TODO: write calculation for figuring percentage of numbers that were low, normal, high
         }

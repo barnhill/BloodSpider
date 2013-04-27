@@ -145,20 +145,8 @@
     <value># Low: </value>
     <comment>Number of low values label and value</comment>
   </data>
-  <data name="Option_1year" xml:space="preserve">
-    <value>1 year</value>
-    <comment>Raw Data drop down list option for 1 year.</comment>
-  </data>
-  <data name="Option_30days" xml:space="preserve">
-    <value>30 days</value>
-    <comment>Raw Data drop down list option for 30 days.</comment>
-  </data>
   <data name="Option_3DGraphs" xml:space="preserve">
     <value>3d Graphs</value>
     <comment>Toggles the 3d graphs.</comment>
-  </data>
-  <data name="Option_7days" xml:space="preserve">
-    <value>7 days</value>
-    <comment>Raw Data drop down list option for 7 days.</comment>
   </data>
 </root>

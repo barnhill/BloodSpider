@@ -30,7 +30,7 @@ namespace GlucaTrack.Website {
         
         private sp_GetLoginDataTable tablesp_GetLogin;
         
-        private sp_GetDataForTimeframeDataTable tablesp_GetDataForTimeframe;
+        private sp_GetDataForLastXDaysDataTable tablesp_GetDataForLastXDays;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -69,8 +69,8 @@ namespace GlucaTrack.Website {
                 if ((ds.Tables["sp_GetLogin"] != null)) {
                     base.Tables.Add(new sp_GetLoginDataTable(ds.Tables["sp_GetLogin"]));
                 }
-                if ((ds.Tables["sp_GetDataForTimeframe"] != null)) {
-                    base.Tables.Add(new sp_GetDataForTimeframeDataTable(ds.Tables["sp_GetDataForTimeframe"]));
+                if ((ds.Tables["sp_GetDataForLastXDays"] != null)) {
+                    base.Tables.Add(new sp_GetDataForLastXDaysDataTable(ds.Tables["sp_GetDataForLastXDays"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -124,9 +124,9 @@ namespace GlucaTrack.Website {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public sp_GetDataForTimeframeDataTable sp_GetDataForTimeframe {
+        public sp_GetDataForLastXDaysDataTable sp_GetDataForLastXDays {
             get {
-                return this.tablesp_GetDataForTimeframe;
+                return this.tablesp_GetDataForLastXDays;
             }
         }
         
@@ -206,8 +206,8 @@ namespace GlucaTrack.Website {
                 if ((ds.Tables["sp_GetLogin"] != null)) {
                     base.Tables.Add(new sp_GetLoginDataTable(ds.Tables["sp_GetLogin"]));
                 }
-                if ((ds.Tables["sp_GetDataForTimeframe"] != null)) {
-                    base.Tables.Add(new sp_GetDataForTimeframeDataTable(ds.Tables["sp_GetDataForTimeframe"]));
+                if ((ds.Tables["sp_GetDataForLastXDays"] != null)) {
+                    base.Tables.Add(new sp_GetDataForLastXDaysDataTable(ds.Tables["sp_GetDataForLastXDays"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -260,10 +260,10 @@ namespace GlucaTrack.Website {
                     this.tablesp_GetLogin.InitVars();
                 }
             }
-            this.tablesp_GetDataForTimeframe = ((sp_GetDataForTimeframeDataTable)(base.Tables["sp_GetDataForTimeframe"]));
+            this.tablesp_GetDataForLastXDays = ((sp_GetDataForLastXDaysDataTable)(base.Tables["sp_GetDataForLastXDays"]));
             if ((initTable == true)) {
-                if ((this.tablesp_GetDataForTimeframe != null)) {
-                    this.tablesp_GetDataForTimeframe.InitVars();
+                if ((this.tablesp_GetDataForLastXDays != null)) {
+                    this.tablesp_GetDataForLastXDays.InitVars();
                 }
             }
         }
@@ -282,8 +282,8 @@ namespace GlucaTrack.Website {
             base.Tables.Add(this.tablesp_GetFirstNameFromLogin);
             this.tablesp_GetLogin = new sp_GetLoginDataTable();
             base.Tables.Add(this.tablesp_GetLogin);
-            this.tablesp_GetDataForTimeframe = new sp_GetDataForTimeframeDataTable();
-            base.Tables.Add(this.tablesp_GetDataForTimeframe);
+            this.tablesp_GetDataForLastXDays = new sp_GetDataForLastXDaysDataTable();
+            base.Tables.Add(this.tablesp_GetDataForLastXDays);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -306,7 +306,7 @@ namespace GlucaTrack.Website {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializesp_GetDataForTimeframe() {
+        private bool ShouldSerializesp_GetDataForLastXDays() {
             return false;
         }
         
@@ -375,7 +375,7 @@ namespace GlucaTrack.Website {
         public delegate void sp_GetLoginRowChangeEventHandler(object sender, sp_GetLoginRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void sp_GetDataForTimeframeRowChangeEventHandler(object sender, sp_GetDataForTimeframeRowChangeEvent e);
+        public delegate void sp_GetDataForLastXDaysRowChangeEventHandler(object sender, sp_GetDataForLastXDaysRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1367,7 +1367,7 @@ namespace GlucaTrack.Website {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class sp_GetDataForTimeframeDataTable : global::System.Data.TypedTableBase<sp_GetDataForTimeframeRow> {
+        public partial class sp_GetDataForLastXDaysDataTable : global::System.Data.TypedTableBase<sp_GetDataForLastXDaysRow> {
             
             private global::System.Data.DataColumn columnTimeStamp;
             
@@ -1381,8 +1381,8 @@ namespace GlucaTrack.Website {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_GetDataForTimeframeDataTable() {
-                this.TableName = "sp_GetDataForTimeframe";
+            public sp_GetDataForLastXDaysDataTable() {
+                this.TableName = "sp_GetDataForLastXDays";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -1390,7 +1390,7 @@ namespace GlucaTrack.Website {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal sp_GetDataForTimeframeDataTable(global::System.Data.DataTable table) {
+            internal sp_GetDataForLastXDaysDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -1407,7 +1407,7 @@ namespace GlucaTrack.Website {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected sp_GetDataForTimeframeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected sp_GetDataForLastXDaysDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -1463,49 +1463,49 @@ namespace GlucaTrack.Website {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_GetDataForTimeframeRow this[int index] {
+            public sp_GetDataForLastXDaysRow this[int index] {
                 get {
-                    return ((sp_GetDataForTimeframeRow)(this.Rows[index]));
+                    return ((sp_GetDataForLastXDaysRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event sp_GetDataForTimeframeRowChangeEventHandler sp_GetDataForTimeframeRowChanging;
+            public event sp_GetDataForLastXDaysRowChangeEventHandler sp_GetDataForLastXDaysRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event sp_GetDataForTimeframeRowChangeEventHandler sp_GetDataForTimeframeRowChanged;
+            public event sp_GetDataForLastXDaysRowChangeEventHandler sp_GetDataForLastXDaysRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event sp_GetDataForTimeframeRowChangeEventHandler sp_GetDataForTimeframeRowDeleting;
+            public event sp_GetDataForLastXDaysRowChangeEventHandler sp_GetDataForLastXDaysRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event sp_GetDataForTimeframeRowChangeEventHandler sp_GetDataForTimeframeRowDeleted;
+            public event sp_GetDataForLastXDaysRowChangeEventHandler sp_GetDataForLastXDaysRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Addsp_GetDataForTimeframeRow(sp_GetDataForTimeframeRow row) {
+            public void Addsp_GetDataForLastXDaysRow(sp_GetDataForLastXDaysRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_GetDataForTimeframeRow Addsp_GetDataForTimeframeRow(System.DateTime TimeStamp, short Glucose, string UnitType, string Manufacturer, string Meter) {
-                sp_GetDataForTimeframeRow rowsp_GetDataForTimeframeRow = ((sp_GetDataForTimeframeRow)(this.NewRow()));
+            public sp_GetDataForLastXDaysRow Addsp_GetDataForLastXDaysRow(System.DateTime TimeStamp, short Glucose, string UnitType, string Manufacturer, string Meter) {
+                sp_GetDataForLastXDaysRow rowsp_GetDataForLastXDaysRow = ((sp_GetDataForLastXDaysRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         TimeStamp,
                         Glucose,
                         UnitType,
                         Manufacturer,
                         Meter};
-                rowsp_GetDataForTimeframeRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowsp_GetDataForTimeframeRow);
-                return rowsp_GetDataForTimeframeRow;
+                rowsp_GetDataForLastXDaysRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowsp_GetDataForLastXDaysRow);
+                return rowsp_GetDataForLastXDaysRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                sp_GetDataForTimeframeDataTable cln = ((sp_GetDataForTimeframeDataTable)(base.Clone()));
+                sp_GetDataForLastXDaysDataTable cln = ((sp_GetDataForLastXDaysDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1513,7 +1513,7 @@ namespace GlucaTrack.Website {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new sp_GetDataForTimeframeDataTable();
+                return new sp_GetDataForLastXDaysDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1551,28 +1551,28 @@ namespace GlucaTrack.Website {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_GetDataForTimeframeRow Newsp_GetDataForTimeframeRow() {
-                return ((sp_GetDataForTimeframeRow)(this.NewRow()));
+            public sp_GetDataForLastXDaysRow Newsp_GetDataForLastXDaysRow() {
+                return ((sp_GetDataForLastXDaysRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new sp_GetDataForTimeframeRow(builder);
+                return new sp_GetDataForLastXDaysRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(sp_GetDataForTimeframeRow);
+                return typeof(sp_GetDataForLastXDaysRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.sp_GetDataForTimeframeRowChanged != null)) {
-                    this.sp_GetDataForTimeframeRowChanged(this, new sp_GetDataForTimeframeRowChangeEvent(((sp_GetDataForTimeframeRow)(e.Row)), e.Action));
+                if ((this.sp_GetDataForLastXDaysRowChanged != null)) {
+                    this.sp_GetDataForLastXDaysRowChanged(this, new sp_GetDataForLastXDaysRowChangeEvent(((sp_GetDataForLastXDaysRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1580,8 +1580,8 @@ namespace GlucaTrack.Website {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.sp_GetDataForTimeframeRowChanging != null)) {
-                    this.sp_GetDataForTimeframeRowChanging(this, new sp_GetDataForTimeframeRowChangeEvent(((sp_GetDataForTimeframeRow)(e.Row)), e.Action));
+                if ((this.sp_GetDataForLastXDaysRowChanging != null)) {
+                    this.sp_GetDataForLastXDaysRowChanging(this, new sp_GetDataForLastXDaysRowChangeEvent(((sp_GetDataForLastXDaysRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1589,8 +1589,8 @@ namespace GlucaTrack.Website {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.sp_GetDataForTimeframeRowDeleted != null)) {
-                    this.sp_GetDataForTimeframeRowDeleted(this, new sp_GetDataForTimeframeRowChangeEvent(((sp_GetDataForTimeframeRow)(e.Row)), e.Action));
+                if ((this.sp_GetDataForLastXDaysRowDeleted != null)) {
+                    this.sp_GetDataForLastXDaysRowDeleted(this, new sp_GetDataForLastXDaysRowChangeEvent(((sp_GetDataForLastXDaysRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1598,14 +1598,14 @@ namespace GlucaTrack.Website {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.sp_GetDataForTimeframeRowDeleting != null)) {
-                    this.sp_GetDataForTimeframeRowDeleting(this, new sp_GetDataForTimeframeRowChangeEvent(((sp_GetDataForTimeframeRow)(e.Row)), e.Action));
+                if ((this.sp_GetDataForLastXDaysRowDeleting != null)) {
+                    this.sp_GetDataForLastXDaysRowDeleting(this, new sp_GetDataForLastXDaysRowChangeEvent(((sp_GetDataForLastXDaysRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Removesp_GetDataForTimeframeRow(sp_GetDataForTimeframeRow row) {
+            public void Removesp_GetDataForLastXDaysRow(sp_GetDataForLastXDaysRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1632,7 +1632,7 @@ namespace GlucaTrack.Website {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "sp_GetDataForTimeframeDataTable";
+                attribute2.FixedValue = "sp_GetDataForLastXDaysDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2072,25 +2072,25 @@ namespace GlucaTrack.Website {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class sp_GetDataForTimeframeRow : global::System.Data.DataRow {
+        public partial class sp_GetDataForLastXDaysRow : global::System.Data.DataRow {
             
-            private sp_GetDataForTimeframeDataTable tablesp_GetDataForTimeframe;
+            private sp_GetDataForLastXDaysDataTable tablesp_GetDataForLastXDays;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal sp_GetDataForTimeframeRow(global::System.Data.DataRowBuilder rb) : 
+            internal sp_GetDataForLastXDaysRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tablesp_GetDataForTimeframe = ((sp_GetDataForTimeframeDataTable)(this.Table));
+                this.tablesp_GetDataForLastXDays = ((sp_GetDataForLastXDaysDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.DateTime TimeStamp {
                 get {
-                    return ((global::System.DateTime)(this[this.tablesp_GetDataForTimeframe.TimeStampColumn]));
+                    return ((global::System.DateTime)(this[this.tablesp_GetDataForLastXDays.TimeStampColumn]));
                 }
                 set {
-                    this[this.tablesp_GetDataForTimeframe.TimeStampColumn] = value;
+                    this[this.tablesp_GetDataForLastXDays.TimeStampColumn] = value;
                 }
             }
             
@@ -2098,10 +2098,10 @@ namespace GlucaTrack.Website {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public short Glucose {
                 get {
-                    return ((short)(this[this.tablesp_GetDataForTimeframe.GlucoseColumn]));
+                    return ((short)(this[this.tablesp_GetDataForLastXDays.GlucoseColumn]));
                 }
                 set {
-                    this[this.tablesp_GetDataForTimeframe.GlucoseColumn] = value;
+                    this[this.tablesp_GetDataForLastXDays.GlucoseColumn] = value;
                 }
             }
             
@@ -2109,10 +2109,10 @@ namespace GlucaTrack.Website {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string UnitType {
                 get {
-                    return ((string)(this[this.tablesp_GetDataForTimeframe.UnitTypeColumn]));
+                    return ((string)(this[this.tablesp_GetDataForLastXDays.UnitTypeColumn]));
                 }
                 set {
-                    this[this.tablesp_GetDataForTimeframe.UnitTypeColumn] = value;
+                    this[this.tablesp_GetDataForLastXDays.UnitTypeColumn] = value;
                 }
             }
             
@@ -2120,10 +2120,10 @@ namespace GlucaTrack.Website {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Manufacturer {
                 get {
-                    return ((string)(this[this.tablesp_GetDataForTimeframe.ManufacturerColumn]));
+                    return ((string)(this[this.tablesp_GetDataForLastXDays.ManufacturerColumn]));
                 }
                 set {
-                    this[this.tablesp_GetDataForTimeframe.ManufacturerColumn] = value;
+                    this[this.tablesp_GetDataForLastXDays.ManufacturerColumn] = value;
                 }
             }
             
@@ -2131,10 +2131,10 @@ namespace GlucaTrack.Website {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Meter {
                 get {
-                    return ((string)(this[this.tablesp_GetDataForTimeframe.MeterColumn]));
+                    return ((string)(this[this.tablesp_GetDataForLastXDays.MeterColumn]));
                 }
                 set {
-                    this[this.tablesp_GetDataForTimeframe.MeterColumn] = value;
+                    this[this.tablesp_GetDataForLastXDays.MeterColumn] = value;
                 }
             }
         }
@@ -2245,22 +2245,22 @@ namespace GlucaTrack.Website {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class sp_GetDataForTimeframeRowChangeEvent : global::System.EventArgs {
+        public class sp_GetDataForLastXDaysRowChangeEvent : global::System.EventArgs {
             
-            private sp_GetDataForTimeframeRow eventRow;
+            private sp_GetDataForLastXDaysRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_GetDataForTimeframeRowChangeEvent(sp_GetDataForTimeframeRow row, global::System.Data.DataRowAction action) {
+            public sp_GetDataForLastXDaysRowChangeEvent(sp_GetDataForLastXDaysRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_GetDataForTimeframeRow Row {
+            public sp_GetDataForLastXDaysRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -2859,7 +2859,7 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class sp_GetDataForTimeframeTableAdapter : global::System.ComponentModel.Component {
+    public partial class sp_GetDataForLastXDaysTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -2873,7 +2873,7 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public sp_GetDataForTimeframeTableAdapter() {
+        public sp_GetDataForLastXDaysTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -2970,7 +2970,7 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "sp_GetDataForTimeframe";
+            tableMapping.DataSetTable = "sp_GetDataForLastXDays";
             tableMapping.ColumnMappings.Add("TimeStamp", "TimeStamp");
             tableMapping.ColumnMappings.Add("Glucose", "Glucose");
             tableMapping.ColumnMappings.Add("UnitType", "UnitType");
@@ -2992,10 +2992,11 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "glucatrack.sp_GetDataForTimeframe";
+            this._commandCollection[0].CommandText = "glucatrack.sp_GetDataForLastXDays";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@userid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@startdate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@days", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -3003,7 +3004,7 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Queries.sp_GetDataForTimeframeDataTable dataTable, global::System.Nullable<int> userid, global::System.Nullable<int> days) {
+        public virtual int Fill(Queries.sp_GetDataForLastXDaysDataTable dataTable, global::System.Nullable<int> userid, global::System.Nullable<global::System.DateTime> startdate, global::System.Nullable<int> days) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((userid.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(userid.Value));
@@ -3011,11 +3012,17 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((days.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(days.Value));
+            if ((startdate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(startdate.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((days.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(days.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -3028,7 +3035,7 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Queries.sp_GetDataForTimeframeDataTable GetData(global::System.Nullable<int> userid, global::System.Nullable<int> days) {
+        public virtual Queries.sp_GetDataForLastXDaysDataTable GetData(global::System.Nullable<int> userid, global::System.Nullable<global::System.DateTime> startdate, global::System.Nullable<int> days) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((userid.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(userid.Value));
@@ -3036,13 +3043,19 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((days.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(days.Value));
+            if ((startdate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(startdate.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            Queries.sp_GetDataForTimeframeDataTable dataTable = new Queries.sp_GetDataForTimeframeDataTable();
+            if ((days.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(days.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            Queries.sp_GetDataForLastXDaysDataTable dataTable = new Queries.sp_GetDataForLastXDaysDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

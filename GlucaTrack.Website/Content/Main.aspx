@@ -1,16 +1,19 @@
 ﻿<%@ Page Title="My Data" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="GlucaTrack.Website.Content.Main" %>
 
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
+<%@ Register Src="/UserControls/DateRangePicker.ascx" TagPrefix="uc1" TagName="DateRangePicker" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <link href="/Styles/dashboard.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:SqlDataSource ID="LastXDays_DataSource" runat="server" ConnectionString="<%$ ConnectionStrings:glucatrackConnectionString %>" SelectCommand="sp_GetDataForTimeframe" SelectCommandType="StoredProcedure" >
+    <asp:SqlDataSource ID="LastXDays_DataSource" runat="server" ConnectionString="<%$ ConnectionStrings:glucatrackConnectionString %>" SelectCommand="sp_GetDataForLastXDays" SelectCommandType="StoredProcedure" >
         <SelectParameters>
             <asp:SessionParameter Name="userid" SessionField="LoggedInUserId" Type="Int32" />
-            <asp:SessionParameter DefaultValue="7" Name="days" SessionField="NumDaysView" Type="Int32" />
+            <asp:SessionParameter DefaultValue="" Name="startdate" SessionField="RangeToDate" Type="DateTime" />
+            <asp:SessionParameter DefaultValue="7" Name="days" SessionField="RangeDays" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
 
@@ -19,13 +22,9 @@
             <ContentTemplate>
                 <div runat="server" id="divTopOptions">
                         <div runat="server" style="display: inline-block;">
-                            <asp:Button ID="link7_Days" CssClass="button blue" runat="server" OnClick="link7_Days_Click" />
+                            <uc1:DateRangePicker runat="server" ID="drPicker" ClientIDMode="Static" />
                         </div>
                         <div runat="server" style="display: inline-block;">
-                            <asp:Button ID="link30_Days" CssClass="button blue" runat="server" OnClick="link30_Days_Click" />
-                        </div>
-                        <div runat="server" style="display: inline-block;">
-                            <asp:Button ID="link1_Year" CssClass="button blue" runat="server" OnClick="link1_Year_Click" />
                         </div>
                         <div runat="server" id="div3dGraphs" style="display:inline-block;">
                             <asp:CheckBox ID="Enable3dGraphs" runat="server" OnCheckedChanged="Enable3dGraphs_CheckedChanged" AutoPostBack="True" />
@@ -130,6 +129,14 @@
                                     <asp:ChartArea Name="Nights_ChartArea" />
                                 </ChartAreas>
                             </asp:Chart>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            &nbsp;
                         </td>
                     </tr>
                 </table>
