@@ -15,7 +15,7 @@
         </SelectParameters>
     </asp:SqlDataSource>
 
-  <ajaxToolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" CssClass="fancy-green" UseVerticalStripPlacement="True" VerticalStripWidth="200px" BorderColor="Black" BorderStyle="Dotted" BorderWidth="1px">
+  <ajaxToolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" BorderColor="Black" BorderStyle="None">
         <ajaxToolkit:TabPanel runat="server" HeaderText="Dashboard" ID="Dashboard">
             <ContentTemplate>
                 <div runat="server" id="divTopOptions">
@@ -92,7 +92,7 @@
                             </asp:GridView>
                         </td>
                         <td>
-                            <asp:Chart ID="chtMornings" runat="server" Height="125px" Width="125px">
+                            <asp:Chart ID="chtMornings" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 0, 192, 0; 192, 0, 0">
                                 <Titles> 
                                     <asp:Title Text="Mornings" Name="Title1" />
                                 </Titles>
@@ -107,7 +107,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Chart ID="chtAfternoons" runat="server" Height="125px" Width="125px">
+                            <asp:Chart ID="chtAfternoons" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 0, 192, 0; 192, 0, 0">
                                 <Titles> 
                                     <asp:Title Text="Afternoons" Name="Afternoons" />
                                 </Titles>
@@ -122,7 +122,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Chart ID="chtNights" runat="server" Height="125px" Width="125px">
+                            <asp:Chart ID="chtNights" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 0, 192, 0; 192, 0, 0">
                                 <Titles> 
                                     <asp:Title Text="Nights" Name="Nights" />
                                 </Titles>

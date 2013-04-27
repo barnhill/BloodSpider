@@ -56,70 +56,14 @@ namespace GlucaTrack.Website.Content
                 {
                     ta.Fill(dt, LoginRow.user_id, Convert.ToInt32(ddDateRange.SelectedValue));
 
-                    //TODO: move these sections to separate functions to clean this function up
+                    MainGraph(dt);
 
-                    //last X days graph
-                    chtLastXDays.Series["LastXDays_Series"].XValueMember = "TimeStamp";
-                    chtLastXDays.Series["LastXDays_Series"].YValueMembers = "Glucose";
-                    chtLastXDays.Series["LastXDays_Series"].IsValueShownAsLabel = true;
-                    chtLastXDays.Width = (int)(Math.Round(Request.Browser.ScreenPixelsWidth * 0.85, 0, MidpointRounding.AwayFromZero));
-                    chtLastXDays.Titles[chtLastXDays.Titles.Count - 1].Text = string.Format(Resources.Content_Strings.GraphTitle_Main, ddDateRange.SelectedValue);
-                    chtLastXDays.DataSource = dt;
-                    chtLastXDays.DataBind();
+                    GridOfValues();
 
-                    //grid of values
-                    gridValues.DataBind();
-                   
-                    //min max values
-                    var min = dt.Select("Glucose = MIN(Glucose)");
-                    var max = dt.Select("Glucose = MAX(Glucose)");
-                    var avg = dt.Compute("AVG(Glucose)", null);
-                    var stdev = dt.Compute("StDev(Glucose)", null);
-                    var variance = dt.Compute("Var(Glucose)", null);
-                    var NumHigh = dt.Compute("Count(Glucose)", "Glucose > " + Statics.HighThreshold.ToString());
-                    var NumLow = dt.Compute("Count(Glucose)", "Glucose < " + Statics.LowThreshold.ToString());
+                    MinMaxValues(dt);
 
-                    //populate values on the right side
-                    this.lblMin.Text = Resources.Content_Strings.Label_Minimum;
-                    this.MinValue.Text = min[0]["Glucose"].ToString();
-                    this.lblMax.Text = Resources.Content_Strings.Label_Maximum;
-                    this.MaxValue.Text = max[0]["Glucose"].ToString();
-                    this.lblAvg.Text = Resources.Content_Strings.Label_Average;
-                    this.AvgValue.Text = avg.ToString();
-                    this.lblNumLows.Text = Resources.Content_Strings.Label_NumberOfLows;
-                    this.NumLowsValue.Text = NumLow.ToString();
-                    this.lblLowExplanation.Text = string.Format(Resources.Content_Strings.Label_LowExplanation, Statics.LowThreshold.ToString());
-                    this.lblNumHighs.Text = Resources.Content_Strings.Label_NumberOfHighs;
-                    this.NumHighsValue.Text = NumHigh.ToString();
-                    this.lblHighExplanation.Text = string.Format(Resources.Content_Strings.Label_HighExplanation, Statics.HighThreshold.ToString());
+                    PieCharts(dt);
 
-                    //TODO: Send data to ReadingPiePercents class to figure percentages
-                    ReadingPiePercents pieMorn = new ReadingPiePercents(dt, new DateTime(1, 1, 1, 6, 0, 0), new DateTime(1, 1, 1, 11, 59, 59));
-                    chtMornings.Series["Mornings_Series"].XValueMember = "Label";
-                    chtMornings.Series["Mornings_Series"].YValueMembers = "Value";
-                    chtMornings.Series["Mornings_Series"].IsValueShownAsLabel = false;
-                    chtMornings.ChartAreas["Mornings_ChartArea"].Area3DStyle.Enable3D = true;
-                    chtMornings.ChartAreas["Mornings_ChartArea"].Area3DStyle.Inclination = 50;
-                    chtMornings.DataSource = pieMorn.BindingSource;
-                    chtMornings.DataBind();
-
-                    ReadingPiePercents pieAfter = new ReadingPiePercents(dt, new DateTime(1, 1, 1, 12, 0, 0), new DateTime(1, 1, 1, 20, 59, 59));
-                    chtAfternoons.Series["Afternoons_Series"].XValueMember = "Label";
-                    chtAfternoons.Series["Afternoons_Series"].YValueMembers = "Value";
-                    chtAfternoons.Series["Afternoons_Series"].IsValueShownAsLabel = false;
-                    chtAfternoons.ChartAreas["Afternoons_ChartArea"].Area3DStyle.Enable3D = true;
-                    chtAfternoons.ChartAreas["Afternoons_ChartArea"].Area3DStyle.Inclination = 50;
-                    chtAfternoons.DataSource = pieAfter.BindingSource;
-                    chtAfternoons.DataBind();
-
-                    ReadingPiePercents pieNight = new ReadingPiePercents(dt, new DateTime(1, 1, 1, 21, 0, 0), new DateTime(1, 1, 1, 5, 59, 59));
-                    chtNights.Series["Nights_Series"].XValueMember = "Label";
-                    chtNights.Series["Nights_Series"].YValueMembers = "Value";
-                    chtNights.Series["Nights_Series"].IsValueShownAsLabel = false;
-                    chtNights.ChartAreas["Nights_ChartArea"].Area3DStyle.Enable3D = true;
-                    chtNights.ChartAreas["Nights_ChartArea"].Area3DStyle.Inclination = 50;
-                    chtNights.DataSource = pieNight.BindingSource;
-                    chtNights.DataBind();
                     //TODO: Let user set time ranges for morning afternoon and night
                 }
             }
@@ -152,6 +96,79 @@ namespace GlucaTrack.Website.Content
             }
         }
 
+        private void MainGraph(object DataSource)
+        {
+            //last X days graph
+            chtLastXDays.Series["LastXDays_Series"].XValueMember = "TimeStamp";
+            chtLastXDays.Series["LastXDays_Series"].YValueMembers = "Glucose";
+            chtLastXDays.Series["LastXDays_Series"].IsValueShownAsLabel = true;
+            chtLastXDays.Width = (int)(Math.Round(Request.Browser.ScreenPixelsWidth * 0.85, 0, MidpointRounding.AwayFromZero));
+            chtLastXDays.Titles[chtLastXDays.Titles.Count - 1].Text = string.Format(Resources.Content_Strings.GraphTitle_Main, ddDateRange.SelectedValue);
+            chtLastXDays.DataSource = DataSource;
+            chtLastXDays.DataBind();
+        }
+
+        private void GridOfValues()
+        {
+            //grid of values
+            gridValues.DataBind();
+        }
+
+        private void MinMaxValues(DataTable dt)
+        {
+            //min max values
+            var min = dt.Select("Glucose = MIN(Glucose)");
+            var max = dt.Select("Glucose = MAX(Glucose)");
+            var avg = dt.Compute("AVG(Glucose)", null);
+            var stdev = dt.Compute("StDev(Glucose)", null);
+            var variance = dt.Compute("Var(Glucose)", null);
+            var NumHigh = dt.Compute("Count(Glucose)", "Glucose > " + Statics.HighThreshold.ToString());
+            var NumLow = dt.Compute("Count(Glucose)", "Glucose < " + Statics.LowThreshold.ToString());
+
+            //populate values on the right side
+            this.lblMin.Text = Resources.Content_Strings.Label_Minimum;
+            this.MinValue.Text = min[0]["Glucose"].ToString();
+            this.lblMax.Text = Resources.Content_Strings.Label_Maximum;
+            this.MaxValue.Text = max[0]["Glucose"].ToString();
+            this.lblAvg.Text = Resources.Content_Strings.Label_Average;
+            this.AvgValue.Text = avg.ToString();
+            this.lblNumLows.Text = Resources.Content_Strings.Label_NumberOfLows;
+            this.NumLowsValue.Text = NumLow.ToString();
+            this.lblLowExplanation.Text = string.Format(Resources.Content_Strings.Label_LowExplanation, Statics.LowThreshold.ToString());
+            this.lblNumHighs.Text = Resources.Content_Strings.Label_NumberOfHighs;
+            this.NumHighsValue.Text = NumHigh.ToString();
+            this.lblHighExplanation.Text = string.Format(Resources.Content_Strings.Label_HighExplanation, Statics.HighThreshold.ToString());
+        }
+
+        private void PieCharts(DataTable dt)
+        {
+            ReadingPiePercents pieMorn = new ReadingPiePercents(dt, new DateTime(1, 1, 1, 6, 0, 0), new DateTime(1, 1, 1, 11, 59, 59));
+            chtMornings.Series["Mornings_Series"].XValueMember = "Label";
+            chtMornings.Series["Mornings_Series"].YValueMembers = "Value";
+            chtMornings.Series["Mornings_Series"].IsValueShownAsLabel = false;
+            chtMornings.ChartAreas["Mornings_ChartArea"].Area3DStyle.Enable3D = true;
+            chtMornings.ChartAreas["Mornings_ChartArea"].Area3DStyle.Inclination = 50;
+            chtMornings.DataSource = pieMorn.BindingSource;
+            chtMornings.DataBind();
+
+            ReadingPiePercents pieAfter = new ReadingPiePercents(dt, new DateTime(1, 1, 1, 12, 0, 0), new DateTime(1, 1, 1, 20, 59, 59));
+            chtAfternoons.Series["Afternoons_Series"].XValueMember = "Label";
+            chtAfternoons.Series["Afternoons_Series"].YValueMembers = "Value";
+            chtAfternoons.Series["Afternoons_Series"].IsValueShownAsLabel = false;
+            chtAfternoons.ChartAreas["Afternoons_ChartArea"].Area3DStyle.Enable3D = true;
+            chtAfternoons.ChartAreas["Afternoons_ChartArea"].Area3DStyle.Inclination = 50;
+            chtAfternoons.DataSource = pieAfter.BindingSource;
+            chtAfternoons.DataBind();
+
+            ReadingPiePercents pieNight = new ReadingPiePercents(dt, new DateTime(1, 1, 1, 21, 0, 0), new DateTime(1, 1, 1, 5, 59, 59));
+            chtNights.Series["Nights_Series"].XValueMember = "Label";
+            chtNights.Series["Nights_Series"].YValueMembers = "Value";
+            chtNights.Series["Nights_Series"].IsValueShownAsLabel = false;
+            chtNights.ChartAreas["Nights_ChartArea"].Area3DStyle.Enable3D = true;
+            chtNights.ChartAreas["Nights_ChartArea"].Area3DStyle.Inclination = 50;
+            chtNights.DataSource = pieNight.BindingSource;
+            chtNights.DataBind();
+        }
     }
 
     public class ReadingPiePercents
@@ -169,40 +186,41 @@ namespace GlucaTrack.Website.Content
             PercentHigh = 0;
         }
 
-        public ReadingPiePercents(Queries.sp_GetDataForLastXDaysDataTable dt, DateTime start, DateTime stop)
+        public ReadingPiePercents(DataTable dt, DateTime start, DateTime stop)
             : this()
         {
             CalculatePieChart(dt, start, stop);
         }
 
-        private void CalculatePieChart(Queries.sp_GetDataForLastXDaysDataTable dt, DateTime start, DateTime stop)
+        private void CalculatePieChart(DataTable dt, DateTime start, DateTime stop)
         {
+            Queries.sp_GetDataForLastXDaysDataTable castDT = (Queries.sp_GetDataForLastXDaysDataTable)dt;
             if (start.TimeOfDay < stop.TimeOfDay)
             {
-                PercentLow = 100 * Convert.ToDouble(dt.Where(i => i.Glucose <= Statics.LowThreshold &&
+                PercentLow = 100 * Convert.ToDouble(castDT.Where(i => i.Glucose <= Statics.LowThreshold &&
                                             i.TimeStamp.TimeOfDay >= start.TimeOfDay &&
                                             i.TimeStamp.TimeOfDay <= stop.TimeOfDay).Count()) / Convert.ToDouble(dt.Rows.Count);
 
-                PercentHigh = 100 * Convert.ToDouble(dt.Where(i => i.Glucose >= Statics.HighThreshold &&
+                PercentHigh = 100 * Convert.ToDouble(castDT.Where(i => i.Glucose >= Statics.HighThreshold &&
                                              i.TimeStamp.TimeOfDay >= start.TimeOfDay &&
                                              i.TimeStamp.TimeOfDay <= stop.TimeOfDay).Count()) / Convert.ToDouble(dt.Rows.Count);
 
-                PercentNormal = 100 * Convert.ToDouble(dt.Where(i => i.Glucose > Statics.LowThreshold &&
+                PercentNormal = 100 * Convert.ToDouble(castDT.Where(i => i.Glucose > Statics.LowThreshold &&
                                                i.Glucose < Statics.HighThreshold &&
                                                i.TimeStamp.TimeOfDay >= start.TimeOfDay &&
                                                i.TimeStamp.TimeOfDay <= stop.TimeOfDay).Count()) / Convert.ToDouble(dt.Rows.Count);
             }
             else
             {
-                PercentLow = 100 * Convert.ToDouble(dt.Where(i => i.Glucose <= Statics.LowThreshold &&
+                PercentLow = 100 * Convert.ToDouble(castDT.Where(i => i.Glucose <= Statics.LowThreshold &&
                                             i.TimeStamp.TimeOfDay >= start.TimeOfDay ||
                                             i.TimeStamp.TimeOfDay <= stop.TimeOfDay).Count()) / Convert.ToDouble(dt.Rows.Count);
 
-                PercentHigh = 100 * Convert.ToDouble(dt.Where(i => i.Glucose >= Statics.HighThreshold &&
+                PercentHigh = 100 * Convert.ToDouble(castDT.Where(i => i.Glucose >= Statics.HighThreshold &&
                                              i.TimeStamp.TimeOfDay >= start.TimeOfDay ||
                                              i.TimeStamp.TimeOfDay <= stop.TimeOfDay).Count()) / Convert.ToDouble(dt.Rows.Count);
 
-                PercentNormal = 100 * Convert.ToDouble(dt.Where(i => (i.Glucose > Statics.LowThreshold &&
+                PercentNormal = 100 * Convert.ToDouble(castDT.Where(i => (i.Glucose > Statics.LowThreshold &&
                                                i.Glucose < Statics.HighThreshold) &&
                                                i.TimeStamp.TimeOfDay >= start.TimeOfDay ||
                                                i.TimeStamp.TimeOfDay <= stop.TimeOfDay).Count()) / Convert.ToDouble(dt.Rows.Count);
