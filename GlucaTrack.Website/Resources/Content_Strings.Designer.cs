@@ -61,6 +61,42 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last {0} days.
+        /// </summary>
+        internal static string GraphTitle_Main {
+            get {
+                return ResourceManager.GetString("GraphTitle_Main", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Afternoons.
+        /// </summary>
+        internal static string GraphTitle_PieAfternoons {
+            get {
+                return ResourceManager.GetString("GraphTitle_PieAfternoons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mornings.
+        /// </summary>
+        internal static string GraphTitle_PieMornings {
+            get {
+                return ResourceManager.GetString("GraphTitle_PieMornings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nights.
+        /// </summary>
+        internal static string GraphTitle_PieNights {
+            get {
+                return ResourceManager.GetString("GraphTitle_PieNights", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Avg: .
         /// </summary>
         internal static string Label_Average {
@@ -120,15 +156,6 @@ namespace GlucaTrack.Website.Resources {
         internal static string Label_NumberOfLows {
             get {
                 return ResourceManager.GetString("Label_NumberOfLows", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3d Graphs.
-        /// </summary>
-        internal static string Option_3DGraphs {
-            get {
-                return ResourceManager.GetString("Option_3DGraphs", resourceCulture);
             }
         }
     }

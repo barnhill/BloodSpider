@@ -117,6 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="GraphTitle_Main" xml:space="preserve">
+    <value>Last {0} days</value>
+    <comment>Title on the main graph</comment>
+  </data>
+  <data name="GraphTitle_PieAfternoons" xml:space="preserve">
+    <value>Afternoons</value>
+    <comment>Pie graph2 title</comment>
+  </data>
+  <data name="GraphTitle_PieMornings" xml:space="preserve">
+    <value>Mornings</value>
+    <comment>Pie graph1 title</comment>
+  </data>
+  <data name="GraphTitle_PieNights" xml:space="preserve">
+    <value>Nights</value>
+    <comment>Pie graph3 title</comment>
+  </data>
   <data name="Label_Average" xml:space="preserve">
     <value>Avg: </value>
     <comment>Average value label and value</comment>
@@ -144,9 +160,5 @@
   <data name="Label_NumberOfLows" xml:space="preserve">
     <value># Low: </value>
     <comment>Number of low values label and value</comment>
-  </data>
-  <data name="Option_3DGraphs" xml:space="preserve">
-    <value>3d Graphs</value>
-    <comment>Toggles the 3d graphs.</comment>
   </data>
 </root>

@@ -130,7 +130,6 @@
     <Content Include="jQuery\Content\Scripts\jquery-1.7.1.js" />
     <Content Include="jQuery\Content\Scripts\jquery-1.7.1.min.js" />
     <None Include="jQuery\Tools\jquery-1.7.1.intellisense.js" />
-    <Content Include="UserControls\DateRangePicker.ascx" />
     <Content Include="Images\icons\down-green.png" />
     <Content Include="Images\icons\up-red.png" />
     <Content Include="Images\grid_style\grd_alt.png" />
@@ -266,13 +265,7 @@
     <Compile Include="Content\Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\DateRangePicker.ascx.cs">
-      <DependentUpon>DateRangePicker.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControls\DateRangePicker.ascx.designer.cs">
-      <DependentUpon>DateRangePicker.ascx</DependentUpon>
-    </Compile>
+    <Compile Include="Content\Statics.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -335,6 +328,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UserControls\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />

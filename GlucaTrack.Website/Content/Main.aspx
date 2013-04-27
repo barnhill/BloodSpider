@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="My Data" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="GlucaTrack.Website.Content.Main" %>
 
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
-<%@ Register Src="/UserControls/DateRangePicker.ascx" TagPrefix="uc1" TagName="DateRangePicker" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <link href="/Styles/dashboard.css" rel="stylesheet" />
@@ -12,8 +11,7 @@
     <asp:SqlDataSource ID="LastXDays_DataSource" runat="server" ConnectionString="<%$ ConnectionStrings:glucatrackConnectionString %>" SelectCommand="sp_GetDataForLastXDays" SelectCommandType="StoredProcedure" >
         <SelectParameters>
             <asp:SessionParameter Name="userid" SessionField="LoggedInUserId" Type="Int32" />
-            <asp:SessionParameter DefaultValue="" Name="startdate" SessionField="RangeToDate" Type="DateTime" />
-            <asp:SessionParameter DefaultValue="7" Name="days" SessionField="RangeDays" Type="Int32" />
+            <asp:ControlParameter ControlID="ctl00$MainContent$TabContainer1$Dashboard$ddDateRange" DefaultValue="7" Name="days" PropertyName="SelectedValue" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
 
@@ -22,13 +20,19 @@
             <ContentTemplate>
                 <div runat="server" id="divTopOptions">
                         <div runat="server" style="display: inline-block;">
-                            <uc1:DateRangePicker runat="server" ID="drPicker" ClientIDMode="Static" />
+                            <asp:DropDownList ID="ddDateRange" runat="server" AutoPostBack="True">
+                                <asp:ListItem Text="Last 7 days" Value="7" Selected="True" />
+                                <asp:ListItem Text="Last 14 days" Value="14" />
+                                <asp:ListItem Text="Last 30 days" Value="30" />
+                                <asp:ListItem Text="Last 90 days" Value="90" />
+                                <asp:ListItem Text="Last 6 months" Value="180" />
+                                <asp:ListItem Text="Last 1 year" Value="365" />
+                            </asp:DropDownList>
                         </div>
                         <div runat="server" style="display: inline-block;">
                         </div>
                         <div runat="server" id="div3dGraphs" style="display:inline-block;">
-                            <asp:CheckBox ID="Enable3dGraphs" runat="server" OnCheckedChanged="Enable3dGraphs_CheckedChanged" AutoPostBack="True" />
-                            <asp:Label ID="Label_Enable3dGraphs" runat="server" AssociatedControlID="Enable3dGraphs" />
+                            &nbsp;
                         </div>
                 </div>
                 <table>
@@ -36,7 +40,7 @@
                         <td>
                             <asp:Chart ID="chtLastXDays" runat="server" EnableTheming="False" BorderlineColor="255, 153, 0">
                                 <Titles> 
-                                    <asp:Title Text="Last X Days" Name="LastXDays_Title" />
+                                    <asp:Title Text="Trending" Name="LastXDays_Title" />
                                 </Titles>
                                     <Series>
                                         <asp:Series Name="LastXDays_Series" ChartArea="LastXDays_ChartArea" ChartType="Line" BorderWidth="3" Color="0, 133, 198" />
@@ -71,7 +75,7 @@
                                 DataSourceID="LastXDays_DataSource" OnRowDataBound="gridValues_RowDataBound">
                                 <AlternatingRowStyle CssClass="alt" />
                                 <Columns>
-                                    <asp:BoundField DataField="TimeStamp" HeaderText="TimeStamp" SortExpression="TimeStamp" />
+                                    <asp:BoundField DataField="TimeStamp" HeaderText="Date/Time" SortExpression="TimeStamp" />
                                     <asp:TemplateField HeaderText="Glucose">
                                         <ItemTemplate>
                                             <div style="text-align: right;">

@@ -49,13 +49,13 @@ namespace GlucaTrack.Website.Content {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divTopOptions;
         
         /// <summary>
-        /// drPicker control.
+        /// ddDateRange control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::GlucaTrack.Website.DateRangePicker drPicker;
+        protected global::System.Web.UI.WebControls.DropDownList ddDateRange;
         
         /// <summary>
         /// div3dGraphs control.
@@ -65,24 +65,6 @@ namespace GlucaTrack.Website.Content {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div3dGraphs;
-        
-        /// <summary>
-        /// Enable3dGraphs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox Enable3dGraphs;
-        
-        /// <summary>
-        /// Label_Enable3dGraphs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_Enable3dGraphs;
         
         /// <summary>
         /// chtLastXDays control.

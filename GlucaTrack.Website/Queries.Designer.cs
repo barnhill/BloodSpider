@@ -2996,7 +2996,6 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@userid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@startdate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@days", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -3004,7 +3003,7 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Queries.sp_GetDataForLastXDaysDataTable dataTable, global::System.Nullable<int> userid, global::System.Nullable<global::System.DateTime> startdate, global::System.Nullable<int> days) {
+        public virtual int Fill(Queries.sp_GetDataForLastXDaysDataTable dataTable, global::System.Nullable<int> userid, global::System.Nullable<int> days) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((userid.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(userid.Value));
@@ -3012,17 +3011,11 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((startdate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(startdate.Value));
+            if ((days.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(days.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((days.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(days.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -3035,7 +3028,7 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Queries.sp_GetDataForLastXDaysDataTable GetData(global::System.Nullable<int> userid, global::System.Nullable<global::System.DateTime> startdate, global::System.Nullable<int> days) {
+        public virtual Queries.sp_GetDataForLastXDaysDataTable GetData(global::System.Nullable<int> userid, global::System.Nullable<int> days) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((userid.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(userid.Value));
@@ -3043,17 +3036,11 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((startdate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(startdate.Value));
+            if ((days.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(days.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((days.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(days.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             Queries.sp_GetDataForLastXDaysDataTable dataTable = new Queries.sp_GetDataForLastXDaysDataTable();
             this.Adapter.Fill(dataTable);
