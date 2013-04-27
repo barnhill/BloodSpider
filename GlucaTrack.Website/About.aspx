@@ -16,7 +16,7 @@
         </p>
 
         <p>        
-            Use this area to provide additional information. brad like the dong
+            Use this area to provide additional information.
         </p>
     </article>
 
