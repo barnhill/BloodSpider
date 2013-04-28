@@ -10,9 +10,6 @@ using GlucaTrack.Services.Common;
 
 namespace GlucaTrack.Services.Web
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
-    
     public class GTService : IGTService
     {
         private static List<Guid> Authenticated = new List<Guid>();
@@ -35,7 +32,7 @@ namespace GlucaTrack.Services.Web
             {
                 try
                 {
-                    ta.Fill(d.sp_GetLogin, StringCipher.DES_Decrypt(Username), StringCipher.DES_Decrypt(Password));
+                    ta.Fill(d.sp_GetLogin, Username, Password);
                     
                     if (d.sp_GetLogin != null && d.sp_GetLogin.Count == 1)
                     {

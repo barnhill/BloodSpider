@@ -19,7 +19,7 @@ namespace GlucaTrack.Services.Windows
 {
     public partial class GlucaTrackDetector : ServiceBase
     {
-        BackgroundWorker background_DeviceDetector = new BackgroundWorker();
+        BackgroundWorker background_DeviceDetector = null;
         BackgroundWorker background_DeviceReader = new BackgroundWorker();
         BackgroundWorker background_CommandServer = new BackgroundWorker();
         ManagementEventWatcher watcher = null;
@@ -69,8 +69,7 @@ namespace GlucaTrack.Services.Windows
 
         private void USBwatcher_EventArrived(object sender, EventArrivedEventArgs e)
         {
-            while (background_DeviceDetector.IsBusy)
-                Thread.Sleep(50);
+            if (background_DeviceDetector != null) return;
             
             //start the background thread looking for devices
             startDetectorThread();
@@ -183,6 +182,9 @@ namespace GlucaTrack.Services.Windows
         {
             try
             {
+                background_DeviceDetector.Dispose();
+                background_DeviceDetector = null;
+
                 if (e != null && e.Result != null && Common.Statics.deviceFound != null)
                 {
                     EventLog.WriteEntry("Device identified: " + Common.Statics.deviceFound.DeviceDescription, EventLogEntryType.Information, 1);
@@ -279,6 +281,7 @@ namespace GlucaTrack.Services.Windows
             if (background_DeviceDetector != null)
             {
                 background_DeviceDetector.Dispose();
+                background_DeviceDetector = null;
             }
 
             background_DeviceDetector = new BackgroundWorker();
@@ -316,7 +319,7 @@ namespace GlucaTrack.Services.Windows
                             EventLog.WriteEntry("Validating User: Begin", EventLogEntryType.Information);
 
                             //validate user
-                            userinfo = client.ValidateLogin(loginRow.Username, loginRow.Password);
+                            userinfo = client.ValidateLogin(Common.StringCipher.DES_Decrypt(loginRow.Username), loginRow.Password);
                         }
                         catch (Exception ex)
                         {

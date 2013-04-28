@@ -122,6 +122,7 @@ namespace GlucaTrack.Communication.Meters.Abbott
 
         public override void ReadData()
         {
+            Connect(Port.PortName);
             if (!Port.IsOpen)
                 throw new Exception("Port is closed.");
 

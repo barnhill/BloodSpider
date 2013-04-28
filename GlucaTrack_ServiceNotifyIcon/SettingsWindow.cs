@@ -270,8 +270,8 @@ namespace GlucaTrack.Services.Windows
 
                 if (loginRow != null)
                 {
-                    this.txtUsername.Text = StringCipher.Decrypt(loginRow.Username, Statics.phraseUsername);
-                    this.txtPassword.Text = StringCipher.Decrypt(loginRow.Password, Statics.phrasePassword);
+                    this.txtUsername.Text = StringCipher.DES_Decrypt(loginRow.Username);
+                    this.txtPassword.Text = StringCipher.DES_Decrypt(loginRow.Password);
                 }
             }
 

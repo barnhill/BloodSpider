@@ -126,10 +126,14 @@ namespace GlucaTrack.Website.Content
             var NumLow = dt.Compute("Count(Glucose)", "Glucose < " + Statics.LowThreshold.ToString());
 
             //populate values on the right side
-            this.lblMin.Text = Resources.Content_Strings.Label_Minimum;
-            this.MinValue.Text = min[0]["Glucose"].ToString();
-            this.lblMax.Text = Resources.Content_Strings.Label_Maximum;
-            this.MaxValue.Text = max[0]["Glucose"].ToString();
+            if (min.Count() > 0 && max.Count() > 0)
+            {
+                this.lblMin.Text = Resources.Content_Strings.Label_Minimum;
+                this.MinValue.Text = min[0]["Glucose"].ToString();
+                this.lblMax.Text = Resources.Content_Strings.Label_Maximum;
+                this.MaxValue.Text = max[0]["Glucose"].ToString();
+            }
+
             this.lblAvg.Text = Resources.Content_Strings.Label_Average;
             this.AvgValue.Text = avg.ToString();
             this.lblNumLows.Text = Resources.Content_Strings.Label_NumberOfLows;

@@ -366,6 +366,10 @@ namespace GlucaTrack.Services.Windows.WebService {
             
             private global::System.Data.DataColumn columnstate;
             
+            private global::System.Data.DataColumn columnabbreviation;
+            
+            private global::System.Data.DataColumn columnother_state;
+            
             private global::System.Data.DataColumn columnzipcode;
             
             private global::System.Data.DataColumn columnlast_sync;
@@ -483,6 +487,22 @@ namespace GlucaTrack.Services.Windows.WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn abbreviationColumn {
+                get {
+                    return this.columnabbreviation;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn other_stateColumn {
+                get {
+                    return this.columnother_state;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn zipcodeColumn {
                 get {
                     return this.columnzipcode;
@@ -558,7 +578,7 @@ namespace GlucaTrack.Services.Windows.WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_GetLoginRow Addsp_GetLoginRow(byte usertype_id, string firstname, string middlename, string lastname, string address1, string address2, string city, string state, string zipcode, System.DateTime last_sync, System.DateTime last_weblogin, string usertype, System.Guid sessionid) {
+            public sp_GetLoginRow Addsp_GetLoginRow(byte usertype_id, string firstname, string middlename, string lastname, string address1, string address2, string city, string state, string abbreviation, string other_state, string zipcode, System.DateTime last_sync, System.DateTime last_weblogin, string usertype, System.Guid sessionid) {
                 sp_GetLoginRow rowsp_GetLoginRow = ((sp_GetLoginRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -570,6 +590,8 @@ namespace GlucaTrack.Services.Windows.WebService {
                         address2,
                         city,
                         state,
+                        abbreviation,
+                        other_state,
                         zipcode,
                         last_sync,
                         last_weblogin,
@@ -613,6 +635,8 @@ namespace GlucaTrack.Services.Windows.WebService {
                 this.columnaddress2 = base.Columns["address2"];
                 this.columncity = base.Columns["city"];
                 this.columnstate = base.Columns["state"];
+                this.columnabbreviation = base.Columns["abbreviation"];
+                this.columnother_state = base.Columns["other_state"];
                 this.columnzipcode = base.Columns["zipcode"];
                 this.columnlast_sync = base.Columns["last_sync"];
                 this.columnlast_weblogin = base.Columns["last_weblogin"];
@@ -641,6 +665,10 @@ namespace GlucaTrack.Services.Windows.WebService {
                 base.Columns.Add(this.columncity);
                 this.columnstate = new global::System.Data.DataColumn("state", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstate);
+                this.columnabbreviation = new global::System.Data.DataColumn("abbreviation", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnabbreviation);
+                this.columnother_state = new global::System.Data.DataColumn("other_state", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnother_state);
                 this.columnzipcode = new global::System.Data.DataColumn("zipcode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnzipcode);
                 this.columnlast_sync = new global::System.Data.DataColumn("last_sync", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -668,8 +696,9 @@ namespace GlucaTrack.Services.Windows.WebService {
                 this.columnaddress2.MaxLength = 50;
                 this.columncity.AllowDBNull = false;
                 this.columncity.MaxLength = 25;
-                this.columnstate.AllowDBNull = false;
-                this.columnstate.MaxLength = 2;
+                this.columnstate.MaxLength = 32;
+                this.columnabbreviation.MaxLength = 8;
+                this.columnother_state.MaxLength = 50;
                 this.columnzipcode.AllowDBNull = false;
                 this.columnzipcode.MaxLength = 12;
                 this.columnusertype.AllowDBNull = false;
@@ -916,10 +945,47 @@ namespace GlucaTrack.Services.Windows.WebService {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string state {
                 get {
-                    return ((string)(this[this.tablesp_GetLogin.stateColumn]));
+                    try {
+                        return ((string)(this[this.tablesp_GetLogin.stateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'state\' in table \'sp_GetLogin\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tablesp_GetLogin.stateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string abbreviation {
+                get {
+                    try {
+                        return ((string)(this[this.tablesp_GetLogin.abbreviationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'abbreviation\' in table \'sp_GetLogin\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_GetLogin.abbreviationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string other_state {
+                get {
+                    try {
+                        return ((string)(this[this.tablesp_GetLogin.other_stateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'other_state\' in table \'sp_GetLogin\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_GetLogin.other_stateColumn] = value;
                 }
             }
             
@@ -1015,6 +1081,42 @@ namespace GlucaTrack.Services.Windows.WebService {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setaddress2Null() {
                 this[this.tablesp_GetLogin.address2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstateNull() {
+                return this.IsNull(this.tablesp_GetLogin.stateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstateNull() {
+                this[this.tablesp_GetLogin.stateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsabbreviationNull() {
+                return this.IsNull(this.tablesp_GetLogin.abbreviationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetabbreviationNull() {
+                this[this.tablesp_GetLogin.abbreviationColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isother_stateNull() {
+                return this.IsNull(this.tablesp_GetLogin.other_stateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setother_stateNull() {
+                this[this.tablesp_GetLogin.other_stateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

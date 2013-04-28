@@ -163,8 +163,8 @@ namespace GlucaTrack.Communication.Meters.LifeScan
             if (!Port.IsOpen)
                 Connect(COMport);
 
-            Port.DiscardInBuffer();
-            Port.DiscardOutBuffer();
+            //Port.DiscardInBuffer();
+            //Port.DiscardOutBuffer();
 
             SendCommand("soft");
 
@@ -196,6 +196,9 @@ namespace GlucaTrack.Communication.Meters.LifeScan
             //wait till another command finishes
             while (currentCommand != String.Empty)
                 Thread.Sleep(10);
+
+            if (!Port.IsOpen)
+                Connect(Port.PortName);
 
             //clear buffers
             Port.DiscardInBuffer();
