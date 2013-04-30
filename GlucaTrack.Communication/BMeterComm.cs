@@ -32,6 +32,23 @@ namespace GlucaTrack.Communication
     }
 
     /// <summary>
+    /// Event arguments when a record is read from a meter.
+    /// </summary>
+    public class ReadFinishedEventArgs : EventArgs
+    {
+        public ReadFinishedEventArgs(Records.RecordDataTable rows)
+        {
+            Rows = rows;
+        }
+
+        public Records.RecordDataTable Rows
+        {
+            get;
+            set;
+        }
+    }
+
+    /// <summary>
     /// Event arguments when a header record is read from a meter.
     /// </summary>
     public class HeaderReadEventArgs : EventArgs

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 using System.IO.Ports;
 using System.Threading;
 
@@ -11,7 +12,8 @@ namespace GlucaTrack.Communication.Meters.Abbott
         bool _HeaderRead = false;
         bool _TestMode = false;
         bool _TestPassed = false;
-        
+        bool _ReadFinished = false;
+
         public FreeStyle()
         {
             SampleFormat = SampleFormat.MGDL;
@@ -19,14 +21,14 @@ namespace GlucaTrack.Communication.Meters.Abbott
             MeterDescription = "Abbott Freestyle";
         }
 
-        public override void DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        public override void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             RawData += Port.ReadExisting();
 
             //header already read so grab the records
             if (_HeaderRead)
             {
-                using (System.IO.StringReader reader = new System.IO.StringReader(RawData))
+                using (StringReader reader = new StringReader(RawData))
                 {
                     string line;
                     while ((line = reader.ReadLine()) != null)
@@ -34,8 +36,10 @@ namespace GlucaTrack.Communication.Meters.Abbott
                         //end record encountered
                         if (line.Contains("END") )
                         {
-                            Port.DataReceived -= new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
-                            OnReadFinished(e);
+                            _ReadFinished = true;
+                            Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
+
+                            OnReadFinished(new ReadFinishedEventArgs(Records));
                             Close();
                             Dispose();
                             break;
@@ -105,7 +109,7 @@ namespace GlucaTrack.Communication.Meters.Abbott
                 {
                     _TestPassed = true;
                     Port.DataReceived += null;
-                    Close();
+                    
                     return;
                 }
 
@@ -122,11 +126,25 @@ namespace GlucaTrack.Communication.Meters.Abbott
 
         public override void ReadData()
         {
-            Connect(Port.PortName);
-            if (!Port.IsOpen)
-                throw new Exception("Port is closed.");
+            _ReadFinished = false;
+            _TestPassed = false;
 
-            Port.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
+            if (!Port.IsOpen)
+            {
+                DateTime startAutoConnect = DateTime.Now;
+
+                string strComport = Port.PortName;
+                Port.Dispose();
+                Port = null;
+
+                while (!Connect(strComport))
+                    Thread.Sleep(50);
+
+                Console.WriteLine("Autoconnect: " + (DateTime.Now - startAutoConnect).TotalSeconds.ToString() + "s");
+            }
+
+            //Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
+            Port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
 
             //get the memory dump from the device
             Port.Write("mem");
@@ -136,7 +154,7 @@ namespace GlucaTrack.Communication.Meters.Abbott
         {
             base.Close();
 
-            Port = new System.IO.Ports.SerialPort(COMport, 19200, Parity.None, 8, StopBits.One);
+            Port = new SerialPort(COMport, 19200, Parity.None, 8, StopBits.One);
 
             return base.Open();
         }
@@ -162,7 +180,8 @@ namespace GlucaTrack.Communication.Meters.Abbott
             }
 
             _TestMode = false;
-
+            _HeaderRead = false;
+            _TestPassed = false;
             return !string.IsNullOrEmpty(SerialNumber);
         }
     }

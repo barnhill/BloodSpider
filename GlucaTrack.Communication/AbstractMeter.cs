@@ -100,7 +100,7 @@ namespace GlucaTrack.Communication
         #endregion
 
         #region Event Handlers (Protected)
-        protected virtual void OnReadFinished(EventArgs e)
+        protected virtual void OnReadFinished(ReadFinishedEventArgs e)
         {
             _ReadTime = DateTime.Now - _startReadTime;
             EventHandler invoker = ReadFinished;
@@ -147,7 +147,7 @@ namespace GlucaTrack.Communication
         public virtual bool Close()
         {
             Port.DataReceived += null;
-
+            
             if (Port.IsOpen)
             {
                 Port.DiscardInBuffer();

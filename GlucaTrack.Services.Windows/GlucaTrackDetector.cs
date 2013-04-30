@@ -103,12 +103,12 @@ namespace GlucaTrack.Services.Windows
                         connectionTries++;
                     }
 
-                    EventLog.WriteEntry("Begin reading data from meter.", EventLogEntryType.Information);
+                    EventLog.WriteEntry(string.Format("Begin reading data from {0}.", Common.Statics.deviceFound.DeviceDescription), EventLogEntryType.Information);
+
+                    Meter.Port.DiscardInBuffer();
+                    Meter.Port.DiscardOutBuffer();
 
                     Meter.ReadData();
-                    e.Result = Meter;
-
-                    EventLog.WriteEntry("Finished reading data from meter.", EventLogEntryType.Information);
                 }
             }
             catch (Exception ex)
@@ -212,6 +212,8 @@ namespace GlucaTrack.Services.Windows
                 }
                 else if (e.Result is IMeter)
                 {
+                    EventLog.WriteEntry(string.Format("Finished reading data from {0}.", Common.Statics.deviceFound.DeviceDescription), EventLogEntryType.Information);
+
                     //send data to webservice
                     uploadData(e.Result as IMeter);
                 }
@@ -366,6 +368,7 @@ namespace GlucaTrack.Services.Windows
 
         protected virtual void OnReadFinished(object sender, EventArgs e)
         {
+            Records.RecordDataTable dt = ((ReadFinishedEventArgs)e).Rows;
         }
         protected virtual void OnRecordRead(object sender, EventArgs e)
         {

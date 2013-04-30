@@ -67,7 +67,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
                             SampleCount = Records.Count;
                             _EndRecordEncountered = true;
                             Port.DataReceived -= new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
-                            OnReadFinished(e);
+                            OnReadFinished(new ReadFinishedEventArgs(Records));
                             Close();
                             Dispose();
                             break;
@@ -265,7 +265,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
         {
             base.Close();
 
-            Port = new System.IO.Ports.SerialPort(COMport, 38400, Parity.None, 8, StopBits.One);
+            Port = new SerialPort(COMport, 38400, Parity.None, 8, StopBits.One);
             Port.Handshake = Handshake.RequestToSend;
             Port.ReadBufferSize = 16384;
             Port.WriteBufferSize = 1024;
@@ -284,7 +284,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
             if (!Port.IsOpen)
                 return false;
 
-            Port.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
+            Port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
 
             DateTime dtStartTime = DateTime.Now;
             while (!_MeterFound && (DateTime.Now - dtStartTime).TotalMilliseconds < 3000)

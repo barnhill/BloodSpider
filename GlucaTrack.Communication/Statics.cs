@@ -145,6 +145,7 @@ namespace GlucaTrack.Communication
 
                 try
                 {
+                    Console.WriteLine("Testing " + comport + " for " + reflect.UnderlyingSystemType.ToString());
                     if (meter.IsMeterConnected(comport))
                     {
                         dinfo = new DeviceInfo();
@@ -154,6 +155,7 @@ namespace GlucaTrack.Communication
                         lock (DevicesFound)
                         {
                             DevicesFound.Add(dinfo);
+                            return; //found a device so return.  Can be removed to find all devices on a system.
                         }
                     }
                 }//try

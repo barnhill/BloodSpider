@@ -215,7 +215,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
             {
                 _HeaderRead = false;
                 Port.DataReceived -= new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
-                OnReadFinished(e);
+                OnReadFinished(new ReadFinishedEventArgs(Records));
                 Close();
                 Dispose();
                 return;

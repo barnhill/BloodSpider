@@ -96,7 +96,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
                         if (++_RecordCount == SampleCount)
                         {
                             //all records read so close the port and dispose
-                            OnReadFinished(e);
+                            OnReadFinished(new ReadFinishedEventArgs(Records));
                             base.Close();
                             Dispose();
                         }//if

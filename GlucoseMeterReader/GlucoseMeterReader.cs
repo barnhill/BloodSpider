@@ -90,20 +90,40 @@ namespace GlucoseMeterReader
             //record the start time
             startDateTime = DateTime.Now;
 
-            Meter = (IMeter)Activator.CreateInstance(Type.GetType("GlucaTrack.Communication.Meters." + cbMeterType.SelectedValue.ToString().Trim() + ", GlucaTrack.Communication, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
-
-            Meter.ReadFinished += new EventHandler(OnReadFinished);
-            Meter.RecordRead += new EventHandler(OnRecordRead);
-            Meter.HeaderRead += new EventHandler(OnHeaderRead);
-            Meter.Connect(this.cbComports.SelectedItem.ToString());
-
+            bgw.Dispose();
+            bgw = new BackgroundWorker();
             bgw.WorkerSupportsCancellation = true;
             bgw.DoWork += new DoWorkEventHandler(bgw_DoWork);
-            bgw.RunWorkerAsync();
+            bgw.RunWorkerAsync(new string [] { this.cbComports.SelectedItem.ToString(), cbMeterType.SelectedValue.ToString().Trim() });
+            bgw.RunWorkerCompleted += bgw_RunWorkerCompleted;
+        }
+
+        void bgw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Console.WriteLine("Thread Completed");
         }
 
         void bgw_DoWork(object sender, DoWorkEventArgs e)
         {
+            if (Meter != null && (!Meter.Port.IsOpen || Meter.Port.PortName != ((string[])e.Argument)[0]))
+            {
+                Meter.Dispose();
+                Meter = null;
+                System.Threading.Thread.Sleep(2500);
+            }
+
+            Meter = (IMeter)Activator.CreateInstance(Type.GetType("GlucaTrack.Communication.Meters." + ((string[])e.Argument)[1] + ", GlucaTrack.Communication, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"));
+            Meter.ReadFinished += new EventHandler(OnReadFinished);
+            Meter.RecordRead += new EventHandler(OnRecordRead);
+            Meter.HeaderRead += new EventHandler(OnHeaderRead);
+
+            Console.WriteLine("Connecting to " + ((string[])e.Argument)[0]);
+            
+            if (!Meter.Port.IsOpen)
+                Meter.Connect(((string[])e.Argument)[0]);
+            
+            Meter.Port.DiscardInBuffer();
+            Meter.Port.DiscardOutBuffer();
             Meter.ReadData();
         }
 

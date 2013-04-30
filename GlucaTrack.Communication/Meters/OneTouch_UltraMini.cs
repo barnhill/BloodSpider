@@ -100,9 +100,8 @@ namespace GlucaTrack.Communication.Meters.LifeScan
 
                         if (++numread >= SampleCount)
                         {
-                            OnReadFinished(new EventArgs());
-                            Port.DataReceived -= new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
-                            Close();
+                            OnReadFinished(new ReadFinishedEventArgs(Records));
+                            Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
                             Dispose();
                         }//if
 
@@ -132,7 +131,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
 
             currentCommand = String.Empty;
 
-            Port.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
+            Port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
 
             SendCommand("soft");
             SendCommand("serial");
@@ -145,6 +144,8 @@ namespace GlucaTrack.Communication.Meters.LifeScan
 
             Thread.Sleep(1000);
 
+            Records.Clear();
+
             //send individual reads for each glucose entry
             for (int i = 0; i < SampleCount; i++)
                 SendCommand("read", i);
@@ -153,7 +154,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
         public static DateTime UnixTimeStampToDateTime(long unixTimeStamp)
         {
             // Unix timestamp is seconds past epoch
-            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
             dtDateTime = dtDateTime.AddSeconds(Convert.ToDouble(unixTimeStamp)).ToLocalTime();
             return dtDateTime;
         }
@@ -174,7 +175,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
                 {
                     bool found = Port.ReadExisting().IndexOf("?A") > 0;
 
-                    base.Close();
+                    Dispose(); //base.Close();
 
                     return found;
                 }
@@ -182,7 +183,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
                 Thread.Sleep(10);
             }
 
-            base.Close();
+            Dispose();
 
             return false;
         }
