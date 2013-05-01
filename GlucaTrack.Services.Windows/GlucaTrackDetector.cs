@@ -90,7 +90,6 @@ namespace GlucaTrack.Services.Windows
                 //read devices data
                 if (Common.Statics.deviceFound != null)
                 {
-                    pipeWrite("MSG", "Reading Glucose Values", "from " + Common.Statics.deviceFound.DeviceDescription, 1);
                     IMeter Meter = (IMeter)Activator.CreateInstance(Common.Statics.deviceFound.DeviceType);
                     Meter.ReadFinished += new EventHandler(OnReadFinished);
                     Meter.RecordRead += new EventHandler(OnRecordRead);
@@ -203,25 +202,7 @@ namespace GlucaTrack.Services.Windows
         }
         private void background_DeviceReader_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            try
-            {
-                if (e.Error != null)
-                {
-                    //error was encountered so display it
-                    pipeWrite("MSG", "Error reading data", e.Error.Message, 1);
-                }
-                else if (e.Result is IMeter)
-                {
-                    EventLog.WriteEntry(string.Format("Finished reading data from {0}.", Common.Statics.deviceFound.DeviceDescription), EventLogEntryType.Information);
-
-                    //send data to webservice
-                    uploadData(e.Result as IMeter);
-                }
-            }
-            catch (Exception ex)
-            {
-                Errors.ServiceError(ex);
-            }
+            //finished reading - OnReadFinished raised
         }
         private void background_CommandServer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -297,6 +278,7 @@ namespace GlucaTrack.Services.Windows
             if (background_DeviceReader != null)
             {
                 background_DeviceReader.Dispose();
+                background_DeviceReader = null;
             }
 
             background_DeviceReader = new BackgroundWorker();
@@ -307,7 +289,7 @@ namespace GlucaTrack.Services.Windows
         }
         private void uploadData(IMeter meter)
         {
-            if (settings != null && meter != null)
+            if (settings != null)
             {
                 using (WebService.GTServiceClient client = new WebService.GTServiceClient())
                 {
@@ -368,14 +350,35 @@ namespace GlucaTrack.Services.Windows
 
         protected virtual void OnReadFinished(object sender, EventArgs e)
         {
-            Records.RecordDataTable dt = ((ReadFinishedEventArgs)e).Rows;
+            IMeter meter = ((ReadFinishedEventArgs)e).Meter;
+
+            try
+            {
+                EventLog.WriteEntry(string.Format("Finished reading data from {0}.", Common.Statics.deviceFound.DeviceDescription), EventLogEntryType.Information);
+
+                if (meter == null)
+                    throw new Exception("OnReadFinished-1: Meter object was null.");
+
+                //send data to webservice
+                uploadData(meter);
+            }
+            catch (Exception ex)
+            {
+                Errors.ServiceError(ex);
+            }
         }
         protected virtual void OnRecordRead(object sender, EventArgs e)
         {
+            RecordReadEventArgs readArgs = (RecordReadEventArgs)e;
+
             //TODO: put progress bar on reading code here
         }
+        
         protected virtual void OnHeaderRead(object sender, EventArgs e)
         {
+            HeaderReadEventArgs headArgs = (HeaderReadEventArgs)e;
+            
+            pipeWrite("MSG", string.Format("Reading {0} Glucose Values", headArgs.RowCount), string.Format("from {0}", headArgs.Meter.MeterDescription), 1);
         }
     }
 }

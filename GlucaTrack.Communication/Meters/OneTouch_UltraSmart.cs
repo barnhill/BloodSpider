@@ -46,7 +46,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
                         break;
                     case "soft": //read software version and date
                         string software = RawData.Split(new char[] { ' ' })[0].Substring(2).Trim();
-                        OnHeaderRead(new HeaderReadEventArgs(5000));
+                        OnHeaderRead(new HeaderReadEventArgs(5000, this));
 #if DEBUG
                         Console.WriteLine("Software Version: " + software);
 #endif
@@ -67,7 +67,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
                             SampleCount = Records.Count;
                             _EndRecordEncountered = true;
                             Port.DataReceived -= new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
-                            OnReadFinished(new ReadFinishedEventArgs(Records));
+                            OnReadFinished(new ReadFinishedEventArgs(this));
                             Close();
                             Dispose();
                             break;

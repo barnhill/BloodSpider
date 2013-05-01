@@ -69,7 +69,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
                             Dispose();
                         }
 
-                        OnHeaderRead(new HeaderReadEventArgs(SampleCount));
+                        OnHeaderRead(new HeaderReadEventArgs(SampleCount, this));
                     }//if
                     else
                     {
@@ -96,8 +96,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
                         if (++_RecordCount == SampleCount)
                         {
                             //all records read so close the port and dispose
-                            OnReadFinished(new ReadFinishedEventArgs(Records));
-                            base.Close();
+                            OnReadFinished(new ReadFinishedEventArgs(this));
                             Dispose();
                         }//if
                     }

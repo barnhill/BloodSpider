@@ -116,7 +116,9 @@ namespace GlucaTrack.Communication
             foreach (BackgroundWorker b in threads)
             {
                 b.CancelAsync();
+                b.Dispose();
             }
+
             threads.Clear();
 
             if (DevicesFound.Count > 0)

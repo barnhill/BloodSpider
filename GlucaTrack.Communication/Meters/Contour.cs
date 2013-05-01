@@ -161,7 +161,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
                         return;
                     }
 
-                    OnHeaderRead(new HeaderReadEventArgs(SampleCount));
+                    OnHeaderRead(new HeaderReadEventArgs(SampleCount, this));
 
                     Console.WriteLine("Header: " + fullframe);
                 }//if
@@ -215,7 +215,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
             {
                 _HeaderRead = false;
                 Port.DataReceived -= new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
-                OnReadFinished(new ReadFinishedEventArgs(Records));
+                OnReadFinished(new ReadFinishedEventArgs(this));
                 Close();
                 Dispose();
                 return;

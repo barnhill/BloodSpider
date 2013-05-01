@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.IO;
 using System.IO.Ports;
@@ -39,8 +40,7 @@ namespace GlucaTrack.Communication.Meters.Abbott
                             _ReadFinished = true;
                             Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
 
-                            OnReadFinished(new ReadFinishedEventArgs(Records));
-                            Close();
+                            OnReadFinished(new ReadFinishedEventArgs(this));
                             Dispose();
                             break;
                         }//if
@@ -54,7 +54,7 @@ namespace GlucaTrack.Communication.Meters.Abbott
                             {
                                 RawData = RawData.Replace(line + "\r\n", "");
 
-                                DateTime dtTimeStamp = DateTime.Parse(line.Substring(5, 18), System.Globalization.CultureInfo.InvariantCulture);
+                                DateTime dtTimeStamp = DateTime.Parse(line.Substring(5, 18), CultureInfo.InvariantCulture);
 
                                 try
                                 {
@@ -120,7 +120,9 @@ namespace GlucaTrack.Communication.Meters.Abbott
                 //set sample count
                 SampleCount = int.Parse(header[4]);
 
-                OnHeaderRead(new HeaderReadEventArgs(SampleCount));
+                DeviceInfo d = new DeviceInfo();
+                
+                OnHeaderRead(new HeaderReadEventArgs(SampleCount, this));
             }//if
         }
 

@@ -36,12 +36,12 @@ namespace GlucaTrack.Communication
     /// </summary>
     public class ReadFinishedEventArgs : EventArgs
     {
-        public ReadFinishedEventArgs(Records.RecordDataTable rows)
+        public ReadFinishedEventArgs(IMeter meter)
         {
-            Rows = rows;
+            Meter = meter;
         }
 
-        public Records.RecordDataTable Rows
+        public IMeter Meter
         {
             get;
             set;
@@ -53,12 +53,19 @@ namespace GlucaTrack.Communication
     /// </summary>
     public class HeaderReadEventArgs : EventArgs
     {
-        public HeaderReadEventArgs(int rowcount)
+        public HeaderReadEventArgs(int rowcount, IMeter meter)
         {
             RowCount = rowcount;
+            Meter = meter;
         }
 
         public int RowCount
+        {
+            get;
+            set;
+        }
+
+        public IMeter Meter
         {
             get;
             set;

@@ -60,7 +60,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
 
                         numread = 0;
 
-                        OnHeaderRead(new HeaderReadEventArgs(SampleCount));
+                        OnHeaderRead(new HeaderReadEventArgs(SampleCount, this));
                         
                         Console.WriteLine("Sample Count: " + SampleCount);
                         break;
@@ -100,8 +100,8 @@ namespace GlucaTrack.Communication.Meters.LifeScan
 
                         if (++numread >= SampleCount)
                         {
-                            OnReadFinished(new ReadFinishedEventArgs(Records));
                             Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
+                            OnReadFinished(new ReadFinishedEventArgs(this));
                             Dispose();
                         }//if
 
