@@ -90,6 +90,11 @@ namespace GlucaTrack.Communication
         {
             get { return Statics.MeterToClassLookup; }
         }
+
+        public bool IsPortOpen
+        {
+            get { return Port.IsOpen; }
+        }
         #endregion
 
         #region Events
@@ -226,7 +231,8 @@ namespace GlucaTrack.Communication
                 Dispose();
             }
 
-            Port = new System.IO.Ports.SerialPort(COMport, 9600, Parity.None, 8, StopBits.One);
+            Port = new SerialPort(COMport, 9600, Parity.None, 8, StopBits.One);
+            Port.ReadBufferSize = 8096;
 
             return Open();
         }

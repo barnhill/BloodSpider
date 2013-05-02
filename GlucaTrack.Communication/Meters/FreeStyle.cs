@@ -24,6 +24,9 @@ namespace GlucaTrack.Communication.Meters.Abbott
 
         public override void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            if (Port == null)
+                return;
+
             RawData += Port.ReadExisting();
 
             //header already read so grab the records
@@ -35,10 +38,10 @@ namespace GlucaTrack.Communication.Meters.Abbott
                     while ((line = reader.ReadLine()) != null)
                     {
                         //end record encountered
-                        if (line.Contains("END") )
+                        if (RawData.Contains("END"))
                         {
                             _ReadFinished = true;
-                            Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
+                            //Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
 
                             OnReadFinished(new ReadFinishedEventArgs(this));
                             Dispose();
@@ -108,8 +111,8 @@ namespace GlucaTrack.Communication.Meters.Abbott
                 if (_TestMode)
                 {
                     _TestPassed = true;
-                    Port.DataReceived += null;
-                    
+                    //Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
+
                     return;
                 }
 
@@ -130,26 +133,61 @@ namespace GlucaTrack.Communication.Meters.Abbott
         {
             _ReadFinished = false;
             _TestPassed = false;
+            _HeaderRead = false;
 
-            if (!Port.IsOpen)
-            {
-                DateTime startAutoConnect = DateTime.Now;
+            //if (!IsPortOpen)
+            //{
+            //    DateTime startAutoConnect = DateTime.Now;
 
-                string strComport = Port.PortName;
-                Port.Dispose();
-                Port = null;
+            //    string strComport = Port.PortName;
+            //    Port.Dispose();
+            //    Port = null;
 
-                while (!Connect(strComport))
-                    Thread.Sleep(50);
+            //    while (!Connect(strComport))
+            //        Thread.Sleep(50);
 
-                Console.WriteLine("Autoconnect: " + (DateTime.Now - startAutoConnect).TotalSeconds.ToString() + "s");
-            }
+            //    Console.WriteLine("Autoconnect: " + (DateTime.Now - startAutoConnect).TotalSeconds.ToString() + "s");
+            //}
 
             //Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
-            Port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
+            //Port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
+
+            //clear buffers
+            Port.Close();
+            Port.Open();
+
+            Port.DiscardOutBuffer();
+            while (Port.BytesToRead != 0)
+            {
+                Port.DiscardInBuffer();
+            }
 
             //get the memory dump from the device
             Port.Write("mem");
+
+            Thread.Sleep(100);
+
+            DateTime dtStart = DateTime.Now;
+            while (!_ReadFinished && !_TestPassed)
+            {
+                if ((DateTime.Now - dtStart).TotalMilliseconds > 3000 && Port.BytesToRead == 0)
+                {
+                    //timeout
+                    break;
+                }
+                else if (Port.BytesToRead > 0)
+                {
+                    //bytes to read
+                    DataReceived(null, null);
+                    dtStart = DateTime.Now;
+                }
+                else
+                {
+                    //no bytes to read
+                }
+
+                Thread.Sleep(100);
+            }
         }
 
         public override bool Connect(string COMport)
@@ -157,6 +195,7 @@ namespace GlucaTrack.Communication.Meters.Abbott
             base.Close();
 
             Port = new SerialPort(COMport, 19200, Parity.None, 8, StopBits.One);
+            Port.ReadBufferSize = 8096;
 
             return base.Open();
         }

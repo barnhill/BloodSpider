@@ -105,6 +105,7 @@ namespace GlucaTrack.Communication
                 bgw.WorkerSupportsCancellation = true;
                 bgw.RunWorkerAsync(comport);
                 threads.Add(bgw);
+                //StubFindDevices(null, new DoWorkEventArgs(comport));
             }
 
             DateTime dtStartTime = DateTime.Now;
@@ -145,10 +146,14 @@ namespace GlucaTrack.Communication
                 Type t = reflect.UnderlyingSystemType;
                 IMeter meter = (GlucaTrack.Communication.IMeter)Activator.CreateInstance(t);
 
+                //if failed to connect skip this meter
+                if (!meter.Connect(comport))
+                    continue;
+
                 try
                 {
                     Console.WriteLine("Testing " + comport + " for " + reflect.UnderlyingSystemType.ToString());
-                    if (meter.IsMeterConnected(comport))
+                    if (meter.Port.IsOpen && meter.IsMeterConnected(comport))
                     {
                         dinfo = new DeviceInfo();
                         dinfo.DeviceType = t;

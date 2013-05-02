@@ -73,6 +73,14 @@ namespace GlucaTrack.Communication
         {
             get;
         }
+        
+        /// <summary>
+        /// Gets whether the underlying serial port is in an opened state.
+        /// </summary>
+        bool IsPortOpen
+        {
+            get;
+        }
 
         #region Events
         event EventHandler ReadFinished;

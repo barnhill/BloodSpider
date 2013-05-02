@@ -48,13 +48,26 @@ namespace GlucaTrack.Services.Windows
         }
         protected override void OnStop()
         {
-            background_DeviceDetector.CancelAsync();
+            if (background_DeviceDetector != null)
+            {
+                background_DeviceDetector.CancelAsync();
+                background_DeviceDetector.Dispose();
+            }
+
+            if (background_DeviceReader != null)
+            {
+                background_DeviceReader.CancelAsync();
+                background_DeviceReader.Dispose();
+            }
+
+            if (background_CommandServer != null)
+            {
+                background_CommandServer.CancelAsync();
+                background_CommandServer.Dispose();
+            }
+
             watcher.EventArrived -= USBwatcher_EventArrived;
             watcher.Dispose();
-
-            background_CommandServer.CancelAsync();
-            background_DeviceReader.CancelAsync();
-            background_DeviceDetector.CancelAsync();
 
             EventLog.WriteEntry("The service was stopped successfully.", EventLogEntryType.Information);
         }
@@ -77,7 +90,7 @@ namespace GlucaTrack.Services.Windows
 
         #region Thread Work
         private void background_DeviceDetector_DoWork(object sender, DoWorkEventArgs e)
-        {
+        { 
             Common.Statics.deviceFound = null;
             DeviceInfo fdi = Communication.Statics.DetectFirstDevice();
             Common.Statics.deviceFound = fdi;
@@ -104,10 +117,13 @@ namespace GlucaTrack.Services.Windows
 
                     EventLog.WriteEntry(string.Format("Begin reading data from {0}.", Common.Statics.deviceFound.DeviceDescription), EventLogEntryType.Information);
 
-                    Meter.Port.DiscardInBuffer();
-                    Meter.Port.DiscardOutBuffer();
+                    if (Meter.IsPortOpen)
+                    {
+                        Meter.Port.DiscardInBuffer();
+                        Meter.Port.DiscardOutBuffer();
 
-                    Meter.ReadData();
+                        Meter.ReadData();
+                    }
                 }
             }
             catch (Exception ex)
@@ -330,6 +346,8 @@ namespace GlucaTrack.Services.Windows
                             client.UpdateLastSync(userinfo);
 
                             EventLog.WriteEntry("Uploading Data: End", EventLogEntryType.Information);
+
+                            pipeWrite("MSG", "Sent Glucose Readings", "to GlucaTrack website", 1);
                         }
                         catch(Exception ex)
                         {
@@ -354,7 +372,7 @@ namespace GlucaTrack.Services.Windows
 
             try
             {
-                EventLog.WriteEntry(string.Format("Finished reading data from {0}.", Common.Statics.deviceFound.DeviceDescription), EventLogEntryType.Information);
+                EventLog.WriteEntry(string.Format("Finished reading {1} data records from {0}.", Common.Statics.deviceFound.DeviceDescription, meter.Records.Count), EventLogEntryType.Information);
 
                 if (meter == null)
                     throw new Exception("OnReadFinished-1: Meter object was null.");
@@ -378,7 +396,7 @@ namespace GlucaTrack.Services.Windows
         {
             HeaderReadEventArgs headArgs = (HeaderReadEventArgs)e;
             
-            pipeWrite("MSG", string.Format("Reading {0} Glucose Values", headArgs.RowCount), string.Format("from {0}", headArgs.Meter.MeterDescription), 1);
+            pipeWrite("MSG", string.Format("Reading Glucose Values"), string.Format("from {0}", headArgs.Meter.MeterDescription), 1);
         }
     }
 }
