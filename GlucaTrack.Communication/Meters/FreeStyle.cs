@@ -10,10 +10,17 @@ namespace GlucaTrack.Communication.Meters.Abbott
 {
     public class FreeStyle: AbstractMeter, IMeter
     {
-        bool _HeaderRead = false;
-        bool _TestMode = false;
-        bool _TestPassed = false;
-        bool _ReadFinished = false;
+        static bool _HeaderRead;
+        static bool _TestMode;
+        static bool _TestPassed;
+        static bool _ReadFinished;
+
+        private AutoResetEvent _autoResetEvent = new AutoResetEvent(false);
+
+        private void OnEvent(object sender, EventArgs e)
+        {
+            _autoResetEvent.Set();
+        }
 
         public FreeStyle()
         {
@@ -41,10 +48,7 @@ namespace GlucaTrack.Communication.Meters.Abbott
                         if (RawData.Contains("END"))
                         {
                             _ReadFinished = true;
-                            //Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
-
-                            OnReadFinished(new ReadFinishedEventArgs(this));
-                            Dispose();
+                            
                             break;
                         }//if
                         else
@@ -111,8 +115,6 @@ namespace GlucaTrack.Communication.Meters.Abbott
                 if (_TestMode)
                 {
                     _TestPassed = true;
-                    //Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
-
                     return;
                 }
 
@@ -129,32 +131,20 @@ namespace GlucaTrack.Communication.Meters.Abbott
             }//if
         }
 
-        public override void ReadData()
+        public void ReadData(bool testMode)
         {
+            _TestMode = testMode;
+
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ReadHelper), _autoResetEvent);
+
             _ReadFinished = false;
             _TestPassed = false;
             _HeaderRead = false;
 
-            //if (!IsPortOpen)
-            //{
-            //    DateTime startAutoConnect = DateTime.Now;
-
-            //    string strComport = Port.PortName;
-            //    Port.Dispose();
-            //    Port = null;
-
-            //    while (!Connect(strComport))
-            //        Thread.Sleep(50);
-
-            //    Console.WriteLine("Autoconnect: " + (DateTime.Now - startAutoConnect).TotalSeconds.ToString() + "s");
-            //}
-
-            //Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
-            //Port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
-
+            Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
+            
             //clear buffers
-            Port.Close();
-            Port.Open();
+            Connect(Port.PortName);
 
             Port.DiscardOutBuffer();
             while (Port.BytesToRead != 0)
@@ -162,67 +152,70 @@ namespace GlucaTrack.Communication.Meters.Abbott
                 Port.DiscardInBuffer();
             }
 
-            //get the memory dump from the device
+            //send the memory dump command to the device
             Port.Write("mem");
 
-            Thread.Sleep(100);
+            Thread.Sleep(1000);
 
-            DateTime dtStart = DateTime.Now;
-            while (!_ReadFinished && !_TestPassed)
+            // Wait for work method to signal.
+            if (_autoResetEvent.WaitOne(_TestMode ? 5000 : 30000, false))
             {
-                if ((DateTime.Now - dtStart).TotalMilliseconds > 3000 && Port.BytesToRead == 0)
-                {
-                    //timeout
-                    break;
-                }
-                else if (Port.BytesToRead > 0)
-                {
-                    //bytes to read
-                    DataReceived(null, null);
-                    dtStart = DateTime.Now;
-                }
-                else
-                {
-                    //no bytes to read
-                }
+                Console.WriteLine("Read Finished Successfully");
+                Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
 
+                OnReadFinished(new ReadFinishedEventArgs(this));
+                Dispose();
+            }
+            else
+            {
+                Console.WriteLine("Timed out waiting for meter to finish reading.");
+                Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
+            }
+        }
+
+        public override void ReadData()
+        {
+            ReadData(false);
+        }
+
+        private static void ReadHelper(object stateInfo)
+        {
+            DateTime start = DateTime.Now;
+            while (!_ReadFinished && !_TestPassed && (DateTime.Now-start).TotalMilliseconds < 30000)
+            {
+                //do nothing but sleep and recheck
                 Thread.Sleep(100);
             }
+
+            //signal that read has finished
+            ((AutoResetEvent)stateInfo).Set();
         }
 
         public override bool Connect(string COMport)
         {
             base.Close();
 
+            Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
             Port = new SerialPort(COMport, 19200, Parity.None, 8, StopBits.One);
             Port.ReadBufferSize = 8096;
+            Port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
 
             return base.Open();
         }
 
         public override bool IsMeterConnected(string COMport)
         {
-            _TestMode = true;
-
             Connect(COMport);
 
             if (!Port.IsOpen)
                 return false;
 
-            Port.DiscardInBuffer();
-            Port.DiscardOutBuffer();
-
-            ReadData();
-
-            DateTime dtStartTime = DateTime.Now;
-            while (!_TestPassed && (DateTime.Now - dtStartTime).TotalMilliseconds < 5000)
-            {
-                Thread.Sleep(100);
-            }
+            ReadData(true);
 
             _TestMode = false;
             _HeaderRead = false;
             _TestPassed = false;
+
             return !string.IsNullOrEmpty(SerialNumber);
         }
     }
