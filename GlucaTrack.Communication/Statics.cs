@@ -40,10 +40,6 @@ namespace GlucaTrack.Communication
         {
             MeterToClassLookup.Clear();
 
-            MeterToClassLookup.Add("Freestyle Flash", "Abbott.FreeStyle");
-            MeterToClassLookup.Add("Freestyle Lite", "Abbott.FreeStyle");
-            MeterToClassLookup.Add("Freestyle Freedom", "Abbott.FreeStyle");
-            MeterToClassLookup.Add("Freestyle Freedom Lite", "Abbott.FreeStyle");
             MeterToClassLookup.Add("Freestyle", "Abbott.FreeStyle");
 
             MeterToClassLookup.Add("Contour", "Bayer.Contour");
@@ -52,6 +48,8 @@ namespace GlucaTrack.Communication
             MeterToClassLookup.Add("OneTouch Ultra 2", "LifeScan.OneTouch_Ultra2");
             MeterToClassLookup.Add("OneTouch Ultra Mini", "LifeScan.OneTouch_UltraMini");
             MeterToClassLookup.Add("OneTouch Ultra Smart", "LifeScan.OneTouch_UltraSmart");
+
+            MeterToClassLookup.Add("Caresens N", "iSens.Caresens_N");
         }
 
         public static Type[] GetTypesInNamespace(Assembly assembly, string nameSpace)
@@ -136,7 +134,7 @@ namespace GlucaTrack.Communication
 
             var MeterTypes = Assembly.GetExecutingAssembly().GetTypes()
                                  .Where(t => t.IsClass) // Only include classes
-                                 .Where(t => t.IsSubclassOf(typeof(GlucaTrack.Communication.AbstractMeter)))
+                                 .Where(t => t.IsSubclassOf(typeof(AbstractMeter)))
                                  .OrderBy(t => t.Namespace)
                                  .ThenBy(t => t.Name);
             

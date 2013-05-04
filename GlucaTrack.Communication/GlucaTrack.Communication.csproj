@@ -55,6 +55,7 @@
     <Compile Include="IMeter.cs" />
     <Compile Include="Meters\Contour.cs" />
     <None Include="Meters\Breeze2.cs" />
+    <Compile Include="Meters\Caresens_N.cs" />
     <Compile Include="Meters\OneTouch_UltraSmart.cs" />
     <Compile Include="Meters\OneTouch_UltraMini.cs" />
     <Compile Include="Meters\OneTouch_Ultra2.cs" />

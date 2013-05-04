@@ -118,13 +118,18 @@ namespace GlucoseMeterReader
             Meter.HeaderRead += new EventHandler(OnHeaderRead);
 
             Console.WriteLine("Connecting to " + ((string[])e.Argument)[0]);
-            
+
             if (!Meter.Port.IsOpen)
+            {
                 Meter.Connect(((string[])e.Argument)[0]);
-            
-            Meter.Port.DiscardInBuffer();
-            Meter.Port.DiscardOutBuffer();
-            Meter.ReadData();
+            }
+
+            if (Meter.IsMeterConnected(((string[])e.Argument)[0]))
+            {
+                Meter.Port.DiscardInBuffer();
+                Meter.Port.DiscardOutBuffer();
+                Meter.ReadData();
+            }
         }
 
         void dgvData_SetDataSource(Records.RecordDataTable source)

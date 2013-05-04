@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.IO.Ports;
 using System.Threading;
@@ -21,7 +22,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
             MeterDescription = "LifeScan One Touch Ultra 2";
         }
 
-        public override void DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        public override void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             _MeterResponded = true;
 
@@ -109,10 +110,12 @@ namespace GlucaTrack.Communication.Meters.LifeScan
             if (!Port.IsOpen)
                 throw new Exception("Port is closed.");
 
+            _TempString = String.Empty;
+
             Port.DiscardInBuffer();
             Port.DiscardOutBuffer();
 
-            Port.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
+            Port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
 
             while (!_MeterResponded)
             {
@@ -140,7 +143,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
             Port.DiscardInBuffer();
             Port.DiscardOutBuffer();
 
-            Port.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
+            Port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
 
             _HeaderRead = false;
             _TestMode = true;
@@ -178,13 +181,14 @@ namespace GlucaTrack.Communication.Meters.LifeScan
 
         private void WriteCommand(string command)
         {
-            string fullcommand = Convert.ToChar(Int32.Parse("11", System.Globalization.NumberStyles.HexNumber)).ToString();
-            fullcommand += Convert.ToChar(Int32.Parse("0d", System.Globalization.NumberStyles.HexNumber)).ToString();
+            string fullcommand = string.Empty;
+            fullcommand += Convert.ToChar(Int32.Parse("11", NumberStyles.HexNumber)).ToString();
+            fullcommand += Convert.ToChar(Int32.Parse("0d", NumberStyles.HexNumber)).ToString();
             fullcommand += command;
-            fullcommand += Convert.ToChar(Int32.Parse("0d", System.Globalization.NumberStyles.HexNumber)).ToString();
-            fullcommand += Convert.ToChar(Int32.Parse("0d", System.Globalization.NumberStyles.HexNumber)).ToString();
+            fullcommand += Convert.ToChar(Int32.Parse("0d", NumberStyles.HexNumber)).ToString();
+            fullcommand += Convert.ToChar(Int32.Parse("0d", NumberStyles.HexNumber)).ToString();
 
-            System.Text.UTF8Encoding  encoding = new System.Text.UTF8Encoding();
+            UTF8Encoding  encoding = new UTF8Encoding();
             
             //write the command to the serial port
             Port.Write(encoding.GetBytes(fullcommand), 0, encoding.GetBytes(fullcommand).Length);
