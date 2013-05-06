@@ -57,9 +57,9 @@
             // pbProgress
             // 
             this.pbProgress.ForeColor = System.Drawing.Color.Firebrick;
-            this.pbProgress.Location = new System.Drawing.Point(12, 108);
+            this.pbProgress.Location = new System.Drawing.Point(3, 105);
             this.pbProgress.Name = "pbProgress";
-            this.pbProgress.Size = new System.Drawing.Size(260, 16);
+            this.pbProgress.Size = new System.Drawing.Size(264, 16);
             this.pbProgress.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.pbProgress.TabIndex = 5;
             // 
@@ -72,6 +72,7 @@
             this.linkCancel.TabIndex = 6;
             this.linkCancel.TabStop = true;
             this.linkCancel.Text = "Cancel";
+            this.linkCancel.Visible = false;
             this.linkCancel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkCancel_LinkClicked);
             // 
             // WaitMessage
