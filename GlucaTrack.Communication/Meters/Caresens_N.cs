@@ -22,6 +22,11 @@ namespace GlucaTrack.Communication.Meters.iSens
         {
             ID = 7;
             MeterDescription = "i-Sens Caresens N";
+
+            //defaults since meter does not communicate these ... or we dont know about how to tell yet
+            SampleFormat = Communication.SampleFormat.MGDL;
+            SerialNumber = "Not on meter";
+            SampleCount = 250;
         }
 
         public override void DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -32,7 +37,8 @@ namespace GlucaTrack.Communication.Meters.iSens
     
             bytesRead.AddRange(encoding.GetBytes(newData));
 
-            if (bytesRead.Count == 0x18 && bytesRead[bytesRead.Count - 1] == 0x20 && bytesRead[bytesRead.Count - 2] == 0x10 && bytesRead[bytesRead.Count - 3] == 0x3f)
+            if ((bytesRead.Count == 0x18 && bytesRead[bytesRead.Count - 1] == 0x20 && bytesRead[bytesRead.Count - 2] == 0x10 && bytesRead[bytesRead.Count - 3] == 0x3f) ||
+                (bytesRead.Count == 0x18 && bytesRead[bytesRead.Count - 1] == 0x2f && bytesRead[bytesRead.Count - 2] == 0x1f && bytesRead[bytesRead.Count - 3] == 0x3f))
             {
                 _ReadFinished = true;
             }
@@ -40,23 +46,6 @@ namespace GlucaTrack.Communication.Meters.iSens
             {
                 _ReadFinished = false;
             }
-            //_ReadFinished = true;
-            //foreach (byte b in bytesRead)
-            //{
-            //    if ((b & 0x0f) != 0x0f)
-            //    {
-            //        _ReadFinished = false;
-            //        break;
-            //    }
-            //}
-
-            //if (_ReadFinished)
-            //{
-            //    OnReadFinished(new ReadFinishedEventArgs(this));
-            //}
-            //TODO: break each rows data up and send it to OnRecordRead
-
-            //OnRecordRead(new RecordReadEventArgs(Records.AddRecordRow(dtTimeStamp, Int32.Parse(linesplit[0]), SampleFormat == SampleFormat.MGDL ? "mg/dl" : "mmol")));
         }
 
         public void DataReceived_Header(object sender, SerialDataReceivedEventArgs e)
@@ -75,10 +64,6 @@ namespace GlucaTrack.Communication.Meters.iSens
             {
                 _ReadFinished = false;
             }
-
-            //TODO: break header data up and populate the header record
-
-            //OnRecordRead(new RecordReadEventArgs(Records.AddRecordRow(dtTimeStamp, Int32.Parse(linesplit[0]), SampleFormat == SampleFormat.MGDL ? "mg/dl" : "mmol")));
         }
 
         public override void ReadData()
@@ -159,8 +144,9 @@ namespace GlucaTrack.Communication.Meters.iSens
             //block while reading the current row
             if (_autoResetEvent.WaitOne(3000, false))
             {
-                Console.WriteLine("Read Header"); 
-                OnHeaderRead(new HeaderReadEventArgs(9999, this));
+                Console.WriteLine("Read Header");
+
+                OnHeaderRead(new HeaderReadEventArgs(SampleCount, this));
                 return true;
             }
             else
@@ -188,7 +174,7 @@ namespace GlucaTrack.Communication.Meters.iSens
 
             Port.ReceivedBytesThreshold = 1;
 
-            for (int i = 0; i < 250; i++)
+            for (int i = 0; i <= 250; i++)
             {
                 baseMessage.CopyTo(message, 0);
                 
@@ -229,7 +215,11 @@ namespace GlucaTrack.Communication.Meters.iSens
                 if (_autoResetEvent.WaitOne(500, false))
                 {
                     //row read successfully
-                    Console.WriteLine(string.Format("Read {0}: {1}", i.ToString(), encoding.GetString(bytesRead.ToArray()))); 
+                    Console.WriteLine(string.Format("Read {0}: {1}", i.ToString(), encoding.GetString(bytesRead.ToArray())));
+
+                    //check for ending indicator and dont record it
+                    if (GetValue(bytesRead.ToArray(), 1, 2) != 0xff)
+                        OnRecordRead(new RecordReadEventArgs(ParseDataRecord(bytesRead.ToArray())));
                 }
                 else
                 {
@@ -237,8 +227,62 @@ namespace GlucaTrack.Communication.Meters.iSens
                     break;
                 }
 
-                //TODO: break reading if end record hit
+                //stop reading if end record hit
+                if (GetValue(bytesRead.ToArray(), 1, 2) == 0xff)
+                {
+                    OnReadFinished(new ReadFinishedEventArgs(this));
+                    break;
+                }
             }
+        }
+
+        private Records.RecordRow ParseDataRecord(byte [] data)
+        {
+            DateTime dtTimeStamp = new DateTime();
+            int iGlucose = 0;
+            string strUnits = string.Empty;
+
+            if (data.Length != 0x18) 
+                return null;
+
+            int year    = GetValue(data, 1, 2) + 2000;
+            int month   = GetValue(data, 4, 5);
+            int day     = GetValue(data, 7, 8);
+            int hour    = GetValue(data, 10, 11);
+            int minutes = GetValue(data, 13, 14);
+            int seconds = GetValue(data, 16, 17);
+
+            dtTimeStamp = new DateTime(year, month, day, hour, minutes, seconds);
+
+            iGlucose = GetValue(data, 19, 20);
+            
+            return Records.AddRecordRow(dtTimeStamp, iGlucose, SampleFormat == SampleFormat.MGDL ? "mg/dl" : "mmol");
+        }
+
+        /// <summary>
+        /// Extraction of data from each data frame
+        /// </summary>
+        /// <param name="data">raw data in bytes</param>
+        /// <param name="x">byte number for top data byte</param>
+        /// <param name="y">byte number for the lower data byte</param>
+        /// <returns></returns>
+        private byte GetValue(byte [] data, int x, int y)
+        {
+            byte top = (byte)(GetLowerHalf(data[x]) << (byte)4);
+            byte low = GetLowerHalf(data[y]);
+            return (byte)(top | low);
+        }
+
+        /// <summary>
+        /// Bitwise shift operation to get the lower half value of a byte
+        /// </summary>
+        /// <param name="b">byte to strip the top 4 bits off</param>
+        /// <returns>The lower 4 bits of a byte</returns>
+        private byte GetLowerHalf(byte b)
+        {
+            byte left = (byte)(b << (byte)4);
+            byte corrected = (byte)(left >> (byte)4);
+            return corrected;
         }
 
         private static void WorkMethod(object stateInfo)
