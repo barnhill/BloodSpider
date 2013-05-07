@@ -388,7 +388,7 @@ namespace GlucaTrack.Services.Windows
         protected virtual void OnRecordRead(object sender, EventArgs e)
         {
             RecordReadEventArgs readArgs = (RecordReadEventArgs)e;
-
+            
             //TODO: put progress bar on reading code here
         }
         
