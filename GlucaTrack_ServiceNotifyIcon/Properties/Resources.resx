@@ -127,7 +127,7 @@
   <data name="titleidea4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\titleidea4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Web3_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Web_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Web2_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Web2_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -93,9 +93,9 @@ namespace GlucaTrack_ServiceNotifyIcon.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Web3_icon {
+        internal static System.Drawing.Bitmap Web2_icon {
             get {
-                object obj = ResourceManager.GetObject("Web3_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("Web2_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

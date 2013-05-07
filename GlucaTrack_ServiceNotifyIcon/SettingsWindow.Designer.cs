@@ -43,9 +43,9 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.chkAutoUpload = new System.Windows.Forms.CheckBox();
             this.tStartService = new System.Windows.Forms.Timer(this.components);
-            this.menuItem_Website = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuItem_Settings = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItem_Website = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem_Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.menuNotifyIcon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -68,7 +68,7 @@
             this.toolStripSeparator2,
             this.menuItem_Exit});
             this.menuNotifyIcon.Name = "menuNotifyIcon";
-            this.menuNotifyIcon.Size = new System.Drawing.Size(183, 126);
+            this.menuNotifyIcon.Size = new System.Drawing.Size(183, 104);
             // 
             // menuItem_Version
             // 
@@ -155,14 +155,6 @@
             this.tStartService.Interval = 60000;
             this.tStartService.Tick += new System.EventHandler(this.tStartService_Tick);
             // 
-            // menuItem_Website
-            // 
-            this.menuItem_Website.Image = global::GlucaTrack_ServiceNotifyIcon.Properties.Resources.Web3_icon;
-            this.menuItem_Website.Name = "menuItem_Website";
-            this.menuItem_Website.Size = new System.Drawing.Size(182, 22);
-            this.menuItem_Website.Text = "Website";
-            this.menuItem_Website.Click += new System.EventHandler(this.menuItem_Website_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GlucaTrack_ServiceNotifyIcon.Properties.Resources.titleidea4;
@@ -180,6 +172,14 @@
             this.menuItem_Settings.Size = new System.Drawing.Size(182, 22);
             this.menuItem_Settings.Text = "Settings";
             this.menuItem_Settings.Click += new System.EventHandler(this.menuItem_Settings_Click);
+            // 
+            // menuItem_Website
+            // 
+            this.menuItem_Website.Image = global::GlucaTrack_ServiceNotifyIcon.Properties.Resources.Web2_icon;
+            this.menuItem_Website.Name = "menuItem_Website";
+            this.menuItem_Website.Size = new System.Drawing.Size(182, 22);
+            this.menuItem_Website.Text = "Website";
+            this.menuItem_Website.Click += new System.EventHandler(this.menuItem_Website_Click);
             // 
             // menuItem_Exit
             // 

@@ -98,12 +98,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="blood.ico" />
-    <None Include="Resources\Web_icon.png" />
     <None Include="Resources\Gear_icon.png" />
     <None Include="Resources\Web2_icon.png" />
     <None Include="Resources\Exit_icon.png" />
     <None Include="Resources\Website_icon.png" />
-    <None Include="Resources\Settings_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
