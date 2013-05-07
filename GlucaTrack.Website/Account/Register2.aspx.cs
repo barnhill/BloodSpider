@@ -10,7 +10,6 @@ namespace GlucaTrack.Website.Account
 {
     public partial class Register2 : System.Web.UI.Page
     {
-        //TODO: Type of diabetes (Type 1 or Type 2)
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)

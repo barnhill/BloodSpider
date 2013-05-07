@@ -11,13 +11,14 @@
     <asp:SqlDataSource ID="LastXDays_DataSource" runat="server" ConnectionString="<%$ ConnectionStrings:glucatrackConnectionString %>" SelectCommand="sp_GetDataForLastXDays" SelectCommandType="StoredProcedure" >
         <SelectParameters>
             <asp:SessionParameter Name="userid" SessionField="LoggedInUserId" Type="Int32" />
-            <asp:ControlParameter ControlID="ctl00$MainContent$TabContainer1$Dashboard$ddDateRange" DefaultValue="7" Name="days" PropertyName="SelectedValue" Type="Int32" />
+            <asp:ControlParameter ControlID="ctl00$MainContent$ddDateRange" DefaultValue="7" Name="days" PropertyName="SelectedValue" Type="Int32" />
+            <%--<asp:ControlParameter ControlID="ctl00$MainContent$TabContainer1$Dashboard$ddDateRange" DefaultValue="7" Name="days" PropertyName="SelectedValue" Type="Int32" />--%>
         </SelectParameters>
     </asp:SqlDataSource>
 
-  <ajaxToolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" BorderColor="Black" BorderStyle="None">
+<%--  <ajaxToolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" BorderColor="Black" BorderStyle="None">
         <ajaxToolkit:TabPanel runat="server" HeaderText="Dashboard" ID="Dashboard">
-            <ContentTemplate>
+            <ContentTemplate>--%>
                 <div runat="server" id="divTopOptions">
                         <div runat="server" style="display: inline-block;">
                             <asp:DropDownList ID="ddDateRange" runat="server" AutoPostBack="True">
@@ -38,16 +39,16 @@
                 <table>
                     <tr>
                         <td>
-                            <asp:Chart ID="chtLastXDays" runat="server" EnableTheming="False" BorderlineColor="255, 153, 0">
+                            <asp:Chart ID="chtLastXDays" runat="server" EnableTheming="False" BorderlineColor="255, 153, 0" OnDataBound="chtLastXDays_DataBound">
                                 <Titles> 
                                     <asp:Title Text="Trending" Name="LastXDays_Title" />
                                 </Titles>
-                                    <Series>
-                                        <asp:Series Name="LastXDays_Series" ChartArea="LastXDays_ChartArea" ChartType="Line" BorderWidth="3" Color="0, 133, 198" />
-                                    </Series>
-                                    <ChartAreas>
-                                        <asp:ChartArea Name="LastXDays_ChartArea" />
-                                    </ChartAreas>
+                                <Series>
+                                    <asp:Series Name="LastXDays_Series" ChartArea="LastXDays_ChartArea" ChartType="Line" BorderWidth="3" Color="0, 133, 198" />
+                                </Series>
+                                <ChartAreas>
+                                    <asp:ChartArea Name="LastXDays_ChartArea" />
+                                </ChartAreas>
                             </asp:Chart>
                             <ajaxToolkit:RoundedCornersExtender ID="chtLastXDays_RoundedCornersExtender" runat="server" Enabled="True" Radius="8" TargetControlID="chtLastXDays">
                             </ajaxToolkit:RoundedCornersExtender>
@@ -57,6 +58,7 @@
                                 <p><asp:Label ID="lblMin" runat="server" Font-Bold="True" /><asp:Label ID="MinValue" runat="server" /></p>
                                 <p><asp:Label ID="lblMax" runat="server" Font-Bold="True" /><asp:Label ID="MaxValue" runat="server" /></p>
                                 <p><asp:Label ID="lblAvg" runat="server" Font-Bold="True" /><asp:Label ID="AvgValue" runat="server" /></p>
+                                <p><asp:Label ID="lblStdDev" runat="server" Font-Bold="True" /><asp:Label ID="StdDevValue" runat="server" /></p>
                                 <p><asp:Label ID="lblNumLows" runat="server" Font-Bold="True" /><asp:Label ID="NumLowsValue" runat="server" /><asp:Label ID="lblLowExplanation" runat="server" Font-Italic="True" /></p>
                                 <p><asp:Label ID="lblNumHighs" runat="server" Font-Bold="True" /><asp:Label ID="NumHighsValue" runat="server" /><asp:Label ID="lblHighExplanation" runat="server" Font-Italic="True" /></p>
                             </asp:Panel>
@@ -65,7 +67,46 @@
                         </td>
                     </tr>
                     <tr>
-                        <td rowspan="3">
+                        <td style="text-align:center">
+                            <asp:Chart ID="chtMornings" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 0, 192, 0; 192, 0, 0">
+                                <Titles> 
+                                    <asp:Title Text="Mornings" Name="Title1" />
+                                </Titles>
+                                <Series>
+                                    <asp:Series Name="Mornings_Series" ChartType="Pie" ChartArea="Mornings_ChartArea" />
+                                </Series>
+                                <ChartAreas>
+                                    <asp:ChartArea Name="Mornings_ChartArea" />
+                                </ChartAreas>
+                            </asp:Chart>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:Chart ID="chtAfternoons" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 0, 192, 0; 192, 0, 0">
+                                <Titles> 
+                                    <asp:Title Text="Afternoons" Name="Afternoons" />
+                                </Titles>
+                                <Series>
+                                    <asp:Series Name="Afternoons_Series" ChartType="Pie" ChartArea="Afternoons_ChartArea" />
+                                </Series>
+                                <ChartAreas>
+                                    <asp:ChartArea Name="Afternoons_ChartArea" />
+                                </ChartAreas>
+                            </asp:Chart>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:Chart ID="chtNights" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 0, 192, 0; 192, 0, 0">
+                                <Titles> 
+                                    <asp:Title Text="Nights" Name="Nights" />
+                                </Titles>
+                                <Series>
+                                    <asp:Series Name="Nights_Series" ChartType="Pie" ChartArea="Nights_ChartArea" />
+                                </Series>
+                                <ChartAreas>
+                                    <asp:ChartArea Name="Nights_ChartArea" />
+                                </ChartAreas>
+                            </asp:Chart>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <asp:GridView 
                                 CssClass="mGrid"
                                 AllowPaging="True" 
@@ -91,49 +132,6 @@
                                 <PagerStyle CssClass="pgr" />
                             </asp:GridView>
                         </td>
-                        <td>
-                            <asp:Chart ID="chtMornings" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 0, 192, 0; 192, 0, 0">
-                                <Titles> 
-                                    <asp:Title Text="Mornings" Name="Title1" />
-                                </Titles>
-                                <Series>
-                                    <asp:Series Name="Mornings_Series" ChartType="Pie" ChartArea="Mornings_ChartArea" />
-                                </Series>
-                                <ChartAreas>
-                                    <asp:ChartArea Name="Mornings_ChartArea" />
-                                </ChartAreas>
-                            </asp:Chart>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Chart ID="chtAfternoons" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 0, 192, 0; 192, 0, 0">
-                                <Titles> 
-                                    <asp:Title Text="Afternoons" Name="Afternoons" />
-                                </Titles>
-                                <Series>
-                                    <asp:Series Name="Afternoons_Series" ChartType="Pie" ChartArea="Afternoons_ChartArea" />
-                                </Series>
-                                <ChartAreas>
-                                    <asp:ChartArea Name="Afternoons_ChartArea" />
-                                </ChartAreas>
-                            </asp:Chart>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Chart ID="chtNights" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 0, 192, 0; 192, 0, 0">
-                                <Titles> 
-                                    <asp:Title Text="Nights" Name="Nights" />
-                                </Titles>
-                                <Series>
-                                    <asp:Series Name="Nights_Series" ChartType="Pie" ChartArea="Nights_ChartArea" />
-                                </Series>
-                                <ChartAreas>
-                                    <asp:ChartArea Name="Nights_ChartArea" />
-                                </ChartAreas>
-                            </asp:Chart>
-                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -144,10 +142,10 @@
                         </td>
                     </tr>
                 </table>
-            </ContentTemplate>
+<%--            </ContentTemplate>
         </ajaxToolkit:TabPanel>
         <ajaxToolkit:TabPanel runat="server" HeaderText="HbA1C Estimator" ID="HbA1C_Estimator">
         </ajaxToolkit:TabPanel>
-    </ajaxToolkit:TabContainer>  
+    </ajaxToolkit:TabContainer> --%> 
     
 </asp:Content>

@@ -22,24 +22,6 @@ namespace GlucaTrack.Website.Content {
         protected global::System.Web.UI.WebControls.SqlDataSource LastXDays_DataSource;
         
         /// <summary>
-        /// TabContainer1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabContainer TabContainer1;
-        
-        /// <summary>
-        /// Dashboard control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel Dashboard;
-        
-        /// <summary>
         /// divTopOptions control.
         /// </summary>
         /// <remarks>
@@ -148,6 +130,24 @@ namespace GlucaTrack.Website.Content {
         protected global::System.Web.UI.WebControls.Label AvgValue;
         
         /// <summary>
+        /// lblStdDev control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStdDev;
+        
+        /// <summary>
+        /// StdDevValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label StdDevValue;
+        
+        /// <summary>
         /// lblNumLows control.
         /// </summary>
         /// <remarks>
@@ -211,15 +211,6 @@ namespace GlucaTrack.Website.Content {
         protected global::AjaxControlToolkit.RoundedCornersExtender RoundedCornersExtender1;
         
         /// <summary>
-        /// gridValues control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridValues;
-        
-        /// <summary>
         /// chtMornings control.
         /// </summary>
         /// <remarks>
@@ -247,12 +238,12 @@ namespace GlucaTrack.Website.Content {
         protected global::System.Web.UI.DataVisualization.Charting.Chart chtNights;
         
         /// <summary>
-        /// HbA1C_Estimator control.
+        /// gridValues control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel HbA1C_Estimator;
+        protected global::System.Web.UI.WebControls.GridView gridValues;
     }
 }

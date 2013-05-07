@@ -161,4 +161,8 @@
     <value># Low: </value>
     <comment>Number of low values label and value</comment>
   </data>
+  <data name="Label_StandardDeviation" xml:space="preserve">
+    <value>StdDev: </value>
+    <comment>Label on the standard deviation field</comment>
+  </data>
 </root>

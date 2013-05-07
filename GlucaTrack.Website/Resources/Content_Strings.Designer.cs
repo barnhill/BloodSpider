@@ -158,5 +158,14 @@ namespace GlucaTrack.Website.Resources {
                 return ResourceManager.GetString("Label_NumberOfLows", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to StdDev: .
+        /// </summary>
+        internal static string Label_StandardDeviation {
+            get {
+                return ResourceManager.GetString("Label_StandardDeviation", resourceCulture);
+            }
+        }
     }
 }

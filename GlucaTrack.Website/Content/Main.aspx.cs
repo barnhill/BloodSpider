@@ -103,7 +103,9 @@ namespace GlucaTrack.Website.Content
             chtLastXDays.Series["LastXDays_Series"].YValueMembers = "Glucose";
             chtLastXDays.Series["LastXDays_Series"].IsValueShownAsLabel = true;
             chtLastXDays.Width = (int)(Math.Round(Request.Browser.ScreenPixelsWidth * 0.85, 0, MidpointRounding.AwayFromZero));
-            chtLastXDays.Titles[chtLastXDays.Titles.Count - 1].Text = string.Format(Resources.Content_Strings.GraphTitle_Main, ddDateRange.SelectedValue);
+            chtLastXDays.Titles[chtLastXDays.Titles.Count - 1].Text = string.Empty; // string.Format(Resources.Content_Strings.GraphTitle_Main, ddDateRange.SelectedValue);
+            chtLastXDays.ChartAreas["LastXDays_ChartArea"].AxisX.Title = "Date Range";
+            chtLastXDays.ChartAreas["LastXDays_ChartArea"].AxisY.Title = "Glucose Reading";
             chtLastXDays.DataSource = DataSource;
             chtLastXDays.DataBind();
         }
@@ -121,7 +123,7 @@ namespace GlucaTrack.Website.Content
             var max = dt.Select("Glucose = MAX(Glucose)");
             var avg = dt.Compute("AVG(Glucose)", null);
             var stdev = dt.Compute("StDev(Glucose)", null);
-            var variance = dt.Compute("Var(Glucose)", null);
+            var variance = dt.Compute("Var(Glucose)", null).ToString();
             var NumHigh = dt.Compute("Count(Glucose)", "Glucose > " + Statics.HighThreshold.ToString());
             var NumLow = dt.Compute("Count(Glucose)", "Glucose < " + Statics.LowThreshold.ToString());
 
@@ -136,6 +138,8 @@ namespace GlucaTrack.Website.Content
 
             this.lblAvg.Text = Resources.Content_Strings.Label_Average;
             this.AvgValue.Text = avg.ToString();
+            this.lblStdDev.Text = Resources.Content_Strings.Label_StandardDeviation;
+            this.StdDevValue.Text = (stdev.ToString().Length > 0) ? Math.Round(Convert.ToDouble(stdev.ToString()), 2).ToString() : string.Empty;
             this.lblNumLows.Text = Resources.Content_Strings.Label_NumberOfLows;
             this.NumLowsValue.Text = NumLow.ToString();
             this.lblLowExplanation.Text = string.Format(Resources.Content_Strings.Label_LowExplanation, Statics.LowThreshold.ToString());
@@ -172,6 +176,33 @@ namespace GlucaTrack.Website.Content
             chtNights.ChartAreas["Nights_ChartArea"].Area3DStyle.Inclination = 50;
             chtNights.DataSource = pieNight.BindingSource;
             chtNights.DataBind();
+        }
+
+        protected void chtLastXDays_DataBound(object sender, EventArgs e)
+        {
+            if (chtLastXDays.Series[0].Points.Count == 0)
+            {
+                System.Web.UI.DataVisualization.Charting.TextAnnotation annotation =
+                    new System.Web.UI.DataVisualization.Charting.TextAnnotation();
+                annotation.Text = "No data for this period";
+                annotation.X = 5;
+                annotation.Y = 5;
+                annotation.Font = new System.Drawing.Font("Arial", 12);
+                annotation.ForeColor = System.Drawing.Color.Red;
+                chtLastXDays.Annotations.Add(annotation);
+
+                chtMornings.Visible = false;
+                chtAfternoons.Visible = false;
+                chtNights.Visible = false;
+                RightTopSideBar.Visible = false;
+            }
+            else
+            {
+                chtMornings.Visible = true;
+                chtAfternoons.Visible = true;
+                chtNights.Visible = true;
+                RightTopSideBar.Visible = true;
+            }
         }
     }
 
