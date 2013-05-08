@@ -82,8 +82,24 @@ namespace GlucaTrack.Services.Windows
 
         private void USBwatcher_EventArrived(object sender, EventArrivedEventArgs e)
         {
-            if (background_DeviceDetector != null) return;
+            if (background_DeviceDetector != null) 
+                return;
+
+            //write entry to event log showing usb event arrived
+            string deviceinfoMessage = "USB device inserted" + Environment.NewLine + Environment.NewLine;
             
+            foreach (PropertyData pd in e.NewEvent.Properties)
+            {
+                ManagementBaseObject mbo = null;
+                if ((mbo = pd.Value as ManagementBaseObject) != null)
+                {
+                    foreach (PropertyData prop in mbo.Properties)
+                        deviceinfoMessage += string.Format("{0} - {1}" + Environment.NewLine, prop.Name, prop.Value);
+                }
+            }
+
+            EventLog.WriteEntry(deviceinfoMessage, EventLogEntryType.Information);
+
             //start the background thread looking for devices
             startDetectorThread();
         }
