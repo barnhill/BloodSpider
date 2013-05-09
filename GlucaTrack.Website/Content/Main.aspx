@@ -15,30 +15,23 @@
             <%--<asp:ControlParameter ControlID="ctl00$MainContent$TabContainer1$Dashboard$ddDateRange" DefaultValue="7" Name="days" PropertyName="SelectedValue" Type="Int32" />--%>
         </SelectParameters>
     </asp:SqlDataSource>
-
-<%--  <ajaxToolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" BorderColor="Black" BorderStyle="None">
-        <ajaxToolkit:TabPanel runat="server" HeaderText="Dashboard" ID="Dashboard">
-            <ContentTemplate>--%>
+    <div>
+                <div>&nbsp;</div>
                 <div runat="server" id="divTopOptions">
-                        <div runat="server" style="display: inline-block;">
-                            <asp:DropDownList ID="ddDateRange" runat="server" AutoPostBack="True">
-                                <asp:ListItem Text="Last 7 days" Value="7" Selected="True" />
-                                <asp:ListItem Text="Last 14 days" Value="14" />
-                                <asp:ListItem Text="Last 30 days" Value="30" />
-                                <asp:ListItem Text="Last 90 days" Value="90" />
-                                <asp:ListItem Text="Last 6 months" Value="180" />
-                                <asp:ListItem Text="Last 1 year" Value="365" />
-                            </asp:DropDownList>
-                        </div>
-                        <div runat="server" style="display: inline-block;">
-                        </div>
-                        <div runat="server" id="div3dGraphs" style="display:inline-block;">
-                            &nbsp;
-                        </div>
+                    <div runat="server" style="display: inline-block;">
+                        <asp:DropDownList ID="ddDateRange" runat="server" AutoPostBack="True">
+                        <asp:ListItem Text="Last 7 days" Value="7" Selected="True" />
+                        <asp:ListItem Text="Last 14 days" Value="14" />
+                        <asp:ListItem Text="Last 30 days" Value="30" />
+                        <asp:ListItem Text="Last 90 days" Value="90" />
+                        <asp:ListItem Text="Last 6 months" Value="180" />
+                        <asp:ListItem Text="Last 1 year" Value="365" />
+                        </asp:DropDownList>
+                    </div>
                 </div>
-                <table>
+                <table border="1" style="width: 100%;">
                     <tr>
-                        <td>
+                        <td colspan="3">
                             <asp:Chart ID="chtLastXDays" runat="server" EnableTheming="False" BorderlineColor="255, 153, 0" OnDataBound="chtLastXDays_DataBound">
                                 <Titles> 
                                     <asp:Title Text="Trending" Name="LastXDays_Title" />
@@ -51,18 +44,6 @@
                                 </ChartAreas>
                             </asp:Chart>
                             <ajaxToolkit:RoundedCornersExtender ID="chtLastXDays_RoundedCornersExtender" runat="server" Enabled="True" Radius="8" TargetControlID="chtLastXDays">
-                            </ajaxToolkit:RoundedCornersExtender>
-                        </td>
-                        <td>
-                            <asp:Panel runat="server" ID="RightTopSideBar" BackColor="White" Height="150px">
-                                <p><asp:Label ID="lblMin" runat="server" Font-Bold="True" /><asp:Label ID="MinValue" runat="server" /></p>
-                                <p><asp:Label ID="lblMax" runat="server" Font-Bold="True" /><asp:Label ID="MaxValue" runat="server" /></p>
-                                <p><asp:Label ID="lblAvg" runat="server" Font-Bold="True" /><asp:Label ID="AvgValue" runat="server" /></p>
-                                <p><asp:Label ID="lblStdDev" runat="server" Font-Bold="True" /><asp:Label ID="StdDevValue" runat="server" /></p>
-                                <p><asp:Label ID="lblNumLows" runat="server" Font-Bold="True" /><asp:Label ID="NumLowsValue" runat="server" /><asp:Label ID="lblLowExplanation" runat="server" Font-Italic="True" /></p>
-                                <p><asp:Label ID="lblNumHighs" runat="server" Font-Bold="True" /><asp:Label ID="NumHighsValue" runat="server" /><asp:Label ID="lblHighExplanation" runat="server" Font-Italic="True" /></p>
-                            </asp:Panel>
-                            <ajaxToolkit:RoundedCornersExtender ID="RoundedCornersExtender1" runat="server" Enabled="True" Radius="8" TargetControlID="RightTopSideBar">
                             </ajaxToolkit:RoundedCornersExtender>
                         </td>
                     </tr>
@@ -104,9 +85,21 @@
                                 </ChartAreas>
                             </asp:Chart>
                         </td>
+                        <td>
+                            <asp:Panel runat="server" ID="RightTopSideBar" BackColor="White" Height="150px">
+                                <p><asp:Label ID="lblMin" runat="server" Font-Bold="True" /><asp:Label ID="MinValue" runat="server" /></p>
+                                <p><asp:Label ID="lblMax" runat="server" Font-Bold="True" /><asp:Label ID="MaxValue" runat="server" /></p>
+                                <p><asp:Label ID="lblAvg" runat="server" Font-Bold="True" /><asp:Label ID="AvgValue" runat="server" /></p>
+                                <p><asp:Label ID="lblStdDev" runat="server" Font-Bold="True" /><asp:Label ID="StdDevValue" runat="server" /></p>
+                                <p><asp:Label ID="lblNumLows" runat="server" Font-Bold="True" /><asp:Label ID="NumLowsValue" runat="server" /><asp:Label ID="lblLowExplanation" runat="server" Font-Italic="True" /></p>
+                                <p><asp:Label ID="lblNumHighs" runat="server" Font-Bold="True" /><asp:Label ID="NumHighsValue" runat="server" /><asp:Label ID="lblHighExplanation" runat="server" Font-Italic="True" /></p>
+                            </asp:Panel>
+                            <ajaxToolkit:RoundedCornersExtender ID="RoundedCornersExtender1" runat="server" Enabled="True" Radius="8" TargetControlID="RightTopSideBar">
+                            </ajaxToolkit:RoundedCornersExtender>
+                        </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td colspan="2">
                             <asp:GridView 
                                 CssClass="mGrid"
                                 AllowPaging="True" 
@@ -142,10 +135,5 @@
                         </td>
                     </tr>
                 </table>
-<%--            </ContentTemplate>
-        </ajaxToolkit:TabPanel>
-        <ajaxToolkit:TabPanel runat="server" HeaderText="HbA1C Estimator" ID="HbA1C_Estimator">
-        </ajaxToolkit:TabPanel>
-    </ajaxToolkit:TabContainer> --%> 
-    
+    </div>
 </asp:Content>

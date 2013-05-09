@@ -40,15 +40,6 @@ namespace GlucaTrack.Website.Content {
         protected global::System.Web.UI.WebControls.DropDownList ddDateRange;
         
         /// <summary>
-        /// div3dGraphs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div3dGraphs;
-        
-        /// <summary>
         /// chtLastXDays control.
         /// </summary>
         /// <remarks>
@@ -65,6 +56,33 @@ namespace GlucaTrack.Website.Content {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.RoundedCornersExtender chtLastXDays_RoundedCornersExtender;
+        
+        /// <summary>
+        /// chtMornings control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart chtMornings;
+        
+        /// <summary>
+        /// chtAfternoons control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart chtAfternoons;
+        
+        /// <summary>
+        /// chtNights control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart chtNights;
         
         /// <summary>
         /// RightTopSideBar control.
@@ -209,33 +227,6 @@ namespace GlucaTrack.Website.Content {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.RoundedCornersExtender RoundedCornersExtender1;
-        
-        /// <summary>
-        /// chtMornings control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart chtMornings;
-        
-        /// <summary>
-        /// chtAfternoons control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart chtAfternoons;
-        
-        /// <summary>
-        /// chtNights control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart chtNights;
         
         /// <summary>
         /// gridValues control.
