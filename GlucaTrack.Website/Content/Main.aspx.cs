@@ -102,7 +102,6 @@ namespace GlucaTrack.Website.Content
             chtLastXDays.Series["LastXDays_Series"].XValueMember = "TimeStamp";
             chtLastXDays.Series["LastXDays_Series"].YValueMembers = "Glucose";
             chtLastXDays.Series["LastXDays_Series"].IsValueShownAsLabel = true;
-            chtLastXDays.Width = (int)(Math.Round(Request.Browser.ScreenPixelsWidth * 0.85, 0, MidpointRounding.AwayFromZero));
             chtLastXDays.Titles[chtLastXDays.Titles.Count - 1].Text = string.Empty; // string.Format(Resources.Content_Strings.GraphTitle_Main, ddDateRange.SelectedValue);
             chtLastXDays.ChartAreas["LastXDays_ChartArea"].AxisX.Title = "Date Range";
             chtLastXDays.ChartAreas["LastXDays_ChartArea"].AxisY.Title = "Glucose Reading";
@@ -190,7 +189,7 @@ namespace GlucaTrack.Website.Content
                 annotation.Font = new System.Drawing.Font("Arial", 12);
                 annotation.ForeColor = System.Drawing.Color.Red;
                 chtLastXDays.Annotations.Add(annotation);
-
+                chtLastXDays.ChartAreas["LastXDays_ChartArea"].ShadowOffset = 0;
                 chtMornings.Visible = false;
                 chtAfternoons.Visible = false;
                 chtNights.Visible = false;
@@ -202,6 +201,8 @@ namespace GlucaTrack.Website.Content
                 chtAfternoons.Visible = true;
                 chtNights.Visible = true;
                 RightTopSideBar.Visible = true;
+
+                chtLastXDays.ChartAreas["LastXDays_ChartArea"].ShadowOffset = 5;
             }
         }
     }

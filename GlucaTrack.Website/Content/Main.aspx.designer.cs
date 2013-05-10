@@ -22,6 +22,15 @@ namespace GlucaTrack.Website.Content {
         protected global::System.Web.UI.WebControls.SqlDataSource LastXDays_DataSource;
         
         /// <summary>
+        /// dashboardContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dashboardContainer;
+        
+        /// <summary>
         /// divTopOptions control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace GlucaTrack.Website.Content {
         protected global::System.Web.UI.WebControls.DropDownList ddDateRange;
         
         /// <summary>
+        /// divMainChart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMainChart;
+        
+        /// <summary>
         /// chtLastXDays control.
         /// </summary>
         /// <remarks>
@@ -47,15 +65,6 @@ namespace GlucaTrack.Website.Content {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chtLastXDays;
-        
-        /// <summary>
-        /// chtLastXDays_RoundedCornersExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender chtLastXDays_RoundedCornersExtender;
         
         /// <summary>
         /// chtMornings control.
@@ -218,15 +227,6 @@ namespace GlucaTrack.Website.Content {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblHighExplanation;
-        
-        /// <summary>
-        /// RoundedCornersExtender1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender RoundedCornersExtender1;
         
         /// <summary>
         /// gridValues control.

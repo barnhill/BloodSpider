@@ -12,43 +12,38 @@
         <SelectParameters>
             <asp:SessionParameter Name="userid" SessionField="LoggedInUserId" Type="Int32" />
             <asp:ControlParameter ControlID="ctl00$MainContent$ddDateRange" DefaultValue="7" Name="days" PropertyName="SelectedValue" Type="Int32" />
-            <%--<asp:ControlParameter ControlID="ctl00$MainContent$TabContainer1$Dashboard$ddDateRange" DefaultValue="7" Name="days" PropertyName="SelectedValue" Type="Int32" />--%>
         </SelectParameters>
     </asp:SqlDataSource>
-    <div>
+    <div runat="server" id="dashboardContainer">
                 <div>&nbsp;</div>
                 <div runat="server" id="divTopOptions">
                     <div runat="server" style="display: inline-block;">
-                        <asp:DropDownList ID="ddDateRange" runat="server" AutoPostBack="True">
-                        <asp:ListItem Text="Last 7 days" Value="7" Selected="True" />
-                        <asp:ListItem Text="Last 14 days" Value="14" />
-                        <asp:ListItem Text="Last 30 days" Value="30" />
-                        <asp:ListItem Text="Last 90 days" Value="90" />
-                        <asp:ListItem Text="Last 6 months" Value="180" />
-                        <asp:ListItem Text="Last 1 year" Value="365" />
+                            <asp:DropDownList ID="ddDateRange" runat="server" AutoPostBack="True">
+                            <asp:ListItem Text="Last 7 days" Value="7" Selected="True" />
+                            <asp:ListItem Text="Last 14 days" Value="14" />
+                            <asp:ListItem Text="Last 30 days" Value="30" />
+                            <asp:ListItem Text="Last 90 days" Value="90" />
+                            <asp:ListItem Text="Last 6 months" Value="180" />
+                            <asp:ListItem Text="Last 1 year" Value="365" />
                         </asp:DropDownList>
                     </div>
                 </div>
-                <table border="1" style="width: 100%;">
+                <div id="divMainChart" runat="server">
+                    <asp:Chart ID="chtLastXDays" runat="server" EnableTheming="True" BorderlineColor="255, 153, 0" OnDataBound="chtLastXDays_DataBound" Width="800">
+                       <Titles> 
+                           <asp:Title Text="Trending" Name="LastXDays_Title" />
+                       </Titles>
+                       <Series>
+                           <asp:Series Name="LastXDays_Series" ChartArea="LastXDays_ChartArea" ChartType="Line" BorderWidth="3" Color="0, 133, 198" ShadowOffset="1" />
+                       </Series>
+                       <ChartAreas>
+                           <asp:ChartArea Name="LastXDays_ChartArea" BackHatchStyle="None" />
+                       </ChartAreas>
+                    </asp:Chart>
+                </div>
+                <table style="width: 100%;">
                     <tr>
-                        <td colspan="3">
-                            <asp:Chart ID="chtLastXDays" runat="server" EnableTheming="False" BorderlineColor="255, 153, 0" OnDataBound="chtLastXDays_DataBound">
-                                <Titles> 
-                                    <asp:Title Text="Trending" Name="LastXDays_Title" />
-                                </Titles>
-                                <Series>
-                                    <asp:Series Name="LastXDays_Series" ChartArea="LastXDays_ChartArea" ChartType="Line" BorderWidth="3" Color="0, 133, 198" />
-                                </Series>
-                                <ChartAreas>
-                                    <asp:ChartArea Name="LastXDays_ChartArea" />
-                                </ChartAreas>
-                            </asp:Chart>
-                            <ajaxToolkit:RoundedCornersExtender ID="chtLastXDays_RoundedCornersExtender" runat="server" Enabled="True" Radius="8" TargetControlID="chtLastXDays">
-                            </ajaxToolkit:RoundedCornersExtender>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align:center">
+                        <td style="text-align:center;">
                             <asp:Chart ID="chtMornings" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 0, 192, 0; 192, 0, 0">
                                 <Titles> 
                                     <asp:Title Text="Mornings" Name="Title1" />
@@ -60,7 +55,6 @@
                                     <asp:ChartArea Name="Mornings_ChartArea" />
                                 </ChartAreas>
                             </asp:Chart>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <asp:Chart ID="chtAfternoons" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 0, 192, 0; 192, 0, 0">
                                 <Titles> 
                                     <asp:Title Text="Afternoons" Name="Afternoons" />
@@ -72,7 +66,6 @@
                                     <asp:ChartArea Name="Afternoons_ChartArea" />
                                 </ChartAreas>
                             </asp:Chart>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <asp:Chart ID="chtNights" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 0, 192, 0; 192, 0, 0">
                                 <Titles> 
                                     <asp:Title Text="Nights" Name="Nights" />
@@ -94,8 +87,6 @@
                                 <p><asp:Label ID="lblNumLows" runat="server" Font-Bold="True" /><asp:Label ID="NumLowsValue" runat="server" /><asp:Label ID="lblLowExplanation" runat="server" Font-Italic="True" /></p>
                                 <p><asp:Label ID="lblNumHighs" runat="server" Font-Bold="True" /><asp:Label ID="NumHighsValue" runat="server" /><asp:Label ID="lblHighExplanation" runat="server" Font-Italic="True" /></p>
                             </asp:Panel>
-                            <ajaxToolkit:RoundedCornersExtender ID="RoundedCornersExtender1" runat="server" Enabled="True" Radius="8" TargetControlID="RightTopSideBar">
-                            </ajaxToolkit:RoundedCornersExtender>
                         </td>
                     </tr>
                     <tr>
@@ -109,7 +100,8 @@
                                 DataSourceID="LastXDays_DataSource" OnRowDataBound="gridValues_RowDataBound">
                                 <AlternatingRowStyle CssClass="alt" />
                                 <Columns>
-                                    <asp:BoundField DataField="TimeStamp" HeaderText="Date/Time" SortExpression="TimeStamp" />
+                                    <asp:BoundField DataField="date" HeaderText="Date" SortExpression="Timestamp" />
+                                    <asp:BoundField DataField="time" HeaderText="Time" SortExpression="Timestamp" />
                                     <asp:TemplateField HeaderText="Glucose">
                                         <ItemTemplate>
                                             <div style="text-align: right;">
