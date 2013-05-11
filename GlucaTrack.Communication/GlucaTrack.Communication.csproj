@@ -54,6 +54,7 @@
     <Compile Include="BMeterComm.cs" />
     <Compile Include="IMeter.cs" />
     <Compile Include="Meters\Contour.cs" />
+    <None Include="Documents\i-Sens\CaresensN.spm" />
     <None Include="Meters\Breeze2.cs" />
     <Compile Include="Meters\Caresens_N.cs" />
     <Compile Include="Meters\OneTouch_UltraSmart.cs" />
@@ -75,12 +76,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Documents\Bayer-MeterInterface.pdf" />
+    <None Include="Documents\Bayer\Bayer-MeterInterface.pdf" />
     <None Include="Documents\MeterList.xlsx" />
-    <None Include="Documents\OneTouch Select Protocol.pdf" />
-    <None Include="Documents\OneTouch Ultra 2 Protocol.pdf" />
-    <None Include="Documents\OneTouch Ultra Mini Protocol.pdf" />
-    <None Include="Documents\OneTouch Ultra Protocol.pdf" />
+    <None Include="Documents\Nipro\OneTouch Select Protocol.pdf" />
+    <None Include="Documents\Nipro\OneTouch Ultra 2 Protocol.pdf" />
+    <None Include="Documents\Nipro\OneTouch Ultra Mini Protocol.pdf" />
+    <None Include="Documents\Nipro\OneTouch Ultra Protocol.pdf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -96,6 +97,13 @@
     <None Include="Records.xss">
       <DependentUpon>Records.xsd</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Documents\i-Sens\CaresensN_Signal Analysis.txt" />
+    <Content Include="Documents\i-Sens\CaresensN_Signal Analysis_Header.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Documents\LifeScan\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

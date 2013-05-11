@@ -1,0 +1,31 @@
+8b 15 2b 8b 11 29 8b 11 2b 8b 10 20 8b 10 23 
+8b 10 20 8b 10 25 8b 10 20 8b 1f 2f 8b 1f 2f 
+8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f
+8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f 
+8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f
+8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f
+8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f
+8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f
+8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f
+8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f
+8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f
+8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f
+8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f
+8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f
+8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f 8b 1f 2f
+8b 1f 2f 8b 10 21 8b 10 22 8b 10 20 8b 10 21
+8b 10 20 8b 10 20 8b 1f 2b 8b 10 20
+
+
+
+CNP27F06491
+
+Frame 1 = 91
+Frame 2 = 25
+Frame 3 = 27
+
+5b191b0003000500
+010200010000fb
+
+0101 1011
+5    11
