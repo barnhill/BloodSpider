@@ -13,6 +13,7 @@ namespace GlucaTrack.Website.Content
 {
     public partial class Main : System.Web.UI.Page
     {
+        //TODO: point system for uploading data.
         public string ImagePath { get; set; }
 
         Queries.sp_GetLoginRow LoginRow = null;
@@ -91,7 +92,7 @@ namespace GlucaTrack.Website.Content
                 else
                 {
                     //normal
-                    image.ImageUrl = string.Empty;
+                    image.ImageUrl = Resources.Images.normal_path;
                 }
             }
         }

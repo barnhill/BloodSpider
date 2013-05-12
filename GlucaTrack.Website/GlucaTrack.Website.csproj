@@ -127,6 +127,7 @@
     <Content Include="Account\Logout.aspx" />
     <Content Include="Images\icons\calendar.png" />
     <Content Include="Images\icons\down-green.png" />
+    <Content Include="Images\icons\minus-green.png" />
     <Content Include="Images\icons\up-red.png" />
     <Content Include="Images\grid_style\grd_alt.png" />
     <Content Include="Images\grid_style\grd_head.png" />
@@ -353,6 +354,7 @@
     <EmbeddedResource Include="Resources\Images.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Images.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Master_Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>

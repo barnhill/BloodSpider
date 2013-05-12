@@ -77,5 +77,14 @@ namespace GlucaTrack.Website.Resources {
                 return ResourceManager.GetString("arrow_low_path", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Images/icons/minus-green.png.
+        /// </summary>
+        internal static string normal_path {
+            get {
+                return ResourceManager.GetString("normal_path", resourceCulture);
+            }
+        }
     }
 }
