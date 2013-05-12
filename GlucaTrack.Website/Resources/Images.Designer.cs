@@ -79,7 +79,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /Images/icons/minus-green.png.
+        ///   Looks up a localized string similar to /Images/icons/normal-clear.png.
         /// </summary>
         internal static string normal_path {
             get {

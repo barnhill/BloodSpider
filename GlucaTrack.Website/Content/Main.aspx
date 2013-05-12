@@ -97,6 +97,7 @@
         ID="gridValues" 
         runat="server" 
         AutoGenerateColumns="False" 
+        
         DataSourceID="LastXDays_DataSource" OnRowDataBound="gridValues_RowDataBound" Width="800">
             <AlternatingRowStyle CssClass="alt" />
                 <Columns>

@@ -126,7 +126,7 @@
     <comment>low value arrow </comment>
   </data>
   <data name="normal_path" xml:space="preserve">
-    <value>/Images/icons/minus-green.png</value>
+    <value>/Images/icons/normal-clear.png</value>
     <comment>normal value indicator</comment>
   </data>
 </root>
