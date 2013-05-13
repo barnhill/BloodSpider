@@ -32,7 +32,7 @@
                 <asp:Title Text="Trending" Name="LastXDays_Title" />
             </Titles>
             <Series>
-                <asp:Series Name="LastXDays_Series" ChartArea="LastXDays_ChartArea" ChartType="Line" BorderWidth="3" Color="0, 133, 198" ShadowOffset="1" />
+                <asp:Series Name="LastXDays_Series" ChartArea="LastXDays_ChartArea" ChartType="Line" BorderWidth="3" Color="0, 133, 198" ShadowOffset="1" IsValueShownAsLabel="False"/>
             </Series>
             <ChartAreas>
                 <asp:ChartArea Name="LastXDays_ChartArea" BackHatchStyle="None" />

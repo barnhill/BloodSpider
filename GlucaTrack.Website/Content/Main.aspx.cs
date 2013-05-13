@@ -203,6 +203,7 @@ namespace GlucaTrack.Website.Content
                 chtNights.Visible = true;
                 RightTopSideBar.Visible = true;
 
+                chtLastXDays.Series["LastXDays_Series"].IsValueShownAsLabel = false;
                 chtLastXDays.ChartAreas["LastXDays_ChartArea"].ShadowOffset = 5;
             }
         }
