@@ -14,7 +14,6 @@
             <asp:ControlParameter ControlID="ctl00$MainContent$ddDateRange" DefaultValue="7" Name="days" PropertyName="SelectedValue" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
-    
     <div>&nbsp;</div>
     <div id="divTopOptions" runat="server" style="display: inline-block;">
         <asp:DropDownList ID="ddDateRange" runat="server" AutoPostBack="True">
@@ -24,7 +23,8 @@
             <asp:ListItem Text="Last 90 days" Value="90" />
             <asp:ListItem Text="Last 6 months" Value="180" />
             <asp:ListItem Text="Last 1 year" Value="365" />
-        </asp:DropDownList>    
+        </asp:DropDownList>
+          
     </div>
     <div id="divMainChart" runat="server" style="margin-left:-105px;">
         <asp:Chart ID="chtLastXDays" runat="server" EnableTheming="True" BorderlineColor="255, 153, 0" OnDataBound="chtLastXDays_DataBound" Width="975">
@@ -43,7 +43,7 @@
         <table>
             <tr>
                 <td>
-                    <asp:Chart ID="chtMornings" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 0, 192, 0; 192, 0, 0">
+                    <asp:Chart ID="chtMornings" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 103, 150, 1; 192, 46, 47">
                         <Titles> 
                             <asp:Title Text="Mornings" Name="Title1" />
                         </Titles>
@@ -54,7 +54,7 @@
                             <asp:ChartArea Name="Mornings_ChartArea" />
                         </ChartAreas>
                     </asp:Chart>
-                    <asp:Chart ID="chtAfternoons" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 0, 192, 0; 192, 0, 0">
+                    <asp:Chart ID="chtAfternoons" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 103, 150, 1; 192, 46, 47">
                         <Titles> 
                             <asp:Title Text="Afternoons" Name="Afternoons" />
                         </Titles>
@@ -65,7 +65,7 @@
                             <asp:ChartArea Name="Afternoons_ChartArea" />
                         </ChartAreas>
                     </asp:Chart>
-                    <asp:Chart ID="chtNights" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 0, 192, 0; 192, 0, 0">
+                    <asp:Chart ID="chtNights" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 103, 150, 1; 192, 46, 47">
                         <Titles> 
                             <asp:Title Text="Nights" Name="Nights" />
                         </Titles>
@@ -90,15 +90,14 @@
             </tr>
         </table>
     </div>
-    <div>
+    <div class="GridHolder">
         <asp:GridView 
         CssClass="mGrid"
-        AllowPaging="True" 
+        AllowPaging="False" 
         ID="gridValues" 
         runat="server" 
         AutoGenerateColumns="False" 
-        
-        DataSourceID="LastXDays_DataSource" OnRowDataBound="gridValues_RowDataBound" Width="800">
+        DataSourceID="LastXDays_DataSource" OnRowDataBound="gridValues_RowDataBound">
             <AlternatingRowStyle CssClass="alt" />
                 <Columns>
                     <asp:BoundField DataField="date" HeaderText="Date" SortExpression="Timestamp" />
@@ -117,6 +116,5 @@
                 </Columns>
             <PagerStyle CssClass="pgr" />
         </asp:GridView>        
-
     </div>
 </asp:Content>

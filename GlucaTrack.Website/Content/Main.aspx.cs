@@ -64,8 +64,6 @@ namespace GlucaTrack.Website.Content
                     MinMaxValues(dt);
 
                     PieCharts(dt);
-
-                    //TODO: Let user set time ranges for morning afternoon and night
                 }
             }
         }
