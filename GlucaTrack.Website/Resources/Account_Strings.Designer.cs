@@ -277,6 +277,15 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to High end of normal.
+        /// </summary>
+        internal static string Label_HighNormal {
+            get {
+                return ResourceManager.GetString("Label_HighNormal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Income Range.
         /// </summary>
         internal static string Label_IncomeRange {
@@ -309,6 +318,15 @@ namespace GlucaTrack.Website.Resources {
         internal static string Label_Lastname_RequiredError {
             get {
                 return ResourceManager.GetString("Label_Lastname_RequiredError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Low end of normal.
+        /// </summary>
+        internal static string Label_LowNormal {
+            get {
+                return ResourceManager.GetString("Label_LowNormal", resourceCulture);
             }
         }
         

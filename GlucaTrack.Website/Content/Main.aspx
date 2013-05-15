@@ -24,7 +24,10 @@
             <asp:ListItem Text="Last 6 months" Value="180" />
             <asp:ListItem Text="Last 1 year" Value="365" />
         </asp:DropDownList>
-          
+    </div>
+    <div style="text-align: right;">
+        <!-- settings link -->
+        <asp:HyperLink runat="server" ID="linkPersonalSettings" NavigateUrl="../Account/PersonalSettings.aspx" Text="Personal Settings" />
     </div>
     <div id="divMainChart" runat="server" style="margin-left:-105px;">
         <asp:Chart ID="chtLastXDays" runat="server" EnableTheming="True" BorderlineColor="255, 153, 0" OnDataBound="chtLastXDays_DataBound" Width="975">

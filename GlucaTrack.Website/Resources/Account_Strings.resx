@@ -213,6 +213,10 @@
     <value>See you later, {0}.</value>
     <comment>Displays on the logout screen when the user is logging out.</comment>
   </data>
+  <data name="Label_HighNormal" xml:space="preserve">
+    <value>High end of normal</value>
+    <comment>Displays on the personal settings page</comment>
+  </data>
   <data name="Label_IncomeRange" xml:space="preserve">
     <value>Income Range</value>
     <comment>Displays on the 2nd page of registration screens.</comment>
@@ -228,6 +232,10 @@
   <data name="Label_Lastname_RequiredError" xml:space="preserve">
     <value>Last name is required.</value>
     <comment>Last name is required field on 2nd page of registration</comment>
+  </data>
+  <data name="Label_LowNormal" xml:space="preserve">
+    <value>Low end of normal</value>
+    <comment>Displays on the personal settings page</comment>
   </data>
   <data name="Label_Middlename" xml:space="preserve">
     <value>Middle name</value>

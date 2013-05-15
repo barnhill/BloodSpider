@@ -119,6 +119,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Account\Login.aspx" />
+    <Content Include="Account\PersonalSettings.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\Register2.aspx" />
     <Content Include="Account\RegistrationComplete.aspx" />
@@ -209,6 +210,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\PersonalSettings.aspx.cs">
+      <DependentUpon>PersonalSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\PersonalSettings.aspx.designer.cs">
+      <DependentUpon>PersonalSettings.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\Register2.aspx.cs">
       <DependentUpon>Register2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
