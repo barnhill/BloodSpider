@@ -88,6 +88,15 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to    Save Settings   .
+        /// </summary>
+        internal static string Button_SavePersonalSettings {
+            get {
+                return ResourceManager.GetString("Button_SavePersonalSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Registration Step 1.
         /// </summary>
         internal static string Header_RegistrationStep1 {

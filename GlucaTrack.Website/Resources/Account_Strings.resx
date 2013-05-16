@@ -129,6 +129,10 @@
     <value>    Sign in    </value>
     <comment>Login button</comment>
   </data>
+  <data name="Button_SavePersonalSettings" xml:space="preserve">
+    <value>   Save Settings   </value>
+    <comment>Displays on the personal settings screen to save the users settings</comment>
+  </data>
   <data name="Header_RegistrationStep1" xml:space="preserve">
     <value>Registration Step 1</value>
     <comment>Header for registration step 1</comment>

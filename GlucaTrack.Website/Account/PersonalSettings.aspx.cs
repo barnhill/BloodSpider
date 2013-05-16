@@ -34,6 +34,17 @@ namespace GlucaTrack.Website.Account
         {
             this.lblLowNormal.Text = Resources.Account_Strings.Label_LowNormal;
             this.lblHighNormal.Text = Resources.Account_Strings.Label_HighNormal;
+            this.btnSavePersonalSettings.Text = Resources.Account_Strings.Button_SavePersonalSettings;
+        }
+
+        protected void btnSavePersonalSettings_Click(object sender, EventArgs e)
+        {
+            using (QueriesTableAdapters.QueriesTableAdapter qta = new QueriesTableAdapters.QueriesTableAdapter())
+            {
+                qta.sp_UpdatePersonalSettings(LoginRow.user_id,
+                                              Convert.ToByte(((TextBox)this.fvLowNormal.Row.FindControl("LowNormal")).Text), 
+                                              Convert.ToByte(((TextBox)this.fvHighNormal.Row.FindControl("HighNormal")).Text));
+            }
         }
     }
 }
