@@ -14,6 +14,12 @@
             <asp:ControlParameter ControlID="ctl00$MainContent$ddDateRange" DefaultValue="7" Name="days" PropertyName="SelectedValue" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
+    <asp:SqlDataSource ID="PersonalSettings_DataSource" runat="server" ConnectionString="<%$ ConnectionStrings:glucatrackConnectionString %>" SelectCommand="sp_GetPersonalSettings" SelectCommandType="StoredProcedure" >
+        <SelectParameters>
+            <asp:SessionParameter Name="login" SessionField="LoggedInUserId" Type="Int32" />
+        </SelectParameters>
+    </asp:SqlDataSource>
+
     <div>&nbsp;</div>
     <div id="divTopOptions" runat="server" style="display: inline-block;">
         <asp:DropDownList ID="ddDateRange" runat="server" AutoPostBack="True">
@@ -36,6 +42,7 @@
             </Titles>
             <Series>
                 <asp:Series Name="LastXDays_Series" ChartArea="LastXDays_ChartArea" ChartType="Line" BorderWidth="3" Color="0, 133, 198" ShadowOffset="1" IsValueShownAsLabel="False"/>
+                <asp:Series Name="LastXDays_NormalRange" ChartArea="LastXDays_ChartArea" ChartType="Area" BorderWidth="3" Color="#FFFFCC" ShadowOffset="0" IsValueShownAsLabel="False"/>
             </Series>
             <ChartAreas>
                 <asp:ChartArea Name="LastXDays_ChartArea" BackHatchStyle="None" />

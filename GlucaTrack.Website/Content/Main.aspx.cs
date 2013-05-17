@@ -203,7 +203,26 @@ namespace GlucaTrack.Website.Content
 
                 chtLastXDays.Series["LastXDays_Series"].IsValueShownAsLabel = false;
                 chtLastXDays.ChartAreas["LastXDays_ChartArea"].ShadowOffset = 5;
+
+                //add normal range
+                //TODO: finish normal range
+                chtLastXDays.Series["LastXDays_ChartArea"].Points.Add(chtLastXDays.Series["LastXDays_Series"][chtLastXDays.Series["LastXDays_Series"].XValueMember].Max(), GetPersonalNormalRange().XValue);
             }
+        }
+
+        private DataPoint GetPersonalNormalRange()
+        {
+            using (QueriesTableAdapters.sp_GetPersonalSettingsTableAdapter ta = new QueriesTableAdapters.sp_GetPersonalSettingsTableAdapter())
+            {
+                using (Queries.sp_GetPersonalSettingsDataTable dt = new Queries.sp_GetPersonalSettingsDataTable())
+                {
+                    ta.Fill(dt, LoginRow.user_id);
+
+                    return new DataPoint(dt.FirstOrDefault().lownormal, dt.FirstOrDefault().highnormal);
+                }
+            }
+
+            return null;
         }
     }
 

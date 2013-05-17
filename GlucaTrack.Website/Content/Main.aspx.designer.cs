@@ -22,6 +22,15 @@ namespace GlucaTrack.Website.Content {
         protected global::System.Web.UI.WebControls.SqlDataSource LastXDays_DataSource;
         
         /// <summary>
+        /// PersonalSettings_DataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource PersonalSettings_DataSource;
+        
+        /// <summary>
         /// divTopOptions control.
         /// </summary>
         /// <remarks>
