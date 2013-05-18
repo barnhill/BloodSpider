@@ -55,7 +55,7 @@ namespace GlucaTrack.Website.Content {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink linkPersonalSettings;
+        protected global::System.Web.UI.WebControls.Button linkPersonalSettings;
         
         /// <summary>
         /// divNoData control.

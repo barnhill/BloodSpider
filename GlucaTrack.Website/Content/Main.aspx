@@ -30,16 +30,13 @@
             <asp:ListItem Text="Last 6 months" Value="180" />
             <asp:ListItem Text="Last 1 year" Value="365" />
         </asp:DropDownList>
-    </div>
-    <div style="text-align: right;">
-        <!-- settings link -->
-        <asp:HyperLink runat="server" ID="linkPersonalSettings" NavigateUrl="../Account/PersonalSettings.aspx" Text="Personal Settings" />
+        <asp:Button runat="server" ID="linkPersonalSettings" CssClass="LogButton" OnClick="linkPersonalSettings_Click" />
     </div>
     <div id="divNoData" runat="server">
         <asp:Label runat="server" ID="lblNoData" Text="" />
     </div>
     <div id="divMainChart" runat="server" style="margin-left:-105px;">
-        <asp:Chart ID="chtLastXDays" runat="server" EnableTheming="True" BorderlineColor="255, 153, 0" OnDataBound="chtLastXDays_DataBound" Width="975" BackColor="AliceBlue">
+        <asp:Chart ID="chtLastXDays" runat="server" EnableTheming="True" BorderlineColor="255, 153, 0" OnDataBound="chtLastXDays_DataBound" Width="975">
             <Titles> 
                 <asp:Title Text="Trending" Name="LastXDays_Title" />
             </Titles>
@@ -55,7 +52,7 @@
         <table>
             <tr>
                 <td>
-                    <asp:Chart ID="chtMornings" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 103, 150, 1; 192, 46, 47" BackColor="AliceBlue">
+                    <asp:Chart ID="chtMornings" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 103, 150, 1; 192, 46, 47">
                         <Titles> 
                             <asp:Title Text="Mornings" Name="Title1" />
                         </Titles>
@@ -63,10 +60,10 @@
                             <asp:Series Name="Mornings_Series" ChartType="Pie" ChartArea="Mornings_ChartArea" />
                         </Series>
                         <ChartAreas>
-                            <asp:ChartArea Name="Mornings_ChartArea" BackColor="AliceBlue" />
+                            <asp:ChartArea Name="Mornings_ChartArea" />
                         </ChartAreas>
                     </asp:Chart>
-                    <asp:Chart ID="chtAfternoons" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 103, 150, 1; 192, 46, 47" BackColor="AliceBlue">
+                    <asp:Chart ID="chtAfternoons" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 103, 150, 1; 192, 46, 47">
                         <Titles> 
                             <asp:Title Text="Afternoons" Name="Afternoons" />
                         </Titles>
@@ -74,10 +71,10 @@
                             <asp:Series Name="Afternoons_Series" ChartType="Pie" ChartArea="Afternoons_ChartArea" />
                         </Series>
                         <ChartAreas>
-                            <asp:ChartArea Name="Afternoons_ChartArea" BackColor="AliceBlue" />
+                            <asp:ChartArea Name="Afternoons_ChartArea" />
                         </ChartAreas>
                     </asp:Chart>
-                    <asp:Chart ID="chtNights" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 103, 150, 1; 192, 46, 47" BackColor="AliceBlue">
+                    <asp:Chart ID="chtNights" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="Yellow; 103, 150, 1; 192, 46, 47">
                         <Titles> 
                             <asp:Title Text="Nights" Name="Nights" />
                         </Titles>
@@ -85,12 +82,12 @@
                             <asp:Series Name="Nights_Series" ChartType="Pie" ChartArea="Nights_ChartArea" />
                         </Series>
                         <ChartAreas>
-                            <asp:ChartArea Name="Nights_ChartArea" BackColor="AliceBlue" />
+                            <asp:ChartArea Name="Nights_ChartArea" />
                         </ChartAreas>
                     </asp:Chart>
                 </td>
                 <td>
-                    <asp:Panel runat="server" ID="RightTopSideBar" BackColor="AliceBlue" Height="150px">
+                    <asp:Panel runat="server" ID="RightTopSideBar" Height="150px">
                         <p><asp:Label ID="lblMin" runat="server" Font-Bold="True" /><asp:Label ID="MinValue" runat="server" /></p>
                         <p><asp:Label ID="lblMax" runat="server" Font-Bold="True" /><asp:Label ID="MaxValue" runat="server" /></p>
                         <p><asp:Label ID="lblAvg" runat="server" Font-Bold="True" /><asp:Label ID="AvgValue" runat="server" /></p>
@@ -123,8 +120,6 @@
                     </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="UnitType" HeaderText="UnitType" SortExpression="UnitType" />
-                    <asp:BoundField DataField="Manufacturer" HeaderText="Manufacturer" SortExpression="Manufacturer" />
-                    <asp:BoundField DataField="Meter" HeaderText="Meter" SortExpression="Meter" />
                 </Columns>
             <PagerStyle CssClass="pgr" />
         </asp:GridView>        

@@ -45,6 +45,7 @@ namespace GlucaTrack.Website.Content
             chtAfternoons.Titles[0].Text = Resources.Content_Strings.GraphTitle_PieAfternoons;
             chtNights.Titles[0].Text = Resources.Content_Strings.GraphTitle_PieNights;
             lblNoData.Text = Resources.Content_Strings.Label_Nodata;
+            linkPersonalSettings.Text = Resources.Content_Strings.Button_PersonalSettings;
         }
 
         private void PopulateDashboard()
@@ -181,13 +182,7 @@ namespace GlucaTrack.Website.Content
         {
             if (chtLastXDays.Series[0].Points.Count == 0)
             {
-                //TextAnnotation annotation = new TextAnnotation();
-                //annotation.Text = "No data for this period";
-                //annotation.X = 5;
-                //annotation.Y = 5;
-                //annotation.Font = new System.Drawing.Font("Arial", 12);
-                //annotation.ForeColor = System.Drawing.Color.Red;
-                //chtLastXDays.Annotations.Add(annotation);
+                //no data to show
                 chtLastXDays.ChartAreas["LastXDays_ChartArea"].ShadowOffset = 0;
                 chtMornings.Visible = false;
                 chtAfternoons.Visible = false;
@@ -198,6 +193,7 @@ namespace GlucaTrack.Website.Content
             }
             else
             {
+                //data is present
                 chtMornings.Visible = true;
                 chtAfternoons.Visible = true;
                 chtNights.Visible = true;
@@ -247,6 +243,11 @@ namespace GlucaTrack.Website.Content
             sl.IntervalOffset = low; //start the first strip line at the bottom of range
 
             return sl;
+        }
+
+        protected void linkPersonalSettings_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Account/PersonalSettings.aspx");
         }
     }
 

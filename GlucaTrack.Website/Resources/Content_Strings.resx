@@ -125,6 +125,10 @@
     <value>Glucose</value>
     <comment>Axis showing the glucose value measured</comment>
   </data>
+  <data name="Button_PersonalSettings" xml:space="preserve">
+    <value>Personal Settings</value>
+    <comment>Button to set personal settings on the dashboard</comment>
+  </data>
   <data name="GraphTitle_Main" xml:space="preserve">
     <value>Glucose Trending Over The Last {0} Days</value>
     <comment>Title on the main graph</comment>

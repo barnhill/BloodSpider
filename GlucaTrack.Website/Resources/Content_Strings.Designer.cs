@@ -79,6 +79,15 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Personal Settings.
+        /// </summary>
+        internal static string Button_PersonalSettings {
+            get {
+                return ResourceManager.GetString("Button_PersonalSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Glucose Trending Over The Last {0} Days.
         /// </summary>
         internal static string GraphTitle_Main {
