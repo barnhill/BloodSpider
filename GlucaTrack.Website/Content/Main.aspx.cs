@@ -44,6 +44,7 @@ namespace GlucaTrack.Website.Content
             chtMornings.Titles[0].Text = Resources.Content_Strings.GraphTitle_PieMornings;
             chtAfternoons.Titles[0].Text = Resources.Content_Strings.GraphTitle_PieAfternoons;
             chtNights.Titles[0].Text = Resources.Content_Strings.GraphTitle_PieNights;
+            lblNoData.Text = Resources.Content_Strings.Label_Nodata;
         }
 
         private void PopulateDashboard()
@@ -101,9 +102,9 @@ namespace GlucaTrack.Website.Content
             chtLastXDays.Series["LastXDays_Series"].XValueMember = "TimeStamp";
             chtLastXDays.Series["LastXDays_Series"].YValueMembers = "Glucose";
             chtLastXDays.Series["LastXDays_Series"].IsValueShownAsLabel = true;
-            chtLastXDays.Titles[chtLastXDays.Titles.Count - 1].Text = string.Empty; // string.Format(Resources.Content_Strings.GraphTitle_Main, ddDateRange.SelectedValue);
-            chtLastXDays.ChartAreas["LastXDays_ChartArea"].AxisX.Title = "Date Range";
-            chtLastXDays.ChartAreas["LastXDays_ChartArea"].AxisY.Title = "Glucose Reading";
+            chtLastXDays.Titles[chtLastXDays.Titles.Count - 1].Text = string.Format(Resources.Content_Strings.GraphTitle_Main, ddDateRange.SelectedValue);
+            chtLastXDays.ChartAreas["LastXDays_ChartArea"].AxisX.Title = Resources.Content_Strings.AxisLabel_X_MainGraph;
+            chtLastXDays.ChartAreas["LastXDays_ChartArea"].AxisY.Title = Resources.Content_Strings.AxisLabel_Y_MainGraph;
             chtLastXDays.DataSource = DataSource;
             chtLastXDays.DataBind();
         }
@@ -180,18 +181,20 @@ namespace GlucaTrack.Website.Content
         {
             if (chtLastXDays.Series[0].Points.Count == 0)
             {
-                TextAnnotation annotation = new TextAnnotation();
-                annotation.Text = "No data for this period";
-                annotation.X = 5;
-                annotation.Y = 5;
-                annotation.Font = new System.Drawing.Font("Arial", 12);
-                annotation.ForeColor = System.Drawing.Color.Red;
-                chtLastXDays.Annotations.Add(annotation);
+                //TextAnnotation annotation = new TextAnnotation();
+                //annotation.Text = "No data for this period";
+                //annotation.X = 5;
+                //annotation.Y = 5;
+                //annotation.Font = new System.Drawing.Font("Arial", 12);
+                //annotation.ForeColor = System.Drawing.Color.Red;
+                //chtLastXDays.Annotations.Add(annotation);
                 chtLastXDays.ChartAreas["LastXDays_ChartArea"].ShadowOffset = 0;
                 chtMornings.Visible = false;
                 chtAfternoons.Visible = false;
                 chtNights.Visible = false;
                 RightTopSideBar.Visible = false;
+                divMainChart.Visible = false;
+                divNoData.Visible = true;
             }
             else
             {
@@ -199,6 +202,8 @@ namespace GlucaTrack.Website.Content
                 chtAfternoons.Visible = true;
                 chtNights.Visible = true;
                 RightTopSideBar.Visible = true;
+                divMainChart.Visible = true;
+                divNoData.Visible = false;
 
                 chtLastXDays.Series["LastXDays_Series"].IsValueShownAsLabel = false;
                 chtLastXDays.ChartAreas["LastXDays_ChartArea"].ShadowOffset = 5;
@@ -237,7 +242,7 @@ namespace GlucaTrack.Website.Content
             double high = normalRange.Y;
 
             sl.Interval = 10000; //set the interval high enough that only one strip line will show
-            sl.BackColor = System.Drawing.Color.AliceBlue;
+            sl.BackColor = System.Drawing.Color.FromArgb(50, 0, 198, 255);
             sl.StripWidth = high - low; //set width of strip to width of normal range
             sl.IntervalOffset = low; //start the first strip line at the bottom of range
 

@@ -35,6 +35,9 @@
         <!-- settings link -->
         <asp:HyperLink runat="server" ID="linkPersonalSettings" NavigateUrl="../Account/PersonalSettings.aspx" Text="Personal Settings" />
     </div>
+    <div id="divNoData" runat="server">
+        <asp:Label runat="server" ID="lblNoData" Text="" />
+    </div>
     <div id="divMainChart" runat="server" style="margin-left:-105px;">
         <asp:Chart ID="chtLastXDays" runat="server" EnableTheming="True" BorderlineColor="255, 153, 0" OnDataBound="chtLastXDays_DataBound" Width="975" BackColor="AliceBlue">
             <Titles> 

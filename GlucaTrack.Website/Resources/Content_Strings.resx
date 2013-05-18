@@ -117,8 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AxisLabel_X_MainGraph" xml:space="preserve">
+    <value />
+    <comment>Axis label showing the date of reading</comment>
+  </data>
+  <data name="AxisLabel_Y_MainGraph" xml:space="preserve">
+    <value>Glucose</value>
+    <comment>Axis showing the glucose value measured</comment>
+  </data>
   <data name="GraphTitle_Main" xml:space="preserve">
-    <value>Last {0} days</value>
+    <value>Glucose Trending Over The Last {0} Days</value>
     <comment>Title on the main graph</comment>
   </data>
   <data name="GraphTitle_PieAfternoons" xml:space="preserve">
@@ -152,6 +160,10 @@
   <data name="Label_Minimum" xml:space="preserve">
     <value>Min: </value>
     <comment>Minimum value label and value</comment>
+  </data>
+  <data name="Label_Nodata" xml:space="preserve">
+    <value>No data available for this period.</value>
+    <comment>Label showing there is no data on the dashboard</comment>
   </data>
   <data name="Label_NumberOfHighs" xml:space="preserve">
     <value># High: </value>
