@@ -180,8 +180,7 @@ namespace GlucaTrack.Website.Content
         {
             if (chtLastXDays.Series[0].Points.Count == 0)
             {
-                System.Web.UI.DataVisualization.Charting.TextAnnotation annotation =
-                    new System.Web.UI.DataVisualization.Charting.TextAnnotation();
+                TextAnnotation annotation = new TextAnnotation();
                 annotation.Text = "No data for this period";
                 annotation.X = 5;
                 annotation.Y = 5;
@@ -204,13 +203,16 @@ namespace GlucaTrack.Website.Content
                 chtLastXDays.Series["LastXDays_Series"].IsValueShownAsLabel = false;
                 chtLastXDays.ChartAreas["LastXDays_ChartArea"].ShadowOffset = 5;
 
-                //add normal range
-                //TODO: finish normal range
-                chtLastXDays.Series["LastXDays_ChartArea"].Points.Add(chtLastXDays.Series["LastXDays_Series"][chtLastXDays.Series["LastXDays_Series"].XValueMember].Max(), GetPersonalNormalRange().XValue);
+                //add personalized 'normal' range
+                this.chtLastXDays.ChartAreas["LastXDays_ChartArea"].AxisY.StripLines.Add(HighlightNormalRange(GetPersonalNormalRange()));
             }
         }
 
-        private DataPoint GetPersonalNormalRange()
+        /// <summary>
+        /// Gets the users normal range set in personal settings.
+        /// </summary>
+        /// <returns>Point that contains the low (X) and high (Y) of the users personal settings normal range.</returns>
+        private System.Drawing.Point GetPersonalNormalRange()
         {
             using (QueriesTableAdapters.sp_GetPersonalSettingsTableAdapter ta = new QueriesTableAdapters.sp_GetPersonalSettingsTableAdapter())
             {
@@ -218,11 +220,28 @@ namespace GlucaTrack.Website.Content
                 {
                     ta.Fill(dt, LoginRow.user_id);
 
-                    return new DataPoint(dt.FirstOrDefault().lownormal, dt.FirstOrDefault().highnormal);
+                    return new System.Drawing.Point(dt.FirstOrDefault().lownormal, dt.FirstOrDefault().highnormal);
                 }
             }
+        }
 
-            return null;
+        /// <summary>
+        /// Creates the strip line representing the normal range on the graph
+        /// </summary>
+        /// <param name="normalRange">Point that contains the low (X) and high (Y) of the users personal settings normal range.</param>
+        /// <returns>Strip line representing the normal range on the graph</returns>
+        private StripLine HighlightNormalRange(System.Drawing.Point normalRange)
+        {
+            StripLine sl = new StripLine();
+            double low = normalRange.X;
+            double high = normalRange.Y;
+
+            sl.Interval = 10000; //set the interval high enough that only one strip line will show
+            sl.BackColor = System.Drawing.Color.AliceBlue;
+            sl.StripWidth = high - low; //set width of strip to width of normal range
+            sl.IntervalOffset = low; //start the first strip line at the bottom of range
+
+            return sl;
         }
     }
 
