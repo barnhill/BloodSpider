@@ -150,8 +150,7 @@ namespace GlucaTrack.Website.Content
 
         private void PieCharts(DataTable dt)
         {
-            //TODO: personal settings - Time ranges (morning, afternoon, night)
-            ReadingPiePercents pieMorn = new ReadingPiePercents(dt, new DateTime(1, 1, 1, 6, 0, 0), new DateTime(1, 1, 1, 11, 59, 59));
+            ReadingPiePercents pieMorn = new ReadingPiePercents(dt, new DateTime(1, 1, 1, GetUserTimeSettings().Morning, 0, 0), new DateTime(1, 1, 1, GetUserTimeSettings().Afternoon, 0, 0).AddMilliseconds(-1));
             chtMornings.Series["Mornings_Series"].XValueMember = "Label";
             chtMornings.Series["Mornings_Series"].YValueMembers = "Value";
             chtMornings.Series["Mornings_Series"].IsValueShownAsLabel = false;
@@ -160,7 +159,7 @@ namespace GlucaTrack.Website.Content
             chtMornings.DataSource = pieMorn.BindingSource;
             chtMornings.DataBind();
 
-            ReadingPiePercents pieAfter = new ReadingPiePercents(dt, new DateTime(1, 1, 1, 12, 0, 0), new DateTime(1, 1, 1, 20, 59, 59));
+            ReadingPiePercents pieAfter = new ReadingPiePercents(dt, new DateTime(1, 1, 1, GetUserTimeSettings().Afternoon, 0, 0), new DateTime(1, 1, 1, GetUserTimeSettings().Night, 0, 0).AddMilliseconds(-1));
             chtAfternoons.Series["Afternoons_Series"].XValueMember = "Label";
             chtAfternoons.Series["Afternoons_Series"].YValueMembers = "Value";
             chtAfternoons.Series["Afternoons_Series"].IsValueShownAsLabel = false;
@@ -169,7 +168,7 @@ namespace GlucaTrack.Website.Content
             chtAfternoons.DataSource = pieAfter.BindingSource;
             chtAfternoons.DataBind();
 
-            ReadingPiePercents pieNight = new ReadingPiePercents(dt, new DateTime(1, 1, 1, 21, 0, 0), new DateTime(1, 1, 1, 5, 59, 59));
+            ReadingPiePercents pieNight = new ReadingPiePercents(dt, new DateTime(1, 1, 1, GetUserTimeSettings().Night, 0, 0), new DateTime(1, 1, 1, GetUserTimeSettings().Morning, 0, 0).AddMilliseconds(-1));
             chtNights.Series["Nights_Series"].XValueMember = "Label";
             chtNights.Series["Nights_Series"].YValueMembers = "Value";
             chtNights.Series["Nights_Series"].IsValueShownAsLabel = false;
@@ -227,6 +226,27 @@ namespace GlucaTrack.Website.Content
             }
         }
 
+        private MorningAfternoonNight GetUserTimeSettings()
+        {
+            using (QueriesTableAdapters.sp_GetUserSettingsTableAdapter ta = new QueriesTableAdapters.sp_GetUserSettingsTableAdapter())
+            {
+                using (Queries.sp_GetUserSettingsDataTable dt = new Queries.sp_GetUserSettingsDataTable())
+                {
+                    ta.Fill(dt, LoginRow.user_id);
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        Queries.sp_GetUserSettingsRow row = (Queries.sp_GetUserSettingsRow)dt[0];
+                        return new MorningAfternoonNight(row.start_morning, row.start_afternoon, row.start_night);
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Creates the strip line representing the normal range on the graph
         /// </summary>
@@ -239,7 +259,7 @@ namespace GlucaTrack.Website.Content
             double high = normalRange.Y;
 
             sl.Interval = 10000; //set the interval high enough that only one strip line will show
-            sl.BackColor = System.Drawing.Color.FromArgb(50, 0, 198, 255);
+            sl.BackColor = System.Drawing.Color.FromArgb(100, 199, 255, 168);
             sl.StripWidth = high - low; //set width of strip to width of normal range
             sl.IntervalOffset = low; //start the first strip line at the bottom of range
 
@@ -321,6 +341,20 @@ namespace GlucaTrack.Website.Content
         private bool AllAreBlank()
         {
             return PercentLow == 0 && PercentNormal == 0 && PercentHigh == 0;
+        }
+    }
+
+    public class MorningAfternoonNight
+    {
+        public int Morning;
+        public int Afternoon;
+        public int Night;
+
+        public MorningAfternoonNight(int morning, int afternoon, int night)
+        {
+            Morning = morning;
+            Afternoon = afternoon;
+            Night = night;
         }
     }
 }
