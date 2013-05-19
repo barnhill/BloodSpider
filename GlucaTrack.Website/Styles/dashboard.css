@@ -30,7 +30,7 @@
     font-weight: bold; 
     color: #fff; 
     line-height: 12px; 
- }   
+ }
 .mGrid .pgr a { color: #666; text-decoration: none; }
 .mGrid .pgr a:hover { color: #000; text-decoration: none; }
 
@@ -39,5 +39,5 @@
 .GridHolder {
     overflow: auto; 
     height: 230px; 
-    width: 842px;
+    width: 525px;
 }

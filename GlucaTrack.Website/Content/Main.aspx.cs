@@ -124,8 +124,8 @@ namespace GlucaTrack.Website.Content
             var avg = dt.Compute("AVG(Glucose)", null);
             var stdev = dt.Compute("StDev(Glucose)", null);
             var variance = dt.Compute("Var(Glucose)", null).ToString();
-            var NumHigh = dt.Compute("Count(Glucose)", "Glucose > " + Statics.HighThreshold.ToString());
-            var NumLow = dt.Compute("Count(Glucose)", "Glucose < " + Statics.LowThreshold.ToString());
+            var NumHigh = dt.Compute("Count(Glucose)", "Glucose > " + GetPersonalNormalRange().Y);
+            var NumLow = dt.Compute("Count(Glucose)", "Glucose < " + GetPersonalNormalRange().X);
 
             //populate values on the right side
             if (min.Count() > 0 && max.Count() > 0)
@@ -142,14 +142,15 @@ namespace GlucaTrack.Website.Content
             this.StdDevValue.Text = (stdev.ToString().Length > 0) ? Math.Round(Convert.ToDouble(stdev.ToString()), 2).ToString() : string.Empty;
             this.lblNumLows.Text = Resources.Content_Strings.Label_NumberOfLows;
             this.NumLowsValue.Text = NumLow.ToString();
-            this.lblLowExplanation.Text = string.Format(Resources.Content_Strings.Label_LowExplanation, Statics.LowThreshold.ToString());
+            this.lblLowExplanation.Text = string.Format(Resources.Content_Strings.Label_LowExplanation, GetPersonalNormalRange().X);
             this.lblNumHighs.Text = Resources.Content_Strings.Label_NumberOfHighs;
             this.NumHighsValue.Text = NumHigh.ToString();
-            this.lblHighExplanation.Text = string.Format(Resources.Content_Strings.Label_HighExplanation, Statics.HighThreshold.ToString());
+            this.lblHighExplanation.Text = string.Format(Resources.Content_Strings.Label_HighExplanation, GetPersonalNormalRange().Y);
         }
 
         private void PieCharts(DataTable dt)
         {
+            //TODO: personal settings 
             ReadingPiePercents pieMorn = new ReadingPiePercents(dt, new DateTime(1, 1, 1, 6, 0, 0), new DateTime(1, 1, 1, 11, 59, 59));
             chtMornings.Series["Mornings_Series"].XValueMember = "Label";
             chtMornings.Series["Mornings_Series"].YValueMembers = "Value";
