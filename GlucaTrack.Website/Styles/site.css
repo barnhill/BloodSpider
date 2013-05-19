@@ -50,8 +50,8 @@ input:focus {
     }
 .dropdownlist {
         border: 1px solid #cecece;
-        font-size: 1.1em;
-        font-weight: 400;
+        font-size: 0.9em;
+        font-weight: 600;
         color: black;
         padding: 3px;
         -webkit-border-radius: 5px;
