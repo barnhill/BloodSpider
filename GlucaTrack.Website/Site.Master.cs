@@ -66,6 +66,7 @@ namespace GlucaTrack.Website
             //labels
             if (LoginRow != null)
                 this.WelcomeMessage.Text = string.Format(Resources.Master_Strings.Label_WelcomeMessage, LoginRow.firstname);
+
         }
 
         protected void master_Page_PreLoad(object sender, EventArgs e)

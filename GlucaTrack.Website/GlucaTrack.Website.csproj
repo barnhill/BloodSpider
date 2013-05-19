@@ -133,6 +133,7 @@
     <Content Include="Images\grid_style\grd_alt.png" />
     <Content Include="Images\grid_style\grd_head.png" />
     <Content Include="Images\grid_style\grd_pgr.png" />
+    <Content Include="Images\master\blankavatar.jpg" />
     <Content Include="Images\master\logo.png" />
     <Content Include="Images\testcontent.png" />
     <None Include="Service References\GTService\Common1.xsd" />
