@@ -38,18 +38,27 @@
                             <asp:HyperLink runat="server" ID="LoginButton" CssClass="LogButton" NavigateUrl="~/Account/Login.aspx">Log in</asp:HyperLink>
                             <asp:HyperLink runat="server" ID="RegisterButton" CssClass="LogButton" NavigateUrl="~/Account/Register.aspx">Register</asp:HyperLink>
                         </div>
-                        <div id="LoggedIn" class="Log_Area" runat="server">
-                            <p style="font-size: small;">
+                        
+                        <div id="LoggedIn" class="Log_Area" runat="server" style="font-size:small">                            
+                            <div style="width:48px; float:right;">
                                 <asp:Image ID="imgUserImage" runat="server" ImageUrl="~/Images/master/blankavatar.jpg" />
-                                <asp:Label ID="WelcomeMessage" runat="server"/><br />
-                                <asp:HyperLink runat="server" ID="MyDataButton" CssClass="LogButton" NavigateUrl="~/Content/Main.aspx">My Data</asp:HyperLink>
-                                <asp:HyperLink runat="server" ID="LogoutButton" CssClass="LogButton" NavigateUrl="~/Account/Logout.aspx">Log out</asp:HyperLink>
-                            </p>
+                            </div>
+                            <div style="width:150px; float:right; height:48px; padding-right:10px;">
+                                <div>
+                                    <p><asp:Label ID="WelcomeMessage" runat="server"/><br /></p>
+                                </div>                                    
+                                <div>
+                                    <p><asp:HyperLink runat="server" ID="MyDataButton" CssClass="LogButton" NavigateUrl="~/Content/Main.aspx">My Data</asp:HyperLink>
+                                    <asp:HyperLink runat="server" ID="LogoutButton" CssClass="LogButton" NavigateUrl="~/Account/Logout.aspx">Log out</asp:HyperLink></p>
+                                </div>                                
+                            </div>                            
                         </div>
-                        <a href="/" class="MenuButton"><asp:Label runat="server" ID="lblHome">Home</asp:Label></a>
-                        <a href="/Download" class="MenuButton"><asp:Label runat="server" ID="lblDownload">Download</asp:Label></a>
-                        <a href="/About.aspx" class="MenuButton"><asp:Label runat="server" ID="lblAbout">About</asp:Label></a>
-                        <a href="/Contact.aspx" class="MenuButton"><asp:Label runat="server" ID="lblContact">Contact</asp:Label></a>
+                        <div style="width:100%;">
+                            <a href="/" class="MenuButton"><asp:Label runat="server" ID="lblHome">Home</asp:Label></a>
+                            <a href="/Download" class="MenuButton"><asp:Label runat="server" ID="lblDownload">Download</asp:Label></a>
+                            <a href="/About.aspx" class="MenuButton"><asp:Label runat="server" ID="lblAbout">About</asp:Label></a>
+                            <a href="/Contact.aspx" class="MenuButton"><asp:Label runat="server" ID="lblContact">Contact</asp:Label></a>
+                        </div>
                     </div>
                 </div>
             </div>
