@@ -52,6 +52,7 @@
                     </div>
                 </div>
             </div>
+        <div class="Footer_RedLine" />
     </header>
     <div id="body">
         <div class="Content_Color">
@@ -63,7 +64,7 @@
             </div>
         </div>
     </div>
-        <div class="Footer_RedLine" />
+    <div class="Footer_RedLine" />
         <div class="Footer">
             <p>
                 <asp:Label runat="server" ID="lblCopyright">[Copyright]</asp:Label> <%: DateTime.Now.Year %>

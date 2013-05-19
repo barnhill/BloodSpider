@@ -150,7 +150,7 @@ namespace GlucaTrack.Website.Content
 
         private void PieCharts(DataTable dt)
         {
-            //TODO: personal settings 
+            //TODO: personal settings - Time ranges (morning, afternoon, night)
             ReadingPiePercents pieMorn = new ReadingPiePercents(dt, new DateTime(1, 1, 1, 6, 0, 0), new DateTime(1, 1, 1, 11, 59, 59));
             chtMornings.Series["Mornings_Series"].XValueMember = "Label";
             chtMornings.Series["Mornings_Series"].YValueMembers = "Value";
@@ -216,9 +216,9 @@ namespace GlucaTrack.Website.Content
         /// <returns>Point that contains the low (X) and high (Y) of the users personal settings normal range.</returns>
         private System.Drawing.Point GetPersonalNormalRange()
         {
-            using (QueriesTableAdapters.sp_GetPersonalSettingsTableAdapter ta = new QueriesTableAdapters.sp_GetPersonalSettingsTableAdapter())
+            using (QueriesTableAdapters.sp_GetUserSettingsTableAdapter ta = new QueriesTableAdapters.sp_GetUserSettingsTableAdapter())
             {
-                using (Queries.sp_GetPersonalSettingsDataTable dt = new Queries.sp_GetPersonalSettingsDataTable())
+                using (Queries.sp_GetUserSettingsDataTable dt = new Queries.sp_GetUserSettingsDataTable())
                 {
                     ta.Fill(dt, LoginRow.user_id);
 
@@ -248,6 +248,9 @@ namespace GlucaTrack.Website.Content
 
         protected void linkPersonalSettings_Click(object sender, EventArgs e)
         {
+            Session.Remove("OnSave");
+
+            Session.Add("OnSave", "/Content/Main.aspx");
             Response.Redirect("../Account/PersonalSettings.aspx");
         }
     }

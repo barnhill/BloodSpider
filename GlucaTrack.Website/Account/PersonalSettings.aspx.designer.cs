@@ -58,6 +58,60 @@ namespace GlucaTrack.Website.Account {
         protected global::System.Web.UI.WebControls.FormView fvHighNormal;
         
         /// <summary>
+        /// lblMorningStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMorningStart;
+        
+        /// <summary>
+        /// ddMorningStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddMorningStart;
+        
+        /// <summary>
+        /// lblAfternoonStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAfternoonStart;
+        
+        /// <summary>
+        /// ddAfternoonStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddAfternoonStart;
+        
+        /// <summary>
+        /// lblNightStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNightStart;
+        
+        /// <summary>
+        /// ddNightStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddNightStart;
+        
+        /// <summary>
         /// btnSavePersonalSettings control.
         /// </summary>
         /// <remarks>

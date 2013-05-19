@@ -27,13 +27,33 @@ namespace GlucaTrack.Website.Account
                     Session.Add("LoggedInUserId", LoginRow.user_id);
             }
 
-            SetResources();
+            if (!IsPostBack)
+            {
+                SetResources();
+
+                //get current settings
+                using (QueriesTableAdapters.sp_GetUserSettingsTableAdapter ta = new QueriesTableAdapters.sp_GetUserSettingsTableAdapter())
+                {
+                    using (Queries.sp_GetUserSettingsDataTable dt = new Queries.sp_GetUserSettingsDataTable())
+                    {
+                        ta.Fill(dt, LoginRow.user_id);
+
+                        PopulateTimeDropdown(ddMorningStart, Convert.ToInt32(dt[0]["start_morning"]));
+                        PopulateTimeDropdown(ddAfternoonStart, Convert.ToInt32(dt[0]["start_afternoon"]));
+                        PopulateTimeDropdown(ddNightStart, Convert.ToInt32(dt[0]["start_night"]));
+                    }
+                }
+            }
         }
 
         private void SetResources()
         {
             this.lblLowNormal.Text = Resources.Account_Strings.Label_LowNormal;
             this.lblHighNormal.Text = Resources.Account_Strings.Label_HighNormal;
+            this.lblMorningStart.Text = Resources.Account_Strings.Label_StartMorning;
+            this.lblAfternoonStart.Text = Resources.Account_Strings.Label_StartAfternoon;
+            this.lblNightStart.Text = Resources.Account_Strings.Label_StartNight;
+
             this.btnSavePersonalSettings.Text = Resources.Account_Strings.Button_SavePersonalSettings;
         }
 
@@ -41,9 +61,31 @@ namespace GlucaTrack.Website.Account
         {
             using (QueriesTableAdapters.QueriesTableAdapter qta = new QueriesTableAdapters.QueriesTableAdapter())
             {
-                qta.sp_UpdatePersonalSettings(LoginRow.user_id,
+                qta.sp_UpdateUserSettings(LoginRow.user_id,
                                               Convert.ToByte(((TextBox)this.fvLowNormal.Row.FindControl("LowNormal")).Text), 
-                                              Convert.ToByte(((TextBox)this.fvHighNormal.Row.FindControl("HighNormal")).Text));
+                                              Convert.ToByte(((TextBox)this.fvHighNormal.Row.FindControl("HighNormal")).Text),
+                                              Convert.ToByte(ddMorningStart.SelectedValue),
+                                              Convert.ToByte(ddAfternoonStart.SelectedValue),
+                                              Convert.ToByte(ddNightStart.SelectedValue));
+            }
+
+            if (Session["OnSave"].ToString().Trim() != null && Session["OnSave"].ToString().Trim() != string.Empty)
+            {
+                string target = Session["OnSave"].ToString();
+                Session.Remove("OnSave");
+                Response.Redirect(target);
+            }
+        }
+
+        private void PopulateTimeDropdown(DropDownList ddTarget, int currentHour)
+        {
+            ddTarget.Items.Clear();
+
+            for (int i = 0; i <= 24; i++)
+            {
+                ListItem li = new ListItem((i < 10 ? "0" : string.Empty) + i.ToString() + ":00", i.ToString());
+                li.Selected = (currentHour == i) ? true : false;
+                ddTarget.Items.Add(li);
             }
         }
     }

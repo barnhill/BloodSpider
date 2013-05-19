@@ -22,7 +22,7 @@
 
     <div>&nbsp;</div>
     <div id="divTopOptions" runat="server" style="display: inline-block;">
-        <asp:DropDownList ID="ddDateRange" runat="server" AutoPostBack="True">
+        <asp:DropDownList ID="ddDateRange" runat="server" AutoPostBack="True" CssClass="dropdownlist">
             <asp:ListItem Text="Last 7 days" Value="7" Selected="True" />
             <asp:ListItem Text="Last 14 days" Value="14" />
             <asp:ListItem Text="Last 30 days" Value="30" />
@@ -41,7 +41,7 @@
                 <asp:Title Text="Trending" Name="LastXDays_Title" />
             </Titles>
             <Series>
-                <asp:Series Name="LastXDays_Series" ChartArea="LastXDays_ChartArea" ChartType="Line" BorderWidth="3" Color="192, 46, 47" ShadowOffset="1" IsValueShownAsLabel="False"/>
+                <asp:Series Name="LastXDays_Series" ChartArea="LastXDays_ChartArea" ChartType="Line" BorderWidth="3" Color="196, 0, 0" ShadowOffset="1" IsValueShownAsLabel="False"/>
             </Series>
             <ChartAreas>
                 <asp:ChartArea Name="LastXDays_ChartArea" BackHatchStyle="None" />

@@ -297,6 +297,18 @@
     <value>Sex is required.</value>
     <comment>Displays on the 2nd page of the registration screens.</comment>
   </data>
+  <data name="Label_StartAfternoon" xml:space="preserve">
+    <value>Start afternoon</value>
+    <comment>Label on the personal settings screen for the starting of the afternoon</comment>
+  </data>
+  <data name="Label_StartMorning" xml:space="preserve">
+    <value>Start morning</value>
+    <comment>Label on the personal settings screen for the starting of the morning</comment>
+  </data>
+  <data name="Label_StartNight" xml:space="preserve">
+    <value>Start night</value>
+    <comment>Label on the personal settings screen for the starting of the night</comment>
+  </data>
   <data name="Label_State" xml:space="preserve">
     <value>State/Province/Region</value>
     <comment>State label on 2nd page of registration</comment>
