@@ -31,7 +31,7 @@
             <div class="Header_color">        
                 <div class="Header">
                     <div class="Logo_Area">
-                        <a href="#"><img src="/Images/master/logo.png" /></a>
+                        <img src="/Images/master/logo.png" />
                     </div>            
                     <div id="Menu" class="Menu_Area">
                         <div id="NotLoggedIn" class="Log_Area" runat="server">
