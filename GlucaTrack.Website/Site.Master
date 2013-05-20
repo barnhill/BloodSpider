@@ -47,7 +47,7 @@
                                 <div>
                                     <p><asp:Label ID="WelcomeMessage" runat="server"/><br /></p>
                                 </div>                                    
-                                <div>
+                                <div style="margin-top: 3px;">
                                     <p><asp:HyperLink runat="server" ID="MyDataButton" CssClass="LogButton" NavigateUrl="~/Content/Main.aspx">My Data</asp:HyperLink>
                                     <asp:HyperLink runat="server" ID="LogoutButton" CssClass="LogButton" NavigateUrl="~/Account/Logout.aspx">Log out</asp:HyperLink></p>
                                 </div>                                
