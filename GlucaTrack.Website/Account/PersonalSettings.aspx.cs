@@ -54,6 +54,7 @@ namespace GlucaTrack.Website.Account
             this.lblAfternoonStart.Text = Resources.Account_Strings.Label_StartAfternoon;
             this.lblNightStart.Text = Resources.Account_Strings.Label_StartNight;
 
+            this.btnChangeAvatar.Text = Resources.Account_Strings.Button_ChangeAvatar;
             this.btnSavePersonalSettings.Text = Resources.Account_Strings.Button_SavePersonalSettings;
         }
 
@@ -87,6 +88,22 @@ namespace GlucaTrack.Website.Account
                 li.Selected = (currentHour == i) ? true : false;
                 ddTarget.Items.Add(li);
             }
+        }
+
+        public void btnChangeAvatar_Click(object sender, EventArgs e)
+        {
+            AsyncFileUpload2.Visible = true;
+            btnChangeAvatar.Visible = false;
+        }
+
+        protected void AsyncFileUpload1_UploadedComplete(object sender, AjaxControlToolkit.AsyncFileUploadEventArgs e)
+        {
+            AsyncFileUpload2.Visible = false;
+            btnChangeAvatar.Visible = true;
+            
+            AjaxControlToolkit.AsyncFileUpload fileUpload = sender as AjaxControlToolkit.AsyncFileUpload;
+
+            //TODO: create 48x48 avatar from image and upload file to user table
         }
     }
 }

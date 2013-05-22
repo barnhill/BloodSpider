@@ -73,4 +73,12 @@ input[type="textbox"] {
         background: transparent;
         width: auto;
     }
+.uploadControl {
+        background: #fff;
+        color: #333;
+        font-size: 0.8em;
+        text-align: left;
+        padding: 5px;
+        font-weight: 500;
+}
       

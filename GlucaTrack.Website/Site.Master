@@ -24,9 +24,11 @@
 </script>
 </head>
 <body>
-    <form runat="server">
-    <asp:ScriptManager runat="server">
-    </asp:ScriptManager>
+    <form runat="server" enctype="multipart/form-data" method="post">
+        <AjaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+    </AjaxToolkit:ToolkitScriptManager>
+    <%--<asp:ScriptManager runat="server">
+    </asp:ScriptManager>--%>
     <header>
             <div class="Header_color">        
                 <div class="Header">

@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Button_ChangeAvatar" xml:space="preserve">
+    <value>Change</value>
+    <comment>Displays under the avatar on the personal settings screen.</comment>
+  </data>
   <data name="Button_Continue" xml:space="preserve">
     <value>Continue</value>
     <comment>Continue button text</comment>

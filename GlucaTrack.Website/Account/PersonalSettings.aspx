@@ -9,7 +9,23 @@
             <asp:SessionParameter Name="login" SessionField="LoggedInUserId" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
-
+    <br />
+    <asp:UpdatePanel ID="upUpload" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+            <div style="width:800px;">
+                <asp:Image ID="imgAvatar" runat="server" ImageUrl="~/Images/master/blankavatar.jpg" />
+                <asp:Button ID="btnChangeAvatar" runat="server" Text="[Change]" cssclass="LogButton" OnClick="btnChangeAvatar_Click" CausesValidation="False"/> 
+                <ajaxToolkit:AsyncFileUpload ID="AsyncFileUpload2" 
+                    runat="server" 
+                    OnUploadedComplete="AsyncFileUpload1_UploadedComplete" 
+                    visible="false"
+                    AllowedFileTypes="jpg,jpeg,gif,png"
+                    MaximumNumberOfFiles=1
+                    CssClass="uploadControl" />
+            </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    <br />
     <asp:Label ID="lblLowNormal" runat="server" AssociatedControlID="fvLowNormal">[Low normal]</asp:Label><br />
     <asp:FormView ID="fvLowNormal" runat="server" DataKeyNames="user_id" DataSourceID="PersonalSettings_DataSource">
         <ItemTemplate>
