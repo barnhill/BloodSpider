@@ -31,24 +31,6 @@ namespace GlucaTrack.Website.Account {
         protected global::System.Web.UI.UpdatePanel upUpload;
         
         /// <summary>
-        /// imgAvatar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgAvatar;
-        
-        /// <summary>
-        /// btnChangeAvatar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnChangeAvatar;
-        
-        /// <summary>
         /// AsyncFileUpload2 control.
         /// </summary>
         /// <remarks>

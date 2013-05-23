@@ -22,11 +22,19 @@
         })();
 
 </script>
+    <script type="text/javascript">
+        function reloadImage() {
+            var now = new Date();
+            if (document.images) {
+                document.images.imgAvatar.src = '/Content/UserImage.ashx?' + now.getTime();
+            }
+        }
+
+</script>
 </head>
 <body>
     <form runat="server" enctype="multipart/form-data" method="post">
-        <AjaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
-    </AjaxToolkit:ToolkitScriptManager>
+    <AjaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" />
     <%--<asp:ScriptManager runat="server">
     </asp:ScriptManager>--%>
     <header>
@@ -43,11 +51,15 @@
                         
                         <div id="LoggedIn" class="Log_Area" runat="server" style="font-size:small">                            
                             <div style="width:48px; float:right;">
-                                <asp:Image ID="imgUserImage" runat="server" ImageUrl="~/Images/master/blankavatar.jpg" />
+                                <asp:Image Width="48" Height="48" ID="imgUserImage" runat="server" ImageUrl="~/Content/UserImage.ashx" />
                             </div>
                             <div style="width:150px; float:right; height:48px; padding-right:10px;">
                                 <div>
-                                    <p><asp:Label ID="WelcomeMessage" runat="server"/><br /></p>
+                                    <p><asp:Label ID="WelcomeMessage" runat="server"/>
+                                       <asp:LinkButton runat="server" ID="linkPersonalSettings" OnClick="linkPersonalSettings_Click"/>
+                                       <asp:Label ID="lblExclamation" runat="server"/>
+                                       <br />
+                                    </p>
                                 </div>                                    
                                 <div style="margin-top: 3px;">
                                     <p><asp:HyperLink runat="server" ID="MyDataButton" CssClass="LogButton" NavigateUrl="~/Content/Main.aspx">My Data</asp:HyperLink>

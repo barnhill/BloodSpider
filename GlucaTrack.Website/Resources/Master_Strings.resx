@@ -133,6 +133,10 @@
     <value>DOWNLOAD</value>
     <comment>Button on the master page that links to the download page</comment>
   </data>
+  <data name="Label_Exclamation" xml:space="preserve">
+    <value>!</value>
+    <comment>Exclamation point after the welcome back message.</comment>
+  </data>
   <data name="Label_Home" xml:space="preserve">
     <value>HOME</value>
     <comment>Tab on the master page that links back to the home page</comment>
@@ -154,7 +158,7 @@
     <comment>Link on the master page that sends the user to the registration page</comment>
   </data>
   <data name="Label_WelcomeMessage" xml:space="preserve">
-    <value>Welcome back, {0}!</value>
+    <value>Welcome back, </value>
     <comment>Welcome message in the header if logged in.</comment>
   </data>
 </root>

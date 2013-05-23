@@ -65,7 +65,11 @@ namespace GlucaTrack.Website
 
             //labels
             if (LoginRow != null)
-                this.WelcomeMessage.Text = string.Format(Resources.Master_Strings.Label_WelcomeMessage, LoginRow.firstname);
+            {
+                this.WelcomeMessage.Text = string.Format(Resources.Master_Strings.Label_WelcomeMessage);
+                this.linkPersonalSettings.Text = LoginRow.firstname;
+                this.lblExclamation.Text = Resources.Master_Strings.Label_Exclamation;
+            }
 
         }
 
@@ -103,6 +107,14 @@ namespace GlucaTrack.Website
 
             LoggedIn.Visible = LoginRow != null;
             NotLoggedIn.Visible = LoginRow == null;
+        }
+
+        protected void linkPersonalSettings_Click(object sender, EventArgs e)
+        {
+            Session.Remove("OnSave");
+
+            Session.Add("OnSave", Request.ServerVariables["URL"]);
+            Response.Redirect("../Account/PersonalSettings.aspx");
         }
     }
 }

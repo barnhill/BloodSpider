@@ -10,6 +10,15 @@ namespace GlucaTrack.Website.Account
     public partial class PersonalSettings : System.Web.UI.Page
     {
         Queries.sp_GetLoginRow LoginRow = null;
+
+        public byte [] PendingAvatar
+        {
+            get 
+            {
+                return (Session["PendingAvatar"] != null ? (byte[])Session["PendingAvatar"] : null);
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //redirect if not logged in
@@ -27,6 +36,8 @@ namespace GlucaTrack.Website.Account
                     Session.Add("LoggedInUserId", LoginRow.user_id);
             }
 
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            
             if (!IsPostBack)
             {
                 SetResources();
@@ -54,7 +65,6 @@ namespace GlucaTrack.Website.Account
             this.lblAfternoonStart.Text = Resources.Account_Strings.Label_StartAfternoon;
             this.lblNightStart.Text = Resources.Account_Strings.Label_StartNight;
 
-            this.btnChangeAvatar.Text = Resources.Account_Strings.Button_ChangeAvatar;
             this.btnSavePersonalSettings.Text = Resources.Account_Strings.Button_SavePersonalSettings;
         }
 
@@ -67,7 +77,13 @@ namespace GlucaTrack.Website.Account
                                               Convert.ToByte(((TextBox)this.fvHighNormal.Row.FindControl("HighNormal")).Text),
                                               Convert.ToByte(ddMorningStart.SelectedValue),
                                               Convert.ToByte(ddAfternoonStart.SelectedValue),
-                                              Convert.ToByte(ddNightStart.SelectedValue));
+                                              Convert.ToByte(ddNightStart.SelectedValue),
+                                              PendingAvatar);
+            }
+            
+            if (Session["PendingAvatar"] != null)
+            {
+                Session.Remove("PendingAvatar");
             }
 
             if (Session["OnSave"].ToString().Trim() != null && Session["OnSave"].ToString().Trim() != string.Empty)
@@ -90,20 +106,31 @@ namespace GlucaTrack.Website.Account
             }
         }
 
-        public void btnChangeAvatar_Click(object sender, EventArgs e)
+        protected void AsyncFileUpload2_UploadedComplete(object sender, AjaxControlToolkit.AsyncFileUploadEventArgs e)
         {
-            AsyncFileUpload2.Visible = true;
-            btnChangeAvatar.Visible = false;
-        }
-
-        protected void AsyncFileUpload1_UploadedComplete(object sender, AjaxControlToolkit.AsyncFileUploadEventArgs e)
-        {
-            AsyncFileUpload2.Visible = false;
-            btnChangeAvatar.Visible = true;
-            
             AjaxControlToolkit.AsyncFileUpload fileUpload = sender as AjaxControlToolkit.AsyncFileUpload;
 
-            //TODO: create 48x48 avatar from image and upload file to user table
+            if (fileUpload.HasFile)
+            {
+                using (System.Drawing.Image img = ScaleImage(System.Drawing.Image.FromStream(fileUpload.FileContent), 64, 64))
+                {
+                    Session.Add("PendingAvatar", GlucaTrack.Website.Content.Statics.imageToByteArray(img));
+                }
+            }
+        }
+
+        public static System.Drawing.Image ScaleImage(System.Drawing.Image image, int maxWidth, int maxHeight)
+        {
+            var ratioX = (double)maxWidth / image.Width;
+            var ratioY = (double)maxHeight / image.Height;
+            var ratio = Math.Min(ratioX, ratioY);
+
+            var newWidth = (int)(image.Width * ratio);
+            var newHeight = (int)(image.Height * ratio);
+
+            var newImage = new System.Drawing.Bitmap(newWidth, newHeight);
+            System.Drawing.Graphics.FromImage(newImage).DrawImage(image, 0, 0, newWidth, newHeight);
+            return newImage;
         }
     }
 }

@@ -12,20 +12,19 @@
     <br />
     <asp:UpdatePanel ID="upUpload" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-            <div style="width:800px;">
-                <asp:Image ID="imgAvatar" runat="server" ImageUrl="~/Images/master/blankavatar.jpg" />
-                <asp:Button ID="btnChangeAvatar" runat="server" Text="[Change]" cssclass="LogButton" OnClick="btnChangeAvatar_Click" CausesValidation="False"/> 
-                <ajaxToolkit:AsyncFileUpload ID="AsyncFileUpload2" 
-                    runat="server" 
-                    OnUploadedComplete="AsyncFileUpload1_UploadedComplete" 
-                    visible="false"
-                    AllowedFileTypes="jpg,jpeg,gif,png"
-                    MaximumNumberOfFiles=1
-                    CssClass="uploadControl" />
-            </div>
+            <img src="/Content/UserImage.ashx" id="imgAvatar" alt="User Image" width="48" height="48"/>
+            <ajaxToolkit:AsyncFileUpload ID="AsyncFileUpload2" 
+                runat="server" 
+                OnUploadedComplete="AsyncFileUpload2_UploadedComplete" 
+                OnClientUploadComplete="reloadImage"
+                visible="true"
+                AllowedFileTypes="jpg,jpeg,gif,png"
+                MaximumNumberOfFiles=1
+                CssClass="uploadControl" 
+                ClientIDMode="Static" />
             </ContentTemplate>
         </asp:UpdatePanel>
-    <br />
+    <br onload="reloadImage();"/>
     <asp:Label ID="lblLowNormal" runat="server" AssociatedControlID="fvLowNormal">[Low normal]</asp:Label><br />
     <asp:FormView ID="fvLowNormal" runat="server" DataKeyNames="user_id" DataSourceID="PersonalSettings_DataSource">
         <ItemTemplate>

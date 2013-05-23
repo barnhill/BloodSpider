@@ -136,6 +136,7 @@
     <Content Include="Images\master\blankavatar.jpg" />
     <Content Include="Images\master\logo.png" />
     <Content Include="Images\testcontent.png" />
+    <Content Include="Content\UserImage.ashx" />
     <None Include="Service References\GTService\Common1.xsd" />
     <Content Include="Service References\GTService\GTService1.disco" />
     <Content Include="Styles\site.css" />
@@ -269,6 +270,9 @@
       <DependentUpon>Main.aspx</DependentUpon>
     </Compile>
     <Compile Include="Content\Statics.cs" />
+    <Compile Include="Content\UserImage.ashx.cs">
+      <DependentUpon>UserImage.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
