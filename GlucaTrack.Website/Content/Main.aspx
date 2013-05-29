@@ -29,9 +29,6 @@
             <asp:ListItem Text="Last 3 months" Value="90" />
             <asp:ListItem Text="Last 6 months" Value="180" />
             <asp:ListItem Text="Last 1 year" Value="365" />
-            <asp:ListItem Text="Last 2 year" Value="730" />
-            <asp:ListItem Text="Last 3 year" Value="1096" />
-            <asp:ListItem Text="Last 5 year" Value="1826" />
         </asp:DropDownList>
         <asp:Button runat="server" ID="linkPersonalSettings" CssClass="LogButton" OnClick="linkPersonalSettings_Click" />
     </div>
