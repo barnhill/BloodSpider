@@ -64,8 +64,8 @@ namespace GlucaTrack.Communication.Meters.LifeScan
             if (!Port.IsOpen)
                 Connect(COMport);
 
-            //Port.DiscardInBuffer();
-            //Port.DiscardOutBuffer();
+            Port.DiscardInBuffer();
+            Port.DiscardOutBuffer();
 
             SendCommand("soft");
 
@@ -75,7 +75,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
                 {
                     bool found = Port.ReadExisting().IndexOf("?A") > 0;
 
-                    Dispose(); //base.Close();
+                    Dispose();
 
                     return found;
                 }
@@ -88,7 +88,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
             return false;
         }
 
-        public void DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        public void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             Thread.Sleep(75);
 

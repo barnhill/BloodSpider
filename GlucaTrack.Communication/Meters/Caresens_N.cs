@@ -84,7 +84,7 @@ namespace GlucaTrack.Communication.Meters.iSens
 
             //check for a response
             DateTime start = DateTime.Now;
-            while (Port.BytesToRead < 3 && (start - DateTime.Now).TotalMilliseconds < 500)
+            while (Port.BytesToRead < 3 && (DateTime.Now - start).TotalMilliseconds < 500)
             {
                 Thread.Sleep(10);
             }

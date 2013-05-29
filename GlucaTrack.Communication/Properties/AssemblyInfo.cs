@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("GlucaTrack.Communication")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Glucometer communication library for the GlucaTrack project.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("GlucaTrack")]
 [assembly: AssemblyProduct("GlucaTrack.Communication")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
