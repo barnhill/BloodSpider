@@ -13,7 +13,6 @@ namespace GlucaTrack.Communication.Meters.iSens
         UTF8Encoding encoding = new UTF8Encoding();
         List<byte> bytesRead = new List<byte>();
         static bool _ReadFinished;
-        static bool _ReadRecordFinished;
         byte[] message = new byte[7];
 
         private AutoResetEvent _autoResetEvent = new AutoResetEvent(false);
