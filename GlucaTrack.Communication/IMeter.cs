@@ -7,11 +7,17 @@ namespace GlucaTrack.Communication
 {
     public interface IMeter: IDisposable
     {
-        System.IO.Ports.SerialPort Port
+        SerialPort Port
         {
             get;
             set;
         }
+
+        #region Events
+        event EventHandler ReadFinished;
+        event EventHandler RecordRead;
+        event EventHandler HeaderRead;
+        #endregion
 
         /// <summary>
         /// Gets or sets the meter id from the meter types table
@@ -82,13 +88,7 @@ namespace GlucaTrack.Communication
         {
             get;
         }
-
-        #region Events
-        event EventHandler ReadFinished;
-        event EventHandler RecordRead;
-        event EventHandler HeaderRead;
-        #endregion
-
+        
         /// <summary>
         /// Reads data from the meter.
         /// </summary>

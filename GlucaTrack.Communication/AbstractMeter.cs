@@ -138,7 +138,7 @@ namespace GlucaTrack.Communication
         }
         #endregion
 
-        #region Functions
+        #region Methods
 
         public AbstractMeter()
         {
