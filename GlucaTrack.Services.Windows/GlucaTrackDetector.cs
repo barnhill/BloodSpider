@@ -106,7 +106,7 @@ namespace GlucaTrack.Services.Windows
 
         #region Thread Work
         private void background_DeviceDetector_DoWork(object sender, DoWorkEventArgs e)
-        { 
+        {
             Common.Statics.deviceFound = null;
             DeviceInfo fdi = Communication.Statics.DetectFirstDevice();
             Common.Statics.deviceFound = fdi;
@@ -407,7 +407,6 @@ namespace GlucaTrack.Services.Windows
             
             //TODO: put progress bar on reading code here
         }
-        
         protected virtual void OnHeaderRead(object sender, EventArgs e)
         {
             HeaderReadEventArgs headArgs = (HeaderReadEventArgs)e;
