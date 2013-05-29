@@ -22,7 +22,93 @@ namespace GlucaTrack.Communication.Meters.LifeScan
             MeterDescription = "LifeScan One Touch Ultra 2";
         }
 
-        public override void DataReceived(object sender, SerialDataReceivedEventArgs e)
+        public bool Open()
+        {
+            Port.DtrEnable = true;
+
+            try
+            {
+                if (!Port.IsOpen)
+                {
+                    Thread.Sleep(250);
+                    Port.Open();
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Port.IsOpen;
+            }
+
+            Thread.Sleep(250);
+
+            //clear the buffers
+            Port.DiscardInBuffer();
+            Port.DiscardOutBuffer();
+            Port.BaseStream.Flush();
+
+            return Port.IsOpen;
+        }
+
+        public bool Connect(string COMport)
+        {
+            if (Port != null)
+            {
+                Dispose();
+            }
+
+            Port = new SerialPort(COMport, 9600, Parity.None, 8, StopBits.One);
+            Port.ReadBufferSize = 8096;
+
+            return Open();
+        }
+
+        public bool IsMeterConnected(string COMport)
+        {
+            Connect(COMport);
+
+            if (!Port.IsOpen)
+                return false;
+
+            Port.DiscardInBuffer();
+            Port.DiscardOutBuffer();
+
+            Port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
+
+            _HeaderRead = false;
+            _TestMode = true;
+            DateTime dtStartTime = DateTime.Now;
+
+            while (!_MeterResponded && (DateTime.Now - dtStartTime).TotalMilliseconds < 2000)
+            {
+                WriteCommand("DMS");
+                Thread.Sleep(25);
+            }//while
+
+            Port.DiscardInBuffer();
+            Port.DiscardOutBuffer();
+
+            if (!_MeterResponded)
+            {
+                base.Close();
+                Dispose();
+
+                return _MeterResponded;
+            }
+
+            Thread.Sleep(1000);
+
+            WriteCommand("DMP");
+
+            dtStartTime = DateTime.Now;
+            while (!_HeaderRead && (DateTime.Now - dtStartTime).TotalMilliseconds < 3000)
+            {
+                Thread.Sleep(100);
+            }
+
+            return _HeaderRead;
+        }
+        
+        public void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             _MeterResponded = true;
 
@@ -105,7 +191,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
             }//if
         }
 
-        public override void ReadData()
+        public void ReadData()
         {
             if (!Port.IsOpen)
                 throw new Exception("Port is closed.");
@@ -131,52 +217,6 @@ namespace GlucaTrack.Communication.Meters.LifeScan
             Port.DiscardOutBuffer();
 
             WriteCommand("DMP");
-        }
-
-        public override bool IsMeterConnected(string COMport)
-        {
-            Connect(COMport);
-
-            if (!Port.IsOpen)
-                return false;
-
-            Port.DiscardInBuffer();
-            Port.DiscardOutBuffer();
-
-            Port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
-
-            _HeaderRead = false;
-            _TestMode = true;
-            DateTime dtStartTime = DateTime.Now;
-
-            while (!_MeterResponded && (DateTime.Now - dtStartTime).TotalMilliseconds < 2000)
-            {
-                WriteCommand("DMS");
-                Thread.Sleep(25);
-            }//while
-
-            Port.DiscardInBuffer();
-            Port.DiscardOutBuffer();
-
-            if (!_MeterResponded)
-            {
-                base.Close();
-                Dispose();
-
-                return _MeterResponded;
-            }
-
-            Thread.Sleep(1000);
-
-            WriteCommand("DMP");
-
-            dtStartTime = DateTime.Now;
-            while (!_HeaderRead && (DateTime.Now - dtStartTime).TotalMilliseconds < 3000)
-            {
-                Thread.Sleep(100);
-            }
-
-            return _HeaderRead;
         }
 
         private void WriteCommand(string command)

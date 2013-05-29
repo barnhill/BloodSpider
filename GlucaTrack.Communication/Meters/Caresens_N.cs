@@ -29,66 +29,47 @@ namespace GlucaTrack.Communication.Meters.iSens
             SampleCount = 250;
         }
 
-        public override void DataReceived(object sender, SerialDataReceivedEventArgs e)
+        public bool Open()
         {
-            Port.Encoding = ASCIIEncoding.ASCII;
-            string newData = Port.ReadExisting();
-            _TempString += newData;
-    
-            bytesRead.AddRange(encoding.GetBytes(newData));
+            Port.DtrEnable = true;
 
-            if ((bytesRead.Count == 0x18 && bytesRead[bytesRead.Count - 1] == 0x20 && bytesRead[bytesRead.Count - 2] == 0x10 && bytesRead[bytesRead.Count - 3] == 0x3f) ||
-                (bytesRead.Count == 0x18 && bytesRead[bytesRead.Count - 1] == 0x2f && bytesRead[bytesRead.Count - 2] == 0x1f && bytesRead[bytesRead.Count - 3] == 0x3f))
+            try
             {
-                _ReadFinished = true;
-            }
-            else
-            {
-                _ReadFinished = false;
-            }
-        }
-
-        public void DataReceived_Header(object sender, SerialDataReceivedEventArgs e)
-        {
-            Port.Encoding = ASCIIEncoding.ASCII;
-            string newData = Port.ReadExisting();
-            _TempString += newData;
-
-            bytesRead.AddRange(encoding.GetBytes(newData));
-
-            if (bytesRead.Count == 0xfc && bytesRead[bytesRead.Count - 1] == 0x20 && bytesRead[bytesRead.Count - 2] == 0x10)
-            {
-                _ReadFinished = true;
-            }
-            else
-            {
-                _ReadFinished = false;
-            }
-        }
-
-        public override void ReadData()
-        {
-            if (!Port.IsOpen)
-                throw new Exception("Port is closed.");
-
-            _TempString = String.Empty;
-            bytesRead.Clear();
-            
-            _ReadFinished = false;
-
-            if (ReadHeader())
-            {
-                if (IsMeterConnected(Port.PortName))
+                if (!Port.IsOpen)
                 {
-                    _ReadFinished = false;
-
-                    //call to loop through memory addresses
-                    ReadAllReadings();
+                    Thread.Sleep(250);
+                    Port.Open();
                 }
             }
+            catch (UnauthorizedAccessException)
+            {
+                return Port.IsOpen;
+            }
+
+            Thread.Sleep(250);
+
+            //clear the buffers
+            Port.DiscardInBuffer();
+            Port.DiscardOutBuffer();
+            Port.BaseStream.Flush();
+
+            return Port.IsOpen;
         }
 
-        public override bool IsMeterConnected(string COMport)
+        public bool Connect(string COMport)
+        {
+            if (Port != null)
+            {
+                Dispose();
+            }
+
+            Port = new SerialPort(COMport, 9600, Parity.None, 8, StopBits.One);
+            Port.ReadBufferSize = 8096;
+
+            return Open();
+        }
+
+        public bool IsMeterConnected(string COMport)
         {
             Connect(COMport);
 
@@ -125,6 +106,65 @@ namespace GlucaTrack.Communication.Meters.iSens
                 {
                     return false;
                 }
+            }
+        }
+
+        public void ReadData()
+        {
+            if (!Port.IsOpen)
+                throw new Exception("Port is closed.");
+
+            _TempString = String.Empty;
+            bytesRead.Clear();
+
+            _ReadFinished = false;
+
+            if (ReadHeader())
+            {
+                if (IsMeterConnected(Port.PortName))
+                {
+                    _ReadFinished = false;
+
+                    //call to loop through memory addresses
+                    ReadAllReadings();
+                }
+            }
+        }
+
+        public void DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            Port.Encoding = ASCIIEncoding.ASCII;
+            string newData = Port.ReadExisting();
+            _TempString += newData;
+    
+            bytesRead.AddRange(encoding.GetBytes(newData));
+
+            if ((bytesRead.Count == 0x18 && bytesRead[bytesRead.Count - 1] == 0x20 && bytesRead[bytesRead.Count - 2] == 0x10 && bytesRead[bytesRead.Count - 3] == 0x3f) ||
+                (bytesRead.Count == 0x18 && bytesRead[bytesRead.Count - 1] == 0x2f && bytesRead[bytesRead.Count - 2] == 0x1f && bytesRead[bytesRead.Count - 3] == 0x3f))
+            {
+                _ReadFinished = true;
+            }
+            else
+            {
+                _ReadFinished = false;
+            }
+        }
+
+        public void DataReceived_Header(object sender, SerialDataReceivedEventArgs e)
+        {
+            Port.Encoding = ASCIIEncoding.ASCII;
+            string newData = Port.ReadExisting();
+            _TempString += newData;
+
+            bytesRead.AddRange(encoding.GetBytes(newData));
+
+            if (bytesRead.Count == 0xfc && bytesRead[bytesRead.Count - 1] == 0x20 && bytesRead[bytesRead.Count - 2] == 0x10)
+            {
+                _ReadFinished = true;
+            }
+            else
+            {
+                _ReadFinished = false;
             }
         }
 

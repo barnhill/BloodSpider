@@ -19,7 +19,76 @@ namespace GlucaTrack.Communication.Meters.LifeScan
             MeterDescription = "LifeScan One Touch Ultra Mini";
         }
 
-        public override void DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        public bool Open()
+        {
+            Port.DtrEnable = true;
+
+            try
+            {
+                if (!Port.IsOpen)
+                {
+                    Thread.Sleep(250);
+                    Port.Open();
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Port.IsOpen;
+            }
+
+            Thread.Sleep(250);
+
+            //clear the buffers
+            Port.DiscardInBuffer();
+            Port.DiscardOutBuffer();
+            Port.BaseStream.Flush();
+
+            return Port.IsOpen;
+        }
+        
+        public bool Connect(string COMport)
+        {
+            if (Port != null)
+            {
+                Dispose();
+            }
+
+            Port = new SerialPort(COMport, 9600, Parity.None, 8, StopBits.One);
+            Port.ReadBufferSize = 8096;
+
+            return Open();
+        }
+
+        public bool IsMeterConnected(string COMport)
+        {
+            if (!Port.IsOpen)
+                Connect(COMport);
+
+            //Port.DiscardInBuffer();
+            //Port.DiscardOutBuffer();
+
+            SendCommand("soft");
+
+            for (int i = 0; i < 25; i++)
+            {
+                if (Port.BytesToRead > 0)
+                {
+                    bool found = Port.ReadExisting().IndexOf("?A") > 0;
+
+                    Dispose(); //base.Close();
+
+                    return found;
+                }
+
+                Thread.Sleep(10);
+            }
+
+            Dispose();
+
+            return false;
+        }
+
+        public void DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             Thread.Sleep(75);
 
@@ -121,7 +190,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
             }//if
         }
 
-        public override void ReadData()
+        public void ReadData()
         {
             if (!Port.IsOpen)
                 throw new Exception("Port is closed.");
@@ -158,36 +227,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
             dtDateTime = dtDateTime.AddSeconds(Convert.ToDouble(unixTimeStamp)).ToLocalTime();
             return dtDateTime;
         }
-
-        public override bool IsMeterConnected(string COMport)
-        {
-            if (!Port.IsOpen)
-                Connect(COMport);
-
-            //Port.DiscardInBuffer();
-            //Port.DiscardOutBuffer();
-
-            SendCommand("soft");
-
-            for (int i = 0; i < 25; i++)
-            {
-                if (Port.BytesToRead > 0)
-                {
-                    bool found = Port.ReadExisting().IndexOf("?A") > 0;
-
-                    Dispose(); //base.Close();
-
-                    return found;
-                }
-
-                Thread.Sleep(10);
-            }
-
-            Dispose();
-
-            return false;
-        }
-
+        
         private void SendCommand(string cmd)
         {
             SendCommand(cmd, 0);

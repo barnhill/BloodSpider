@@ -23,6 +23,77 @@ namespace GlucaTrack.Communication.Meters.Bayer
             MeterDescription = "Bayer Breeze 2";
         }
 
+        public override bool Open()
+        {
+            Port.DtrEnable = true;
+
+            try
+            {
+                if (!Port.IsOpen)
+                {
+                    Thread.Sleep(250);
+                    Port.Open();
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Port.IsOpen;
+            }
+
+            Thread.Sleep(250);
+
+            //clear the buffers
+            Port.DiscardInBuffer();
+            Port.DiscardOutBuffer();
+            Port.BaseStream.Flush();
+
+            return Port.IsOpen;
+        }
+
+        public override bool Connect(string COMport)
+        {
+            if (Port != null)
+            {
+                Dispose();
+            }
+
+            Port = new SerialPort(COMport, 9600, Parity.None, 8, StopBits.One);
+            Port.ReadBufferSize = 8096;
+
+            return Open();
+        }
+
+        public override bool IsMeterConnected(string COMport)
+        {
+            Connect(COMport);
+
+            if (!Port.IsOpen)
+                return false;
+
+            Port.DiscardInBuffer();
+            Port.DiscardOutBuffer();
+
+            _HeaderRead = false;
+            _NumResultsRead = false;
+            _MeterFound = false;
+            _TestFailed = false;
+            _TestMode = true;
+
+            ReadData();
+
+            DateTime dtStartLoop = DateTime.Now;
+            while (!_TestFailed && !_MeterFound && (DateTime.Now - dtStartLoop).TotalMilliseconds < 30000)
+            {
+                Thread.Sleep(10);
+            }
+
+            base.Close();
+
+            _TestMode = false;
+
+            return _MeterFound;
+        }
+
         public override void DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             _TempString += Port.ReadExisting();
@@ -243,37 +314,6 @@ namespace GlucaTrack.Communication.Meters.Bayer
             Port.DiscardOutBuffer();
             _HeaderRead = false;
             Port.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
-        }
-
-        public override bool IsMeterConnected(string COMport)
-        {
-            Connect(COMport);
-
-            if (!Port.IsOpen)
-                return false;
-
-            Port.DiscardInBuffer();
-            Port.DiscardOutBuffer();
-
-            _HeaderRead = false;
-            _NumResultsRead = false;
-            _MeterFound = false;
-            _TestFailed = false;
-            _TestMode = true;
-
-            ReadData();
-
-            DateTime dtStartLoop = DateTime.Now;
-            while (!_TestFailed && !_MeterFound && (DateTime.Now - dtStartLoop).TotalMilliseconds < 30000)
-            {
-                Thread.Sleep(10);
-            }
-
-            base.Close();
-
-            _TestMode = false;
-
-            return _MeterFound;
         }
 
         private string[] SplitTypeandSerial(string raw)

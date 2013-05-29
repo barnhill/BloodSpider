@@ -8,7 +8,7 @@ using GlucaTrack.Communication;
 
 namespace GlucaTrack.Communication
 {
-    public abstract class AbstractMeter: IMeter
+    public abstract class AbstractMeter
     {
         #region Private Variables
         private SerialPort _port = new SerialPort("COM1", 9600, Parity.None, 8, StopBits.One);
@@ -142,7 +142,6 @@ namespace GlucaTrack.Communication
 
         public AbstractMeter()
         {
-            
         }
 
         /// <summary>
@@ -178,69 +177,6 @@ namespace GlucaTrack.Communication
             Port.Dispose();
         }
 
-        /// <summary>
-        /// Opens the serial port and clears the buffers once opened.
-        /// </summary>
-        /// <returns>Is the port opened?</returns>
-        public virtual bool Open()
-        {
-            Port.DtrEnable = true;
-
-            try
-            {
-                if (!Port.IsOpen)
-                {
-                    Thread.Sleep(250);
-                    Port.Open();
-                }
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return Port.IsOpen;
-            }
-
-            Thread.Sleep(250);
-
-            //clear the buffers
-            Port.DiscardInBuffer();
-            Port.DiscardOutBuffer();
-            Port.BaseStream.Flush();
-            
-            return Port.IsOpen;
-        }
-
-        public virtual void ParseData()
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual void ReadData()
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual void DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual bool Connect(string COMport)
-        {
-            if (Port != null)
-            {
-                Dispose();
-            }
-
-            Port = new SerialPort(COMport, 9600, Parity.None, 8, StopBits.One);
-            Port.ReadBufferSize = 8096;
-
-            return Open();
-        }
-
-        public virtual bool IsMeterConnected(string COMport)
-        {
-            return false;
-        }
         #endregion
     }
 }

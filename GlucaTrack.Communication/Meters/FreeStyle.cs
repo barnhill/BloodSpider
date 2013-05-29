@@ -29,7 +29,62 @@ namespace GlucaTrack.Communication.Meters.Abbott
             MeterDescription = "Abbott Freestyle";
         }
 
-        public override void DataReceived(object sender, SerialDataReceivedEventArgs e)
+        public bool Open()
+        {
+            Port.DtrEnable = true;
+
+            try
+            {
+                if (!Port.IsOpen)
+                {
+                    Thread.Sleep(250);
+                    Port.Open();
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Port.IsOpen;
+            }
+
+            Thread.Sleep(250);
+
+            //clear the buffers
+            Port.DiscardInBuffer();
+            Port.DiscardOutBuffer();
+            Port.BaseStream.Flush();
+
+            return Port.IsOpen;
+        }
+
+        public bool Connect(string COMport)
+        {
+            base.Close();
+
+            Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
+            Port = new SerialPort(COMport, 19200, Parity.None, 8, StopBits.One);
+            Port.ReadBufferSize = 8096;
+            Port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
+
+            return Open();
+        }
+
+        public bool IsMeterConnected(string COMport)
+        {
+            Connect(COMport);
+
+            if (!Port.IsOpen)
+                return false;
+
+            ReadData(true);
+
+            _TestMode = false;
+            _HeaderRead = false;
+            _TestPassed = false;
+
+            return !string.IsNullOrEmpty(SerialNumber);
+        }
+
+        public void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             if (Port == null)
                 return;
@@ -173,7 +228,7 @@ namespace GlucaTrack.Communication.Meters.Abbott
             }
         }
 
-        public override void ReadData()
+        public void ReadData()
         {
             ReadData(false);
         }
@@ -191,32 +246,5 @@ namespace GlucaTrack.Communication.Meters.Abbott
             ((AutoResetEvent)stateInfo).Set();
         }
 
-        public override bool Connect(string COMport)
-        {
-            base.Close();
-
-            Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
-            Port = new SerialPort(COMport, 19200, Parity.None, 8, StopBits.One);
-            Port.ReadBufferSize = 8096;
-            Port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
-
-            return base.Open();
-        }
-
-        public override bool IsMeterConnected(string COMport)
-        {
-            Connect(COMport);
-
-            if (!Port.IsOpen)
-                return false;
-
-            ReadData(true);
-
-            _TestMode = false;
-            _HeaderRead = false;
-            _TestPassed = false;
-
-            return !string.IsNullOrEmpty(SerialNumber);
-        }
     }
 }

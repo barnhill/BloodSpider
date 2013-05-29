@@ -23,7 +23,78 @@ namespace GlucaTrack.Communication.Meters.Bayer
             MeterDescription = "Bayer Contour";
         }
 
-        public override void DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        public bool Open()
+        {
+            Port.DtrEnable = true;
+
+            try
+            {
+                if (!Port.IsOpen)
+                {
+                    Thread.Sleep(250);
+                    Port.Open();
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Port.IsOpen;
+            }
+
+            Thread.Sleep(250);
+
+            //clear the buffers
+            Port.DiscardInBuffer();
+            Port.DiscardOutBuffer();
+            Port.BaseStream.Flush();
+
+            return Port.IsOpen;
+        }
+
+        public bool Connect(string COMport)
+        {
+            if (Port != null)
+            {
+                Dispose();
+            }
+
+            Port = new SerialPort(COMport, 9600, Parity.None, 8, StopBits.One);
+            Port.ReadBufferSize = 8096;
+
+            return Open();
+        }
+
+        public bool IsMeterConnected(string COMport)
+        {
+            Connect(COMport);
+
+            if (!Port.IsOpen)
+                return false;
+
+            Port.DiscardInBuffer();
+            Port.DiscardOutBuffer();
+
+            _HeaderRead = false;
+            _NumResultsRead = false;
+            _MeterFound = false;
+            _TestFailed = false;
+            _TestMode = true;
+
+            Port.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
+
+            DateTime dtStartLoop = DateTime.Now;
+            while (!_TestFailed && !_MeterFound && (DateTime.Now - dtStartLoop).TotalMilliseconds < 20000)
+            {
+                Thread.Sleep(100);
+            }
+
+            base.Close();
+
+            _TestMode = false;
+
+            return _MeterFound;
+        }
+
+        public void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             _TempString += Port.ReadExisting();
 
@@ -226,7 +297,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
                 Port.Write(Statics.GetStringFromAsciiCode((byte)AsciiCodes.ACK));
         }
 
-        public override void ReadData()
+        public void ReadData()
         {
             if (!Port.IsOpen)
                 throw new Exception("Port is closed.");
@@ -236,38 +307,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
             _HeaderRead = false;
             Port.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
         }
-
-        public override bool IsMeterConnected(string COMport)
-        {
-            Connect(COMport);
-
-            if (!Port.IsOpen)
-                return false;
-
-            Port.DiscardInBuffer();
-            Port.DiscardOutBuffer();
-
-            _HeaderRead = false;
-            _NumResultsRead = false;
-            _MeterFound = false;
-            _TestFailed = false;
-            _TestMode = true;
-
-            Port.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
-
-            DateTime dtStartLoop = DateTime.Now;
-            while (!_TestFailed && !_MeterFound && (DateTime.Now - dtStartLoop).TotalMilliseconds < 20000)
-            {
-                Thread.Sleep(100);
-            }
-
-            base.Close();
-
-            _TestMode = false;
-
-            return _MeterFound;
-        }
-
+        
         private string[] SplitTypeandSerial(string raw)
         {
             int temp = 0;

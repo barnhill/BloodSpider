@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO.Ports;
 using System.Collections.Generic;
 using System.Text;
 
@@ -89,11 +90,6 @@ namespace GlucaTrack.Communication
         #endregion
 
         /// <summary>
-        /// Parses data once read from the device. (depreciated)
-        /// </summary>
-        void ParseData();
-
-        /// <summary>
         /// Reads data from the meter.
         /// </summary>
         void ReadData();
@@ -103,7 +99,7 @@ namespace GlucaTrack.Communication
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e);
+        void DataReceived(object sender, SerialDataReceivedEventArgs e);
 
         /// <summary>
         /// Connects to the meter.
