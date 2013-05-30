@@ -256,6 +256,24 @@ namespace GlucaTrack.Website.Content {
         protected global::System.Web.UI.WebControls.Label lblHighExplanation;
         
         /// <summary>
+        /// lblHbA1c control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHbA1c;
+        
+        /// <summary>
+        /// NumHbA1c control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NumHbA1c;
+        
+        /// <summary>
         /// gridValues control.
         /// </summary>
         /// <remarks>

@@ -46,6 +46,7 @@ namespace GlucaTrack.Website.Content
             chtNights.Titles[0].Text = Resources.Content_Strings.GraphTitle_PieNights;
             lblNoData.Text = Resources.Content_Strings.Label_Nodata;
             linkPersonalSettings.Text = Resources.Content_Strings.Button_PersonalSettings;
+            lblHbA1c.Text = Resources.Content_Strings.Label_HbA1c;
         }
 
         private void PopulateDashboard()
@@ -66,6 +67,8 @@ namespace GlucaTrack.Website.Content
                     MinMaxValues(dt);
 
                     PieCharts(dt);
+
+                    GetHbA1c();
                 }
             }
         }
@@ -272,6 +275,26 @@ namespace GlucaTrack.Website.Content
 
             Session.Add("OnSave", "/Content/Main.aspx");
             Response.Redirect("../Account/PersonalSettings.aspx");
+        }
+
+        private void GetHbA1c()
+        {
+            using (QueriesTableAdapters.sp_GetHbA1cTableAdapter ta = new QueriesTableAdapters.sp_GetHbA1cTableAdapter())
+            {
+                using (Queries.sp_GetHbA1cDataTable dt = new Queries.sp_GetHbA1cDataTable())
+                {
+                    ta.Fill(dt, LoginRow.user_id, DateTime.Now);
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        this.NumHbA1c.Text = dt.FirstOrDefault().HbA1c.ToString();
+                    }
+                    else
+                    {
+                        this.NumHbA1c.Text = Resources.Content_Strings.Label_HbA1c_NotEnoughData;
+                    }
+                }
+            }
         }
     }
 

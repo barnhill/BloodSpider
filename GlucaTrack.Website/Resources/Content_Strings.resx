@@ -149,6 +149,14 @@
     <value>Avg: </value>
     <comment>Average value label and value</comment>
   </data>
+  <data name="Label_HbA1c" xml:space="preserve">
+    <value>HbA1c:</value>
+    <comment>Label on the HbA1c field</comment>
+  </data>
+  <data name="Label_HbA1c_NotEnoughData" xml:space="preserve">
+    <value>Not Enough Data</value>
+    <comment>Text that shows if not enough data is available to calculate HbA1c</comment>
+  </data>
   <data name="Label_HighExplanation" xml:space="preserve">
     <value>  (&gt; {0})</value>
     <comment>Greater than X amount constitutes hyperglycemia</comment>

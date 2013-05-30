@@ -94,6 +94,7 @@
                         <p><asp:Label ID="lblStdDev" runat="server" Font-Bold="True" /><asp:Label ID="StdDevValue" runat="server" /></p>
                         <p><asp:Label ID="lblNumLows" runat="server" Font-Bold="True" /><asp:Label ID="NumLowsValue" runat="server" /><asp:Label ID="lblLowExplanation" runat="server" Font-Italic="True" /></p>
                         <p><asp:Label ID="lblNumHighs" runat="server" Font-Bold="True" /><asp:Label ID="NumHighsValue" runat="server" /><asp:Label ID="lblHighExplanation" runat="server" Font-Italic="True" /></p>
+                        <p><asp:Label ID="lblHbA1c" runat="server" Font-Bold="True" /><asp:Label ID="NumHbA1c" runat="server" /></p>
                     </asp:Panel>
                 </td>
             </tr>
