@@ -5,3 +5,9 @@ http://www.iconfinder.com/search/?q=iconset%3Asketchdock-ecommerce-icons#top
 28.7 x HbA1c - 46.7 = eAG (in mg/dl)
 
 (eAG + 46.7) / 28.7 = HbA1c
+
+
+
+
+
+http://www.codeproject.com/Articles/20341/Aqua-Gauge

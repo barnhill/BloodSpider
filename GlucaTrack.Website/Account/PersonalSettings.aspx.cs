@@ -114,7 +114,7 @@ namespace GlucaTrack.Website.Account
             {
                 using (System.Drawing.Image img = ScaleImage(System.Drawing.Image.FromStream(fileUpload.FileContent), 64, 64))
                 {
-                    Session.Add("PendingAvatar", GlucaTrack.Website.Content.Statics.imageToByteArray(img));
+                    Session.Add("PendingAvatar", GlucaTrack.Website.Statics.imageToByteArray(img));
                 }
             }
         }

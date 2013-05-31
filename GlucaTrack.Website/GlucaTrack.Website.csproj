@@ -269,7 +269,7 @@
     <Compile Include="Content\Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Content\Statics.cs" />
+    <Compile Include="Statics.cs" />
     <Compile Include="Content\UserImage.ashx.cs">
       <DependentUpon>UserImage.ashx</DependentUpon>
     </Compile>
