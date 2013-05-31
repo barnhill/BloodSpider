@@ -20,6 +20,8 @@
         </SelectParameters>
     </asp:SqlDataSource>
 
+    <asp:UpdatePanel ID="upMiddleContent" runat="server">
+    <ContentTemplate>
     <div>&nbsp;</div>
     <div id="divTopOptions" runat="server" style="display: inline-block;">
         <asp:DropDownList ID="ddDateRange" runat="server" AutoPostBack="True" CssClass="dropdownlist">
@@ -101,6 +103,7 @@
         </table>
     </div>
     <div class="GridHolder">
+        <!-- Raw Values Table -->
         <asp:GridView 
         CssClass="mGrid"
         AllowPaging="False" 
@@ -123,7 +126,9 @@
                     <asp:BoundField DataField="UnitType" HeaderText="UnitType" SortExpression="UnitType" />
                 </Columns>
             <PagerStyle CssClass="pgr" />
-        </asp:GridView>        
+        </asp:GridView>     
     </div>
+    </ContentTemplate>
+    </asp:UpdatePanel>
     <br />
 </asp:Content>

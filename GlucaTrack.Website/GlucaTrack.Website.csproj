@@ -335,7 +335,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="UserControls\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />

@@ -31,6 +31,15 @@ namespace GlucaTrack.Website.Content {
         protected global::System.Web.UI.WebControls.SqlDataSource PersonalSettings_DataSource;
         
         /// <summary>
+        /// upMiddleContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upMiddleContent;
+        
+        /// <summary>
         /// divTopOptions control.
         /// </summary>
         /// <remarks>
