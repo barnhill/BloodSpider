@@ -67,6 +67,15 @@ namespace GlucaTrack.Website.Content {
         protected global::System.Web.UI.WebControls.Button linkPersonalSettings;
         
         /// <summary>
+        /// upNoData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upNoData;
+        
+        /// <summary>
         /// divNoData control.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace GlucaTrack.Website.Content {
         protected global::System.Web.UI.WebControls.Label lblNoData;
         
         /// <summary>
+        /// upMainChart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upMainChart;
+        
+        /// <summary>
         /// divMainChart control.
         /// </summary>
         /// <remarks>
@@ -101,6 +119,15 @@ namespace GlucaTrack.Website.Content {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chtLastXDays;
+        
+        /// <summary>
+        /// upPieGraphs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upPieGraphs;
         
         /// <summary>
         /// chtMornings control.
@@ -130,13 +157,22 @@ namespace GlucaTrack.Website.Content {
         protected global::System.Web.UI.DataVisualization.Charting.Chart chtNights;
         
         /// <summary>
-        /// RightTopSideBar control.
+        /// upStatistics control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel RightTopSideBar;
+        protected global::System.Web.UI.UpdatePanel upStatistics;
+        
+        /// <summary>
+        /// divStatistics control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divStatistics;
         
         /// <summary>
         /// lblMin control.
@@ -281,6 +317,15 @@ namespace GlucaTrack.Website.Content {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label NumHbA1c;
+        
+        /// <summary>
+        /// upGridOfValues control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upGridOfValues;
         
         /// <summary>
         /// gridValues control.

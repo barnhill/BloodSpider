@@ -37,6 +37,8 @@ namespace GlucaTrack.Website.Content
             SetResources();
 
             PopulateDashboard();
+
+            upMainChart.Update();
         }
 
         private void SetResources()
@@ -62,13 +64,15 @@ namespace GlucaTrack.Website.Content
 
                     MainGraph(dt);
 
-                    GridOfValues();
+                    GridOfValues(dt);
 
                     MinMaxValues(dt);
 
                     PieCharts(dt);
 
                     GetHbA1c();
+
+                    RefreshUpdatePanels();
                 }
             }
         }
@@ -113,7 +117,7 @@ namespace GlucaTrack.Website.Content
             chtLastXDays.DataBind();
         }
 
-        private void GridOfValues()
+        private void GridOfValues(object DataSource)
         {
             //grid of values
             gridValues.DataBind();
@@ -181,6 +185,15 @@ namespace GlucaTrack.Website.Content
             chtNights.DataBind();
         }
 
+        private void RefreshUpdatePanels()
+        {
+            upMainChart.Update();
+            upNoData.Update();
+            upPieGraphs.Update();
+            upGridOfValues.Update();
+            upStatistics.Update();
+        }
+
         protected void chtLastXDays_DataBound(object sender, EventArgs e)
         {
             if (chtLastXDays.Series[0].Points.Count == 0)
@@ -190,7 +203,7 @@ namespace GlucaTrack.Website.Content
                 chtMornings.Visible = false;
                 chtAfternoons.Visible = false;
                 chtNights.Visible = false;
-                RightTopSideBar.Visible = false;
+                divStatistics.Visible = false;
                 divMainChart.Visible = false;
                 divNoData.Visible = true;
             }
@@ -200,10 +213,10 @@ namespace GlucaTrack.Website.Content
                 chtMornings.Visible = true;
                 chtAfternoons.Visible = true;
                 chtNights.Visible = true;
-                RightTopSideBar.Visible = true;
+                divStatistics.Visible = true;
                 divMainChart.Visible = true;
                 divNoData.Visible = false;
-
+                
                 chtLastXDays.Series["LastXDays_Series"].IsValueShownAsLabel = false;
                 chtLastXDays.ChartAreas["LastXDays_ChartArea"].ShadowOffset = 5;
 
@@ -287,7 +300,7 @@ namespace GlucaTrack.Website.Content
 
                     if (dt.Rows.Count > 0)
                     {
-                        this.NumHbA1c.Text = dt.FirstOrDefault().HbA1c.ToString();
+                        this.NumHbA1c.Text = Math.Round(dt.FirstOrDefault().HbA1c, 1, MidpointRounding.AwayFromZero).ToString();
                     }
                     else
                     {
