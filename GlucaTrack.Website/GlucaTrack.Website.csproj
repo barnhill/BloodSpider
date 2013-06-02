@@ -46,10 +46,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AjaxControlToolkit.7.0123\lib\40\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="GoogleChartsNGraphsControls, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Controls\GoogleChartsNGraphsControls.dll</HintPath>
-    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\AjaxControlToolkit.7.0123\lib\40\SanitizerProviders\HtmlAgilityPack.dll</HintPath>
     </Reference>
@@ -97,10 +93,6 @@
     <Content Include="Contact.aspx" />
     <Content Include="Content\Main.aspx" />
     <Content Include="Account\Logout.aspx" />
-    <Content Include="Controls\GoogleChartsNGraphsControls.dll" />
-    <Content Include="Controls\GoogleChartsNGraphsControls.pdb" />
-    <Content Include="Controls\Newtonsoft.Json.dll" />
-    <Content Include="Controls\Visualization.dll" />
     <Content Include="Images\icons\calendar.png" />
     <Content Include="Images\icons\down-green.png" />
     <Content Include="Images\icons\normal-clear.png" />
@@ -112,7 +104,6 @@
     <Content Include="Images\master\logo.png" />
     <Content Include="Images\testcontent.png" />
     <Content Include="Content\UserImage.ashx" />
-    <Content Include="Controls\GoogleChartsNGraphsControls.tlb" />
     <None Include="Service References\GTService\Common1.xsd" />
     <Content Include="Service References\GTService\GTService1.disco" />
     <Content Include="Styles\site.css" />
