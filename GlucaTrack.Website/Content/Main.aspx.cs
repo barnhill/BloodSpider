@@ -48,7 +48,6 @@ namespace GlucaTrack.Website.Content
             chtNights.Titles[0].Text = Resources.Content_Strings.GraphTitle_PieNights;
             lblNoData.Text = Resources.Content_Strings.Label_Nodata;
             linkPersonalSettings.Text = Resources.Content_Strings.Button_PersonalSettings;
-            lblHbA1c.Text = Resources.Content_Strings.Label_HbA1c;
         }
 
         private void PopulateDashboard()
@@ -134,7 +133,7 @@ namespace GlucaTrack.Website.Content
             var NumHigh = dt.Compute("Count(Glucose)", "Glucose > " + GetPersonalNormalRange().Y);
             var NumLow = dt.Compute("Count(Glucose)", "Glucose < " + GetPersonalNormalRange().X);
 
-            //populate values on the right side
+            //populate statistical values
             if (min.Count() > 0 && max.Count() > 0)
             {
                 this.lblMin.Text = Resources.Content_Strings.Label_Minimum;
@@ -275,7 +274,7 @@ namespace GlucaTrack.Website.Content
             double high = normalRange.Y;
 
             sl.Interval = 10000; //set the interval high enough that only one strip line will show
-            sl.BackColor = System.Drawing.Color.FromArgb(100, 199, 255, 168);
+            sl.BackColor = System.Drawing.Color.FromArgb(60, 16, 150, 24);//sl.BackColor = System.Drawing.Color.FromArgb(100, 199, 255, 168);
             sl.StripWidth = high - low; //set width of strip to width of normal range
             sl.IntervalOffset = low; //start the first strip line at the bottom of range
 
@@ -298,13 +297,20 @@ namespace GlucaTrack.Website.Content
                 {
                     ta.Fill(dt, LoginRow.user_id, DateTime.Now);
 
+                    Session.Remove("HbA1c_Value");
+                    Session.Remove("eAG_Value");
+
                     if (dt.Rows.Count > 0)
                     {
-                        this.NumHbA1c.Text = Math.Round(dt.FirstOrDefault().HbA1c, 1, MidpointRounding.AwayFromZero).ToString();
+                        //HbA1c value returned
+                        double HbA1c = Math.Round(dt.FirstOrDefault().HbA1c, 1, MidpointRounding.AwayFromZero);
+                        double eAG = Math.Round(28.7 * HbA1c - 46.7, 1, MidpointRounding.AwayFromZero);
+                        Session.Add("HbA1c_Value", HbA1c);
+                        Session.Add("eAG_Value", eAG);
                     }
                     else
                     {
-                        this.NumHbA1c.Text = Resources.Content_Strings.Label_HbA1c_NotEnoughData;
+                        //no HbA1c value returned
                     }
                 }
             }

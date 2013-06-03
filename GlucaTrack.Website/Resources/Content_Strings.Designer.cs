@@ -133,24 +133,6 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HbA1c:.
-        /// </summary>
-        internal static string Label_HbA1c {
-            get {
-                return ResourceManager.GetString("Label_HbA1c", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Not Enough Data.
-        /// </summary>
-        internal static string Label_HbA1c_NotEnoughData {
-            get {
-                return ResourceManager.GetString("Label_HbA1c_NotEnoughData", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to   (&gt; {0}).
         /// </summary>
         internal static string Label_HighExplanation {

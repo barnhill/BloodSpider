@@ -23,7 +23,7 @@
         function drawGauge_HbA1c() {
             gaugeData_HbA1c = google.visualization.arrayToDataTable([
               ['HbA1c'],
-              [5]
+              [<%:Session["HbA1c_Value"]%>]
             ]);
 
             gauge_HbA1c = new google.visualization.Gauge(document.getElementById('gauge_HbA1c'));
@@ -44,7 +44,7 @@
         function drawGauge_eAG() {
             gaugeData_eAG = google.visualization.arrayToDataTable([
               ['eAG'],
-              [90]
+              [<%:Session["eAG_Value"]%>]
             ]);
 
             gauge_eAG = new google.visualization.Gauge(document.getElementById('gauge_eAG'));
@@ -62,14 +62,9 @@
             gauge_eAG.draw(gaugeData_eAG, gaugeOptions_eAG);
         }
 
-        function change_HbA1c(dir) {
-            gaugeData_HbA1c.setValue(0, 0, dir);
+        function drawA1cGauge()
+        {
             gauge_HbA1c.draw(gaugeData_HbA1c, gaugeOptions_HbA1c);
-        }
-
-        function change_eAG(dir) {
-            gaugeData_eAG.setValue(0, 0, dir);
-            gauge_eAG.draw(gaugeData_eAG, gaugeOptions_eAG);
         }
 
     </script>
@@ -89,7 +84,7 @@
         </SelectParameters>
     </asp:SqlDataSource>
 
-    <div>&nbsp;</div>
+    <div onload="javascript:change_HbA1c(6);">&nbsp;</div>
     
     <asp:UpdatePanel ID="upMiddleContent" runat="server">
         <ContentTemplate>
@@ -123,7 +118,7 @@
                         <asp:Title Text="Trending" Name="LastXDays_Title" />
                     </Titles>
                     <Series>
-                        <asp:Series Name="LastXDays_Series" ChartArea="LastXDays_ChartArea" ChartType="Line" BorderWidth="3" Color="196, 0, 0" ShadowOffset="1" IsValueShownAsLabel="False"/>
+                        <asp:Series Name="LastXDays_Series" ChartArea="LastXDays_ChartArea" ChartType="Line" BorderWidth="3" Color="70,132,238" ShadowOffset="1" IsValueShownAsLabel="False"/>
                     </Series>
                     <ChartAreas>
                         <asp:ChartArea Name="LastXDays_ChartArea" BackHatchStyle="None" />
@@ -185,7 +180,6 @@
                                 <p><asp:Label ID="lblStdDev" runat="server" Font-Bold="True" /><asp:Label ID="StdDevValue" runat="server" /></p>
                                 <p><asp:Label ID="lblNumLows" runat="server" Font-Bold="True" /><asp:Label ID="NumLowsValue" runat="server" /><asp:Label ID="lblLowExplanation" runat="server" Font-Italic="True" /></p>
                                 <p><asp:Label ID="lblNumHighs" runat="server" Font-Bold="True" /><asp:Label ID="NumHighsValue" runat="server" /><asp:Label ID="lblHighExplanation" runat="server" Font-Italic="True" /></p>
-                                <p><asp:Label ID="lblHbA1c" runat="server" Font-Bold="True" /><asp:Label ID="NumHbA1c" runat="server" ForeColor="#3366FF" /></p>
                             </div>
                         </ContentTemplate>
                     </asp:UpdatePanel>
@@ -193,11 +187,13 @@
                 <td>
                     <div id="gauge_HbA1c" style="width: 150px; height: 150px;" />
                 </td>
+                <td>
+                    <div id="gauge_eAG" style="width: 150px; height: 150px;" />
+                </td>
             </tr>
         </table>
     </div>
 
-    
     <table>
         <tr>
             <td>
@@ -232,9 +228,6 @@
                         </div> 
                     </ContentTemplate>
                 </asp:UpdatePanel>
-            </td>
-            <td>
-                <div id="gauge_eAG" style="width: 150px; height: 150px;" />
             </td>
         </tr>
     </table>
