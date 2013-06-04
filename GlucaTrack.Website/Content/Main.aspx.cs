@@ -274,7 +274,7 @@ namespace GlucaTrack.Website.Content
             double high = normalRange.Y;
 
             sl.Interval = 10000; //set the interval high enough that only one strip line will show
-            sl.BackColor = System.Drawing.Color.FromArgb(60, 16, 150, 24);//sl.BackColor = System.Drawing.Color.FromArgb(100, 199, 255, 168);
+            sl.BackColor = System.Drawing.Color.FromArgb(60, 16, 150, 24);
             sl.StripWidth = high - low; //set width of strip to width of normal range
             sl.IntervalOffset = low; //start the first strip line at the bottom of range
 
