@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using System.Web.UI.DataVisualization.Charting;
+using GlucaTrack.Website.Resources;
 
 namespace GlucaTrack.Website.Content
 {
@@ -43,11 +44,17 @@ namespace GlucaTrack.Website.Content
 
         private void SetResources()
         {
-            chtMornings.Titles[0].Text = Resources.Content_Strings.GraphTitle_PieMornings;
-            chtAfternoons.Titles[0].Text = Resources.Content_Strings.GraphTitle_PieAfternoons;
-            chtNights.Titles[0].Text = Resources.Content_Strings.GraphTitle_PieNights;
-            lblNoData.Text = Resources.Content_Strings.Label_Nodata;
-            linkPersonalSettings.Text = Resources.Content_Strings.Button_PersonalSettings;
+            chtMornings.Titles[0].Text = Content_Strings.GraphTitle_PieMornings;
+            chtAfternoons.Titles[0].Text = Content_Strings.GraphTitle_PieAfternoons;
+            chtNights.Titles[0].Text = Content_Strings.GraphTitle_PieNights;
+            lblNoData.Text = Content_Strings.Label_Nodata;
+            linkPersonalSettings.Text = Content_Strings.Button_PersonalSettings;
+            lblMin.Text = Content_Strings.Label_Minimum;
+            lblMax.Text = Content_Strings.Label_Maximum;
+            lblAvg.Text = Content_Strings.Label_Average;
+            lblStdDev.Text = Content_Strings.Label_StandardDeviation;
+            lblNumLows.Text = Content_Strings.Label_NumberOfLows;
+            lblNumHighs.Text = Content_Strings.Label_NumberOfHighs;
         }
 
         private void PopulateDashboard()
@@ -136,20 +143,14 @@ namespace GlucaTrack.Website.Content
             //populate statistical values
             if (min.Count() > 0 && max.Count() > 0)
             {
-                this.lblMin.Text = Resources.Content_Strings.Label_Minimum;
                 this.MinValue.Text = min[0]["Glucose"].ToString();
-                this.lblMax.Text = Resources.Content_Strings.Label_Maximum;
                 this.MaxValue.Text = max[0]["Glucose"].ToString();
             }
 
-            this.lblAvg.Text = Resources.Content_Strings.Label_Average;
             this.AvgValue.Text = avg.ToString();
-            this.lblStdDev.Text = Resources.Content_Strings.Label_StandardDeviation;
             this.StdDevValue.Text = (stdev.ToString().Length > 0) ? Math.Round(Convert.ToDouble(stdev.ToString()), 2).ToString() : string.Empty;
-            this.lblNumLows.Text = Resources.Content_Strings.Label_NumberOfLows;
             this.NumLowsValue.Text = NumLow.ToString();
             this.lblLowExplanation.Text = string.Format(Resources.Content_Strings.Label_LowExplanation, GetPersonalNormalRange().X);
-            this.lblNumHighs.Text = Resources.Content_Strings.Label_NumberOfHighs;
             this.NumHighsValue.Text = NumHigh.ToString();
             this.lblHighExplanation.Text = string.Format(Resources.Content_Strings.Label_HighExplanation, GetPersonalNormalRange().Y);
         }

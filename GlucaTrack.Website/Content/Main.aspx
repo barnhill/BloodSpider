@@ -62,11 +62,6 @@
             gauge_eAG.draw(gaugeData_eAG, gaugeOptions_eAG);
         }
 
-        function drawA1cGauge()
-        {
-            gauge_HbA1c.draw(gaugeData_HbA1c, gaugeOptions_HbA1c);
-        }
-
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
@@ -84,8 +79,9 @@
         </SelectParameters>
     </asp:SqlDataSource>
 
-    <div onload="javascript:change_HbA1c(6);">&nbsp;</div>
+    <div>&nbsp;</div>
     
+    <!-- Range selection and user controls -->
     <asp:UpdatePanel ID="upMiddleContent" runat="server">
         <ContentTemplate>
             <div id="divTopOptions" runat="server" style="display: inline-block;">
@@ -110,6 +106,7 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     
+    <!-- Main Graph -->
     <asp:UpdatePanel ID="upMainChart" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div id="divMainChart" runat="server" style="margin-left:-105px;">
@@ -132,11 +129,12 @@
         <table>
             <tr>
                 <td>
+                    <!-- Pie Charts -->
                     <asp:UpdatePanel ID="upPieGraphs" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
-                            <asp:Chart ID="chtMornings" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="255, 153, 0; 16, 150, 24; 220, 57, 18">
+                            <asp:Chart ID="chtMornings" runat="server" Height="170px" Width="170px" Palette="None" PaletteCustomColors="255, 153, 0; 16, 150, 24; 220, 57, 18">
                                 <Titles> 
-                                    <asp:Title Text="Mornings" Name="Title1" />
+                                    <asp:Title Text="Mornings" Name="Mornings" />
                                 </Titles>
                                 <Series>
                                     <asp:Series Name="Mornings_Series" ChartType="Pie" ChartArea="Mornings_ChartArea" />
@@ -145,7 +143,7 @@
                                     <asp:ChartArea Name="Mornings_ChartArea" />
                                 </ChartAreas>
                             </asp:Chart>
-                            <asp:Chart ID="chtAfternoons" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="255, 153, 0; 16, 150, 24; 220, 57, 18">
+                            <asp:Chart ID="chtAfternoons" runat="server" Height="170px" Width="170px" Palette="None" PaletteCustomColors="255, 153, 0; 16, 150, 24; 220, 57, 18">
                                 <Titles> 
                                     <asp:Title Text="Afternoons" Name="Afternoons" />
                                 </Titles>
@@ -156,7 +154,7 @@
                                     <asp:ChartArea Name="Afternoons_ChartArea" />
                                 </ChartAreas>
                             </asp:Chart>
-                            <asp:Chart ID="chtNights" runat="server" Height="125px" Width="125px" Palette="None" PaletteCustomColors="255, 153, 0; 16, 150, 24; 220, 57, 18">
+                            <asp:Chart ID="chtNights" runat="server" Height="170px" Width="170px" Palette="None" PaletteCustomColors="255, 153, 0; 16, 150, 24; 220, 57, 18">
                                 <Titles> 
                                     <asp:Title Text="Nights" Name="Nights" />
                                 </Titles>
@@ -167,20 +165,6 @@
                                     <asp:ChartArea Name="Nights_ChartArea" />
                                 </ChartAreas>
                             </asp:Chart>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                </td>
-                <td>
-                    <asp:UpdatePanel ID="upStatistics" runat="server" UpdateMode="Conditional">
-                        <ContentTemplate>
-                            <div id="divStatistics" runat="server">
-                                <p><asp:Label ID="lblMin" runat="server" Font-Bold="True" /><asp:Label ID="MinValue" runat="server" /></p>
-                                <p><asp:Label ID="lblMax" runat="server" Font-Bold="True" /><asp:Label ID="MaxValue" runat="server" /></p>
-                                <p><asp:Label ID="lblAvg" runat="server" Font-Bold="True" /><asp:Label ID="AvgValue" runat="server" /></p>
-                                <p><asp:Label ID="lblStdDev" runat="server" Font-Bold="True" /><asp:Label ID="StdDevValue" runat="server" /></p>
-                                <p><asp:Label ID="lblNumLows" runat="server" Font-Bold="True" /><asp:Label ID="NumLowsValue" runat="server" /><asp:Label ID="lblLowExplanation" runat="server" Font-Italic="True" /></p>
-                                <p><asp:Label ID="lblNumHighs" runat="server" Font-Bold="True" /><asp:Label ID="NumHighsValue" runat="server" /><asp:Label ID="lblHighExplanation" runat="server" Font-Italic="True" /></p>
-                            </div>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </td>
@@ -229,6 +213,21 @@
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </td>
+            <td>
+                    <!-- Statistical Data -->
+                    <asp:UpdatePanel ID="upStatistics" runat="server" UpdateMode="Conditional">
+                        <ContentTemplate>
+                            <div id="divStatistics" runat="server">
+                                <p><asp:Label ID="lblMin" runat="server" Font-Bold="True" /><asp:Label ID="MinValue" runat="server" /></p>
+                                <p><asp:Label ID="lblMax" runat="server" Font-Bold="True" /><asp:Label ID="MaxValue" runat="server" /></p>
+                                <p><asp:Label ID="lblAvg" runat="server" Font-Bold="True" /><asp:Label ID="AvgValue" runat="server" /></p>
+                                <p><asp:Label ID="lblStdDev" runat="server" Font-Bold="True" /><asp:Label ID="StdDevValue" runat="server" /></p>
+                                <p><asp:Label ID="lblNumLows" runat="server" Font-Bold="True" /><asp:Label ID="NumLowsValue" runat="server" /><asp:Label ID="lblLowExplanation" runat="server" Font-Italic="True" /></p>
+                                <p><asp:Label ID="lblNumHighs" runat="server" Font-Bold="True" /><asp:Label ID="NumHighsValue" runat="server" /><asp:Label ID="lblHighExplanation" runat="server" Font-Italic="True" /></p>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </td>
         </tr>
     </table>
 
