@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
 
 namespace GlucaTrack.Website.Account
 {
@@ -11,8 +12,14 @@ namespace GlucaTrack.Website.Account
     {
         Queries.sp_GetLoginRow LoginRow = null;
 
-        public byte [] PendingAvatar
+        private byte [] PendingAvatar
         {
+            set
+            {
+                Session.Remove("PendingAvatar");
+
+                Session.Add("PendingAvatar", value);
+            }
             get 
             {
                 return (Session["PendingAvatar"] != null ? (byte[])Session["PendingAvatar"] : null);
@@ -54,6 +61,20 @@ namespace GlucaTrack.Website.Account
                         PopulateTimeDropdown(ddNightStart, Convert.ToInt32(dt[0]["start_night"]));
                     }
                 }
+
+                //get user image
+                using (QueriesTableAdapters.sp_GetUserImageTableAdapter ta = new QueriesTableAdapters.sp_GetUserImageTableAdapter())
+                {
+                    using (Queries.sp_GetUserImageDataTable dt = new Queries.sp_GetUserImageDataTable())
+                    {
+                        ta.Fill(dt, LoginRow.user_id);
+
+                        if (dt.Rows.Count > 0)
+                        {
+                            PendingAvatar = dt[0].image;
+                        }
+                    }
+                }
             }
         }
 
@@ -81,12 +102,9 @@ namespace GlucaTrack.Website.Account
                                               PendingAvatar);
             }
             
-            if (Session["PendingAvatar"] != null)
-            {
-                Session.Remove("PendingAvatar");
-            }
+            Session.Remove("PendingAvatar");
 
-            if (Session["OnSave"].ToString().Trim() != null && Session["OnSave"].ToString().Trim() != string.Empty)
+            if (Session["OnSave"] != null && Session["OnSave"].ToString().Trim() != null && Session["OnSave"].ToString().Trim() != string.Empty)
             {
                 string target = Session["OnSave"].ToString();
                 Session.Remove("OnSave");
@@ -114,7 +132,7 @@ namespace GlucaTrack.Website.Account
             {
                 using (System.Drawing.Image img = ScaleImage(System.Drawing.Image.FromStream(fileUpload.FileContent), 64, 64))
                 {
-                    Session.Add("PendingAvatar", GlucaTrack.Website.Statics.imageToByteArray(img));
+                    PendingAvatar = Statics.imageToByteArray(img);
                 }
             }
         }
