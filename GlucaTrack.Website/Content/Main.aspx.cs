@@ -305,7 +305,7 @@ namespace GlucaTrack.Website.Content
                     {
                         //HbA1c value returned
                         double HbA1c = Math.Round(dt.FirstOrDefault().HbA1c, 1, MidpointRounding.AwayFromZero);
-                        double eAG = Math.Round(28.7 * HbA1c - 46.7, 1, MidpointRounding.AwayFromZero);
+                        double eAG = (HbA1c == 0) ? 0 : Math.Round(28.7 * HbA1c - 46.7, 1, MidpointRounding.AwayFromZero);
                         Session.Add("HbA1c_Value", HbA1c);
                         Session.Add("eAG_Value", eAG);
                     }
