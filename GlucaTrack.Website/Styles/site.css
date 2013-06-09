@@ -19,6 +19,10 @@ body{}
 .LogButton:hover {	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% ); filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');	background-color:#dfdfdf; border:1px solid #dcdcdc; color: #C40000;}
 .LogButton:active {position:relative; top:1px; color: #C40000;}
 
+.Graph_Content {border: 1px #ECEDEF solid; background-color: #ffffff; border-radius: 8px; box-shadow: 2px 2px 2px 0px #cfcfcf;}
+.Graph_Header {border:2px #ECEDEF solid; background-color:#ECEDEF; border-top-left-radius:8px; border-top-right-radius:8px; padding-left:10px;}
+
+
 a {
     color: #0085C6;
     outline: none;

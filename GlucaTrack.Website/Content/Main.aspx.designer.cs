@@ -121,6 +121,24 @@ namespace GlucaTrack.Website.Content {
         protected global::System.Web.UI.DataVisualization.Charting.Chart chtLastXDays;
         
         /// <summary>
+        /// upGridOfValues control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upGridOfValues;
+        
+        /// <summary>
+        /// gridValues control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridValues;
+        
+        /// <summary>
         /// upPieGraphs control.
         /// </summary>
         /// <remarks>
@@ -155,24 +173,6 @@ namespace GlucaTrack.Website.Content {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chtNights;
-        
-        /// <summary>
-        /// upGridOfValues control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upGridOfValues;
-        
-        /// <summary>
-        /// gridValues control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridValues;
         
         /// <summary>
         /// upStatistics control.

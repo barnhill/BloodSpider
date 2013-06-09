@@ -109,8 +109,11 @@
     <!-- Main Graph -->
     <asp:UpdatePanel ID="upMainChart" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-            <div id="divMainChart" runat="server" style="margin-left:-105px;">
-                <asp:Chart ID="chtLastXDays" runat="server" EnableTheming="True" BorderlineColor="255, 153, 0" OnDataBound="chtLastXDays_DataBound" Width="975">
+            <div class="Graph_Content" id="divMainChart" runat="server" style="width:900px;">
+                <div class=" Graph_Header">
+                    <h3>Main Graph (i call him squagels)</h3>                    
+                </div>
+                <asp:Chart ID="chtLastXDays" runat="server" EnableTheming="True" BorderlineColor="255, 153, 0" OnDataBound="chtLastXDays_DataBound" Width="900">
                     <Titles> 
                         <asp:Title Text="Trending" Name="LastXDays_Title" />
                     </Titles>
@@ -124,112 +127,111 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>  
-
-    <div>
-        <table>
-            <tr>
-                <td>
-                    <!-- Pie Charts -->
-                    <asp:UpdatePanel ID="upPieGraphs" runat="server" UpdateMode="Conditional">
-                        <ContentTemplate>
-                            <asp:Chart ID="chtMornings" runat="server" Height="170px" Width="170px" Palette="None" PaletteCustomColors="255, 153, 0; 16, 150, 24; 220, 57, 18">
-                                <Titles> 
-                                    <asp:Title Text="Mornings" Name="Mornings" />
-                                </Titles>
-                                <Series>
-                                    <asp:Series Name="Mornings_Series" ChartType="Pie" ChartArea="Mornings_ChartArea" />
-                                </Series>
-                                <ChartAreas>
-                                    <asp:ChartArea Name="Mornings_ChartArea" />
-                                </ChartAreas>
-                            </asp:Chart>
-                            <asp:Chart ID="chtAfternoons" runat="server" Height="170px" Width="170px" Palette="None" PaletteCustomColors="255, 153, 0; 16, 150, 24; 220, 57, 18">
-                                <Titles> 
-                                    <asp:Title Text="Afternoons" Name="Afternoons" />
-                                </Titles>
-                                <Series>
-                                    <asp:Series Name="Afternoons_Series" ChartType="Pie" ChartArea="Afternoons_ChartArea" />
-                                </Series>
-                                <ChartAreas>
-                                    <asp:ChartArea Name="Afternoons_ChartArea" />
-                                </ChartAreas>
-                            </asp:Chart>
-                            <asp:Chart ID="chtNights" runat="server" Height="170px" Width="170px" Palette="None" PaletteCustomColors="255, 153, 0; 16, 150, 24; 220, 57, 18">
-                                <Titles> 
-                                    <asp:Title Text="Nights" Name="Nights" />
-                                </Titles>
-                                <Series>
-                                    <asp:Series Name="Nights_Series" ChartType="Pie" ChartArea="Nights_ChartArea" />
-                                </Series>
-                                <ChartAreas>
-                                    <asp:ChartArea Name="Nights_ChartArea" />
-                                </ChartAreas>
-                            </asp:Chart>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                </td>
-                <td>
-                    <div id="gauge_HbA1c" style="width: 150px; height: 150px;" />
-                </td>
-                <td>
-                    <div id="gauge_eAG" style="width: 150px; height: 150px;" />
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <table>
-        <tr>
-            <td>
-                <asp:UpdatePanel ID="upGridOfValues" runat="server" UpdateMode="Conditional">
+    <div style="height:430px; margin-top:10px;">
+        <div class="Graph_Content" style="width:435px; height:405px; float:left;"> 
+            <div class=" Graph_Header">
+                    <h3>Raw Values Table (ALL THE NUMBERS!)</h3>                    
+            </div>             
+            <asp:UpdatePanel ID="upGridOfValues" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
-                        <div class="GridHolder">
-                        <!-- Raw Values Table -->
-                            <asp:GridView 
-                                CssClass="mGrid"
-                                AllowPaging="False" 
-                                ID="gridValues" 
-                                runat="server" 
-                                AutoGenerateColumns="False" 
-                                DataSourceID="LastXDays_DataSource" 
-                                OnRowDataBound="gridValues_RowDataBound">
-                                <AlternatingRowStyle CssClass="alt" />
-                                    <Columns>
-                                        <asp:BoundField DataField="date" HeaderText="Date" SortExpression="Timestamp" />
-                                        <asp:BoundField DataField="time" HeaderText="Time" SortExpression="Timestamp" />
-                                        <asp:TemplateField HeaderText="Glucose">
-                                        <ItemTemplate>
-                                            <div style="text-align: right;">
-                                                <asp:Label runat="server" ID="lblGlucoseValue" Text='<%# Bind("Glucose") %>' />
-                                                <asp:Image runat="server" ID="imgIndicator" AlternateText='<%# Bind("Glucose") %>' />
-                                            </div>
-                                        </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:BoundField DataField="UnitType" HeaderText="UnitType" SortExpression="UnitType" />
-                                    </Columns>
-                                <PagerStyle CssClass="pgr" />
-                            </asp:GridView>
-                        </div> 
+                        <div style="padding:5px;">
+                            <div class="GridHolder">
+                            <!-- Raw Values Table -->
+                                <asp:GridView 
+                                    CssClass="mGrid"
+                                    AllowPaging="False" 
+                                    ID="gridValues" 
+                                    runat="server" 
+                                    AutoGenerateColumns="False" 
+                                    DataSourceID="LastXDays_DataSource" 
+                                    OnRowDataBound="gridValues_RowDataBound">
+                                    <AlternatingRowStyle CssClass="alt" />
+                                        <Columns>
+                                            <asp:BoundField DataField="date" HeaderText="Date" SortExpression="Timestamp" />
+                                            <asp:BoundField DataField="time" HeaderText="Time" SortExpression="Timestamp" />
+                                            <asp:TemplateField HeaderText="Glucose">
+                                            <ItemTemplate>
+                                                <div style="text-align: right;">
+                                                    <asp:Label runat="server" ID="lblGlucoseValue" Text='<%# Bind("Glucose") %>' />
+                                                    <asp:Image runat="server" ID="imgIndicator" AlternateText='<%# Bind("Glucose") %>' />
+                                                </div>
+                                            </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField DataField="UnitType" HeaderText="UnitType" SortExpression="UnitType" />
+                                        </Columns>
+                                    <PagerStyle CssClass="pgr" />
+                                </asp:GridView>
+                            </div>
+                        </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-            </td>
-            <td>
-                    <!-- Statistical Data -->
-                    <asp:UpdatePanel ID="upStatistics" runat="server" UpdateMode="Conditional">
-                        <ContentTemplate>
-                            <div id="divStatistics" runat="server">
-                                <p><asp:Label ID="lblMin" runat="server" Font-Bold="True" /><asp:Label ID="MinValue" runat="server" /></p>
-                                <p><asp:Label ID="lblMax" runat="server" Font-Bold="True" /><asp:Label ID="MaxValue" runat="server" /></p>
-                                <p><asp:Label ID="lblAvg" runat="server" Font-Bold="True" /><asp:Label ID="AvgValue" runat="server" /></p>
-                                <p><asp:Label ID="lblStdDev" runat="server" Font-Bold="True" /><asp:Label ID="StdDevValue" runat="server" /></p>
-                                <p><asp:Label ID="lblNumLows" runat="server" Font-Bold="True" /><asp:Label ID="NumLowsValue" runat="server" /><asp:Label ID="lblLowExplanation" runat="server" Font-Italic="True" /></p>
-                                <p><asp:Label ID="lblNumHighs" runat="server" Font-Bold="True" /><asp:Label ID="NumHighsValue" runat="server" /><asp:Label ID="lblHighExplanation" runat="server" Font-Italic="True" /></p>
-                            </div>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                </td>
-        </tr>
-    </table>
-
-    <br />
+        </div>             
+        <!-- Pie Charts -->
+        <div class="Graph_Content" style="width:450px; float:right;">
+            <div class=" Graph_Header">
+                    <h3>Charts (Mmmmmmm pie!)</h3>                    
+            </div>
+            <asp:UpdatePanel ID="upPieGraphs" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>   
+                    <asp:Chart ID="chtMornings" runat="server" Height="145px" Width="145px" Palette="None" PaletteCustomColors="255, 153, 0; 16, 150, 24; 220, 57, 18">
+                        <Titles> 
+                            <asp:Title Text="Mornings" Name="Mornings" />
+                        </Titles>
+                        <Series>
+                            <asp:Series Name="Mornings_Series" ChartType="Pie" ChartArea="Mornings_ChartArea" />
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="Mornings_ChartArea" />
+                        </ChartAreas>
+                    </asp:Chart>
+                    <asp:Chart ID="chtAfternoons" runat="server" Height="145px" Width="145px" Palette="None" PaletteCustomColors="255, 153, 0; 16, 150, 24; 220, 57, 18">
+                        <Titles> 
+                            <asp:Title Text="Afternoons" Name="Afternoons" />
+                        </Titles>
+                        <Series>
+                            <asp:Series Name="Afternoons_Series" ChartType="Pie" ChartArea="Afternoons_ChartArea" />
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="Afternoons_ChartArea" />
+                        </ChartAreas>
+                    </asp:Chart>
+                    <asp:Chart ID="chtNights" runat="server" Height="145px" Width="145px" Palette="None" PaletteCustomColors="255, 153, 0; 16, 150, 24; 220, 57, 18">
+                        <Titles> 
+                            <asp:Title Text="Nights" Name="Nights" />
+                        </Titles>
+                        <Series>
+                            <asp:Series Name="Nights_Series" ChartType="Pie" ChartArea="Nights_ChartArea" />
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="Nights_ChartArea" />
+                        </ChartAreas>
+                    </asp:Chart>
+                
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            <!-- Statistical Data -->
+            <asp:UpdatePanel ID="upStatistics" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <div id="divStatistics" runat="server" style="width:100%; height:70px; margin-left:10px;">
+                        <div style="width:33%; float:right;">
+                            <p><asp:Label ID="lblMin" runat="server" Font-Bold="True" /><asp:Label ID="MinValue" runat="server" /></p>
+                            <p><asp:Label ID="lblMax" runat="server" Font-Bold="True" /><asp:Label ID="MaxValue" runat="server" /></p>
+                        </div>
+                        <div style="width:33%; float:right;">
+                            <p><asp:Label ID="lblAvg" runat="server" Font-Bold="True" /><asp:Label ID="AvgValue" runat="server" /></p>
+                            <p><asp:Label ID="lblStdDev" runat="server" Font-Bold="True" /><asp:Label ID="StdDevValue" runat="server" /></p>
+                        </div>
+                        <div style="width:33%; float:right;">
+                            <p><asp:Label ID="lblNumLows" runat="server" Font-Bold="True" /><asp:Label ID="NumLowsValue" runat="server" /><asp:Label ID="lblLowExplanation" runat="server" Font-Italic="True" /></p>
+                            <p><asp:Label ID="lblNumHighs" runat="server" Font-Bold="True" /><asp:Label ID="NumHighsValue" runat="server" /><asp:Label ID="lblHighExplanation" runat="server" Font-Italic="True" /></p>
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            <div style="width:75%; margin:auto; height:150px;">
+                <div id="gauge_eAG" style="width: 160px; height: 160px; float:left" />
+            </div>
+            <div id="gauge_HbA1c" style="width: 160px; height: 160px; float:right" />
+        </div>
+    </div>
 </asp:Content>

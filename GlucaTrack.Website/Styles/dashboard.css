@@ -37,6 +37,6 @@
 /* Page content */
 .GridHolder {
     overflow: auto; 
-    height: 230px; 
-    width: 525px;
+    height: 360px; 
+    width: 100%;
 }
