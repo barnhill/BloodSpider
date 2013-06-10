@@ -55,6 +55,10 @@ namespace GlucaTrack.Website.Content
             lblStdDev.Text = Content_Strings.Label_StandardDeviation;
             lblNumLows.Text = Content_Strings.Label_NumberOfLows;
             lblNumHighs.Text = Content_Strings.Label_NumberOfHighs;
+
+            lblMainGraph_SectionHeader.Text = string.Format(Content_Strings.Label_MainGraphSectionHeader, ddDateRange.SelectedValue);
+            lblRawValues_SectionHeader.Text = Content_Strings.Label_RawValuesSectionHeader;
+            lblStatsAndGauges_SectionHeader.Text = Content_Strings.Label_GraphsAndGaugesSectionHeader;
         }
 
         private void PopulateDashboard()
@@ -115,8 +119,8 @@ namespace GlucaTrack.Website.Content
             //last X days graph
             chtLastXDays.Series["LastXDays_Series"].XValueMember = "TimeStamp";
             chtLastXDays.Series["LastXDays_Series"].YValueMembers = "Glucose";
+            chtLastXDays.Series["LastXDays_Series"].ToolTip = "Glucose: #VALY";
             chtLastXDays.Series["LastXDays_Series"].IsValueShownAsLabel = true;
-            chtLastXDays.Titles[chtLastXDays.Titles.Count - 1].Text = string.Format(Resources.Content_Strings.GraphTitle_Main, ddDateRange.SelectedValue);
             chtLastXDays.ChartAreas["LastXDays_ChartArea"].AxisX.Title = Resources.Content_Strings.AxisLabel_X_MainGraph;
             chtLastXDays.ChartAreas["LastXDays_ChartArea"].AxisY.Title = Resources.Content_Strings.AxisLabel_Y_MainGraph;
             chtLastXDays.DataSource = DataSource;
@@ -304,7 +308,7 @@ namespace GlucaTrack.Website.Content
                     if (dt.Rows.Count > 0)
                     {
                         //HbA1c value returned
-                        double HbA1c = Math.Round(dt.FirstOrDefault().HbA1c, 1, MidpointRounding.AwayFromZero);
+                        double HbA1c = dt.FirstOrDefault().HbA1c;
                         double eAG = (HbA1c == 0) ? 0 : Math.Round(28.7 * HbA1c - 46.7, 1, MidpointRounding.AwayFromZero);
                         Session.Add("HbA1c_Value", HbA1c);
                         Session.Add("eAG_Value", eAG);

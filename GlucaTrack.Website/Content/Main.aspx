@@ -98,6 +98,7 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 
+    <!-- No Data Panel -->
     <asp:UpdatePanel ID="upNoData" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div id="divNoData" runat="server">
@@ -111,12 +112,9 @@
         <ContentTemplate>
             <div class="Graph_Content" id="divMainChart" runat="server" style="width:900px;">
                 <div class=" Graph_Header">
-                    <h3>Main Graph (i call him squagels)</h3>                    
+                    <h4><asp:Label runat="server" ID="lblMainGraph_SectionHeader" Text="[Main Graph Title]"/></h4>                   
                 </div>
                 <asp:Chart ID="chtLastXDays" runat="server" EnableTheming="True" BorderlineColor="255, 153, 0" OnDataBound="chtLastXDays_DataBound" Width="900">
-                    <Titles> 
-                        <asp:Title Text="Trending" Name="LastXDays_Title" />
-                    </Titles>
                     <Series>
                         <asp:Series Name="LastXDays_Series" ChartArea="LastXDays_ChartArea" ChartType="Line" BorderWidth="3" Color="70,132,238" ShadowOffset="1" IsValueShownAsLabel="False"/>
                     </Series>
@@ -126,17 +124,18 @@
                 </asp:Chart>
             </div>
         </ContentTemplate>
-    </asp:UpdatePanel>  
+    </asp:UpdatePanel> 
+    
+    <!-- Raw Values Table --> 
     <div style="height:430px; margin-top:10px;">
         <div class="Graph_Content" style="width:435px; height:405px; float:left;"> 
             <div class=" Graph_Header">
-                    <h3>Raw Values Table (ALL THE NUMBERS!)</h3>                    
+                <h4><asp:Label runat="server" ID="lblRawValues_SectionHeader" Text="[Raw Values Title]"/></h4>
             </div>             
             <asp:UpdatePanel ID="upGridOfValues" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <div style="padding:5px;">
                             <div class="GridHolder">
-                            <!-- Raw Values Table -->
                                 <asp:GridView 
                                     CssClass="mGrid"
                                     AllowPaging="False" 
@@ -169,7 +168,7 @@
         <!-- Pie Charts -->
         <div class="Graph_Content" style="width:450px; float:right;">
             <div class=" Graph_Header">
-                    <h3>Charts (Mmmmmmm pie!)</h3>                    
+                <h4><asp:Label runat="server" ID="lblStatsAndGauges_SectionHeader" Text="[Stats and Gauges Title]"/></h4>                  
             </div>
             <asp:UpdatePanel ID="upPieGraphs" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>   
@@ -209,6 +208,7 @@
                 
                 </ContentTemplate>
             </asp:UpdatePanel>
+
             <!-- Statistical Data -->
             <asp:UpdatePanel ID="upStatistics" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
@@ -228,6 +228,8 @@
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
+
+            <!-- Gauges -->
             <div style="width:75%; margin:auto; height:150px;">
                 <div id="gauge_eAG" style="width: 160px; height: 160px; float:left" />
             </div>

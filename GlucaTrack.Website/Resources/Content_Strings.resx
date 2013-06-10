@@ -149,6 +149,10 @@
     <value>Avg: </value>
     <comment>Average value label and value</comment>
   </data>
+  <data name="Label_GraphsAndGaugesSectionHeader" xml:space="preserve">
+    <value>Statistics and HbA1c / eAG</value>
+    <comment>Section header for the statistical information and gauges on the dashboard</comment>
+  </data>
   <data name="Label_HighExplanation" xml:space="preserve">
     <value>  (&gt; {0})</value>
     <comment>Greater than X amount constitutes hyperglycemia</comment>
@@ -156,6 +160,10 @@
   <data name="Label_LowExplanation" xml:space="preserve">
     <value>  (&lt; {0})</value>
     <comment>Less than X amount constitutes hypoglycemia</comment>
+  </data>
+  <data name="Label_MainGraphSectionHeader" xml:space="preserve">
+    <value>Glucose Trending Over the Last {0} Days</value>
+    <comment>Section header for the main graph on the dashboard</comment>
   </data>
   <data name="Label_Maximum" xml:space="preserve">
     <value>Max: </value>
@@ -176,6 +184,10 @@
   <data name="Label_NumberOfLows" xml:space="preserve">
     <value># Low: </value>
     <comment>Number of low values label and value</comment>
+  </data>
+  <data name="Label_RawValuesSectionHeader" xml:space="preserve">
+    <value>Glucose Readings</value>
+    <comment>Section header for the raw values on the dashboard</comment>
   </data>
   <data name="Label_StandardDeviation" xml:space="preserve">
     <value>StdDev: </value>

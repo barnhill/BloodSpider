@@ -112,6 +112,15 @@ namespace GlucaTrack.Website.Content {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMainChart;
         
         /// <summary>
+        /// lblMainGraph_SectionHeader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMainGraph_SectionHeader;
+        
+        /// <summary>
         /// chtLastXDays control.
         /// </summary>
         /// <remarks>
@@ -119,6 +128,15 @@ namespace GlucaTrack.Website.Content {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart chtLastXDays;
+        
+        /// <summary>
+        /// lblRawValues_SectionHeader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRawValues_SectionHeader;
         
         /// <summary>
         /// upGridOfValues control.
@@ -137,6 +155,15 @@ namespace GlucaTrack.Website.Content {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridValues;
+        
+        /// <summary>
+        /// lblStatsAndGauges_SectionHeader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStatsAndGauges_SectionHeader;
         
         /// <summary>
         /// upPieGraphs control.

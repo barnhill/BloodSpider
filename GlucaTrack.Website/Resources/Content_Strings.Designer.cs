@@ -133,6 +133,15 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Statistics and HbA1c / eAG.
+        /// </summary>
+        internal static string Label_GraphsAndGaugesSectionHeader {
+            get {
+                return ResourceManager.GetString("Label_GraphsAndGaugesSectionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to   (&gt; {0}).
         /// </summary>
         internal static string Label_HighExplanation {
@@ -147,6 +156,15 @@ namespace GlucaTrack.Website.Resources {
         internal static string Label_LowExplanation {
             get {
                 return ResourceManager.GetString("Label_LowExplanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Glucose Trending Over the Last {0} Days.
+        /// </summary>
+        internal static string Label_MainGraphSectionHeader {
+            get {
+                return ResourceManager.GetString("Label_MainGraphSectionHeader", resourceCulture);
             }
         }
         
@@ -192,6 +210,15 @@ namespace GlucaTrack.Website.Resources {
         internal static string Label_NumberOfLows {
             get {
                 return ResourceManager.GetString("Label_NumberOfLows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Glucose Readings.
+        /// </summary>
+        internal static string Label_RawValuesSectionHeader {
+            get {
+                return ResourceManager.GetString("Label_RawValuesSectionHeader", resourceCulture);
             }
         }
         
