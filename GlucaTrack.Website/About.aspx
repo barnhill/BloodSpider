@@ -2,33 +2,31 @@
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <hgroup class="title">
-        <h1><%: Title %>.</h1>
-        <h2>Your app description page.</h2>
+        <h3><%: Title %>Our beginning and dream ...</h3>
     </hgroup>
 
     <article>
         <p>        
-            Use this area to provide additional information.
-        </p>
-
+            &nbsp;</p>
         <p>        
-            Use this area to provide additional information.
+            GlucaTrack was dreamed up while watching a few diabetics suffer though the monotony of recording their glucose readings in a logbook or a cumbersome piece of software that required manual entry of the data.  
+The thought of "there has to be a better way" crossed our minds just like it has so many diabetics in the past.  So in our lab (a home office, coffee shops, and online chats) GlucaTrack was born.  
         </p>
-
         <p>        
-            Use this area to provide additional information.
+            <asp:Image ID="Image1" runat="server" />
         </p>
+        <p>        
+            Our dream is to offer a reliable, easy and secure method of online glucose reading collection for the masses.  
+This thought has come along with others of how to utilize the data to help the community of diabetics as a whole, while continuing to offer valuable solutions for diabetics quickly and reliably.  
+This is the story of our humble beginning, but we are happy that it is a story without end.  Every day we will continue to bring new ideas and new solutions to our friends. </p>
+
     </article>
-
-    <aside>
-        <h3>Aside Title</h3>
-        <p>        
-            Use this area to provide additional information.
-        </p>
-        <ul>
-            <li><a runat="server" href="~/">Home</a></li>
-            <li><a runat="server" href="~/About.aspx">About</a></li>
-            <li><a runat="server" href="~/Contact.aspx">Contact</a></li>
-        </ul>
-    </aside>
-</asp:Content>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    </asp:Content>
