@@ -8,7 +8,7 @@
     <script type="text/javascript">
         google.load('visualization', '1.1', { packages: ['gauge'] });
     </script>
-    <script type="text/javascript">
+    <script type="text/javascript" async>
         var gauge_HbA1c;
         var gaugeData_HbA1c;
         var gaugeOptions_HbA1c;

@@ -168,6 +168,11 @@ namespace GlucaTrack.Services.Web
                         result = true;
                     }
                 }
+                else
+                {
+                    //not authenticated
+                    throw new FaultException("UpdateLastSync-1: Session not authenticated.");
+                }
             }
 
             return result;

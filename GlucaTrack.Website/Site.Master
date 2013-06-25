@@ -9,7 +9,7 @@
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
-    <script type="text/javascript">
+    <script type="text/javascript" async>
 
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-40393707-1']);
