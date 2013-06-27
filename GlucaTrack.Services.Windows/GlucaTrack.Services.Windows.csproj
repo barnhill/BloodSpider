@@ -35,6 +35,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>GlucaTrack.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration.Install" />
@@ -98,6 +104,7 @@
     <None Include="GlucaTrack Service Controls\install.bat" />
     <None Include="GlucaTrack Service Controls\InstallUtil.InstallLog" />
     <None Include="GlucaTrack Service Controls\remove.bat" />
+    <None Include="GlucaTrack.pfx" />
     <None Include="Service References\WebService\Common.xsd" />
     <None Include="Service References\WebService\GlucaTrack.Services.Windows.WebService.Common.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

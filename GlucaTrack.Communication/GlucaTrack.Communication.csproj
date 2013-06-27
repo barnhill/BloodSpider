@@ -36,11 +36,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>GlucaTrack.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -58,6 +57,7 @@
     <None Include="Documents\Roche\metertest.pl" />
     <None Include="Documents\Roche\Portmon_connect_no_change_time_hex.log" />
     <None Include="Documents\Roche\Portmon_no_connect_hex.log" />
+    <None Include="GlucaTrack.pfx" />
     <None Include="Meters\Breeze2.cs" />
     <Compile Include="Meters\Caresens_N.cs" />
     <Compile Include="Meters\OneTouch_UltraSmart.cs" />
