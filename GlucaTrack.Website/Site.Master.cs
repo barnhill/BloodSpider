@@ -16,7 +16,11 @@ namespace GlucaTrack.Website
         private string _antiXsrfTokenValue;
         private Queries.sp_GetLoginRow LoginRow = null;
 
-        public static void setSecureProtocol(bool bSecure)
+        /// <summary>
+        /// Redirects to the pages secure site if true, to the non-secure site if false.
+        /// </summary>
+        /// <param name="bSecure">True if you want secure, false if you want non-secure.</param>
+        private static void setSecureProtocol(bool bSecure)
         {
             string redirectUrl = null;
             HttpContext context = HttpContext.Current;
