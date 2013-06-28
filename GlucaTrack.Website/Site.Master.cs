@@ -16,8 +16,37 @@ namespace GlucaTrack.Website
         private string _antiXsrfTokenValue;
         private Queries.sp_GetLoginRow LoginRow = null;
 
+        public static void setSecureProtocol(bool bSecure)
+        {
+            string redirectUrl = null;
+            HttpContext context = HttpContext.Current;
+
+            // if we want HTTPS and it is currently HTTP
+            if (bSecure && !context.Request.IsSecureConnection)
+            {
+                redirectUrl = context.Request.Url.ToString().Replace("http:", "https:");
+            }
+            else
+            {
+                // if we want HTTP and it is currently HTTPS
+                if (!bSecure && context.Request.IsSecureConnection)
+                    redirectUrl = context.Request.Url.ToString().Replace("https:", "http:");
+            }
+
+            // in all other cases we don't need to redirect
+            // check if we need to redirect, and if so use redirectUrl to do the job
+            if (redirectUrl != null)
+            {
+                context.Response.Redirect(redirectUrl);
+            }
+        }
+
         protected void Page_Init(object sender, EventArgs e)
         {
+#if (!DEBUG)
+            setSecureProtocol(true);
+#endif
+
             // The code below helps to protect against XSRF attacks
             var requestCookie = Request.Cookies[AntiXsrfTokenKey];
             Guid requestCookieGuidValue;
