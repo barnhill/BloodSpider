@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlucaTrack.Website", "Gluca
 		{7BF5CE92-F99A-44CF-9C82-9B82A12E7217} = {7BF5CE92-F99A-44CF-9C82-9B82A12E7217}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlucaTrack.Chrome.Extension", "GlucaTrack.Chrome.Extension\GlucaTrack.Chrome.Extension.csproj", "{F9DA1383-6266-4D05-A96F-7AAD485F7C65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +97,15 @@ Global
 		{57A607CE-C076-4590-980F-FF16F8A20FF4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{57A607CE-C076-4590-980F-FF16F8A20FF4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{57A607CE-C076-4590-980F-FF16F8A20FF4}.Release|x86.ActiveCfg = Release|Any CPU
+		{F9DA1383-6266-4D05-A96F-7AAD485F7C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9DA1383-6266-4D05-A96F-7AAD485F7C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9DA1383-6266-4D05-A96F-7AAD485F7C65}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F9DA1383-6266-4D05-A96F-7AAD485F7C65}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F9DA1383-6266-4D05-A96F-7AAD485F7C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9DA1383-6266-4D05-A96F-7AAD485F7C65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9DA1383-6266-4D05-A96F-7AAD485F7C65}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F9DA1383-6266-4D05-A96F-7AAD485F7C65}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F9DA1383-6266-4D05-A96F-7AAD485F7C65}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
