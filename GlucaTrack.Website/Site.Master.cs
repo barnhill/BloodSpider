@@ -34,13 +34,20 @@ namespace GlucaTrack.Website
             {
                 // if we want HTTP and it is currently HTTPS
                 if (!bSecure && context.Request.IsSecureConnection)
+                {
                     redirectUrl = context.Request.Url.ToString().Replace("https:", "http:");
+                }
             }
 
             // in all other cases we don't need to redirect
             // check if we need to redirect, and if so use redirectUrl to do the job
             if (redirectUrl != null)
             {
+                if (redirectUrl.ToLowerInvariant().EndsWith("default.aspx"))
+                {
+                    redirectUrl = redirectUrl.ToLowerInvariant().Replace("default.aspx", string.Empty);
+                }
+
                 context.Response.Redirect(redirectUrl);
             }
         }
