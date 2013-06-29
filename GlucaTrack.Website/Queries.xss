@@ -9,11 +9,11 @@
     <Shape ID="DesignTable:sp_DoesLoginExist" ZOrder="8" X="949" Y="516" Height="96" Width="251" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
     <Shape ID="DesignTable:sp_GetFirstNameFromLogin" ZOrder="7" X="949" Y="410" Height="96" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
     <Shape ID="DesignTable:sp_GetLogin" ZOrder="6" X="949" Y="5" Height="400" Width="287" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="349" />
-    <Shape ID="DesignTable:sp_GetDataForLastXDays" ZOrder="4" X="649" Y="353" Height="172" Width="288" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
-    <Shape ID="DesignTable:sp_GetUserSettings" ZOrder="3" X="668" Y="149" Height="191" Width="256" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="140" />
-    <Shape ID="DesignTable:sp_GetUserImage" ZOrder="2" X="663" Y="536" Height="96" Width="245" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
-    <Shape ID="DesignSources:QueriesTableAdapter" ZOrder="5" X="407" Y="9" Height="86" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="63" />
-    <Shape ID="DesignTable:sp_GetHbA1c" ZOrder="1" X="420" Y="121" Height="96" Width="222" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
+    <Shape ID="DesignTable:sp_GetDataForLastXDays" ZOrder="5" X="649" Y="353" Height="172" Width="288" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
+    <Shape ID="DesignTable:sp_GetUserImage" ZOrder="4" X="663" Y="536" Height="96" Width="245" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
+    <Shape ID="DesignTable:sp_GetHbA1c" ZOrder="3" X="420" Y="120" Height="96" Width="222" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
+    <Shape ID="DesignSources:QueriesTableAdapter" ZOrder="1" X="365" Y="10" Height="86" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="82" />
+    <Shape ID="DesignTable:sp_GetUserSettings" ZOrder="2" X="676" Y="90" Height="248" Width="256" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="197" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

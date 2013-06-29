@@ -6,7 +6,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <asp:SqlDataSource ID="PersonalSettings_DataSource" runat="server" ConnectionString="<%$ ConnectionStrings:glucatrackConnectionString %>" SelectCommand="sp_GetUserSettings" SelectCommandType="StoredProcedure" >
         <SelectParameters>
-            <asp:SessionParameter Name="login" SessionField="LoggedInUserId" Type="Int32" />
+            <asp:SessionParameter Name="user_id" SessionField="LoggedInUserId" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
     <br />
@@ -24,7 +24,7 @@
                 ClientIDMode="Static" />
             </ContentTemplate>
         </asp:UpdatePanel>
-    <br onload="reloadImage();"/>
+    <br />
     <asp:Label ID="lblLowNormal" runat="server" AssociatedControlID="fvLowNormal">[Low normal]</asp:Label><br />
     <asp:FormView ID="fvLowNormal" runat="server" DataKeyNames="user_id" DataSourceID="PersonalSettings_DataSource">
         <ItemTemplate>
@@ -43,11 +43,22 @@
         </ItemTemplate>
     </asp:FormView> 
     <br />
+    
     <asp:Label ID="lblMorningStart" runat="server">[Morning Start]</asp:Label><br />
     <asp:DropDownList ID="ddMorningStart" runat="server" CssClass="dropdownlist"/><br /><br />
+    
     <asp:Label ID="lblAfternoonStart" runat="server">[Afternoon Start]</asp:Label><br />
     <asp:DropDownList ID="ddAfternoonStart" runat="server" CssClass="dropdownlist"/><br /><br />
+    
     <asp:Label ID="lblNightStart" runat="server">[Night Start]</asp:Label><br />
     <asp:DropDownList ID="ddNightStart" runat="server" CssClass="dropdownlist"/><br /><br />
+    
+    <asp:Label ID="lblFirstName" runat="server">[First name]</asp:Label><br />
+    <asp:Textbox runat="server" ID="txtFirstName" Text='[First name]' style="font-size:smaller;"/><br /><br />
+    <asp:Label ID="lblMiddleName" runat="server">[Middle name]</asp:Label><br />
+    <asp:Textbox runat="server" ID="txtMiddleName" Text='[Middle name]' style="font-size:smaller;"/><br /><br />
+    <asp:Label ID="lblLastName" runat="server">[Last name]</asp:Label><br />
+    <asp:Textbox runat="server" ID="txtLastName" Text='[Last name]' style="font-size:smaller;"/><br /><br />
+
     <asp:Button ID="btnSavePersonalSettings" runat="server" CommandName="Save" Text="Save Settings" OnClick="btnSavePersonalSettings_Click" class="LogButton" />         
 </asp:Content>

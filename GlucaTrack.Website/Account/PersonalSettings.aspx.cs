@@ -59,6 +59,10 @@ namespace GlucaTrack.Website.Account
                         PopulateTimeDropdown(ddMorningStart, Convert.ToInt32(dt[0]["start_morning"]));
                         PopulateTimeDropdown(ddAfternoonStart, Convert.ToInt32(dt[0]["start_afternoon"]));
                         PopulateTimeDropdown(ddNightStart, Convert.ToInt32(dt[0]["start_night"]));
+
+                        this.txtFirstName.Text = dt[0]["firstname"].ToString();
+                        this.txtMiddleName.Text = dt[0]["middlename"].ToString();
+                        this.txtLastName.Text = dt[0]["lastname"].ToString();
                     }
                 }
 
@@ -86,6 +90,10 @@ namespace GlucaTrack.Website.Account
             this.lblAfternoonStart.Text = Resources.Account_Strings.Label_StartAfternoon;
             this.lblNightStart.Text = Resources.Account_Strings.Label_StartNight;
 
+            this.lblFirstName.Text = Resources.Account_Strings.Label_Firstname;
+            this.lblMiddleName.Text = Resources.Account_Strings.Label_Middlename;
+            this.lblLastName.Text = Resources.Account_Strings.Label_Lastname;
+
             this.btnSavePersonalSettings.Text = Resources.Account_Strings.Button_SavePersonalSettings;
         }
 
@@ -99,7 +107,10 @@ namespace GlucaTrack.Website.Account
                                               Convert.ToByte(ddMorningStart.SelectedValue),
                                               Convert.ToByte(ddAfternoonStart.SelectedValue),
                                               Convert.ToByte(ddNightStart.SelectedValue),
-                                              PendingAvatar);
+                                              PendingAvatar,
+                                              txtFirstName.Text.Trim(),
+                                              txtMiddleName.Text.Trim(),
+                                              txtLastName.Text.Trim());
             }
             
             Session.Remove("PendingAvatar");

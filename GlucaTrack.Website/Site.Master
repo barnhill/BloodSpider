@@ -35,8 +35,7 @@
 <body>
     <form runat="server" enctype="multipart/form-data" method="post">
     <AjaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" />
-    <%--<asp:ScriptManager runat="server">
-    </asp:ScriptManager>--%>
+
     <header>
             <div class="Header_color">        
                 <div class="Header">
