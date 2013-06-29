@@ -59,6 +59,10 @@
     <asp:Textbox runat="server" ID="txtMiddleName" Text='[Middle name]' style="font-size:smaller;"/><br /><br />
     <asp:Label ID="lblLastName" runat="server">[Last name]</asp:Label><br />
     <asp:Textbox runat="server" ID="txtLastName" Text='[Last name]' style="font-size:smaller;"/><br /><br />
+    <asp:Label ID="lblAddress1" runat="server">[Address1]</asp:Label><br />
+    <asp:Textbox runat="server" ID="txtAddress1" Text='[Address1]' style="font-size:smaller;"/><br /><br />
+    <asp:Label ID="lblAddress2" runat="server">[Address2]</asp:Label><br />
+    <asp:Textbox runat="server" ID="txtAddress2" Text='[Address2]' style="font-size:smaller;"/><br /><br />
 
     <asp:Button ID="btnSavePersonalSettings" runat="server" CommandName="Save" Text="Save Settings" OnClick="btnSavePersonalSettings_Click" class="LogButton" />         
 </asp:Content>

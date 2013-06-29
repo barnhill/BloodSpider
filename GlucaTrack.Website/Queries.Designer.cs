@@ -2298,6 +2298,10 @@ namespace GlucaTrack.Website {
             
             private global::System.Data.DataColumn columnlastname;
             
+            private global::System.Data.DataColumn columnaddress1;
+            
+            private global::System.Data.DataColumn columnaddress2;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public sp_GetUserSettingsDataTable() {
@@ -2405,6 +2409,22 @@ namespace GlucaTrack.Website {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn address1Column {
+                get {
+                    return this.columnaddress1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn address2Column {
+                get {
+                    return this.columnaddress2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2440,7 +2460,7 @@ namespace GlucaTrack.Website {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_GetUserSettingsRow Addsp_GetUserSettingsRow(int user_id, byte lownormal, byte highnormal, byte start_morning, byte start_afternoon, byte start_night, string firstname, string middlename, string lastname) {
+            public sp_GetUserSettingsRow Addsp_GetUserSettingsRow(int user_id, byte lownormal, byte highnormal, byte start_morning, byte start_afternoon, byte start_night, string firstname, string middlename, string lastname, string address1, string address2) {
                 sp_GetUserSettingsRow rowsp_GetUserSettingsRow = ((sp_GetUserSettingsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         user_id,
@@ -2451,7 +2471,9 @@ namespace GlucaTrack.Website {
                         start_night,
                         firstname,
                         middlename,
-                        lastname};
+                        lastname,
+                        address1,
+                        address2};
                 rowsp_GetUserSettingsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowsp_GetUserSettingsRow);
                 return rowsp_GetUserSettingsRow;
@@ -2490,6 +2512,8 @@ namespace GlucaTrack.Website {
                 this.columnfirstname = base.Columns["firstname"];
                 this.columnmiddlename = base.Columns["middlename"];
                 this.columnlastname = base.Columns["lastname"];
+                this.columnaddress1 = base.Columns["address1"];
+                this.columnaddress2 = base.Columns["address2"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2513,6 +2537,10 @@ namespace GlucaTrack.Website {
                 base.Columns.Add(this.columnmiddlename);
                 this.columnlastname = new global::System.Data.DataColumn("lastname", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnlastname);
+                this.columnaddress1 = new global::System.Data.DataColumn("address1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnaddress1);
+                this.columnaddress2 = new global::System.Data.DataColumn("address2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnaddress2);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnuser_id}, true));
                 this.columnuser_id.AllowDBNull = false;
@@ -2527,6 +2555,9 @@ namespace GlucaTrack.Website {
                 this.columnmiddlename.MaxLength = 25;
                 this.columnlastname.AllowDBNull = false;
                 this.columnlastname.MaxLength = 25;
+                this.columnaddress1.AllowDBNull = false;
+                this.columnaddress1.MaxLength = 50;
+                this.columnaddress2.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3359,6 +3390,33 @@ namespace GlucaTrack.Website {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string address1 {
+                get {
+                    return ((string)(this[this.tablesp_GetUserSettings.address1Column]));
+                }
+                set {
+                    this[this.tablesp_GetUserSettings.address1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string address2 {
+                get {
+                    try {
+                        return ((string)(this[this.tablesp_GetUserSettings.address2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'address2\' in table \'sp_GetUserSettings\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_GetUserSettings.address2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsmiddlenameNull() {
                 return this.IsNull(this.tablesp_GetUserSettings.middlenameColumn);
             }
@@ -3367,6 +3425,18 @@ namespace GlucaTrack.Website {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetmiddlenameNull() {
                 this[this.tablesp_GetUserSettings.middlenameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isaddress2Null() {
+                return this.IsNull(this.tablesp_GetUserSettings.address2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setaddress2Null() {
+                this[this.tablesp_GetUserSettings.address2Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -4886,6 +4956,8 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
             tableMapping.ColumnMappings.Add("firstname", "firstname");
             tableMapping.ColumnMappings.Add("middlename", "middlename");
             tableMapping.ColumnMappings.Add("lastname", "lastname");
+            tableMapping.ColumnMappings.Add("address1", "address1");
+            tableMapping.ColumnMappings.Add("address2", "address2");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -5023,6 +5095,8 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_firstname", global::System.Data.SqlDbType.VarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_middlename", global::System.Data.SqlDbType.VarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_lastname", global::System.Data.SqlDbType.VarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_address1", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_address2", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5246,7 +5320,7 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int sp_UpdateUserSettings(global::System.Nullable<int> userid, global::System.Nullable<byte> lownormal, global::System.Nullable<byte> highnormal, global::System.Nullable<byte> morning, global::System.Nullable<byte> afternoon, global::System.Nullable<byte> night, byte[] image, string user_firstname, string user_middlename, string user_lastname) {
+        public virtual int sp_UpdateUserSettings(global::System.Nullable<int> userid, global::System.Nullable<byte> lownormal, global::System.Nullable<byte> highnormal, global::System.Nullable<byte> morning, global::System.Nullable<byte> afternoon, global::System.Nullable<byte> night, byte[] image, string user_firstname, string user_middlename, string user_lastname, string user_address1, string user_address2) {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[2]));
             if ((userid.HasValue == true)) {
                 command.Parameters[1].Value = ((int)(userid.Value));
@@ -5307,6 +5381,18 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
             }
             else {
                 command.Parameters[10].Value = ((string)(user_lastname));
+            }
+            if ((user_address1 == null)) {
+                command.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[11].Value = ((string)(user_address1));
+            }
+            if ((user_address2 == null)) {
+                command.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[12].Value = ((string)(user_address2));
             }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 

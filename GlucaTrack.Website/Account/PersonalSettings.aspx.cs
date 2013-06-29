@@ -63,6 +63,8 @@ namespace GlucaTrack.Website.Account
                         this.txtFirstName.Text = dt[0]["firstname"].ToString();
                         this.txtMiddleName.Text = dt[0]["middlename"].ToString();
                         this.txtLastName.Text = dt[0]["lastname"].ToString();
+                        this.txtAddress1.Text = dt[0]["address1"].ToString();
+                        this.txtAddress2.Text = dt[0]["address2"].ToString();
                     }
                 }
 
@@ -93,6 +95,8 @@ namespace GlucaTrack.Website.Account
             this.lblFirstName.Text = Resources.Account_Strings.Label_Firstname;
             this.lblMiddleName.Text = Resources.Account_Strings.Label_Middlename;
             this.lblLastName.Text = Resources.Account_Strings.Label_Lastname;
+            this.lblAddress1.Text = Resources.Account_Strings.Label_Address1;
+            this.lblAddress2.Text = Resources.Account_Strings.Label_Address2;
 
             this.btnSavePersonalSettings.Text = Resources.Account_Strings.Button_SavePersonalSettings;
         }
@@ -110,7 +114,9 @@ namespace GlucaTrack.Website.Account
                                               PendingAvatar,
                                               txtFirstName.Text.Trim(),
                                               txtMiddleName.Text.Trim(),
-                                              txtLastName.Text.Trim());
+                                              txtLastName.Text.Trim(),
+                                              txtAddress1.Text.Trim(),
+                                              txtAddress2.Text.Trim());
             }
             
             Session.Remove("PendingAvatar");
