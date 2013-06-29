@@ -9,6 +9,7 @@
             <asp:SessionParameter Name="user_id" SessionField="LoggedInUserId" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
+    <asp:SqlDataSource ID="States_US_DataSource" runat="server" ConnectionString="<%$ ConnectionStrings:glucatrackConnectionString %>" SelectCommand="sp_GetAllStates_US" SelectCommandType="StoredProcedure" />
     <br />
     <asp:UpdatePanel ID="upUpload" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
@@ -63,6 +64,11 @@
     <asp:Textbox runat="server" ID="txtAddress1" Text='[Address1]' style="font-size:smaller;"/><br /><br />
     <asp:Label ID="lblAddress2" runat="server">[Address2]</asp:Label><br />
     <asp:Textbox runat="server" ID="txtAddress2" Text='[Address2]' style="font-size:smaller;"/><br /><br />
+    <asp:Label ID="lblCity" runat="server">[City]</asp:Label><br />
+    <asp:Textbox runat="server" ID="txtCity" Text='[City]' style="font-size:smaller;"/><br /><br />
+
+    <asp:Label ID="lblState" runat="server" AssociatedControlID="ddState">[State]</asp:Label><br />
+    <asp:DropDownList ID="ddState" runat="server" CssClass="dropdownlist" /><br /><br />
 
     <asp:Button ID="btnSavePersonalSettings" runat="server" CommandName="Save" Text="Save Settings" OnClick="btnSavePersonalSettings_Click" class="LogButton" />         
 </asp:Content>

@@ -106,11 +106,11 @@
                     <p>        
                     <asp:Label ID="lblState" runat="server" AssociatedControlID="State">State</asp:Label>
                     <asp:UpdatePanel runat="server" ID="upState" style="width:100%;">
-                    <ContentTemplate>
-                        <asp:DropDownList ID="State" runat="server" CssClass="dropdownlist" 
-                            DataSourceID="States_US_DataSource" DataTextField = "name" DataValueField = "state_id"/>
-                    </ContentTemplate>
-                                </asp:UpdatePanel>
+                        <ContentTemplate>
+                            <asp:DropDownList ID="State" runat="server" CssClass="dropdownlist" 
+                                DataSourceID="States_US_DataSource" DataTextField = "name" DataValueField = "state_id"/>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
 
                     <asp:UpdatePanel runat="server" ID="upOtherState" style="width:100%;">
                         <ContentTemplate>

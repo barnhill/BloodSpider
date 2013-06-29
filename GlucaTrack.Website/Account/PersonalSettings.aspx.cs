@@ -65,6 +65,13 @@ namespace GlucaTrack.Website.Account
                         this.txtLastName.Text = dt[0]["lastname"].ToString();
                         this.txtAddress1.Text = dt[0]["address1"].ToString();
                         this.txtAddress2.Text = dt[0]["address2"].ToString();
+                        this.txtCity.Text = dt[0]["city"].ToString();
+
+                        try
+                        {
+                            SelectStateInDropdown(ddState, dt[0]["state_id"].ToString().Trim());
+                        }
+                        catch { }
                     }
                 }
 
@@ -97,6 +104,8 @@ namespace GlucaTrack.Website.Account
             this.lblLastName.Text = Resources.Account_Strings.Label_Lastname;
             this.lblAddress1.Text = Resources.Account_Strings.Label_Address1;
             this.lblAddress2.Text = Resources.Account_Strings.Label_Address2;
+            this.lblCity.Text = Resources.Account_Strings.Label_City;
+            this.lblState.Text = Resources.Account_Strings.Label_State;
 
             this.btnSavePersonalSettings.Text = Resources.Account_Strings.Button_SavePersonalSettings;
         }
@@ -116,7 +125,9 @@ namespace GlucaTrack.Website.Account
                                               txtMiddleName.Text.Trim(),
                                               txtLastName.Text.Trim(),
                                               txtAddress1.Text.Trim(),
-                                              txtAddress2.Text.Trim());
+                                              txtAddress2.Text.Trim(),
+                                              txtCity.Text.Trim(),
+                                              Convert.ToInt16(ddState.SelectedValue));
             }
             
             Session.Remove("PendingAvatar");
@@ -166,6 +177,26 @@ namespace GlucaTrack.Website.Account
             var newImage = new System.Drawing.Bitmap(newWidth, newHeight);
             System.Drawing.Graphics.FromImage(newImage).DrawImage(image, 0, 0, newWidth, newHeight);
             return newImage;
+        }
+
+        private void SelectStateInDropdown(DropDownList ddTarget, string stateid)
+        {
+            using (QueriesTableAdapters.sp_GetAllStates_USTableAdapter ta = new QueriesTableAdapters.sp_GetAllStates_USTableAdapter())
+            {
+                using (Queries.sp_GetAllStates_USDataTable dt = new Queries.sp_GetAllStates_USDataTable())
+                {
+                    ta.Fill(dt);
+
+                    ddTarget.Items.Clear();
+
+                    foreach (Queries.sp_GetAllStates_USRow state_row in dt.ToList())
+                    {
+                        ListItem li = new ListItem(state_row.name, state_row.state_id.ToString());
+                        li.Selected = (li.Value.Trim().ToLowerInvariant() == stateid.Trim().ToLowerInvariant());
+                        ddTarget.Items.Add(li);
+                    }
+                }
+            }
         }
     }
 }
