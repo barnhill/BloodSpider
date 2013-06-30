@@ -72,6 +72,9 @@ namespace GlucaTrack.Website.Account
                             SelectStateInDropdown(ddState, dt[0]["state_id"].ToString().Trim());
                         }
                         catch { }
+
+                        this.txtZipcode.Text = dt[0]["zipcode"].ToString();
+                        this.txtLogin.Text = dt[0]["login"].ToString();
                     }
                 }
 
@@ -106,6 +109,8 @@ namespace GlucaTrack.Website.Account
             this.lblAddress2.Text = Resources.Account_Strings.Label_Address2;
             this.lblCity.Text = Resources.Account_Strings.Label_City;
             this.lblState.Text = Resources.Account_Strings.Label_State;
+            this.lblZipcode.Text = Resources.Account_Strings.Label_Zipcode;
+            this.lblLogin.Text = Resources.Account_Strings.Label_Username;
 
             this.btnSavePersonalSettings.Text = Resources.Account_Strings.Button_SavePersonalSettings;
         }
@@ -127,7 +132,9 @@ namespace GlucaTrack.Website.Account
                                               txtAddress1.Text.Trim(),
                                               txtAddress2.Text.Trim(),
                                               txtCity.Text.Trim(),
-                                              Convert.ToInt16(ddState.SelectedValue));
+                                              Convert.ToInt16(ddState.SelectedValue),
+                                              txtZipcode.Text.Trim(),
+                                              txtLogin.Text.Trim());
             }
             
             Session.Remove("PendingAvatar");

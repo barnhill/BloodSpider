@@ -66,9 +66,12 @@
     <asp:Textbox runat="server" ID="txtAddress2" Text='[Address2]' style="font-size:smaller;"/><br /><br />
     <asp:Label ID="lblCity" runat="server">[City]</asp:Label><br />
     <asp:Textbox runat="server" ID="txtCity" Text='[City]' style="font-size:smaller;"/><br /><br />
-
     <asp:Label ID="lblState" runat="server" AssociatedControlID="ddState">[State]</asp:Label><br />
     <asp:DropDownList ID="ddState" runat="server" CssClass="dropdownlist" /><br /><br />
+    <asp:Label ID="lblZipcode" runat="server">[Zipcode]</asp:Label><br />
+    <asp:Textbox runat="server" ID="txtZipcode" Text='[Zipcode]' style="font-size:smaller;"/><br /><br />
+    <asp:Label ID="lblLogin" runat="server">[Login]</asp:Label><br />
+    <asp:Textbox runat="server" ID="txtLogin" Text='[Login]' style="font-size:smaller;"/><br /><br />
 
     <asp:Button ID="btnSavePersonalSettings" runat="server" CommandName="Save" Text="Save Settings" OnClick="btnSavePersonalSettings_Click" class="LogButton" />         
 </asp:Content>
