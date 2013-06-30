@@ -49,6 +49,9 @@ namespace GlucaTrack.Website.Account
             {
                 SetResources();
 
+                Populate_YearDropdown(ddBirthdate_Year);
+                Populate_MonthDropdown(ddBirthdate_Month);
+
                 //get current settings
                 using (QueriesTableAdapters.sp_GetUserSettingsTableAdapter ta = new QueriesTableAdapters.sp_GetUserSettingsTableAdapter())
                 {
@@ -67,14 +70,28 @@ namespace GlucaTrack.Website.Account
                         this.txtAddress2.Text = dt[0]["address2"].ToString();
                         this.txtCity.Text = dt[0]["city"].ToString();
 
-                        try
-                        {
-                            SelectStateInDropdown(ddState, dt[0]["state_id"].ToString().Trim());
-                        }
-                        catch { }
-
                         this.txtZipcode.Text = dt[0]["zipcode"].ToString();
-                        this.txtLogin.Text = dt[0]["login"].ToString();
+                        this.lblLastSyncValue.Text = dt[0]["last_sync"].ToString();
+                        this.lblLastWebLoginValue.Text = dt[0]["last_weblogin"].ToString();
+
+                        ddState.DataBind();
+                        ddUserType.DataBind();
+                        ddCountry.DataBind();
+                        ddIncome.DataBind();
+                        ddSex.DataBind();
+                        ddRace.DataBind();
+
+                        SelectInDropDown(ddState, dt[0]["state_id"].ToString().Trim());
+                        SelectInDropDown(ddUserType, dt[0]["usertype_id"].ToString().Trim());
+                        SelectInDropDown(ddCountry, dt[0]["country_id"].ToString().Trim());
+                        SelectInDropDown(ddIncome, dt[0]["income_id"].ToString().Trim());
+                        SelectInDropDown(ddSex, dt[0]["sex_id"].ToString().Trim());
+                        SelectInDropDown(ddRace, dt[0]["race_id"].ToString().Trim());
+
+                        DateTime dtBirthDate = Convert.ToDateTime(dt[0]["birthdate"].ToString().Trim());
+                        SelectInDropDown(ddBirthdate_Month, dtBirthDate.Month.ToString().Trim());
+                        this.txtBirthdate_Day.Text = dtBirthDate.Day.ToString();
+                        SelectInDropDown(ddBirthdate_Year, dtBirthDate.Year.ToString().Trim());
                     }
                 }
 
@@ -110,7 +127,14 @@ namespace GlucaTrack.Website.Account
             this.lblCity.Text = Resources.Account_Strings.Label_City;
             this.lblState.Text = Resources.Account_Strings.Label_State;
             this.lblZipcode.Text = Resources.Account_Strings.Label_Zipcode;
-            this.lblLogin.Text = Resources.Account_Strings.Label_Username;
+            this.lblLastSyncLabel.Text = Resources.Account_Strings.Label_LastSync;
+            this.lblLastWebLoginLabel.Text = Resources.Account_Strings.Label_LastWebLogin;
+            this.lblUserType.Text = Resources.Account_Strings.Label_UserType;
+            this.lblCountry.Text = Resources.Account_Strings.Label_Country;
+            this.lblIncome.Text = Resources.Account_Strings.Label_IncomeRange;
+            this.lblSex.Text = Resources.Account_Strings.Label_Sex;
+            this.lblRace.Text = Resources.Account_Strings.Label_Race;
+            this.lblBirthDate_Month.Text = Resources.Account_Strings.Label_Birthdate;
 
             this.btnSavePersonalSettings.Text = Resources.Account_Strings.Button_SavePersonalSettings;
         }
@@ -119,6 +143,16 @@ namespace GlucaTrack.Website.Account
         {
             using (QueriesTableAdapters.QueriesTableAdapter qta = new QueriesTableAdapters.QueriesTableAdapter())
             {
+                DateTime dtBirthdate = DateTime.Today.Date;
+                try
+                {
+                    dtBirthdate = new DateTime(Convert.ToInt32(ddBirthdate_Year.SelectedValue), Convert.ToInt32(ddBirthdate_Month.SelectedValue), Convert.ToInt32(txtBirthdate_Day.Text.Trim()));
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    return;
+                }
+
                 qta.sp_UpdateUserSettings(LoginRow.user_id,
                                               Convert.ToByte(((TextBox)this.fvLowNormal.Row.FindControl("LowNormal")).Text), 
                                               Convert.ToByte(((TextBox)this.fvHighNormal.Row.FindControl("HighNormal")).Text),
@@ -134,7 +168,12 @@ namespace GlucaTrack.Website.Account
                                               txtCity.Text.Trim(),
                                               Convert.ToInt16(ddState.SelectedValue),
                                               txtZipcode.Text.Trim(),
-                                              txtLogin.Text.Trim());
+                                              Convert.ToByte(ddUserType.SelectedValue),
+                                              Convert.ToInt32(ddCountry.SelectedValue),
+                                              Convert.ToInt32(ddIncome.SelectedValue),
+                                              Convert.ToInt16(ddSex.SelectedValue),
+                                              Convert.ToInt16(ddRace.SelectedValue),
+                                              dtBirthdate);
             }
             
             Session.Remove("PendingAvatar");
@@ -186,24 +225,41 @@ namespace GlucaTrack.Website.Account
             return newImage;
         }
 
-        private void SelectStateInDropdown(DropDownList ddTarget, string stateid)
+        private void SelectInDropDown(DropDownList ddTarget, string value)
         {
-            using (QueriesTableAdapters.sp_GetAllStates_USTableAdapter ta = new QueriesTableAdapters.sp_GetAllStates_USTableAdapter())
+            foreach (ListItem li in ddTarget.Items)
             {
-                using (Queries.sp_GetAllStates_USDataTable dt = new Queries.sp_GetAllStates_USDataTable())
+                if (li.Value == value)
                 {
-                    ta.Fill(dt);
-
-                    ddTarget.Items.Clear();
-
-                    foreach (Queries.sp_GetAllStates_USRow state_row in dt.ToList())
-                    {
-                        ListItem li = new ListItem(state_row.name, state_row.state_id.ToString());
-                        li.Selected = (li.Value.Trim().ToLowerInvariant() == stateid.Trim().ToLowerInvariant());
-                        ddTarget.Items.Add(li);
-                    }
+                    li.Selected = true;
+                    break;
                 }
             }
+        }
+
+        private void Populate_YearDropdown(DropDownList ddTarget)
+        {
+            for (int i = DateTime.Now.Year; i > DateTime.Now.Year - 120; i--)
+            {
+                ddTarget.Items.Add(new ListItem(i.ToString(), i.ToString()));
+            }
+        }
+
+        private void Populate_MonthDropdown(DropDownList ddTarget)
+        {
+            ddTarget.Items.Clear();
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_1, "1"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_2, "2"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_3, "3"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_4, "4"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_5, "5"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_6, "6"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_7, "7"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_8, "8"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_9, "9"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_10, "10"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_11, "11"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_12, "12"));
         }
     }
 }

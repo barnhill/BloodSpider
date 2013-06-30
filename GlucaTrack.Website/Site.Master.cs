@@ -54,7 +54,6 @@ namespace GlucaTrack.Website
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            int i = 0;
 #if !DEBUG
             setSecureProtocol(true);
 #endif

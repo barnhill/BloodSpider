@@ -331,6 +331,24 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last sync.
+        /// </summary>
+        internal static string Label_LastSync {
+            get {
+                return ResourceManager.GetString("Label_LastSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last logged into website.
+        /// </summary>
+        internal static string Label_LastWebLogin {
+            get {
+                return ResourceManager.GetString("Label_LastWebLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Low end of normal.
         /// </summary>
         internal static string Label_LowNormal {
@@ -547,6 +565,15 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User account type.
+        /// </summary>
+        internal static string Label_UserType {
+            get {
+                return ResourceManager.GetString("Label_UserType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome {0}, Registration is complete.  You will now be redirected to the main page..
         /// </summary>
         internal static string Label_WelcomeRegistrationComplete {
@@ -579,6 +606,114 @@ namespace GlucaTrack.Website.Resources {
         internal static string Login_Failure {
             get {
                 return ResourceManager.GetString("Login_Failure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to January.
+        /// </summary>
+        internal static string Month_1 {
+            get {
+                return ResourceManager.GetString("Month_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to October.
+        /// </summary>
+        internal static string Month_10 {
+            get {
+                return ResourceManager.GetString("Month_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to November.
+        /// </summary>
+        internal static string Month_11 {
+            get {
+                return ResourceManager.GetString("Month_11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to December.
+        /// </summary>
+        internal static string Month_12 {
+            get {
+                return ResourceManager.GetString("Month_12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feburary.
+        /// </summary>
+        internal static string Month_2 {
+            get {
+                return ResourceManager.GetString("Month_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to March.
+        /// </summary>
+        internal static string Month_3 {
+            get {
+                return ResourceManager.GetString("Month_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to April.
+        /// </summary>
+        internal static string Month_4 {
+            get {
+                return ResourceManager.GetString("Month_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to May.
+        /// </summary>
+        internal static string Month_5 {
+            get {
+                return ResourceManager.GetString("Month_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to June.
+        /// </summary>
+        internal static string Month_6 {
+            get {
+                return ResourceManager.GetString("Month_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to July.
+        /// </summary>
+        internal static string Month_7 {
+            get {
+                return ResourceManager.GetString("Month_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to August.
+        /// </summary>
+        internal static string Month_8 {
+            get {
+                return ResourceManager.GetString("Month_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to September.
+        /// </summary>
+        internal static string Month_9 {
+            get {
+                return ResourceManager.GetString("Month_9", resourceCulture);
             }
         }
         

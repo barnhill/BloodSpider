@@ -146,23 +146,10 @@
 
                    <p>
                    <asp:Label ID="lblBirthDate_Month" runat="server" AssociatedControlID="ddBirthdate_Month">Birthdate</asp:Label>
-                   <asp:DropDownList ID="ddBirthdate_Month" runat="server" class="dropdownlist">
-                                    <asp:ListItem Value="1">January</asp:ListItem>
-                                    <asp:ListItem Value="2">February</asp:ListItem>
-                                    <asp:ListItem Value="3">March</asp:ListItem>
-                                    <asp:ListItem Value="4">April</asp:ListItem>
-                                    <asp:ListItem Value="5">May</asp:ListItem>
-                                    <asp:ListItem Value="6">June</asp:ListItem>
-                                    <asp:ListItem Value="7">July</asp:ListItem>
-                                    <asp:ListItem Value="8">August</asp:ListItem>
-                                    <asp:ListItem Value="9">September</asp:ListItem>
-                                    <asp:ListItem Value="10">October</asp:ListItem>
-                                    <asp:ListItem Value="11">November</asp:ListItem>
-                                    <asp:ListItem Value="12">December</asp:ListItem>
-                   </asp:DropDownList>
+                   <asp:DropDownList ID="ddBirthdate_Month" runat="server" class="dropdownlist" />
                                 &nbsp;
 
-                   <asp:TextBox runat="server" ID="txtBirthdate_Day" Width="30"/>
+                   <asp:TextBox runat="server" ID="txtBirthdate_Day" Width="30" style="font-size:smaller;"/>
                    <asp:FilteredTextBoxExtender ID="txtBirthdate_Day_FilteredTextBoxExtender" runat="server" FilterType="Numbers" TargetControlID="txtBirthdate_Day"/>
                                 &nbsp;
                    <asp:DropDownList ID="ddBirthdate_Year" runat="server" class="dropdownlist"/>
@@ -197,7 +184,7 @@
                     </p>
 
                     <p>
-                    <asp:UpdatePanel runat="server" ID="UpdatePanel1" style="width:100%;">
+                    <asp:UpdatePanel runat="server" ID="upDiabetesType" style="width:100%;">
                         <ContentTemplate>
                             <asp:Label ID="lblDiabetesType" runat="server" AssociatedControlID="DiabetesType">Type of Diabetes</asp:Label>
                             <asp:DropDownList ID="DiabetesType" runat="server" DataSourceID="DiabetesType_DataSource" DataTextField = "name" DataValueField = "diabetestypes_id" 

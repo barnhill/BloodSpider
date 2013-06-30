@@ -2635,7 +2635,21 @@ namespace GlucaTrack.Website {
             
             private global::System.Data.DataColumn columnzipcode;
             
-            private global::System.Data.DataColumn columnlogin;
+            private global::System.Data.DataColumn columnlast_sync;
+            
+            private global::System.Data.DataColumn columnlast_weblogin;
+            
+            private global::System.Data.DataColumn columnusertype_id;
+            
+            private global::System.Data.DataColumn columncountry_id;
+            
+            private global::System.Data.DataColumn columnincome_id;
+            
+            private global::System.Data.DataColumn columnsex_id;
+            
+            private global::System.Data.DataColumn columnrace_id;
+            
+            private global::System.Data.DataColumn columnbirthdate;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -2784,9 +2798,65 @@ namespace GlucaTrack.Website {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn loginColumn {
+            public global::System.Data.DataColumn last_syncColumn {
                 get {
-                    return this.columnlogin;
+                    return this.columnlast_sync;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn last_webloginColumn {
+                get {
+                    return this.columnlast_weblogin;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn usertype_idColumn {
+                get {
+                    return this.columnusertype_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn country_idColumn {
+                get {
+                    return this.columncountry_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn income_idColumn {
+                get {
+                    return this.columnincome_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sex_idColumn {
+                get {
+                    return this.columnsex_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn race_idColumn {
+                get {
+                    return this.columnrace_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn birthdateColumn {
+                get {
+                    return this.columnbirthdate;
                 }
             }
             
@@ -2827,7 +2897,29 @@ namespace GlucaTrack.Website {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_GetUserSettingsRow Addsp_GetUserSettingsRow(int user_id, byte lownormal, byte highnormal, byte start_morning, byte start_afternoon, byte start_night, string firstname, string middlename, string lastname, string address1, string address2, string city, short state_id, string zipcode, string login) {
+            public sp_GetUserSettingsRow Addsp_GetUserSettingsRow(
+                        int user_id, 
+                        byte lownormal, 
+                        byte highnormal, 
+                        byte start_morning, 
+                        byte start_afternoon, 
+                        byte start_night, 
+                        string firstname, 
+                        string middlename, 
+                        string lastname, 
+                        string address1, 
+                        string address2, 
+                        string city, 
+                        short state_id, 
+                        string zipcode, 
+                        System.DateTime last_sync, 
+                        System.DateTime last_weblogin, 
+                        byte usertype_id, 
+                        int country_id, 
+                        int income_id, 
+                        short sex_id, 
+                        short race_id, 
+                        System.DateTime birthdate) {
                 sp_GetUserSettingsRow rowsp_GetUserSettingsRow = ((sp_GetUserSettingsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         user_id,
@@ -2844,7 +2936,14 @@ namespace GlucaTrack.Website {
                         city,
                         state_id,
                         zipcode,
-                        login};
+                        last_sync,
+                        last_weblogin,
+                        usertype_id,
+                        country_id,
+                        income_id,
+                        sex_id,
+                        race_id,
+                        birthdate};
                 rowsp_GetUserSettingsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowsp_GetUserSettingsRow);
                 return rowsp_GetUserSettingsRow;
@@ -2888,7 +2987,14 @@ namespace GlucaTrack.Website {
                 this.columncity = base.Columns["city"];
                 this.columnstate_id = base.Columns["state_id"];
                 this.columnzipcode = base.Columns["zipcode"];
-                this.columnlogin = base.Columns["login"];
+                this.columnlast_sync = base.Columns["last_sync"];
+                this.columnlast_weblogin = base.Columns["last_weblogin"];
+                this.columnusertype_id = base.Columns["usertype_id"];
+                this.columncountry_id = base.Columns["country_id"];
+                this.columnincome_id = base.Columns["income_id"];
+                this.columnsex_id = base.Columns["sex_id"];
+                this.columnrace_id = base.Columns["race_id"];
+                this.columnbirthdate = base.Columns["birthdate"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2922,8 +3028,22 @@ namespace GlucaTrack.Website {
                 base.Columns.Add(this.columnstate_id);
                 this.columnzipcode = new global::System.Data.DataColumn("zipcode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnzipcode);
-                this.columnlogin = new global::System.Data.DataColumn("login", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnlogin);
+                this.columnlast_sync = new global::System.Data.DataColumn("last_sync", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlast_sync);
+                this.columnlast_weblogin = new global::System.Data.DataColumn("last_weblogin", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlast_weblogin);
+                this.columnusertype_id = new global::System.Data.DataColumn("usertype_id", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnusertype_id);
+                this.columncountry_id = new global::System.Data.DataColumn("country_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncountry_id);
+                this.columnincome_id = new global::System.Data.DataColumn("income_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnincome_id);
+                this.columnsex_id = new global::System.Data.DataColumn("sex_id", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsex_id);
+                this.columnrace_id = new global::System.Data.DataColumn("race_id", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnrace_id);
+                this.columnbirthdate = new global::System.Data.DataColumn("birthdate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnbirthdate);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnuser_id}, true));
                 this.columnuser_id.AllowDBNull = false;
@@ -2946,8 +3066,12 @@ namespace GlucaTrack.Website {
                 this.columnstate_id.AllowDBNull = false;
                 this.columnzipcode.AllowDBNull = false;
                 this.columnzipcode.MaxLength = 12;
-                this.columnlogin.AllowDBNull = false;
-                this.columnlogin.MaxLength = 20;
+                this.columnusertype_id.AllowDBNull = false;
+                this.columncountry_id.AllowDBNull = false;
+                this.columnincome_id.AllowDBNull = false;
+                this.columnsex_id.AllowDBNull = false;
+                this.columnrace_id.AllowDBNull = false;
+                this.columnbirthdate.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3888,12 +4012,99 @@ namespace GlucaTrack.Website {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string login {
+            public System.DateTime last_sync {
                 get {
-                    return ((string)(this[this.tablesp_GetUserSettings.loginColumn]));
+                    try {
+                        return ((global::System.DateTime)(this[this.tablesp_GetUserSettings.last_syncColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'last_sync\' in table \'sp_GetUserSettings\' is DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tablesp_GetUserSettings.loginColumn] = value;
+                    this[this.tablesp_GetUserSettings.last_syncColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime last_weblogin {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tablesp_GetUserSettings.last_webloginColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'last_weblogin\' in table \'sp_GetUserSettings\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_GetUserSettings.last_webloginColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte usertype_id {
+                get {
+                    return ((byte)(this[this.tablesp_GetUserSettings.usertype_idColumn]));
+                }
+                set {
+                    this[this.tablesp_GetUserSettings.usertype_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int country_id {
+                get {
+                    return ((int)(this[this.tablesp_GetUserSettings.country_idColumn]));
+                }
+                set {
+                    this[this.tablesp_GetUserSettings.country_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int income_id {
+                get {
+                    return ((int)(this[this.tablesp_GetUserSettings.income_idColumn]));
+                }
+                set {
+                    this[this.tablesp_GetUserSettings.income_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public short sex_id {
+                get {
+                    return ((short)(this[this.tablesp_GetUserSettings.sex_idColumn]));
+                }
+                set {
+                    this[this.tablesp_GetUserSettings.sex_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public short race_id {
+                get {
+                    return ((short)(this[this.tablesp_GetUserSettings.race_idColumn]));
+                }
+                set {
+                    this[this.tablesp_GetUserSettings.race_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime birthdate {
+                get {
+                    return ((global::System.DateTime)(this[this.tablesp_GetUserSettings.birthdateColumn]));
+                }
+                set {
+                    this[this.tablesp_GetUserSettings.birthdateColumn] = value;
                 }
             }
             
@@ -3919,6 +4130,30 @@ namespace GlucaTrack.Website {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setaddress2Null() {
                 this[this.tablesp_GetUserSettings.address2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Islast_syncNull() {
+                return this.IsNull(this.tablesp_GetUserSettings.last_syncColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setlast_syncNull() {
+                this[this.tablesp_GetUserSettings.last_syncColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Islast_webloginNull() {
+                return this.IsNull(this.tablesp_GetUserSettings.last_webloginColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setlast_webloginNull() {
+                this[this.tablesp_GetUserSettings.last_webloginColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -5647,7 +5882,14 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
             tableMapping.ColumnMappings.Add("city", "city");
             tableMapping.ColumnMappings.Add("state_id", "state_id");
             tableMapping.ColumnMappings.Add("zipcode", "zipcode");
-            tableMapping.ColumnMappings.Add("login", "login");
+            tableMapping.ColumnMappings.Add("last_sync", "last_sync");
+            tableMapping.ColumnMappings.Add("last_weblogin", "last_weblogin");
+            tableMapping.ColumnMappings.Add("usertype_id", "usertype_id");
+            tableMapping.ColumnMappings.Add("country_id", "country_id");
+            tableMapping.ColumnMappings.Add("income_id", "income_id");
+            tableMapping.ColumnMappings.Add("sex_id", "sex_id");
+            tableMapping.ColumnMappings.Add("race_id", "race_id");
+            tableMapping.ColumnMappings.Add("birthdate", "birthdate");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -5790,7 +6032,12 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_city", global::System.Data.SqlDbType.VarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_stateid", global::System.Data.SqlDbType.SmallInt, 2, global::System.Data.ParameterDirection.Input, 5, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_zipcode", global::System.Data.SqlDbType.VarChar, 12, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_login", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_usertypeid", global::System.Data.SqlDbType.TinyInt, 1, global::System.Data.ParameterDirection.Input, 3, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_countryid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_incomeid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_sexid", global::System.Data.SqlDbType.SmallInt, 2, global::System.Data.ParameterDirection.Input, 5, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_raceid", global::System.Data.SqlDbType.SmallInt, 2, global::System.Data.ParameterDirection.Input, 5, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_birthdate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6030,7 +6277,12 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
                     string user_city, 
                     global::System.Nullable<short> user_stateid, 
                     string user_zipcode, 
-                    string user_login) {
+                    global::System.Nullable<byte> user_usertypeid, 
+                    global::System.Nullable<int> user_countryid, 
+                    global::System.Nullable<int> user_incomeid, 
+                    global::System.Nullable<short> user_sexid, 
+                    global::System.Nullable<short> user_raceid, 
+                    global::System.Nullable<global::System.DateTime> user_birthdate) {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[2]));
             if ((userid.HasValue == true)) {
                 command.Parameters[1].Value = ((int)(userid.Value));
@@ -6122,11 +6374,41 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
             else {
                 command.Parameters[15].Value = ((string)(user_zipcode));
             }
-            if ((user_login == null)) {
-                command.Parameters[16].Value = global::System.DBNull.Value;
+            if ((user_usertypeid.HasValue == true)) {
+                command.Parameters[16].Value = ((byte)(user_usertypeid.Value));
             }
             else {
-                command.Parameters[16].Value = ((string)(user_login));
+                command.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            if ((user_countryid.HasValue == true)) {
+                command.Parameters[17].Value = ((int)(user_countryid.Value));
+            }
+            else {
+                command.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            if ((user_incomeid.HasValue == true)) {
+                command.Parameters[18].Value = ((int)(user_incomeid.Value));
+            }
+            else {
+                command.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            if ((user_sexid.HasValue == true)) {
+                command.Parameters[19].Value = ((short)(user_sexid.Value));
+            }
+            else {
+                command.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            if ((user_raceid.HasValue == true)) {
+                command.Parameters[20].Value = ((short)(user_raceid.Value));
+            }
+            else {
+                command.Parameters[20].Value = global::System.DBNull.Value;
+            }
+            if ((user_birthdate.HasValue == true)) {
+                command.Parameters[21].Value = ((System.DateTime)(user_birthdate.Value));
+            }
+            else {
+                command.Parameters[21].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 

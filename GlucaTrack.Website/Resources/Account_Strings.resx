@@ -237,6 +237,13 @@
     <value>Last name is required.</value>
     <comment>Last name is required field on 2nd page of registration</comment>
   </data>
+  <data name="Label_LastSync" xml:space="preserve">
+    <value>Last sync</value>
+    <comment>Label for the last sync field</comment>
+  </data>
+  <data name="Label_LastWebLogin" xml:space="preserve">
+    <value>Last logged into website</value>
+  </data>
   <data name="Label_LowNormal" xml:space="preserve">
     <value>Low end of normal</value>
     <comment>Displays on the personal settings page</comment>
@@ -360,5 +367,57 @@
   <data name="Username_NotAvailable" xml:space="preserve">
     <value>Username taken, sorry.</value>
     <comment>Displays on the registration screen if the username is already taken</comment>
+  </data>
+  <data name="Label_UserType" xml:space="preserve">
+    <value>User account type</value>
+    <comment>Label for the account type field</comment>
+  </data>
+  <data name="Month_1" xml:space="preserve">
+    <value>January</value>
+    <comment>1st month</comment>
+  </data>
+  <data name="Month_10" xml:space="preserve">
+    <value>October</value>
+    <comment>10th month</comment>
+  </data>
+  <data name="Month_11" xml:space="preserve">
+    <value>November</value>
+    <comment>11th month</comment>
+  </data>
+  <data name="Month_12" xml:space="preserve">
+    <value>December</value>
+    <comment>12th month</comment>
+  </data>
+  <data name="Month_2" xml:space="preserve">
+    <value>Feburary</value>
+    <comment>2nd month</comment>
+  </data>
+  <data name="Month_3" xml:space="preserve">
+    <value>March</value>
+    <comment>3rd month</comment>
+  </data>
+  <data name="Month_4" xml:space="preserve">
+    <value>April</value>
+    <comment>4th month</comment>
+  </data>
+  <data name="Month_5" xml:space="preserve">
+    <value>May</value>
+    <comment>5th month</comment>
+  </data>
+  <data name="Month_6" xml:space="preserve">
+    <value>June</value>
+    <comment>6th month</comment>
+  </data>
+  <data name="Month_7" xml:space="preserve">
+    <value>July</value>
+    <comment>7th month</comment>
+  </data>
+  <data name="Month_8" xml:space="preserve">
+    <value>August</value>
+    <comment>8th month</comment>
+  </data>
+  <data name="Month_9" xml:space="preserve">
+    <value>September</value>
+    <comment>9th month</comment>
   </data>
 </root>

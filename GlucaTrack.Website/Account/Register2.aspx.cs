@@ -21,7 +21,8 @@ namespace GlucaTrack.Website.Account
                 }
                 SetResources();
                 ShowStateSelection();
-                PopulateBirthdate_YearDropdown();
+                Populate_YearDropdown(ddBirthdate_Year);
+                Populate_MonthDropdown(ddBirthdate_Month);
             }
         }
 
@@ -154,12 +155,29 @@ namespace GlucaTrack.Website.Account
             }
         }
 
-        private void PopulateBirthdate_YearDropdown()
+        private void Populate_YearDropdown(DropDownList ddTarget)
         {
             for (int i = DateTime.Now.Year; i > DateTime.Now.Year - 120; i--)
             {
-                this.ddBirthdate_Year.Items.Add(new ListItem(i.ToString(), i.ToString()));
+                ddTarget.Items.Add(new ListItem(i.ToString(), i.ToString()));
             }
+        }
+
+        private void Populate_MonthDropdown(DropDownList ddTarget)
+        {
+            ddTarget.Items.Clear();
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_1, "1"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_2, "2"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_3, "3"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_4, "4"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_5, "5"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_6, "6"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_7, "7"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_8, "8"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_9, "9"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_10, "10"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_11, "11"));
+            ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_12, "12"));
         }
     }
 }
