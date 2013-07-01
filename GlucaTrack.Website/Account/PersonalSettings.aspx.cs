@@ -73,6 +73,7 @@ namespace GlucaTrack.Website.Account
                         this.txtZipcode.Text = dt[0]["zipcode"].ToString();
                         this.lblLastSyncValue.Text = dt[0]["last_sync"].ToString();
                         this.lblLastWebLoginValue.Text = dt[0]["last_weblogin"].ToString();
+                        this.txtEmail.Text = dt[0]["email"].ToString();
 
                         ddState.DataBind();
                         ddUserType.DataBind();
@@ -135,6 +136,7 @@ namespace GlucaTrack.Website.Account
             this.lblSex.Text = Resources.Account_Strings.Label_Sex;
             this.lblRace.Text = Resources.Account_Strings.Label_Race;
             this.lblBirthDate_Month.Text = Resources.Account_Strings.Label_Birthdate;
+            this.lblEmail.Text = Resources.Account_Strings.Label_EmailAddress;
 
             this.btnSavePersonalSettings.Text = Resources.Account_Strings.Button_SavePersonalSettings;
         }
@@ -154,26 +156,27 @@ namespace GlucaTrack.Website.Account
                 }
 
                 qta.sp_UpdateUserSettings(LoginRow.user_id,
-                                              Convert.ToByte(((TextBox)this.fvLowNormal.Row.FindControl("LowNormal")).Text), 
-                                              Convert.ToByte(((TextBox)this.fvHighNormal.Row.FindControl("HighNormal")).Text),
-                                              Convert.ToByte(ddMorningStart.SelectedValue),
-                                              Convert.ToByte(ddAfternoonStart.SelectedValue),
-                                              Convert.ToByte(ddNightStart.SelectedValue),
-                                              PendingAvatar,
-                                              txtFirstName.Text.Trim(),
-                                              txtMiddleName.Text.Trim(),
-                                              txtLastName.Text.Trim(),
-                                              txtAddress1.Text.Trim(),
-                                              txtAddress2.Text.Trim(),
-                                              txtCity.Text.Trim(),
-                                              Convert.ToInt16(ddState.SelectedValue),
-                                              txtZipcode.Text.Trim(),
-                                              Convert.ToByte(ddUserType.SelectedValue),
-                                              Convert.ToInt32(ddCountry.SelectedValue),
-                                              Convert.ToInt32(ddIncome.SelectedValue),
-                                              Convert.ToInt16(ddSex.SelectedValue),
-                                              Convert.ToInt16(ddRace.SelectedValue),
-                                              dtBirthdate);
+                                          Convert.ToByte(((TextBox)this.fvLowNormal.Row.FindControl("LowNormal")).Text), 
+                                          Convert.ToByte(((TextBox)this.fvHighNormal.Row.FindControl("HighNormal")).Text),
+                                          Convert.ToByte(ddMorningStart.SelectedValue),
+                                          Convert.ToByte(ddAfternoonStart.SelectedValue),
+                                          Convert.ToByte(ddNightStart.SelectedValue),
+                                          PendingAvatar,
+                                          txtFirstName.Text.Trim(),
+                                          txtMiddleName.Text.Trim(),
+                                          txtLastName.Text.Trim(),
+                                          txtAddress1.Text.Trim(),
+                                          txtAddress2.Text.Trim(),
+                                          txtCity.Text.Trim(),
+                                          Convert.ToInt16(ddState.SelectedValue),
+                                          txtZipcode.Text.Trim(),
+                                          Convert.ToByte(ddUserType.SelectedValue),
+                                          Convert.ToInt32(ddCountry.SelectedValue),
+                                          Convert.ToInt32(ddIncome.SelectedValue),
+                                          Convert.ToInt16(ddSex.SelectedValue),
+                                          Convert.ToInt16(ddRace.SelectedValue),
+                                          dtBirthdate,
+                                          txtEmail.Text.Trim());
             }
             
             Session.Remove("PendingAvatar");

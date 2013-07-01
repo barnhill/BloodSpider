@@ -14,7 +14,7 @@
     <Shape ID="DesignTable:sp_GetHbA1c" ZOrder="4" X="1204" Y="516" Height="96" Width="222" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
     <Shape ID="DesignTable:sp_GetAllStates_US" ZOrder="2" X="949" Y="620" Height="134" Width="255" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
     <Shape ID="DesignSources:QueriesTableAdapter" ZOrder="3" X="19" Y="11" Height="86" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="82" />
-    <Shape ID="DesignTable:sp_GetUserSettings" ZOrder="1" X="657" Y="346" Height="305" Width="256" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
+    <Shape ID="DesignTable:sp_GetUserSettings" ZOrder="1" X="656" Y="360" Height="305" Width="256" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

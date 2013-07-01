@@ -2651,6 +2651,8 @@ namespace GlucaTrack.Website {
             
             private global::System.Data.DataColumn columnbirthdate;
             
+            private global::System.Data.DataColumn columnemail;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public sp_GetUserSettingsDataTable() {
@@ -2862,6 +2864,14 @@ namespace GlucaTrack.Website {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn emailColumn {
+                get {
+                    return this.columnemail;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2919,7 +2929,8 @@ namespace GlucaTrack.Website {
                         int income_id, 
                         short sex_id, 
                         short race_id, 
-                        System.DateTime birthdate) {
+                        System.DateTime birthdate, 
+                        string email) {
                 sp_GetUserSettingsRow rowsp_GetUserSettingsRow = ((sp_GetUserSettingsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         user_id,
@@ -2943,7 +2954,8 @@ namespace GlucaTrack.Website {
                         income_id,
                         sex_id,
                         race_id,
-                        birthdate};
+                        birthdate,
+                        email};
                 rowsp_GetUserSettingsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowsp_GetUserSettingsRow);
                 return rowsp_GetUserSettingsRow;
@@ -2995,6 +3007,7 @@ namespace GlucaTrack.Website {
                 this.columnsex_id = base.Columns["sex_id"];
                 this.columnrace_id = base.Columns["race_id"];
                 this.columnbirthdate = base.Columns["birthdate"];
+                this.columnemail = base.Columns["email"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3044,6 +3057,8 @@ namespace GlucaTrack.Website {
                 base.Columns.Add(this.columnrace_id);
                 this.columnbirthdate = new global::System.Data.DataColumn("birthdate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnbirthdate);
+                this.columnemail = new global::System.Data.DataColumn("email", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnemail);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnuser_id}, true));
                 this.columnuser_id.AllowDBNull = false;
@@ -3072,6 +3087,8 @@ namespace GlucaTrack.Website {
                 this.columnsex_id.AllowDBNull = false;
                 this.columnrace_id.AllowDBNull = false;
                 this.columnbirthdate.AllowDBNull = false;
+                this.columnemail.AllowDBNull = false;
+                this.columnemail.MaxLength = 320;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4105,6 +4122,17 @@ namespace GlucaTrack.Website {
                 }
                 set {
                     this[this.tablesp_GetUserSettings.birthdateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string email {
+                get {
+                    return ((string)(this[this.tablesp_GetUserSettings.emailColumn]));
+                }
+                set {
+                    this[this.tablesp_GetUserSettings.emailColumn] = value;
                 }
             }
             
@@ -5890,6 +5918,7 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
             tableMapping.ColumnMappings.Add("sex_id", "sex_id");
             tableMapping.ColumnMappings.Add("race_id", "race_id");
             tableMapping.ColumnMappings.Add("birthdate", "birthdate");
+            tableMapping.ColumnMappings.Add("email", "email");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -6038,6 +6067,7 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_sexid", global::System.Data.SqlDbType.SmallInt, 2, global::System.Data.ParameterDirection.Input, 5, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_raceid", global::System.Data.SqlDbType.SmallInt, 2, global::System.Data.ParameterDirection.Input, 5, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_birthdate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_email", global::System.Data.SqlDbType.VarChar, 320, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6282,7 +6312,8 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
                     global::System.Nullable<int> user_incomeid, 
                     global::System.Nullable<short> user_sexid, 
                     global::System.Nullable<short> user_raceid, 
-                    global::System.Nullable<global::System.DateTime> user_birthdate) {
+                    global::System.Nullable<global::System.DateTime> user_birthdate, 
+                    string user_email) {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[2]));
             if ((userid.HasValue == true)) {
                 command.Parameters[1].Value = ((int)(userid.Value));
@@ -6409,6 +6440,12 @@ namespace GlucaTrack.Website.QueriesTableAdapters {
             }
             else {
                 command.Parameters[21].Value = global::System.DBNull.Value;
+            }
+            if ((user_email == null)) {
+                command.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[22].Value = ((string)(user_email));
             }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 

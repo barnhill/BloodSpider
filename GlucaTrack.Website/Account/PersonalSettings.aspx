@@ -92,6 +92,9 @@
     <asp:Label ID="lblZipcode" runat="server">[Zipcode]</asp:Label><br />
     <asp:Textbox runat="server" ID="txtZipcode" Text='[Zipcode]' style="font-size:smaller;"/><br /><br />
     
+    <asp:Label ID="lblEmail" runat="server">[Email]</asp:Label><br />
+    <asp:Textbox runat="server" ID="txtEmail" Text='[Email]' style="font-size:smaller;"/><br /><br />
+
     <asp:Label ID="lblLastSyncLabel" runat="server">[Last Sync]</asp:Label><br />
     <asp:Label ID="lblLastSyncValue" runat="server">[Last Sync]</asp:Label><br /><br />
     
@@ -145,7 +148,7 @@
     <asp:TextBox runat="server" ID="txtBirthdate_Day" Width="30" style="font-size:smaller;"/>
     <asp:FilteredTextBoxExtender ID="txtBirthdate_Day_FilteredTextBoxExtender" runat="server" FilterType="Numbers" TargetControlID="txtBirthdate_Day"/>
                 &nbsp;
-    <asp:DropDownList ID="ddBirthdate_Year" runat="server" class="dropdownlist"/>
+    <asp:DropDownList ID="ddBirthdate_Year" runat="server" class="dropdownlist"/><br /><br />
 
     <asp:Button ID="btnSavePersonalSettings" runat="server" CommandName="Save" Text="Save Settings" OnClick="btnSavePersonalSettings_Click" class="LogButton" />         
 </asp:Content>
