@@ -16,6 +16,7 @@
     <asp:SqlDataSource ID="Income_DataSource" runat="server" ConnectionString="<%$ ConnectionStrings:glucatrackConnectionString %>" SelectCommand="sp_GetAllIncomeRanges" SelectCommandType="StoredProcedure" />
     <asp:SqlDataSource ID="Race_DataSource" runat="server" ConnectionString="<%$ ConnectionStrings:glucatrackConnectionString %>" SelectCommand="sp_GetAllRaces" SelectCommandType="StoredProcedure" />
     <asp:SqlDataSource ID="UserType_DataSource" runat="server" ConnectionString="<%$ ConnectionStrings:glucatrackConnectionString %>" SelectCommand="sp_GetAllUserTypes" SelectCommandType="StoredProcedure" />
+    <asp:SqlDataSource ID="TimeZones_DataSource" runat="server" ConnectionString="<%$ ConnectionStrings:glucatrackConnectionString %>" SelectCommand="sp_GetAllTimezones" SelectCommandType="StoredProcedure" />
     <br />
     
     <asp:UpdatePanel ID="upUpload" runat="server" UpdateMode="Conditional">
@@ -89,6 +90,13 @@
         </ContentTemplate>
     </asp:UpdatePanel><br /><br />
     
+    <asp:UpdatePanel runat="server" ID="upOtherState" style="width:100%;">
+        <ContentTemplate>
+            <asp:Label ID="lblOtherState" runat="server">[Other state]</asp:Label><br />
+            <asp:Textbox runat="server" ID="txtOtherState" Text='[Other state]' style="font-size:smaller;"/><br /><br />
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
     <asp:Label ID="lblZipcode" runat="server">[Zipcode]</asp:Label><br />
     <asp:Textbox runat="server" ID="txtZipcode" Text='[Zipcode]' style="font-size:smaller;"/><br /><br />
     
@@ -149,6 +157,14 @@
     <asp:FilteredTextBoxExtender ID="txtBirthdate_Day_FilteredTextBoxExtender" runat="server" FilterType="Numbers" TargetControlID="txtBirthdate_Day"/>
                 &nbsp;
     <asp:DropDownList ID="ddBirthdate_Year" runat="server" class="dropdownlist"/><br /><br />
+
+    <asp:UpdatePanel runat="server" ID="upTimezone" style="width:100%;">
+        <ContentTemplate>
+            <asp:Label ID="lblTimezone" runat="server" AssociatedControlID="ddTimezone">[Timezone]</asp:Label><br />
+            <asp:DropDownList ID="ddTimezone" runat="server" DataSourceID="TimeZones_DataSource" DataTextField = "location" DataValueField = "timezone_id" 
+                class="dropdownlist" AutoPostBack="true"/>
+        </ContentTemplate>
+    </asp:UpdatePanel><br /><br />
 
     <asp:Button ID="btnSavePersonalSettings" runat="server" CommandName="Save" Text="Save Settings" OnClick="btnSavePersonalSettings_Click" class="LogButton" />         
 </asp:Content>

@@ -74,6 +74,7 @@ namespace GlucaTrack.Website.Account
                         this.lblLastSyncValue.Text = dt[0]["last_sync"].ToString();
                         this.lblLastWebLoginValue.Text = dt[0]["last_weblogin"].ToString();
                         this.txtEmail.Text = dt[0]["email"].ToString();
+                        this.txtOtherState.Text = dt[0]["other_state"].ToString();
 
                         ddState.DataBind();
                         ddUserType.DataBind();
@@ -88,6 +89,7 @@ namespace GlucaTrack.Website.Account
                         SelectInDropDown(ddIncome, dt[0]["income_id"].ToString().Trim());
                         SelectInDropDown(ddSex, dt[0]["sex_id"].ToString().Trim());
                         SelectInDropDown(ddRace, dt[0]["race_id"].ToString().Trim());
+                        SelectInDropDown(ddTimezone, dt[0]["timezone_id"].ToString().Trim());
 
                         DateTime dtBirthDate = Convert.ToDateTime(dt[0]["birthdate"].ToString().Trim());
                         SelectInDropDown(ddBirthdate_Month, dtBirthDate.Month.ToString().Trim());
@@ -137,6 +139,8 @@ namespace GlucaTrack.Website.Account
             this.lblRace.Text = Resources.Account_Strings.Label_Race;
             this.lblBirthDate_Month.Text = Resources.Account_Strings.Label_Birthdate;
             this.lblEmail.Text = Resources.Account_Strings.Label_EmailAddress;
+            this.lblOtherState.Text = Resources.Account_Strings.Label_State;
+            this.lblTimezone.Text = Resources.Account_Strings.Label_Timezone;
 
             this.btnSavePersonalSettings.Text = Resources.Account_Strings.Button_SavePersonalSettings;
         }
@@ -176,7 +180,9 @@ namespace GlucaTrack.Website.Account
                                           Convert.ToInt16(ddSex.SelectedValue),
                                           Convert.ToInt16(ddRace.SelectedValue),
                                           dtBirthdate,
-                                          txtEmail.Text.Trim());
+                                          txtEmail.Text.Trim(),
+                                          txtOtherState.Text.Trim(),
+                                          Convert.ToInt16(ddTimezone.SelectedValue));
             }
             
             Session.Remove("PendingAvatar");

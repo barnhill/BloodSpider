@@ -76,6 +76,15 @@ namespace GlucaTrack.Website.Account {
         protected global::System.Web.UI.WebControls.SqlDataSource UserType_DataSource;
         
         /// <summary>
+        /// TimeZones_DataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource TimeZones_DataSource;
+        
+        /// <summary>
         /// upUpload control.
         /// </summary>
         /// <remarks>
@@ -317,6 +326,33 @@ namespace GlucaTrack.Website.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddState;
+        
+        /// <summary>
+        /// upOtherState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upOtherState;
+        
+        /// <summary>
+        /// lblOtherState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOtherState;
+        
+        /// <summary>
+        /// txtOtherState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtOtherState;
         
         /// <summary>
         /// lblZipcode control.
@@ -569,6 +605,33 @@ namespace GlucaTrack.Website.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddBirthdate_Year;
+        
+        /// <summary>
+        /// upTimezone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upTimezone;
+        
+        /// <summary>
+        /// lblTimezone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTimezone;
+        
+        /// <summary>
+        /// ddTimezone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddTimezone;
         
         /// <summary>
         /// btnSavePersonalSettings control.
