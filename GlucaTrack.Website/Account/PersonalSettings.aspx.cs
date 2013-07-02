@@ -82,6 +82,7 @@ namespace GlucaTrack.Website.Account
                         ddIncome.DataBind();
                         ddSex.DataBind();
                         ddRace.DataBind();
+                        ddTimezone.DataBind();
 
                         SelectInDropDown(ddState, dt[0]["state_id"].ToString().Trim());
                         SelectInDropDown(ddUserType, dt[0]["usertype_id"].ToString().Trim());
