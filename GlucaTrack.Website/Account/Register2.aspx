@@ -109,14 +109,9 @@
                         <ContentTemplate>
                             <asp:DropDownList ID="State" runat="server" CssClass="dropdownlist" 
                                 DataSourceID="States_US_DataSource" DataTextField = "name" DataValueField = "state_id"/>
+                            <asp:TextBox runat="server" ID="OtherState" Width="175"/>
                         </ContentTemplate>
-                    </asp:UpdatePanel>
-
-                    <asp:UpdatePanel runat="server" ID="upOtherState" style="width:100%;">
-                        <ContentTemplate>
-                            <asp:TextBox runat="server" ID="OtherState" Width="75"/>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>    
+                    </asp:UpdatePanel>   
                     </p>
 
                     <p>

@@ -85,6 +85,15 @@ namespace GlucaTrack.Website.Account {
         protected global::System.Web.UI.WebControls.SqlDataSource TimeZones_DataSource;
         
         /// <summary>
+        /// DiabetesTypes_DataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource DiabetesTypes_DataSource;
+        
+        /// <summary>
         /// upUpload control.
         /// </summary>
         /// <remarks>
@@ -301,15 +310,6 @@ namespace GlucaTrack.Website.Account {
         protected global::System.Web.UI.WebControls.TextBox txtCity;
         
         /// <summary>
-        /// upState control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upState;
-        
-        /// <summary>
         /// lblState control.
         /// </summary>
         /// <remarks>
@@ -319,6 +319,15 @@ namespace GlucaTrack.Website.Account {
         protected global::System.Web.UI.WebControls.Label lblState;
         
         /// <summary>
+        /// upState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upState;
+        
+        /// <summary>
         /// ddState control.
         /// </summary>
         /// <remarks>
@@ -326,24 +335,6 @@ namespace GlucaTrack.Website.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddState;
-        
-        /// <summary>
-        /// upOtherState control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upOtherState;
-        
-        /// <summary>
-        /// lblOtherState control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOtherState;
         
         /// <summary>
         /// txtOtherState control.
@@ -371,6 +362,33 @@ namespace GlucaTrack.Website.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtZipcode;
+        
+        /// <summary>
+        /// upCountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upCountry;
+        
+        /// <summary>
+        /// lblCountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCountry;
+        
+        /// <summary>
+        /// ddCountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddCountry;
         
         /// <summary>
         /// lblEmail control.
@@ -452,33 +470,6 @@ namespace GlucaTrack.Website.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddUserType;
-        
-        /// <summary>
-        /// upCountry control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upCountry;
-        
-        /// <summary>
-        /// lblCountry control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCountry;
-        
-        /// <summary>
-        /// ddCountry control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddCountry;
         
         /// <summary>
         /// upIncome control.
@@ -632,6 +623,33 @@ namespace GlucaTrack.Website.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddTimezone;
+        
+        /// <summary>
+        /// upDiabetesType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upDiabetesType;
+        
+        /// <summary>
+        /// lblDiabetesType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDiabetesType;
+        
+        /// <summary>
+        /// ddDiabetesType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddDiabetesType;
         
         /// <summary>
         /// btnSavePersonalSettings control.

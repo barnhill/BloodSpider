@@ -83,6 +83,7 @@ namespace GlucaTrack.Website.Account
                         ddSex.DataBind();
                         ddRace.DataBind();
                         ddTimezone.DataBind();
+                        ddDiabetesType.DataBind();
 
                         SelectInDropDown(ddState, dt[0]["state_id"].ToString().Trim());
                         SelectInDropDown(ddUserType, dt[0]["usertype_id"].ToString().Trim());
@@ -91,6 +92,7 @@ namespace GlucaTrack.Website.Account
                         SelectInDropDown(ddSex, dt[0]["sex_id"].ToString().Trim());
                         SelectInDropDown(ddRace, dt[0]["race_id"].ToString().Trim());
                         SelectInDropDown(ddTimezone, dt[0]["timezone_id"].ToString().Trim());
+                        SelectInDropDown(ddDiabetesType, dt[0]["diabetestypes_id"].ToString().Trim());
 
                         DateTime dtBirthDate = Convert.ToDateTime(dt[0]["birthdate"].ToString().Trim());
                         SelectInDropDown(ddBirthdate_Month, dtBirthDate.Month.ToString().Trim());
@@ -98,6 +100,9 @@ namespace GlucaTrack.Website.Account
                         SelectInDropDown(ddBirthdate_Year, dtBirthDate.Year.ToString().Trim());
                     }
                 }
+
+                //shows the correct state/province field based on country settings (must be after population of fields)
+                ShowStateSelection();
 
                 //get user image
                 using (QueriesTableAdapters.sp_GetUserImageTableAdapter ta = new QueriesTableAdapters.sp_GetUserImageTableAdapter())
@@ -140,8 +145,8 @@ namespace GlucaTrack.Website.Account
             this.lblRace.Text = Resources.Account_Strings.Label_Race;
             this.lblBirthDate_Month.Text = Resources.Account_Strings.Label_Birthdate;
             this.lblEmail.Text = Resources.Account_Strings.Label_EmailAddress;
-            this.lblOtherState.Text = Resources.Account_Strings.Label_State;
             this.lblTimezone.Text = Resources.Account_Strings.Label_Timezone;
+            this.lblDiabetesType.Text = Resources.Account_Strings.Label_DiabetesType;
 
             this.btnSavePersonalSettings.Text = Resources.Account_Strings.Button_SavePersonalSettings;
         }
@@ -183,7 +188,8 @@ namespace GlucaTrack.Website.Account
                                           dtBirthdate,
                                           txtEmail.Text.Trim(),
                                           txtOtherState.Text.Trim(),
-                                          Convert.ToInt16(ddTimezone.SelectedValue));
+                                          Convert.ToInt16(ddTimezone.SelectedValue),
+                                          Convert.ToInt16(ddDiabetesType.SelectedValue));
             }
             
             Session.Remove("PendingAvatar");
@@ -270,6 +276,19 @@ namespace GlucaTrack.Website.Account
             ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_10, "10"));
             ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_11, "11"));
             ddTarget.Items.Add(new ListItem(Resources.Account_Strings.Month_12, "12"));
+        }
+
+        private void ShowStateSelection()
+        {
+            ListItem US = ddCountry.Items.FindByText("United States");
+
+            ddState.Visible = US.Selected;
+            txtOtherState.Visible = !US.Selected;
+        }
+
+        protected void Country_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ShowStateSelection();
         }
     }
 }

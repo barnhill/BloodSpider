@@ -17,6 +17,7 @@
     <asp:SqlDataSource ID="Race_DataSource" runat="server" ConnectionString="<%$ ConnectionStrings:glucatrackConnectionString %>" SelectCommand="sp_GetAllRaces" SelectCommandType="StoredProcedure" />
     <asp:SqlDataSource ID="UserType_DataSource" runat="server" ConnectionString="<%$ ConnectionStrings:glucatrackConnectionString %>" SelectCommand="sp_GetAllUserTypes" SelectCommandType="StoredProcedure" />
     <asp:SqlDataSource ID="TimeZones_DataSource" runat="server" ConnectionString="<%$ ConnectionStrings:glucatrackConnectionString %>" SelectCommand="sp_GetAllTimezones" SelectCommandType="StoredProcedure" />
+    <asp:SqlDataSource ID="DiabetesTypes_DataSource" runat="server" ConnectionString="<%$ ConnectionStrings:glucatrackConnectionString %>" SelectCommand="sp_GetAllDiabetesTypes" SelectCommandType="StoredProcedure" />
     <br />
     
     <asp:UpdatePanel ID="upUpload" runat="server" UpdateMode="Conditional">
@@ -82,24 +83,26 @@
     <asp:Label ID="lblCity" runat="server">[City]</asp:Label><br />
     <asp:Textbox runat="server" ID="txtCity" Text='[City]' style="font-size:smaller;"/><br /><br />
     
+    <asp:Label ID="lblState" runat="server" AssociatedControlID="ddState">[State]</asp:Label><br />
     <asp:UpdatePanel runat="server" ID="upState" style="width:100%;">
         <ContentTemplate>
-            <asp:Label ID="lblState" runat="server" AssociatedControlID="ddState">[State]</asp:Label><br />
             <asp:DropDownList ID="ddState" runat="server" DataSourceID="States_US_DataSource" DataTextField = "name" DataValueField = "state_id" 
                 class="dropdownlist" AutoPostBack="true"/>
-        </ContentTemplate>
-    </asp:UpdatePanel><br /><br />
-    
-    <asp:UpdatePanel runat="server" ID="upOtherState" style="width:100%;">
-        <ContentTemplate>
-            <asp:Label ID="lblOtherState" runat="server">[Other state]</asp:Label><br />
-            <asp:Textbox runat="server" ID="txtOtherState" Text='[Other state]' style="font-size:smaller;"/><br /><br />
+            <asp:Textbox runat="server" ID="txtOtherState" Text='[Other state]' style="font-size:smaller;" Width="175"/>
         </ContentTemplate>
     </asp:UpdatePanel>
 
     <asp:Label ID="lblZipcode" runat="server">[Zipcode]</asp:Label><br />
     <asp:Textbox runat="server" ID="txtZipcode" Text='[Zipcode]' style="font-size:smaller;"/><br /><br />
     
+    <asp:UpdatePanel runat="server" ID="upCountry" style="width:100%;">
+        <ContentTemplate>
+            <asp:Label ID="lblCountry" runat="server" AssociatedControlID="ddCountry">[Country]</asp:Label><br />
+            <asp:DropDownList ID="ddCountry" runat="server" DataSourceID="Countries_DataSource" DataTextField = "name" DataValueField = "country_id" 
+                class="dropdownlist" AutoPostBack="true" OnSelectedIndexChanged="Country_SelectedIndexChanged"/>
+        </ContentTemplate>
+    </asp:UpdatePanel><br /><br />
+
     <asp:Label ID="lblEmail" runat="server">[Email]</asp:Label><br />
     <asp:Textbox runat="server" ID="txtEmail" Text='[Email]' style="font-size:smaller;"/><br /><br />
 
@@ -114,14 +117,6 @@
             <asp:Label ID="lblUserType" runat="server" AssociatedControlID="ddUserType">[UserType]</asp:Label><br />
             <asp:DropDownList ID="ddUserType" runat="server" DataSourceID="UserType_DataSource" DataTextField = "description" DataValueField = "usertype_id" 
                 class="dropdownlist" AutoPostBack="true" Enabled="false"/>
-        </ContentTemplate>
-    </asp:UpdatePanel><br /><br />
-
-    <asp:UpdatePanel runat="server" ID="upCountry" style="width:100%;">
-        <ContentTemplate>
-            <asp:Label ID="lblCountry" runat="server" AssociatedControlID="ddCountry">[Country]</asp:Label><br />
-            <asp:DropDownList ID="ddCountry" runat="server" DataSourceID="Countries_DataSource" DataTextField = "name" DataValueField = "country_id" 
-                class="dropdownlist" AutoPostBack="true"/>
         </ContentTemplate>
     </asp:UpdatePanel><br /><br />
 
@@ -162,6 +157,14 @@
         <ContentTemplate>
             <asp:Label ID="lblTimezone" runat="server" AssociatedControlID="ddTimezone">[Timezone]</asp:Label><br />
             <asp:DropDownList ID="ddTimezone" runat="server" DataSourceID="TimeZones_DataSource" DataTextField = "location" DataValueField = "timezone_id" 
+                class="dropdownlist" AutoPostBack="true"/>
+        </ContentTemplate>
+    </asp:UpdatePanel><br /><br />
+
+    <asp:UpdatePanel runat="server" ID="upDiabetesType" style="width:100%;">
+        <ContentTemplate>
+            <asp:Label ID="lblDiabetesType" runat="server" AssociatedControlID="ddDiabetesType">[DiabetesType]</asp:Label><br />
+            <asp:DropDownList ID="ddDiabetesType" runat="server" DataSourceID="DiabetesTypes_DataSource" DataTextField = "name" DataValueField = "diabetestypes_id" 
                 class="dropdownlist" AutoPostBack="true"/>
         </ContentTemplate>
     </asp:UpdatePanel><br /><br />

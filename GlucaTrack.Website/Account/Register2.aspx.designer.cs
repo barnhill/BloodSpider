@@ -517,15 +517,6 @@ namespace GlucaTrack.Website.Account {
         protected global::System.Web.UI.WebControls.DropDownList State;
         
         /// <summary>
-        /// upOtherState control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upOtherState;
-        
-        /// <summary>
         /// OtherState control.
         /// </summary>
         /// <remarks>
