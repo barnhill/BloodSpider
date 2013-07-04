@@ -90,7 +90,7 @@
                 class="dropdownlist" AutoPostBack="true"/>
             <asp:Textbox runat="server" ID="txtOtherState" Text='[Other state]' style="font-size:smaller;" Width="175"/>
         </ContentTemplate>
-    </asp:UpdatePanel>
+    </asp:UpdatePanel><br /><br />
 
     <asp:Label ID="lblZipcode" runat="server">[Zipcode]</asp:Label><br />
     <asp:Textbox runat="server" ID="txtZipcode" Text='[Zipcode]' style="font-size:smaller;"/><br /><br />
