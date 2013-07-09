@@ -95,38 +95,71 @@ namespace GlucaTrack.Communication
         {
             DevicesFound.Clear();
 
-            List<BackgroundWorker> threads = new List<BackgroundWorker>();
-            foreach (string comport in SerialPort.GetPortNames())
+            StubFindHIDDevices();
+
+            if (DevicesFound.Count() == 0)
             {
-                BackgroundWorker bgw = new BackgroundWorker();
-                bgw.DoWork += new DoWorkEventHandler(StubFindDevices);
-                bgw.WorkerSupportsCancellation = true;
-                bgw.RunWorkerAsync(comport);
-                threads.Add(bgw);
-                //StubFindDevices(null, new DoWorkEventArgs(comport));
+                List<BackgroundWorker> threads = new List<BackgroundWorker>();
+                foreach (string comport in SerialPort.GetPortNames())
+                {
+                    BackgroundWorker bgw = new BackgroundWorker();
+                    bgw.DoWork += new DoWorkEventHandler(StubFindSerialDevices);
+                    bgw.WorkerSupportsCancellation = true;
+                    bgw.RunWorkerAsync(comport);
+                    threads.Add(bgw);
+                }
+
+                DateTime dtStartTime = DateTime.Now;
+                while (DevicesFound.Count == 0 && (DateTime.Now - dtStartTime).TotalMilliseconds < 60000)
+                {
+                    Thread.Sleep(100);
+                }
+
+                foreach (BackgroundWorker b in threads)
+                {
+                    b.CancelAsync();
+                    b.Dispose();
+                }
+
+                threads.Clear();
             }
-
-            DateTime dtStartTime = DateTime.Now;
-            while (DevicesFound.Count == 0 && (DateTime.Now - dtStartTime).TotalMilliseconds < 60000)
-            {
-                Thread.Sleep(100);
-            }
-
-            foreach (BackgroundWorker b in threads)
-            {
-                b.CancelAsync();
-                b.Dispose();
-            }
-
-            threads.Clear();
-
+            
             if (DevicesFound.Count > 0)
                 return DevicesFound[0];
             else
                 return null;
         }
 
-        private static void StubFindDevices(object sender, DoWorkEventArgs e)
+        private static void StubFindHIDDevices()
+        {
+            var MeterTypes = Assembly.GetExecutingAssembly().GetTypes()
+                                 .Where(t => t.IsClass) // Only include classes
+                                 .Where(t => t.IsSubclassOf(typeof(AbstractMeter)))
+                                 .Where(t => t.GetInterfaces().Contains(typeof(IMeterHID)))
+                                 .OrderBy(t => t.Namespace)
+                                 .ThenBy(t => t.Name);
+
+            foreach (var reflect in MeterTypes)
+            {
+                Type t = reflect.UnderlyingSystemType;
+                IMeterHID meter = (IMeterHID)Activator.CreateInstance(t);
+
+                if (meter.IsMeterConnected())
+                {
+                    DeviceInfo di = new DeviceInfo();
+                    di.DeviceType = t;
+                    di.HIDDevice = true;
+
+                    lock (DevicesFound)
+                    {
+                        DevicesFound.Add(di);
+                        return; //found a device so return.  Can be removed to find all HID devices on a system.
+                    }
+                }
+            }
+        }
+
+        private static void StubFindSerialDevices(object sender, DoWorkEventArgs e)
         {
             DeviceInfo dinfo = null;
             
@@ -135,6 +168,7 @@ namespace GlucaTrack.Communication
             var MeterTypes = Assembly.GetExecutingAssembly().GetTypes()
                                  .Where(t => t.IsClass) // Only include classes
                                  .Where(t => t.IsSubclassOf(typeof(AbstractMeter)))
+                                 .Where(t => t.GetInterfaces().Contains(typeof(IMeter)))
                                  .OrderBy(t => t.Namespace)
                                  .ThenBy(t => t.Name);
             
@@ -142,7 +176,7 @@ namespace GlucaTrack.Communication
             foreach (var reflect in MeterTypes)
             {
                 Type t = reflect.UnderlyingSystemType;
-                IMeter meter = (GlucaTrack.Communication.IMeter)Activator.CreateInstance(t);
+                IMeter meter = (IMeter)Activator.CreateInstance(t);
 
                 //if failed to connect skip this meter
                 if (!meter.Connect(comport))
@@ -156,6 +190,7 @@ namespace GlucaTrack.Communication
                         dinfo = new DeviceInfo();
                         dinfo.DeviceType = t;
                         dinfo.ComPortName = comport;
+                        dinfo.HIDDevice = false;
 
                         lock (DevicesFound)
                         {
@@ -184,6 +219,15 @@ namespace GlucaTrack.Communication
         }
 
         /// <summary>
+        /// Gets or sets whether this device is an HID or serial device.
+        /// </summary>
+        public bool HIDDevice
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets or sets the com port name of the first device detected.
         /// </summary>
         public string ComPortName
@@ -197,8 +241,18 @@ namespace GlucaTrack.Communication
             get
             {
                 if (DeviceType != null)
-                    using (IMeter meter = (IMeter)Activator.CreateInstance(DeviceType))
-                        return meter.MeterDescription;
+                {
+                    object o = Activator.CreateInstance(DeviceType);
+
+                    if (o is IMeter)
+                        using (IMeter meter = (IMeter)Activator.CreateInstance(DeviceType))
+                            return meter.MeterDescription;
+                    else if (o is IMeterHID)
+                        using (IMeterHID meter = (IMeterHID)Activator.CreateInstance(DeviceType))
+                            return meter.MeterDescription;
+                    else 
+                        return string.Empty;
+                }
                 else
                     return string.Empty;
             }

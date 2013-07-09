@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="AbstractMeter.cs" />
     <Compile Include="BMeterComm.cs" />
+    <Compile Include="IMeterHID.cs" />
     <Compile Include="IMeter.cs" />
     <Compile Include="Meters\Contour.cs" />
     <None Include="Documents\i-Sens\CaresensN.spm" />
@@ -60,6 +61,7 @@
     <None Include="GlucaTrack.pfx" />
     <None Include="Meters\Breeze2.cs" />
     <Compile Include="Meters\Caresens_N.cs" />
+    <Compile Include="Meters\Contour_USB.cs" />
     <Compile Include="Meters\OneTouch_UltraSmart.cs" />
     <Compile Include="Meters\OneTouch_UltraMini.cs" />
     <Compile Include="Meters\OneTouch_Ultra2.cs" />
@@ -107,6 +109,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Documents\LifeScan\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UsbLibrary\UsbLibrary.csproj">
+      <Project>{71e42a6d-c432-4c03-bf4f-abfd2a3173e0}</Project>
+      <Name>UsbLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

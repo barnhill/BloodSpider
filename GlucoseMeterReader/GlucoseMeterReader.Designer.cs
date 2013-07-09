@@ -61,6 +61,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnContourUSB = new System.Windows.Forms.Button();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -135,6 +136,7 @@
             // scLeftRight.Panel1
             // 
             this.scLeftRight.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
+            this.scLeftRight.Panel1.Controls.Add(this.btnContourUSB);
             this.scLeftRight.Panel1.Controls.Add(this.txtDevicesDetected);
             this.scLeftRight.Panel1.Controls.Add(this.btnDetect);
             this.scLeftRight.Panel1.Controls.Add(this.statusStrip1);
@@ -219,13 +221,12 @@
             // 
             this.btnRocheGetData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRocheGetData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(131)))), ((int)(((byte)(215)))));
-            this.btnRocheGetData.Location = new System.Drawing.Point(25, 404);
+            this.btnRocheGetData.Location = new System.Drawing.Point(11, 371);
             this.btnRocheGetData.Name = "btnRocheGetData";
             this.btnRocheGetData.Size = new System.Drawing.Size(99, 44);
             this.btnRocheGetData.TabIndex = 7;
             this.btnRocheGetData.Text = "Roche Get Data";
             this.btnRocheGetData.UseVisualStyleBackColor = true;
-            this.btnRocheGetData.Visible = false;
             this.btnRocheGetData.Click += new System.EventHandler(this.btnRocheGetData_Click);
             // 
             // label4
@@ -461,6 +462,18 @@
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // btnContourUSB
+            // 
+            this.btnContourUSB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnContourUSB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(131)))), ((int)(((byte)(215)))));
+            this.btnContourUSB.Location = new System.Drawing.Point(11, 421);
+            this.btnContourUSB.Name = "btnContourUSB";
+            this.btnContourUSB.Size = new System.Drawing.Size(99, 44);
+            this.btnContourUSB.TabIndex = 14;
+            this.btnContourUSB.Text = "Contour USB Get Data";
+            this.btnContourUSB.UseVisualStyleBackColor = true;
+            this.btnContourUSB.Click += new System.EventHandler(this.btnContourUSB_Click);
+            // 
             // GlucoseMeterReader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -536,6 +549,7 @@
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
         private System.Windows.Forms.TextBox txtDevicesDetected;
         private System.Windows.Forms.Button btnDetect;
+        private System.Windows.Forms.Button btnContourUSB;
     }
 }
 

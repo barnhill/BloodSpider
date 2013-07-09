@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlucoseMeterReader", "GlucoseMeterReader.csproj", "{301BE048-8214-4E1C-A80E-61B293A1AA65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlucaTrack.Communication", "..\GlucaTrack.Communication\GlucaTrack.Communication.csproj", "{64D9EB22-887A-433F-8BAD-5E9CC7647EBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsbLibrary", "..\UsbLibrary\UsbLibrary.csproj", "{71E42A6D-C432-4C03-BF4F-ABFD2A3173E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{301BE048-8214-4E1C-A80E-61B293A1AA65}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{301BE048-8214-4E1C-A80E-61B293A1AA65}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{301BE048-8214-4E1C-A80E-61B293A1AA65}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{301BE048-8214-4E1C-A80E-61B293A1AA65}.Debug|x86.ActiveCfg = Debug|x86
+		{301BE048-8214-4E1C-A80E-61B293A1AA65}.Debug|x86.Build.0 = Debug|x86
+		{301BE048-8214-4E1C-A80E-61B293A1AA65}.Release|Any CPU.ActiveCfg = Release|x86
+		{301BE048-8214-4E1C-A80E-61B293A1AA65}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{301BE048-8214-4E1C-A80E-61B293A1AA65}.Release|Mixed Platforms.Build.0 = Release|x86
+		{301BE048-8214-4E1C-A80E-61B293A1AA65}.Release|x86.ActiveCfg = Release|x86
+		{301BE048-8214-4E1C-A80E-61B293A1AA65}.Release|x86.Build.0 = Release|x86
+		{64D9EB22-887A-433F-8BAD-5E9CC7647EBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64D9EB22-887A-433F-8BAD-5E9CC7647EBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64D9EB22-887A-433F-8BAD-5E9CC7647EBB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{64D9EB22-887A-433F-8BAD-5E9CC7647EBB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{64D9EB22-887A-433F-8BAD-5E9CC7647EBB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{64D9EB22-887A-433F-8BAD-5E9CC7647EBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64D9EB22-887A-433F-8BAD-5E9CC7647EBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64D9EB22-887A-433F-8BAD-5E9CC7647EBB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{64D9EB22-887A-433F-8BAD-5E9CC7647EBB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{64D9EB22-887A-433F-8BAD-5E9CC7647EBB}.Release|x86.ActiveCfg = Release|Any CPU
+		{71E42A6D-C432-4C03-BF4F-ABFD2A3173E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71E42A6D-C432-4C03-BF4F-ABFD2A3173E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71E42A6D-C432-4C03-BF4F-ABFD2A3173E0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{71E42A6D-C432-4C03-BF4F-ABFD2A3173E0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{71E42A6D-C432-4C03-BF4F-ABFD2A3173E0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{71E42A6D-C432-4C03-BF4F-ABFD2A3173E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71E42A6D-C432-4C03-BF4F-ABFD2A3173E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71E42A6D-C432-4C03-BF4F-ABFD2A3173E0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{71E42A6D-C432-4C03-BF4F-ABFD2A3173E0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{71E42A6D-C432-4C03-BF4F-ABFD2A3173E0}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

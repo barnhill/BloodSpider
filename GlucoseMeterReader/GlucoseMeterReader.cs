@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.IO.Ports;
+using System.Linq;
 using GlucaTrack.Communication;
 using GlucaTrack.Communication.Meters;
 
@@ -329,6 +330,11 @@ namespace GlucoseMeterReader
                     this.txtDevicesDetected.Text = "Port: " + fdi.ComPortName + Environment.NewLine + "Device: " + fdi.DeviceType.Name.ToString() + Environment.NewLine;
             else
                 this.txtDevicesDetected.Text = "No Devices Detected";
+        }
+
+        private void btnContourUSB_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

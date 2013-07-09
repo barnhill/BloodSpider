@@ -60,7 +60,7 @@ namespace GlucaTrack.Communication
             set;
         }
 
-        public virtual Records.RecordDataTable Records
+        public Records.RecordDataTable Records
         {
             get
             {

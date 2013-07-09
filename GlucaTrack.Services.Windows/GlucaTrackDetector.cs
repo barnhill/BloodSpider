@@ -119,24 +119,47 @@ namespace GlucaTrack.Services.Windows
                 //read devices data
                 if (Common.Statics.deviceFound != null)
                 {
-                    IMeter Meter = (IMeter)Activator.CreateInstance(Common.Statics.deviceFound.DeviceType);
-                    Meter.ReadFinished += new EventHandler(OnReadFinished);
-                    Meter.RecordRead += new EventHandler(OnRecordRead);
-                    Meter.HeaderRead += new EventHandler(OnHeaderRead);
-
-                    int connectionTries = 0;
-                    while (!Meter.Connect(Common.Statics.deviceFound.ComPortName) && connectionTries < 30)
+                    if (typeof(IMeter).IsAssignableFrom(Common.Statics.deviceFound.DeviceType))
                     {
-                        Thread.Sleep(100);
-                        connectionTries++;
+                        //serial devices
+                        IMeter Meter = (IMeter)Activator.CreateInstance(Common.Statics.deviceFound.DeviceType);
+                        Meter.ReadFinished += new EventHandler(OnReadFinished);
+                        Meter.RecordRead += new EventHandler(OnRecordRead);
+                        Meter.HeaderRead += new EventHandler(OnHeaderRead);
+
+                        int connectionTries = 0;
+                        while (!Meter.Connect(Common.Statics.deviceFound.ComPortName) && connectionTries < 30)
+                        {
+                            Thread.Sleep(100);
+                            connectionTries++;
+                        }
+
+                        EventLog.WriteEntry(string.Format("Begin reading data from {0}.", Common.Statics.deviceFound.DeviceDescription), EventLogEntryType.Information);
+
+                        if (Meter.IsPortOpen)
+                        {
+                            Meter.Port.DiscardInBuffer();
+                            Meter.Port.DiscardOutBuffer();
+
+                            Meter.ReadData();
+                        }
                     }
-
-                    EventLog.WriteEntry(string.Format("Begin reading data from {0}.", Common.Statics.deviceFound.DeviceDescription), EventLogEntryType.Information);
-
-                    if (Meter.IsPortOpen)
+                    else if (typeof(IMeterHID).IsAssignableFrom(Common.Statics.deviceFound.DeviceType))
                     {
-                        Meter.Port.DiscardInBuffer();
-                        Meter.Port.DiscardOutBuffer();
+                        //HID devices
+                        IMeterHID Meter = (IMeterHID)Activator.CreateInstance(Common.Statics.deviceFound.DeviceType);
+                        Meter.ReadFinished += new EventHandler(OnReadFinished);
+                        Meter.RecordRead += new EventHandler(OnRecordRead);
+                        Meter.HeaderRead += new EventHandler(OnHeaderRead);
+
+                        int connectionTries = 0;
+                        while (!Meter.Connect() && connectionTries < 30)
+                        {
+                            Thread.Sleep(100);
+                            connectionTries++;
+                        }
+
+                        EventLog.WriteEntry(string.Format("Begin reading data from {0}.", Common.Statics.deviceFound.DeviceDescription), EventLogEntryType.Information);
 
                         Meter.ReadData();
                     }
@@ -319,7 +342,7 @@ namespace GlucaTrack.Services.Windows
             background_DeviceReader.RunWorkerCompleted += background_DeviceReader_RunWorkerCompleted;
             background_DeviceReader.RunWorkerAsync();
         }
-        private void uploadData(IMeter meter)
+        private void uploadData(object oMeter)
         {
             if (settings != null)
             {
@@ -351,14 +374,14 @@ namespace GlucaTrack.Services.Windows
                         {
                             WebService.Records recordsToUpload = new WebService.Records();
 
-                            foreach (Records.RecordRow row in meter.Records)
+                            foreach (Records.RecordRow row in ((AbstractMeter)oMeter).Records)
                             {
                                 ((WebService.Records.RecordDataTable)(recordsToUpload.Tables[0])).AddRecordRow(row.Timestamp, row.Glucose, row.Units);
                             }
-
+                            
                             EventLog.WriteEntry("Uploading Data: Begin", EventLogEntryType.Information);
 
-                            client.PostGlucoseRecords(recordsToUpload, userinfo, meter.ID);
+                            client.PostGlucoseRecords(recordsToUpload, userinfo, ((AbstractMeter)oMeter).ID);
                             client.UpdateLastSync(userinfo);
 
                             EventLog.WriteEntry("Uploading Data: End", EventLogEntryType.Information);
@@ -384,14 +407,14 @@ namespace GlucaTrack.Services.Windows
 
         protected virtual void OnReadFinished(object sender, EventArgs e)
         {
-            IMeter meter = ((ReadFinishedEventArgs)e).Meter;
+            object meter = ((ReadFinishedEventArgs)e).Meter;
 
             try
             {
-                EventLog.WriteEntry(string.Format("Finished reading {1} data records from {0}.", Common.Statics.deviceFound.DeviceDescription, meter.Records.Count), EventLogEntryType.Information);
-
                 if (meter == null)
                     throw new Exception("OnReadFinished-1: Meter object was null.");
+
+                EventLog.WriteEntry(string.Format("Finished reading {1} data records from {0}.", Common.Statics.deviceFound.DeviceDescription, ((AbstractMeter)meter).Records.Count), EventLogEntryType.Information);
 
                 //send data to webservice
                 uploadData(meter);
@@ -411,7 +434,7 @@ namespace GlucaTrack.Services.Windows
         {
             HeaderReadEventArgs headArgs = (HeaderReadEventArgs)e;
             
-            pipeWrite("MSG", string.Format("Reading Glucose Values"), string.Format("from {0}", headArgs.Meter.MeterDescription), 1);
+            pipeWrite("MSG", string.Format("Reading Glucose Values"), string.Format("from {0}", ((AbstractMeter)headArgs.Meter).MeterDescription), 1);
         }
     }
 }
