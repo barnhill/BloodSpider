@@ -285,7 +285,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
             else if (_HeaderRead && _TempString.Contains(Statics.GetStringFromAsciiCode((byte)AsciiCodes.EOT)))
             {
                 _HeaderRead = false;
-                Port.DataReceived -= new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
+                Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
                 OnReadFinished(new ReadFinishedEventArgs(this));
                 Close();
                 Dispose();
@@ -305,7 +305,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
             Port.DiscardInBuffer();
             Port.DiscardOutBuffer();
             _HeaderRead = false;
-            Port.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
+            Port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
         }
         
         private string[] SplitTypeandSerial(string raw)

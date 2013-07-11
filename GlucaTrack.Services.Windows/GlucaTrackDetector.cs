@@ -122,7 +122,8 @@ namespace GlucaTrack.Services.Windows
                     if (typeof(IMeter).IsAssignableFrom(Common.Statics.deviceFound.DeviceType))
                     {
                         //serial devices
-                        IMeter Meter = (IMeter)Activator.CreateInstance(Common.Statics.deviceFound.DeviceType);
+                        //IMeter Meter = (IMeter)Activator.CreateInstance(Common.Statics.deviceFound.DeviceType);
+                        IMeter Meter = (IMeter)Common.Statics.deviceFound.Device;
                         Meter.ReadFinished += new EventHandler(OnReadFinished);
                         Meter.RecordRead += new EventHandler(OnRecordRead);
                         Meter.HeaderRead += new EventHandler(OnHeaderRead);
@@ -147,7 +148,8 @@ namespace GlucaTrack.Services.Windows
                     else if (typeof(IMeterHID).IsAssignableFrom(Common.Statics.deviceFound.DeviceType))
                     {
                         //HID devices
-                        IMeterHID Meter = (IMeterHID)Activator.CreateInstance(Common.Statics.deviceFound.DeviceType);
+                        //IMeterHID Meter = (IMeterHID)Activator.CreateInstance(Common.Statics.deviceFound.DeviceType);
+                        IMeterHID Meter = (IMeterHID)Common.Statics.deviceFound.Device;
                         Meter.ReadFinished += new EventHandler(OnReadFinished);
                         Meter.RecordRead += new EventHandler(OnRecordRead);
                         Meter.HeaderRead += new EventHandler(OnHeaderRead);

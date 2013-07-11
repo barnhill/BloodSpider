@@ -117,7 +117,7 @@ namespace GlucaTrack.Communication
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void DataReceived(object sender, SerialDataReceivedEventArgs e);
+        void DataReceived(object sender, UsbLibrary.DataRecievedEventArgs e);
 
         /// <summary>
         /// Connects to the meter.

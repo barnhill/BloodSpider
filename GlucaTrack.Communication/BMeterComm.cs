@@ -7,7 +7,7 @@ namespace GlucaTrack.Communication
     /// <summary>
     /// Ascii code representations of the communication requirements for some meter protocols.
     /// </summary>
-    public enum AsciiCodes : byte { STX = 02, ETX = 03, EOT = 04, ENQ = 05, ACK = 06, LF = 10, CR = 13, ETB = 23}
+    public enum AsciiCodes : byte { NUL = 00, RH = 01, STX = 02, ETX = 03, EOT = 04, ENQ = 05, ACK = 06, LF = 10, CR = 13, ETB = 23}
     
     /// <summary>
     /// Sample record format

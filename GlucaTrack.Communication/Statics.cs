@@ -142,19 +142,26 @@ namespace GlucaTrack.Communication
             foreach (var reflect in MeterTypes)
             {
                 Type t = reflect.UnderlyingSystemType;
-                IMeterHID meter = (IMeterHID)Activator.CreateInstance(t);
-
-                if (meter.IsMeterConnected())
+                using (IMeterHID meter = (IMeterHID)Activator.CreateInstance(t))
                 {
-                    DeviceInfo di = new DeviceInfo();
-                    di.DeviceType = t;
-                    di.HIDDevice = true;
-
-                    lock (DevicesFound)
+                    if (meter.IsMeterConnected())
                     {
-                        DevicesFound.Add(di);
-                        return; //found a device so return.  Can be removed to find all HID devices on a system.
+                        DeviceInfo di = new DeviceInfo();
+                        di.DeviceType = t;
+                        di.HIDDevice = true;
+                        di.Device = meter;
+
+                        lock (DevicesFound)
+                        {
+                            DevicesFound.Add(di);
+                            return; //found a device so return.  Can be removed to find all HID devices on a system.
+                        }
                     }
+
+                    if (meter.Port.SpecifiedDevice != null)
+                        meter.Port.SpecifiedDevice.Dispose();
+
+                    meter.Port.Dispose();
                 }
             }
         }
@@ -191,6 +198,7 @@ namespace GlucaTrack.Communication
                         dinfo.DeviceType = t;
                         dinfo.ComPortName = comport;
                         dinfo.HIDDevice = false;
+                        dinfo.Device = meter;
 
                         lock (DevicesFound)
                         {
@@ -209,6 +217,15 @@ namespace GlucaTrack.Communication
 
     public class DeviceInfo
     {
+        /// <summary>
+        /// Gets or sets the device that was found.
+        /// </summary>
+        public object Device
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// Device type detected as the first available device.
         /// </summary>

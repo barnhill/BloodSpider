@@ -203,12 +203,10 @@ namespace UsbLibrary
 
         public bool IsDevicePresent()
         {
-            specified_device = SpecifiedDevice.FindSpecifiedDevice(this.vendor_id, this.product_id);
+            if (specified_device == null)
+                specified_device = SpecifiedDevice.FindSpecifiedDevice(this.vendor_id, this.product_id);
 
-            if (specified_device != null)	// did we find it?
-                return true;
-            else
-                return false;
+            return specified_device != null;
         }
 
         /// <summary>
