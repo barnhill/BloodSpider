@@ -15,6 +15,7 @@ namespace GlucaTrack.Communication.Meters
         byte[] readBuffer = new byte[40];
         bool _devicePresent = false;
         byte _CountStep = 0;
+        Dictionary<int, string> _supportedPIDs = new Dictionary<int, string>();
 
         bool _PreHeaderRead = false;
         bool _HeaderRead = false;
@@ -52,18 +53,35 @@ namespace GlucaTrack.Communication.Meters
             }
         }
 
+        /// <summary>
+        /// List of supported PIDs
+        /// </summary>
+        public Dictionary<int, string> SupportedPIDs
+        {
+            get 
+            {
+                return _supportedPIDs;
+            }
+        }
+
         public Contour_USB()
         {
             ID = 8;
             VID = Int32.Parse("1A79", System.Globalization.NumberStyles.HexNumber);
-            PID = Int32.Parse("6002", System.Globalization.NumberStyles.HexNumber);
+
+            //load supported pids
+            PopulateSupportedPIDs();
+            
             Port = new UsbLibrary.UsbHidPort();
-            Port.VendorId = VID;
-            Port.ProductId = PID;
-            MeterDescription = "Bayer Contour USB";
 
             Port.OnSpecifiedDeviceRemoved += Port_OnSpecifiedDeviceRemoved;
             Port.OnSpecifiedDeviceArrived += Port_OnSpecifiedDeviceArrived;
+        }
+
+        private void PopulateSupportedPIDs()
+        {
+            SupportedPIDs.Add(Int32.Parse("6002", System.Globalization.NumberStyles.HexNumber), "Bayer Contour USB");
+            SupportedPIDs.Add(Int32.Parse("7410", System.Globalization.NumberStyles.HexNumber), "Bayer Contour USB Next");
         }
 
         public void ReadData()
@@ -77,7 +95,7 @@ namespace GlucaTrack.Communication.Meters
             Port.SpecifiedDevice.DataRecieved += SpecifiedDevice_DataRecieved;
 
             //request header and start the request for all data
-            //Port.SpecifiedDevice.SendData(writeBuffer);
+            Port.SpecifiedDevice.SendData(writeBuffer);
         }
 
         void SpecifiedDevice_DataRecieved(object sender, UsbLibrary.DataRecievedEventArgs args)
@@ -99,8 +117,6 @@ namespace GlucaTrack.Communication.Meters
         {
             if (VID == int.MinValue)
                 throw new ArgumentNullException("VID is blank or null");
-            if (PID == int.MinValue)
-                throw new ArgumentNullException("PID is blank or null");
 
             return IsMeterConnected();
         }
@@ -109,14 +125,24 @@ namespace GlucaTrack.Communication.Meters
         {
             if (VID == int.MinValue)
                 throw new ArgumentNullException("VID is blank or null");
-            if (PID == int.MinValue)
-                throw new ArgumentNullException("PID is blank or null");
 
-            Port.CheckDevicePresent();
+            foreach (KeyValuePair<int, string> item in SupportedPIDs)
+            {
+                PID = item.Key;
+                MeterDescription = item.Value;
 
+                Port.VendorId = VID;
+                Port.ProductId = PID;
+                Port.CheckDevicePresent();
+
+                if (_devicePresent)
+                    break;
+                else
+                    PID = int.MinValue;
+            }
+            
             return _devicePresent;
         }
-
 
         public void DataReceived(object sender, UsbLibrary.DataRecievedEventArgs e)
         {
@@ -124,6 +150,11 @@ namespace GlucaTrack.Communication.Meters
             Encoding.ASCII.GetChars(e.data, 0, e.data.Length, asciiChars, 0);
             string newString = new string(asciiChars);
             tempString += new string(asciiChars).Substring(6);
+
+            if (_HeaderRead && !_NumResultsRead && (tempString.Contains(Statics.GetStringFromAsciiCode((byte)AsciiCodes.ENQ)) || tempString.Contains(Statics.GetStringFromAsciiCode((byte)AsciiCodes.ACK))))
+            {
+                return;
+            }
 
             //preheader (NUL + NUL)
             string preHeaderCompare = ((char)AsciiCodes.NUL).ToString() + ((char)AsciiCodes.NUL).ToString();
@@ -147,10 +178,10 @@ namespace GlucaTrack.Communication.Meters
                     _HeaderRead = true;
                     ParseHeader(tempString);
                     tempString = string.Empty;
-                    writeBuffer[3] = (byte)AsciiCodes.ACK;
-                    writeBuffer[4] = 0x00;
+                    writeBuffer[3] = 0x00;
+                    writeBuffer[4] = (byte)AsciiCodes.ACK;
                     Port.SpecifiedDevice.SendData(writeBuffer);
-                return;
+                    return;
                 }
             }
         }
@@ -164,7 +195,7 @@ namespace GlucaTrack.Communication.Meters
             string softwareversion = typeandserial[1].Split(new char[] { '\\' })[0];
             string eepromversion = typeandserial[1].Split(new char[] { '\\' })[1];
             MeterDescription = typeandserial[0];
-
+            
             string MeterType = SplitTypeandSerial(typeandserial[2])[0];
             SerialNumber = SplitTypeandSerial(typeandserial[2])[1].Substring(0, 7);
         }
