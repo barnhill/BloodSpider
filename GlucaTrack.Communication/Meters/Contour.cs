@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.IO.Ports;
@@ -79,7 +80,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
             _TestFailed = false;
             _TestMode = true;
 
-            Port.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
+            Port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
 
             DateTime dtStartLoop = DateTime.Now;
             while (!_TestFailed && !_MeterFound && (DateTime.Now - dtStartLoop).TotalMilliseconds < 20000)
@@ -126,7 +127,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
                         }
                         catch
                         {
-                            Port.DataReceived += null;
+                            Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
                             Port.DiscardInBuffer();
                             Port.DiscardOutBuffer();
                             _TestFailed = true;
@@ -162,7 +163,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
                         try
                         {
                             string[] splitData = _TempString.Split(new char[] { '|' });
-                            System.Collections.BitArray bitary = new System.Collections.BitArray(Byte.Parse(splitData[1]));
+                            BitArray bitary = new BitArray(Byte.Parse(splitData[1]));
                             SampleFormat = (bitary.Get(2)) ? SampleFormat.MMOL : SampleFormat.MGDL;
                             Port.Write(new byte[] { 0x04 }, 0, 1);
                             _CountStep = 0;
@@ -170,7 +171,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
                         }
                         catch 
                         {
-                            Port.DataReceived += null;
+                            Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
                             Port.DiscardInBuffer();
                             Port.DiscardOutBuffer();
                             _TestFailed = true;
@@ -223,12 +224,11 @@ namespace GlucaTrack.Communication.Meters.Bayer
                     string MeterType = SplitTypeandSerial(typeandserial[2])[0];
                     SerialNumber = SplitTypeandSerial(typeandserial[2])[1];
 
-                    //contour meters have a product number of 7150
-                    _MeterFound = (MeterType == "7150");
+                    _MeterFound = true;
 
                     if (_TestMode)
                     {
-                        Port.DataReceived += null;
+                        Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
                         return;
                     }
 

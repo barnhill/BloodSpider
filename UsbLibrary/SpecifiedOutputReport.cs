@@ -13,7 +13,7 @@ namespace UsbLibrary
         public bool SendData(byte[] data)
         {
             byte[] arrBuff = Buffer; //new byte[Buffer.Length];
-            for (int i = 1; i < arrBuff.Length; i++)
+            for (int i = 0; i < arrBuff.Length; i++)
             {
                 arrBuff[i] = data[i];
             }

@@ -154,13 +154,6 @@ namespace GlucaTrack.Services.Windows
                         Meter.RecordRead += new EventHandler(OnRecordRead);
                         Meter.HeaderRead += new EventHandler(OnHeaderRead);
 
-                        int connectionTries = 0;
-                        while (!Meter.Connect() && connectionTries < 30)
-                        {
-                            Thread.Sleep(100);
-                            connectionTries++;
-                        }
-
                         EventLog.WriteEntry(string.Format("Begin reading data from {0}.", Common.Statics.deviceFound.DeviceDescription), EventLogEntryType.Information);
 
                         Meter.ReadData();
@@ -416,7 +409,9 @@ namespace GlucaTrack.Services.Windows
                 if (meter == null)
                     throw new Exception("OnReadFinished-1: Meter object was null.");
 
-                EventLog.WriteEntry(string.Format("Finished reading {1} data records from {0}.", Common.Statics.deviceFound.DeviceDescription, ((AbstractMeter)meter).Records.Count), EventLogEntryType.Information);
+                EventLog.WriteEntry(string.Format("Finished reading {1} data records from {0}.", ((AbstractMeter)meter).MeterDescription, ((AbstractMeter)meter).Records.Count), EventLogEntryType.Information);
+
+                pipeWrite("MSG", string.Format("Finished reading {0} data records", ((AbstractMeter)meter).Records.Count), string.Format("from {0}", ((AbstractMeter)meter).MeterDescription), 1);
 
                 //send data to webservice
                 uploadData(meter);
