@@ -351,7 +351,7 @@ namespace GlucaTrack.Services.Windows
                         try
                         {
                             EventLog.WriteEntry("Validating User: Begin", EventLogEntryType.Information);
-
+                            
                             //validate user
                             userinfo = client.ValidateLogin(Common.StringCipher.DES_Decrypt(loginRow.Username), loginRow.Password);
                         }

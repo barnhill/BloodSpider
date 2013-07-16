@@ -118,9 +118,29 @@
     <None Include="Service References\WebService\GlucaTrack.Services.Windows.WebService.Common.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\WebService\GlucaTrack.Services.Windows.WebService.Records.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebService\GTService.wsdl" />
+    <None Include="Service References\WebService\GTService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebService\GTService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebService\GTService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebService\GTService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebService\Records.xsd" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\WebService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WebService\GTService.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\WebService\configuration91.svcinfo" />
@@ -129,30 +149,10 @@
     <None Include="Service References\WebService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\WebService\GlucaTrack.Services.Windows.WebService.Records.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\WebService\GTService.wsdl" />
-    <None Include="Service References\WebService\GTService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\WebService\GTService41.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\WebService\GTService42.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\WebService\GTService43.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\WebService\Records1.xsd" />
     <None Include="Service References\WebService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\WebService\GTService1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -97,8 +97,20 @@
     <Content Include="Images\testcontent.png" />
     <Content Include="Content\UserImage.ashx" />
     <Content Include="GlucaTrack.pfx" />
-    <None Include="Service References\GTService\Common1.xsd" />
-    <Content Include="Service References\GTService\GTService1.disco" />
+    <None Include="Service References\GTService\Common.xsd" />
+    <Content Include="Service References\GTService\GlucaTrack.Website.GTService.Common.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\GTService\GlucaTrack.Website.GTService.Records.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\GTService\GTService.disco" />
+    <None Include="Service References\GTService\configuration91.svcinfo" />
+    <None Include="Service References\GTService\configuration.svcinfo" />
+    <None Include="Service References\GTService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Styles\site.css" />
     <Content Include="Styles\site1.css" />
     <Content Include="Images\unused\background\blood_hand.jpg" />
@@ -142,32 +154,6 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Service References\GTService\GlucaTrack.Website.GTService.Common.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\GTService\GlucaTrack.Website.GTService.Records.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <None Include="Service References\GTService\configuration91.svcinfo" />
-    <None Include="Service References\GTService\configuration.svcinfo" />
-    <Content Include="Service References\GTService\GTService1.wsdl" />
-    <None Include="Service References\GTService\GTService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GTService\GTService41.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GTService\GTService42.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GTService\GTService43.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GTService\Records1.xsd" />
-    <None Include="Service References\GTService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Styles\dashboard.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -228,6 +214,11 @@
     <Compile Include="Content\Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Service References\GTService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Statics.cs" />
     <Compile Include="Content\UserImage.ashx.cs">
       <DependentUpon>UserImage.ashx</DependentUpon>
@@ -279,11 +270,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Master_Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Service References\GTService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -300,6 +286,20 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\GTService\GTService.wsdl" />
+    <None Include="Service References\GTService\GTService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GTService\GTService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GTService\GTService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GTService\GTService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GTService\Records.xsd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -309,9 +309,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\GTService\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Account_Strings.resx">
@@ -337,6 +334,9 @@
       <Project>{28fa9879-6d10-4104-92d3-11c9c55e7053}</Project>
       <Name>GlucaTrack.Services.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\GTService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

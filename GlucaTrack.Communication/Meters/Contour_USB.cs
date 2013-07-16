@@ -17,6 +17,7 @@ namespace GlucaTrack.Communication.Meters
         bool _devicePresent = false;
         byte _CountStep = 0;
         Dictionary<int, string> _supportedPIDs = new Dictionary<int, string>();
+        Dictionary<int, int> _supportedIDs = new Dictionary<int, int>();
         int RecordsRead;
 
         bool _HeaderRead = false;
@@ -65,6 +66,17 @@ namespace GlucaTrack.Communication.Meters
             }
         }
 
+        /// <summary>
+        /// List of supported IDs (table MeterTypes.metertype_id)
+        /// </summary>
+        public Dictionary<int, int> SupportedIDs
+        {
+            get
+            {
+                return _supportedIDs;
+            }
+        }
+
         public Contour_USB()
         {
             ID = 8;
@@ -84,6 +96,9 @@ namespace GlucaTrack.Communication.Meters
         {
             SupportedPIDs.Add(0x6002, "Bayer Contour USB");
             SupportedPIDs.Add(0x7410, "Bayer Contour USB Next");
+
+            SupportedIDs.Add(0x6002, 8);
+            SupportedIDs.Add(0x7410, 9);
         }
 
         public void ReadData()
@@ -131,6 +146,7 @@ namespace GlucaTrack.Communication.Meters
             foreach (KeyValuePair<int, string> item in SupportedPIDs)
             {
                 PID = item.Key;
+                ID = SupportedIDs[item.Key];
                 MeterDescription = item.Value;
 
                 Port.VendorId = VID;
@@ -162,7 +178,7 @@ namespace GlucaTrack.Communication.Meters
                 return;
             }
 
-            ////send read number of results on device message
+            ////send read config message
             //if (_HeaderRead && _NumResultsRead && !_ConfigRead && _CountStep <= 1)
             //{
             //    GetConfigMessages();
@@ -229,15 +245,12 @@ namespace GlucaTrack.Communication.Meters
                     //put the record in the dataset and raise the read event
                     try
                     {
-                        RecordsRead++;
                         if (Records.FindByTimestamp(dtTimeStamp) == null)
                         {
+                            //only insert non-duplicate records
                             OnRecordRead(new RecordReadEventArgs(this._Records.AddRecordRow(dtTimeStamp, glucose, sampleFormat)));
+                            RecordsRead++;
                         }//if
-                        else
-                        {
-                            //ignore because its a duplicate record
-                        }//else
                     }//try
                     catch
                     {
@@ -258,7 +271,7 @@ namespace GlucaTrack.Communication.Meters
                     _CountStep = 0;
                     Thread.Sleep(100);
                     OnHeaderRead(new HeaderReadEventArgs(SampleCount, this));
-                    GetConfigMessages();
+                    //GetConfigMessages();
                     return;
                 }
 
@@ -279,10 +292,11 @@ namespace GlucaTrack.Communication.Meters
             }
 
             //end of transmission encountered after a header record is read
-            if (_HeaderRead && _NumResultsRead && RecordsRead == SampleCount)
+            if (_HeaderRead && _NumResultsRead && RecordsRead >= SampleCount)
             {
                 _HeaderRead = false;
                 Port.OnDataRecieved -= new UsbLibrary.DataRecievedEventHandler(DataReceived);
+                Port.SpecifiedDevice.DataRecieved -= SpecifiedDevice_DataRecieved;
                 OnReadFinished(new ReadFinishedEventArgs(this));
                 Close();
                 Dispose();
@@ -307,7 +321,6 @@ namespace GlucaTrack.Communication.Meters
             string accesspassword = headerrecord[3];
             string softwareversion = typeandserial[1].Split(new char[] { '\\' })[0];
             string eepromversion = typeandserial[1].Split(new char[] { '\\' })[1];
-            //MeterDescription = typeandserial[0];
 
             string MeterType = SplitTypeandSerial(typeandserial[2])[0];
             SerialNumber = SplitTypeandSerial(typeandserial[2])[1].Substring(0, 7);
@@ -367,28 +380,28 @@ namespace GlucaTrack.Communication.Meters
             }
         }
 
-        private void GetConfigMessages()
-        {
-            switch (_CountStep)
-            {
-                case 0:
-                    Thread.Sleep(100);
-                    writeBuffer[4] = (byte)AsciiCodes.STX;
-                    writeBuffer[5] = 0x52; //R
-                    writeBuffer[6] = 0x7C; //|
-                    Port.SpecifiedDevice.SendData(writeBuffer);
-                    _CountStep++;
-                    break;
-                case 1:
-                    Thread.Sleep(100);
-                    writeBuffer[4] = (byte)AsciiCodes.STX;
-                    writeBuffer[5] = 0x43; //C
-                    writeBuffer[6] = 0x7C; //|
-                    Port.SpecifiedDevice.SendData(writeBuffer);
-                    _CountStep++;
-                    break;
-                default: break;
-            }
-        }
+        //private void GetConfigMessages()
+        //{
+        //    switch (_CountStep)
+        //    {
+        //        case 0:
+        //            Thread.Sleep(100);
+        //            writeBuffer[4] = (byte)AsciiCodes.STX;
+        //            writeBuffer[5] = 0x52; //R
+        //            writeBuffer[6] = 0x7C; //|
+        //            Port.SpecifiedDevice.SendData(writeBuffer);
+        //            _CountStep++;
+        //            break;
+        //        case 1:
+        //            Thread.Sleep(100);
+        //            writeBuffer[4] = (byte)AsciiCodes.STX;
+        //            writeBuffer[5] = 0x43; //C
+        //            writeBuffer[6] = 0x7C; //|
+        //            Port.SpecifiedDevice.SendData(writeBuffer);
+        //            _CountStep++;
+        //            break;
+        //        default: break;
+        //    }
+        //}
     }
 }
