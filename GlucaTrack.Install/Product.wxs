@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Version="1.0.1" Id="b01ec04a-59c3-4600-bbaf-5c8e2e2245d3" Name="GlucaTrack" Manufacturer="GlucaTrack" UpgradeCode="d7969321-0242-4910-8929-9cd5102ce44b" Language="1033" Codepage="1252">
+    <Package Description="GlucaTrack Service" Manufacturer="GlucaTrack" SummaryCodepage="1252" Languages="1033" InstallerVersion="400" Keywords="Installer" Compressed="yes" />
+    <Media Id="1" Cabinet="Setup_1.cab" EmbedCab="yes" DiskPrompt="CD-ROM #1" CompressionLevel="high" />
+    <Property Id="DiskPrompt" Value="GlucaTrack Service Installation [1]" />
+    <Upgrade Id="d7969321-0242-4910-8929-9cd5102ce44b">
+      <UpgradeVersion OnlyDetect="no" Property="WARSETUP_PREVIOUSVERSIONFOUND" IncludeMinimum="yes" Minimum="0.0.0" Maximum="1.0.1" IncludeMaximum="yes" />
+    </Upgrade>
+    <InstallExecuteSequence>
+      <Custom Action="ID1349" After="CostFinalize" />
+      <LaunchConditions Sequence="100">NOT Installed</LaunchConditions>
+      <FindRelatedProducts Sequence="200" />
+      <AppSearch Sequence="300" />
+      <CCPSearch Sequence="400">NOT Installed</CCPSearch>
+      <RMCCPSearch Sequence="600">NOT Installed AND CPP_TEST</RMCCPSearch>
+      <ValidateProductID Sequence="700" />
+      <CostInitialize Sequence="800" />
+      <FileCost Sequence="900" />
+      <IsolateComponents Sequence="990">RedirectedDllSupport</IsolateComponents>
+      <CostFinalize Sequence="1000" />
+      <SetODBCFolders Sequence="1100">NOT Installed</SetODBCFolders>
+      <MigrateFeatureStates Sequence="1200" />
+      <InstallValidate Sequence="1400" />
+      <RemoveExistingProducts Sequence="1480">WARSETUP_PREVIOUSVERSIONFOUND</RemoveExistingProducts>
+      <InstallInitialize Sequence="1500" />
+      <ProcessComponents Sequence="1600" />
+      <UnpublishComponents Sequence="1680" />
+      <UnpublishFeatures Sequence="1800" />
+      <StopServices Sequence="1900">VersionNT</StopServices>
+      <DeleteServices Sequence="1980">VersionNT</DeleteServices>
+      <UnregisterComPlus Sequence="2000" />
+      <SelfUnregModules Sequence="2100" />
+      <UnregisterTypeLibraries Sequence="2200" />
+      <RemoveODBC Sequence="2300" />
+      <UnregisterFonts Sequence="2400" />
+      <RemoveRegistryValues Sequence="2600" />
+      <UnregisterClassInfo Sequence="2700" />
+      <UnregisterExtensionInfo Sequence="2800" />
+      <UnregisterProgIdInfo Sequence="2900" />
+      <UnregisterMIMEInfo Sequence="3000" />
+      <RemoveIniValues Sequence="3100" />
+      <RemoveShortcuts Sequence="3200" />
+      <RemoveEnvironmentStrings Sequence="3300" />
+      <RemoveDuplicateFiles Sequence="3400" />
+      <RemoveFiles Sequence="3500" />
+      <RemoveFolders Sequence="3600" />
+      <CreateFolders Sequence="3700" />
+      <MoveFiles Sequence="3800" />
+      <InstallFiles Sequence="4000" />
+      <DuplicateFiles Sequence="4100" />
+      <PatchFiles Sequence="4200" />
+      <BindImage Sequence="4300" />
+      <CreateShortcuts Sequence="4500" />
+      <RegisterClassInfo Sequence="4600" />
+      <RegisterExtensionInfo Sequence="4700" />
+      <RegisterProgIdInfo Sequence="4800" />
+      <RegisterMIMEInfo Sequence="4900" />
+      <WriteRegistryValues Sequence="5000" />
+      <WriteIniValues Sequence="5100" />
+      <WriteEnvironmentStrings Sequence="5200" />
+      <RegisterFonts Sequence="5300" />
+      <InstallODBC Sequence="5400" />
+      <RegisterTypeLibraries Sequence="5500" />
+      <SelfRegModules Sequence="5600" />
+      <RegisterComPlus Sequence="5700" />
+      <InstallServices Sequence="5800">VersionNT</InstallServices>
+      <StartServices Sequence="5900">VersionNT</StartServices>
+      <RegisterUser Sequence="6000" />
+      <RegisterProduct Sequence="6100" />
+      <PublishComponents Sequence="6200" />
+      <PublishFeatures Sequence="6300" />
+      <PublishProduct Sequence="6400" />
+      <MsiPublishAssemblies Sequence="6500" />
+      <MsiUnpublishAssemblies Sequence="6550" />
+      <InstallFinalize Sequence="6600" />
+      <Custom Action="ID1350" After="FileCost" />
+      <Custom Action="ID1367" After="CostFinalize" />
+      <Custom Action="ID1368" After="CostFinalize" />
+      <Custom Action="ID1369" After="CostFinalize" />
+    </InstallExecuteSequence>
+    <CustomAction Id="ID1349" Property="WarSetup_PRODUCT" Value="b01ec04a-59c3-4600-bbaf-5c8e2e2245d3" HideTarget="no" />
+    <InstallUISequence>
+      <Custom Action="ID1349" After="CostFinalize" />
+      <Custom Action="ID1350" After="FileCost" />
+      <Custom Action="ID1367" After="CostFinalize" />
+      <Custom Action="ID1368" After="CostFinalize" />
+      <Custom Action="ID1369" After="CostFinalize" />
+    </InstallUISequence>
+    <AdvertiseExecuteSequence>
+      <CostInitialize Sequence="800" />
+      <CostFinalize Sequence="1000" />
+      <InstallValidate Sequence="1400" />
+      <InstallInitialize Sequence="1500" />
+      <CreateShortcuts Sequence="4500" />
+      <RegisterClassInfo Sequence="4600" />
+      <RegisterExtensionInfo Sequence="4700" />
+      <RegisterProgIdInfo Sequence="4800" />
+      <RegisterMIMEInfo Sequence="4900" />
+      <PublishComponents Sequence="6200" />
+      <PublishFeatures Sequence="6300" />
+      <PublishProduct Sequence="6400" />
+      <MsiPublishAssemblies Sequence="6500" />
+      <InstallFinalize Sequence="6600" />
+    </AdvertiseExecuteSequence>
+    <CustomAction Id="ID1350" Property="TARGETDIR" Value="[APPLICATIONFOLDER]" HideTarget="no" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramMenuFolder" Name="Programs">
+        <Component Id="ID1353" Guid="98ae8932-8880-47c9-87d9-94f2665e3b8d">
+          <RegistryValue Root="HKCU" Key="SOFTWARE\GlucaTrack\GlucaTrack Service\Components\ID1353" Type="string" KeyPath="yes" Value="" />
+          <RemoveFolder Id="ID1354" On="uninstall" />
+        </Component>
+        <Directory Id="ProgramMenuDir" Name="GlucaTrack Service">
+          <Component Id="ID1355" Guid="46243188-c17f-405a-bacf-e92d89430f00">
+            <RegistryValue Root="HKCU" Key="SOFTWARE\GlucaTrack\GlucaTrack Service\Components\ID1355" Type="string" KeyPath="yes" Value="" />
+            <RemoveFolder Id="ID1356" On="uninstall" />
+          </Component>
+        </Directory>
+        <Directory Id="StartupFolder" Name="StartupFolder Directory">
+          <Component Id="ID1357" Guid="f012f18f-11c4-4e64-9354-b1e40b0d647a">
+            <RegistryValue Root="HKCU" Key="SOFTWARE\GlucaTrack\GlucaTrack Service\Components\ID1357" Type="string" KeyPath="yes" Value="" />
+            <RemoveFolder Id="ID1358" On="uninstall" />
+          </Component>
+        </Directory>
+      </Directory>
+      <Directory Id="AppDataFolder" Name="AppData">
+        <Component Id="ID1359" Guid="51407661-923f-43e2-9956-07ddeab11c36">
+          <RegistryValue Root="HKCU" Key="SOFTWARE\GlucaTrack\GlucaTrack Service\Components\ID1359" Type="string" KeyPath="yes" Value="" />
+          <RemoveFolder Id="ID1360" On="uninstall" />
+        </Component>
+        <Directory Id="Microsoft" Name="Microsoft">
+          <Component Id="ID1361" Guid="527a6bf1-154c-4666-9f42-e2a5af094d61">
+            <RegistryValue Root="HKCU" Key="SOFTWARE\GlucaTrack\GlucaTrack Service\Components\ID1361" Type="string" KeyPath="yes" Value="" />
+            <RemoveFolder Id="ID1362" On="uninstall" />
+          </Component>
+          <Directory Id="AppMsInternetExplorer" Name="Internet Explorer">
+            <Component Id="ID1363" Guid="9bfc504c-3bcb-4952-b277-371227916faf">
+              <RegistryValue Root="HKCU" Key="SOFTWARE\GlucaTrack\GlucaTrack Service\Components\ID1363" Type="string" KeyPath="yes" Value="" />
+              <RemoveFolder Id="ID1364" On="uninstall" />
+            </Component>
+            <Directory Id="QuickLaunchFolder" Name="Quick Launch">
+              <Component Id="ID1365" Guid="556eab4e-3233-43b5-bf2c-337783e6bbe9">
+                <RegistryValue Root="HKCU" Key="SOFTWARE\GlucaTrack\GlucaTrack Service\Components\ID1365" Type="string" KeyPath="yes" Value="" />
+                <RemoveFolder Id="ID1366" On="uninstall" />
+              </Component>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+      <Directory Id="DesktopFolder" Name="Desktop">
+        <Component Id="ID1351" Guid="4f4f7383-9d97-42a2-94a0-967e91917793">
+          <RegistryValue Root="HKCU" Key="SOFTWARE\GlucaTrack\GlucaTrack Service\Components\ID1351" Type="string" KeyPath="yes" Value="" />
+          <RemoveFolder Id="ID1352" On="uninstall" />
+        </Component>
+      </Directory>
+      <Directory Id="ProgramFilesFolder" Name="Program Files Folder">
+        <Directory Id="APPLICATIONFOLDER" Name="GlucaTrack">
+          <Component Id="ID1001" Guid="27c4885d-1eb2-4d10-af0d-3e8d0538fa2e">
+            <File Id="ID_2d7f715b_d6ee_42c5_aa93_8e23f475a225" Source="..\GlucaTrack.Services.Windows\bin\Debug\GlucaTrack.Communication.dll" DiskId="1" Name="GlucaTrack.Communication.dll" />
+          </Component>
+          <Component Id="ID1003" Guid="c7d14f40-37b8-4036-9a3a-ad829ac1fd4b">
+            <File Id="ID_d73d6441_ff11_48ae_ad2b_fb6441119869" Source="..\GlucaTrack.Services.Windows\bin\Debug\GlucaTrack.Services.Common.dll" DiskId="1" Name="GlucaTrack.Services.Common.dll" />
+          </Component>
+          <Component Id="ID1005" Guid="247b35e6-a946-4b28-86b5-520e01a144f8">
+            <ServiceInstall Id="ID1004" Description="GlucaTrack Detector" ErrorControl="normal" Interactive="no" Name="GlucaTrack Detector" Start="auto" Type="ownProcess" Vital="yes" />
+            <ServiceControl Id="ID1004" Name="GlucaTrack Detector" Remove="both" Start="install" />
+            <File Id="ID_a75e9a7d_62c9_494b_9bfd_97375598872c" Source="..\GlucaTrack.Services.Windows\bin\Debug\GlucaTrack.Services.Windows.exe" DiskId="1" Name="GlucaTrack.Services.Windows.exe" />
+          </Component>
+          <Component Id="ID1007" Guid="77cb8394-b039-47cf-aa90-12c546f561f0">
+            <File Id="ID_f91969e3_fd8b_4812_946b_74658199c76f" Source="..\GlucaTrack.Services.Windows\bin\Debug\UsbLibrary.dll" DiskId="1" Name="UsbLibrary.dll" />
+          </Component>
+          <Component Id="ID1104" Guid="2a753a90-8318-44b3-a1c5-a0276630d054">
+            <File Id="ID_435d5775_f4d0_445f_b5d4_f25fdf36b946" Source="..\GlucaTrack_ServiceNotifyIcon\bin\Debug\GlucaTrack_ServiceNotifyIcon.exe" DiskId="1" Name="GlucaTrack_ServiceNotifyIcon.exe" />
+          </Component>
+          <Component Id="ID1260" Guid="583c402c-27e9-4b82-ad66-b985fe6d3d28">
+            <File Id="ID_88003fd3_f8df_410e_bbde_b59114102d1e" Source="..\GlucaTrack_ServiceNotifyIcon\blood.ico" DiskId="1" Name="blood.ico" />
+          </Component>
+        </Directory>
+      </Directory>
+    </Directory>
+    <Property Id="ApplicationFolderName" Value="GlucaTrack Service" />
+    <Property Id="WixAppFolder" Value="WixPerUserFolder" />
+    <WixVariable Id="WixUILicenseRtf" Value="EULA.rtf" />
+    <WixVariable Id="WixUIBannerBmp" Value="Banner.jpg" />
+    <WixVariable Id="WixUIDialogBmp" Value="Dialog.jpg" />
+    <Feature Id="ID70213A2C1BC5D3E92D129ADE567EBE26" Title="GlucaTrack" Level="1" Description="The complete package" InstallDefault="local" ConfigurableDirectory="APPLICATIONFOLDER">
+      <Feature Id="SERVICE" Title="Service" Level="1" Description="The Main Executable" InstallDefault="local">
+        <ComponentRef Id="ID1001" />
+        <ComponentRef Id="ID1003" />
+        <ComponentRef Id="ID1005" />
+        <ComponentRef Id="ID1007" />
+        <ComponentRef Id="ID1104" />
+        <ComponentRef Id="ID1260" />
+      </Feature>
+      <ComponentRef Id="ID1351" />
+      <ComponentRef Id="ID1353" />
+      <ComponentRef Id="ID1355" />
+      <ComponentRef Id="ID1357" />
+      <ComponentRef Id="ID1359" />
+      <ComponentRef Id="ID1361" />
+      <ComponentRef Id="ID1363" />
+      <ComponentRef Id="ID1365" />
+    </Feature>
+    <UI>
+      <UIRef Id="WixUI_Advanced" />
+    </UI>
+    <Condition Message="You must not be an administrator to install this product.">Privileged</Condition>
+    <Property Id="ALLUSERS" Value="0" />
+    <Condition Message="This product require Windows Vista or newer">VersionNT &gt;= 600</Condition>
+    <CustomAction Id="ID1367" Property="ARPHELPLINK" Value="http://www.glucatrack.com" HideTarget="no" />
+    <CustomAction Id="ID1368" Property="ARPCOMMENTS" Value="GlucaTrack Uploading Service" HideTarget="no" />
+    <CustomAction Id="ID1369" Property="ARPURLINFOABOUT" Value="http://www.glucatrack.com" HideTarget="no" />
+
+    <Icon Id="icon.ico" SourceFile="..\GlucaTrack_ServiceNotifyIcon\blood.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+  </Product>
+</Wix>
