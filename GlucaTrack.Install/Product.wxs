@@ -162,7 +162,7 @@
             <File Id="ID_d73d6441_ff11_48ae_ad2b_fb6441119869" Source="..\GlucaTrack.Services.Windows\bin\Debug\GlucaTrack.Services.Common.dll" DiskId="1" Name="GlucaTrack.Services.Common.dll" />
           </Component>
           <Component Id="ID1005" Guid="247b35e6-a946-4b28-86b5-520e01a144f8">
-            <ServiceInstall Id="ID1004" Description="GlucaTrack Detector" ErrorControl="normal" Interactive="no" Name="GlucaTrack Detector" Start="auto" Type="ownProcess" Vital="yes" />
+            <ServiceInstall Id="ID1004" Description="Monitoring and management service for GlucaTrack diabetes management software." ErrorControl="normal" Interactive="no" Name="GlucaTrack Detector" Start="auto" Type="ownProcess" Vital="yes" />
             <ServiceControl Id="ID1004" Name="GlucaTrack Detector" Remove="both" Start="install" />
             <File Id="ID_a75e9a7d_62c9_494b_9bfd_97375598872c" Source="..\GlucaTrack.Services.Windows\bin\Debug\GlucaTrack.Services.Windows.exe" DiskId="1" Name="GlucaTrack.Services.Windows.exe" />
           </Component>
