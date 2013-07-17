@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlucaTrack_ServiceNotifyIco
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlucaTrack.Services.Common", "GlucaTrack.Services.Common\GlucaTrack.Services.Common.csproj", "{28FA9879-6D10-4104-92D3-11C9C55E7053}"
 EndProject
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "GlucaTrack.Installer", "GlucaTrack.Installer\GlucaTrack.Installer.wixproj", "{86439D72-0888-4B4F-8355-8366B59CA85F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlucaTrack.Services.Web", "GlucaTrack.Services.Web\GlucaTrack.Services.Web.csproj", "{7BF5CE92-F99A-44CF-9C82-9B82A12E7217}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlucaTrack.Website", "GlucaTrack.Website\GlucaTrack.Website.csproj", "{57A607CE-C076-4590-980F-FF16F8A20FF4}"
@@ -72,14 +70,6 @@ Global
 		{28FA9879-6D10-4104-92D3-11C9C55E7053}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{28FA9879-6D10-4104-92D3-11C9C55E7053}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{28FA9879-6D10-4104-92D3-11C9C55E7053}.Release|x86.ActiveCfg = Release|Any CPU
-		{86439D72-0888-4B4F-8355-8366B59CA85F}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{86439D72-0888-4B4F-8355-8366B59CA85F}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{86439D72-0888-4B4F-8355-8366B59CA85F}.Debug|x86.ActiveCfg = Debug|x86
-		{86439D72-0888-4B4F-8355-8366B59CA85F}.Debug|x86.Build.0 = Debug|x86
-		{86439D72-0888-4B4F-8355-8366B59CA85F}.Release|Any CPU.ActiveCfg = Release|x86
-		{86439D72-0888-4B4F-8355-8366B59CA85F}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{86439D72-0888-4B4F-8355-8366B59CA85F}.Release|x86.ActiveCfg = Release|x86
-		{86439D72-0888-4B4F-8355-8366B59CA85F}.Release|x86.Build.0 = Release|x86
 		{7BF5CE92-F99A-44CF-9C82-9B82A12E7217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7BF5CE92-F99A-44CF-9C82-9B82A12E7217}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BF5CE92-F99A-44CF-9C82-9B82A12E7217}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
