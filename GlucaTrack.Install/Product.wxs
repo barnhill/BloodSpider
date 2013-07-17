@@ -175,6 +175,9 @@
           <Component Id="ID1260" Guid="583c402c-27e9-4b82-ad66-b985fe6d3d28">
             <File Id="ID_88003fd3_f8df_410e_bbde_b59114102d1e" Source="..\GlucaTrack_ServiceNotifyIcon\blood.ico" DiskId="1" Name="blood.ico" />
           </Component>
+          <Component Id="ID1261" Guid="D73CAA94-4670-419B-9320-8DE46E52BC02">
+            <File Id="ID_52D7679F_E573_4944_B8F3_CB129B7F7CFC" Source="..\GlucaTrack.Services.Windows\app.config" DiskId="1" Name="GlucaTrack.Services.Windows.exe.config" />
+          </Component>
         </Directory>
       </Directory>
     </Directory>
@@ -191,6 +194,7 @@
         <ComponentRef Id="ID1007" />
         <ComponentRef Id="ID1104" />
         <ComponentRef Id="ID1260" />
+        <ComponentRef Id="ID1261" />
       </Feature>
       <ComponentRef Id="ID1351" />
       <ComponentRef Id="ID1353" />

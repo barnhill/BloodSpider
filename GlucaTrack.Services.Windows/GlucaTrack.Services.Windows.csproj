@@ -109,7 +109,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <Content Include="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="GlucaTrack Service Controls\install.bat" />
     <None Include="GlucaTrack Service Controls\InstallUtil.InstallLog" />
     <None Include="GlucaTrack Service Controls\remove.bat" />
