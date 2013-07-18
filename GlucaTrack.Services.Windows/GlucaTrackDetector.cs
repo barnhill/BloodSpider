@@ -341,6 +341,7 @@ namespace GlucaTrack.Services.Windows
         {
             if (settings != null)
             {
+                string assemblyName = Assembly.GetCallingAssembly().GetName().Name;
                 using (WebService.GTServiceClient client = new WebService.GTServiceClient())
                 {
                     //upload meter info to database via web service
@@ -353,7 +354,8 @@ namespace GlucaTrack.Services.Windows
                             EventLog.WriteEntry("Validating User: Begin", EventLogEntryType.Information);
                             
                             //validate user
-                            userinfo = client.ValidateLogin(Common.StringCipher.DES_Decrypt(loginRow.Username), loginRow.Password);
+                            userinfo = client.ValidateLogin(assemblyName, Common.StringCipher.DES_Encrypt("65aeed4c-956c-4873-ab4b-335b5e7f7835"), 
+                                                            loginRow.Username, loginRow.Password);
                         }
                         catch (Exception ex)
                         {
@@ -377,7 +379,6 @@ namespace GlucaTrack.Services.Windows
                             EventLog.WriteEntry("Uploading Data: Begin", EventLogEntryType.Information);
 
                             client.PostGlucoseRecords(recordsToUpload, userinfo, ((AbstractMeter)oMeter).ID);
-                            client.UpdateLastSync(userinfo);
 
                             EventLog.WriteEntry("Uploading Data: End", EventLogEntryType.Information);
 

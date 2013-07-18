@@ -91,11 +91,45 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="sp_GetApplicationByToken">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element msdata:ReadOnly="true" msdata:AutoIncrement="true" name="application_id" type="xs:int" />
+              <xs:element name="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="token" type="xs:string" />
+              <xs:element name="enabled" type="xs:boolean" />
+              <xs:element minOccurs="0" name="codename">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element minOccurs="0" name="assemblyname">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique msdata:PrimaryKey="true" name="Constraint1">
       <xs:selector xpath=".//mstns:sp_GetLogin" />
       <xs:field xpath="mstns:user_id" />
+    </xs:unique>
+    <xs:unique msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true" name="sp_GetApplicationByToken_Constraint1">
+      <xs:selector xpath=".//mstns:sp_GetApplicationByToken" />
+      <xs:field xpath="mstns:application_id" />
     </xs:unique>
   </xs:element>
 </xs:schema>

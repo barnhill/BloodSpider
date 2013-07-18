@@ -112,17 +112,24 @@
     <Content Include="app.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="GlucaTrack Service Controls\install.bat" />
-    <None Include="GlucaTrack Service Controls\InstallUtil.InstallLog" />
-    <None Include="GlucaTrack Service Controls\remove.bat" />
-    <None Include="GlucaTrack.pfx" />
-    <None Include="Service References\WebService\Common.xsd" />
     <None Include="Service References\WebService\GlucaTrack.Services.Windows.WebService.Common.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\WebService\GlucaTrack.Services.Windows.WebService.Records.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\WebService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\WebService\configuration.svcinfo" />
+    <None Include="Service References\WebService\configuration91.svcinfo" />
+    <None Include="Service References\WebService\Common.xsd" />
+    <None Include="Service References\WebService\GTService.disco" />
+    <None Include="GlucaTrack Service Controls\install.bat" />
+    <None Include="GlucaTrack Service Controls\InstallUtil.InstallLog" />
+    <None Include="GlucaTrack Service Controls\remove.bat" />
+    <None Include="GlucaTrack.pfx" />
     <None Include="Service References\WebService\GTService.wsdl" />
     <None Include="Service References\WebService\GTService.xsd">
       <SubType>Designer</SubType>
@@ -140,21 +147,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\WebService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\WebService\GTService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\WebService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\WebService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\WebService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

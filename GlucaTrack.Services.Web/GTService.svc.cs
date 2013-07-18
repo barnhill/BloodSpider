@@ -17,14 +17,29 @@ namespace GlucaTrack.Services.Web
         /// <summary>
         /// Validates the users login and password sent in, and returns the users information if valid.
         /// </summary>
+        /// <param name="Assemblyname">Assembly name of the calling assembly</param>
+        /// <param name="Appid">Application id to verify originator.</param>
         /// <param name="Username">Username to validate.</param>
         /// <param name="Password">Password to validate.</param>
         /// <returns>User information</returns>
-        public Common ValidateLogin(string Username, string Password)
+        public Common ValidateLogin(string Assemblyname, string Appid, string Username, string Password)
         {
             lock (Authenticated)
             {
                 Authenticated.Clear();
+            }
+
+            using (CommonTableAdapters.sp_GetApplicationByTokenTableAdapter tokenAdapter = new CommonTableAdapters.sp_GetApplicationByTokenTableAdapter())
+            using (Common.sp_GetApplicationByTokenDataTable dtApps = new Common.sp_GetApplicationByTokenDataTable())
+            {
+                tokenAdapter.Fill(dtApps, new Guid(StringCipher.DES_Decrypt(Appid)), Assemblyname);
+
+                if (dtApps != null && dtApps.Rows.Count <= 0)
+                {
+                    //Could not find matching GUID for application in the apps table.  
+                    //This could possibly be an intruder posing as an app.
+                    throw new FaultException("Application token validation failed.");
+                }
             }
 
             using (CommonTableAdapters.sp_GetLoginTableAdapter ta = new CommonTableAdapters.sp_GetLoginTableAdapter())
@@ -32,7 +47,7 @@ namespace GlucaTrack.Services.Web
             {
                 try
                 {
-                    ta.Fill(d.sp_GetLogin, Username, Password);
+                    ta.Fill(d.sp_GetLogin, StringCipher.DES_Decrypt(Username), Password);
                     
                     if (d.sp_GetLogin != null && d.sp_GetLogin.Count == 1)
                     {
@@ -90,6 +105,8 @@ namespace GlucaTrack.Services.Web
             {
                 if (Authenticated.Count > 0 && Authenticated.Contains(user.sp_GetLogin.FirstOrDefault().sessionid))
                 {
+                    UpdateLastSync(user);
+
                     //authenticated session so allow post
                     Common.sp_GetLoginRow userinfo = null;
                     try
@@ -149,7 +166,7 @@ namespace GlucaTrack.Services.Web
         /// <summary>
         /// Record the last sync date and time on the users record in the database.
         /// </summary>
-        public bool UpdateLastSync(Common user)
+        private bool UpdateLastSync(Common user)
         {
             bool result = false;
 
