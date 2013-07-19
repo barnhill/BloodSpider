@@ -3,9 +3,17 @@
   <Product Version="1.0.1" Id="b01ec04a-59c3-4600-bbaf-5c8e2e2245d3" Name="GlucaTrack" Manufacturer="GlucaTrack" UpgradeCode="d7969321-0242-4910-8929-9cd5102ce44b" Language="1033" Codepage="1252">
     <Package Description="GlucaTrack Service" Manufacturer="GlucaTrack" SummaryCodepage="1252" Languages="1033" InstallerVersion="400" Keywords="Installer" Compressed="yes" />
     <Media Id="1" Cabinet="Setup_1.cab" EmbedCab="yes" DiskPrompt="CD-ROM #1" CompressionLevel="high" />
+    
     <Property Id="DiskPrompt" Value="GlucaTrack Service Installation [1]" />
+    <Property Id="ASSISTANCE_START_VIA_REGISTRY">1</Property>
+    <Property Id="ApplicationFolderName" Value="GlucaTrack Service" />
+    <Property Id="WixAppFolder" Value="WixPerUserFolder" />
+    <WixVariable Id="WixUILicenseRtf" Value="EULA.rtf" />
+    <WixVariable Id="WixUIBannerBmp" Value="Banner.jpg" />
+    <WixVariable Id="WixUIDialogBmp" Value="Dialog.jpg" />
+    
     <Upgrade Id="d7969321-0242-4910-8929-9cd5102ce44b">
-      <UpgradeVersion OnlyDetect="no" Property="WARSETUP_PREVIOUSVERSIONFOUND" IncludeMinimum="yes" Minimum="0.0.0" Maximum="1.0.1" IncludeMaximum="yes" />
+      <UpgradeVersion OnlyDetect="no" Property="WARSETUP_PREVIOUSVERSIONFOUND" IncludeMinimum="yes" Minimum="0.0.0" Maximum="1.0.0" IncludeMaximum="yes" />
     </Upgrade>
     <InstallExecuteSequence>
       <Custom Action="ID1349" After="CostFinalize" />
@@ -178,14 +186,19 @@
           <Component Id="ID1261" Guid="D73CAA94-4670-419B-9320-8DE46E52BC02">
             <File Id="ID_52D7679F_E573_4944_B8F3_CB129B7F7CFC" Source="..\GlucaTrack.Services.Windows\app.config" DiskId="1" Name="GlucaTrack.Services.Windows.exe.config" />
           </Component>
+          <!-- Auto-start via Registry -->
+          <Component Id="GlucaTrackAutostart" Guid="FBE4ACFF-1007-4F98-9C99-676DC9C4EE71">
+            <RegistryValue Id="GlucaTrackWindowsService.rst" Root="HKCU" KeyPath="yes" Action="write"
+                           Key="Software\Microsoft\Windows\CurrentVersion\Run"
+                           Name="GlucaTrack Windows Service"
+                           Value="[#ID_435d5775_f4d0_445f_b5d4_f25fdf36b946]"
+                           Type="string" />
+            <Condition>ASSISTANCE_START_VIA_REGISTRY</Condition>
+          </Component>
         </Directory>
       </Directory>
     </Directory>
-    <Property Id="ApplicationFolderName" Value="GlucaTrack Service" />
-    <Property Id="WixAppFolder" Value="WixPerUserFolder" />
-    <WixVariable Id="WixUILicenseRtf" Value="EULA.rtf" />
-    <WixVariable Id="WixUIBannerBmp" Value="Banner.jpg" />
-    <WixVariable Id="WixUIDialogBmp" Value="Dialog.jpg" />
+    
     <Feature Id="ID70213A2C1BC5D3E92D129ADE567EBE26" Title="GlucaTrack" Level="1" Description="The complete package" InstallDefault="local" ConfigurableDirectory="APPLICATIONFOLDER">
       <Feature Id="SERVICE" Title="Service" Level="1" Description="The Main Executable" InstallDefault="local">
         <ComponentRef Id="ID1001" />
@@ -195,6 +208,7 @@
         <ComponentRef Id="ID1104" />
         <ComponentRef Id="ID1260" />
         <ComponentRef Id="ID1261" />
+        <ComponentRef Id="GlucaTrackAutostart" />
       </Feature>
       <ComponentRef Id="ID1351" />
       <ComponentRef Id="ID1353" />
