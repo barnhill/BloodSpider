@@ -126,8 +126,7 @@ namespace GlucaTrack.Services.Common
         {
             if (String.IsNullOrEmpty(originalString))
             {
-                throw new ArgumentNullException
-                       ("The string which needs to be encrypted can not be null.");
+                throw new ArgumentNullException ("The string which needs to be encrypted can not be null.");
             }
             DESCryptoServiceProvider cryptoProvider = new DESCryptoServiceProvider();
             MemoryStream memoryStream = new MemoryStream();

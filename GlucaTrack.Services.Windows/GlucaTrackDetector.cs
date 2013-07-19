@@ -33,9 +33,6 @@ namespace GlucaTrack.Services.Windows
 
         protected override void OnStart(string[] args)
         {
-            //if (!Debugger.IsAttached)
-            //    Debugger.Launch();
-
             watcher = new ManagementEventWatcher();
             watcher.EventArrived += USBwatcher_EventArrived;
             watcher.Query = query;
