@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
   <Product Version="1.0.1" Id="b01ec04a-59c3-4600-bbaf-5c8e2e2245d3" Name="GlucaTrack" Manufacturer="GlucaTrack" UpgradeCode="d7969321-0242-4910-8929-9cd5102ce44b" Language="1033" Codepage="1252">
     <Package Description="GlucaTrack Service" Manufacturer="GlucaTrack" SummaryCodepage="1252" Languages="1033" InstallerVersion="400" Keywords="Installer" Compressed="yes" />
     <Media Id="1" Cabinet="Setup_1.cab" EmbedCab="yes" DiskPrompt="CD-ROM #1" CompressionLevel="high" />
     
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch GlucaTrack" />
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />
     <Property Id="DiskPrompt" Value="GlucaTrack Service Installation [1]" />
     <Property Id="ASSISTANCE_START_VIA_REGISTRY">1</Property>
     <Property Id="ApplicationFolderName" Value="GlucaTrack Service" />
     <Property Id="WixAppFolder" Value="WixPerUserFolder" />
+    <Property Id="WixShellExecTarget" Value="[#ID_435d5775_f4d0_445f_b5d4_f25fdf36b946]" />
+    <Property Id="ARPPRODUCTICON" Value="icon" />
+    
     <WixVariable Id="WixUILicenseRtf" Value="EULA.rtf" />
     <WixVariable Id="WixUIBannerBmp" Value="Banner.jpg" />
     <WixVariable Id="WixUIDialogBmp" Value="Dialog.jpg" />
-    
+    <Icon Id="icon" SourceFile="..\GlucaTrack_ServiceNotifyIcon\blood.ico"/>
+        
     <Upgrade Id="d7969321-0242-4910-8929-9cd5102ce44b">
       <UpgradeVersion OnlyDetect="no" Property="WARSETUP_PREVIOUSVERSIONFOUND" IncludeMinimum="yes" Minimum="0.0.0" Maximum="1.0.0" IncludeMaximum="yes" />
     </Upgrade>
@@ -170,14 +176,23 @@
             <File Id="ID_d73d6441_ff11_48ae_ad2b_fb6441119869" Source="..\GlucaTrack.Services.Windows\bin\Debug\GlucaTrack.Services.Common.dll" DiskId="1" Name="GlucaTrack.Services.Common.dll" />
           </Component>
           <Component Id="ID1005" Guid="247b35e6-a946-4b28-86b5-520e01a144f8">
-            <ServiceInstall Id="ID1004" Description="Monitoring and management service for GlucaTrack diabetes management software." ErrorControl="normal" Interactive="no" Name="GlucaTrack Detector" Start="auto" Type="ownProcess" Vital="yes" />
-            <ServiceControl Id="ID1004" Name="GlucaTrack Detector" Remove="both" Start="install" />
+            <ServiceInstall Id="ID1004"
+                            Description="Monitoring and management service for GlucaTrack diabetes management software."
+                            ErrorControl="ignore"
+                            Interactive="no"
+                            Name="GlucaTrack Detector"
+                            Account="[SERVICEACCOUNT]"
+                            Password="[SERVICEPASSWORD]"
+                            Start="auto"
+                            Type="ownProcess"
+                            Vital="yes"/>
+            <ServiceControl Id="StartService" Start="install" Stop="uninstall" Remove="uninstall" Name="GlucaTrack Detector" Wait="yes" />
             <File Id="ID_a75e9a7d_62c9_494b_9bfd_97375598872c" Source="..\GlucaTrack.Services.Windows\bin\Debug\GlucaTrack.Services.Windows.exe" DiskId="1" Name="GlucaTrack.Services.Windows.exe" />
           </Component>
           <Component Id="ID1007" Guid="77cb8394-b039-47cf-aa90-12c546f561f0">
             <File Id="ID_f91969e3_fd8b_4812_946b_74658199c76f" Source="..\GlucaTrack.Services.Windows\bin\Debug\UsbLibrary.dll" DiskId="1" Name="UsbLibrary.dll" />
           </Component>
-          <Component Id="ID1104" Guid="2a753a90-8318-44b3-a1c5-a0276630d054">
+          <Component Id="GlucaTrack_ServiceNotifyIcon" Guid="2a753a90-8318-44b3-a1c5-a0276630d054">
             <File Id="ID_435d5775_f4d0_445f_b5d4_f25fdf36b946" Source="..\GlucaTrack_ServiceNotifyIcon\bin\Debug\GlucaTrack_ServiceNotifyIcon.exe" DiskId="1" Name="GlucaTrack_ServiceNotifyIcon.exe" />
           </Component>
           <Component Id="ID1260" Guid="583c402c-27e9-4b82-ad66-b985fe6d3d28">
@@ -192,8 +207,9 @@
                            Key="Software\Microsoft\Windows\CurrentVersion\Run"
                            Name="GlucaTrack Windows Service"
                            Value="[#ID_435d5775_f4d0_445f_b5d4_f25fdf36b946]"
-                           Type="string" />
+                           Type="string"/>
             <Condition>ASSISTANCE_START_VIA_REGISTRY</Condition>
+            <RemoveFolder Id="GlucaTrackAutostart_remove" On="uninstall" />
           </Component>
         </Directory>
       </Directory>
@@ -205,7 +221,7 @@
         <ComponentRef Id="ID1003" />
         <ComponentRef Id="ID1005" />
         <ComponentRef Id="ID1007" />
-        <ComponentRef Id="ID1104" />
+        <ComponentRef Id="GlucaTrack_ServiceNotifyIcon" />
         <ComponentRef Id="ID1260" />
         <ComponentRef Id="ID1261" />
         <ComponentRef Id="GlucaTrackAutostart" />
@@ -221,6 +237,10 @@
     </Feature>
     <UI>
       <UIRef Id="WixUI_Advanced" />
+      <Publish Dialog="ExitDialog"
+               Control="Finish" 
+               Event="DoAction" 
+               Value="LaunchApplication">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed</Publish>
     </UI>
     <Condition Message="You must not be an administrator to install this product.">Privileged</Condition>
     <Property Id="ALLUSERS" Value="0" />
@@ -228,8 +248,7 @@
     <CustomAction Id="ID1367" Property="ARPHELPLINK" Value="http://www.glucatrack.com" HideTarget="no" />
     <CustomAction Id="ID1368" Property="ARPCOMMENTS" Value="GlucaTrack Uploading Service" HideTarget="no" />
     <CustomAction Id="ID1369" Property="ARPURLINFOABOUT" Value="http://www.glucatrack.com" HideTarget="no" />
-
-    <Icon Id="icon.ico" SourceFile="..\GlucaTrack_ServiceNotifyIcon\blood.ico"/>
-    <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+    <CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
+    
   </Product>
 </Wix>
