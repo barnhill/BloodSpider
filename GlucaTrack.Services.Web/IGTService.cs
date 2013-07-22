@@ -20,5 +20,9 @@ namespace GlucaTrack.Services.Web
         [OperationContract]
         [FaultContract(typeof(Exception))]
         bool PostGlucoseRecords(GlucaTrack.Communication.Records records, Common user, int metertype);
+
+        [OperationContract]
+        [FaultContract(typeof(Exception))]
+        void UpdateLastWebLogin(Common user);
     }
 }

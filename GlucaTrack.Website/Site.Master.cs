@@ -14,7 +14,7 @@ namespace GlucaTrack.Website
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
-        private Queries.sp_GetLoginRow LoginRow = null;
+        private GTService.Common.sp_GetLoginRow LoginRow = null;
 
         /// <summary>
         /// Redirects to the pages secure site if true, to the non-secure site if false.
@@ -133,7 +133,7 @@ namespace GlucaTrack.Website
 
             if (Session["LoggedInUser"] != null)
             {
-                LoginRow = (Queries.sp_GetLoginRow)Session["LoggedInUser"];
+                LoginRow = (GTService.Common.sp_GetLoginRow)Session["LoggedInUser"];
             }
             else
             {

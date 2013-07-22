@@ -131,7 +131,7 @@ namespace GlucaTrack.Website.Account
                                                    stateid,
                                                    Zipcode.Text.Trim(),
                                                    Session["login"].ToString().Trim(),
-                                                   StringCipher.DES_Encrypt(Session["password"].ToString().Trim()),
+                                                   StringCipher.Encrypt(Session["password"].ToString().Trim(), true),
                                                    null,
                                                    null,
                                                    1,//usertype

@@ -47,32 +47,27 @@ namespace GlucaTrack.Website.Account
 
         private void LoginContainer_Authenticate(object sender, AuthenticateEventArgs e)
         {
-            using (QueriesTableAdapters.sp_GetLoginTableAdapter ta = new QueriesTableAdapters.sp_GetLoginTableAdapter())
+            using (GTService.GTServiceClient client = new GTService.GTServiceClient())
             {
-                using (Queries.sp_GetLoginDataTable dtLogin = new Queries.sp_GetLoginDataTable())
+                try
                 {
-                    string test = StringCipher.DES_Encrypt(this.LoginContainer.Password);
-                    if (ta.Fill(dtLogin, this.LoginContainer.UserName, StringCipher.DES_Encrypt(this.LoginContainer.Password)) > 0)
-                    {
-                        //successful login
-                        Queries.sp_GetLoginRow loginRow = dtLogin.First();
-                        Session.Add("LoggedInUser", loginRow);
+                    GTService.Common common = client.ValidateLogin(StringCipher.Encrypt("GlucaTrack.Website"), StringCipher.Encrypt("e87c87ba-a48c-4e37-b2c1-9186531afcfb"), StringCipher.Encrypt(StringCipher.Encrypt(this.LoginContainer.UserName, true)), StringCipher.Encrypt(StringCipher.Encrypt(this.LoginContainer.Password, true)));
 
-                        e.Authenticated = true;
+                    //successful login
+                    GTService.Common.sp_GetLoginRow loginRow = common.sp_GetLogin.First();
+                    Session.Add("LoggedInUser", loginRow);
 
-                        //update last_weblogin datetime
-                        using (QueriesTableAdapters.QueriesTableAdapter qta = new QueriesTableAdapters.QueriesTableAdapter())
-                        {
-                            qta.sp_UpdateLastWeblogin(loginRow.user_id);
-                        }
-                    }
-                    else
-                    {
-                        //unsuccessful login
-                        Session.Clear();
-                        FormsAuthentication.SignOut();
-                        e.Authenticated = false;
-                    }
+                    e.Authenticated = true;
+
+                    //update last_weblogin datetime
+                    client.UpdateLastWebLogin(common);
+                }
+                catch
+                {
+                    //unsuccessful login
+                    Session.Clear();
+                    FormsAuthentication.SignOut();
+                    e.Authenticated = false;
                 }
             }
         }

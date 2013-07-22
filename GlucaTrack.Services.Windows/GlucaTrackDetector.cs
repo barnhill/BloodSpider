@@ -29,6 +29,8 @@ namespace GlucaTrack.Services.Windows
         public GlucaTrackDetector()
         {
             InitializeComponent();
+
+            
         }
 
         protected override void OnStart(string[] args)
@@ -351,8 +353,8 @@ namespace GlucaTrack.Services.Windows
                             EventLog.WriteEntry("Validating User: Begin", EventLogEntryType.Information);
                             
                             //validate user
-                            userinfo = client.ValidateLogin(assemblyName, Common.StringCipher.DES_Encrypt("65aeed4c-956c-4873-ab4b-335b5e7f7835"), 
-                                                            loginRow.Username, loginRow.Password);
+                            userinfo = client.ValidateLogin(StringCipher.Encrypt(assemblyName), StringCipher.Encrypt("65aeed4c-956c-4873-ab4b-335b5e7f7835"), 
+                                                            StringCipher.Encrypt(loginRow.Username), StringCipher.Encrypt(loginRow.Password));
                         }
                         catch (Exception ex)
                         {

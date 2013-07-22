@@ -17,7 +17,7 @@ namespace GlucaTrack.Website.Content
         //TODO: point system for uploading data.
         public string ImagePath { get; set; }
 
-        Queries.sp_GetLoginRow LoginRow = null;
+        GTService.Common.sp_GetLoginRow LoginRow = null;
         protected void Page_Load(object sender, EventArgs e)
         {
             //redirect if not logged in
@@ -27,7 +27,7 @@ namespace GlucaTrack.Website.Content
             }
             else
             {
-                LoginRow = (Queries.sp_GetLoginRow)Session["LoggedInUser"];
+                LoginRow = (GTService.Common.sp_GetLoginRow)Session["LoggedInUser"];
 
                 if (Session["LoggedInUserId"] != null)
                     Session["LoggedInUserId"] = LoginRow.user_id;

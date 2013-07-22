@@ -128,8 +128,8 @@ namespace GlucaTrack.Services.Windows
                 using (Settings settings = new Settings())
                 {
                     Settings.LoginRow loginRow = settings.Login.NewLoginRow();
-                    loginRow.Username = StringCipher.DES_Encrypt(this.txtUsername.Text.Trim());
-                    loginRow.Password = StringCipher.DES_Encrypt(this.txtPassword.Text.Trim());
+                    loginRow.Username = StringCipher.Encrypt(this.txtUsername.Text.Trim(), true);
+                    loginRow.Password = StringCipher.Encrypt(this.txtPassword.Text.Trim(), true);
 
                     settings.Login.AddLoginRow(loginRow);
 
@@ -270,8 +270,8 @@ namespace GlucaTrack.Services.Windows
 
                 if (loginRow != null)
                 {
-                    this.txtUsername.Text = StringCipher.DES_Decrypt(loginRow.Username);
-                    this.txtPassword.Text = StringCipher.DES_Decrypt(loginRow.Password);
+                    this.txtUsername.Text = StringCipher.Decrypt(loginRow.Username, true);
+                    this.txtPassword.Text = StringCipher.Decrypt(loginRow.Password, true);
                 }
             }
 

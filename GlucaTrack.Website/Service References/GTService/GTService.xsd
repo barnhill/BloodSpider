@@ -3,6 +3,8 @@
   <xs:element name="ValidateLogin">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="AssemblyName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Appid" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
       </xs:sequence>
@@ -64,7 +66,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UpdateLastSync">
+  <xs:element name="UpdateLastWebLogin">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="user" nillable="true">
@@ -82,11 +84,9 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UpdateLastSyncResponse">
+  <xs:element name="UpdateLastWebLoginResponse">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="UpdateLastSyncResult" type="xs:boolean" />
-      </xs:sequence>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
 </xs:schema>

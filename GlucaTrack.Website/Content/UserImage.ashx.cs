@@ -11,7 +11,7 @@ namespace GlucaTrack.Website.Content
     /// </summary>
     public class UserImage : IHttpHandler, System.Web.SessionState.IReadOnlySessionState
     {
-        Queries.sp_GetLoginRow LoginRow = null;
+        GTService.Common.sp_GetLoginRow LoginRow = null;
         public void ProcessRequest(HttpContext context)
         {
             var pendingImg = ((byte[])context.Session["PendingAvatar"]);
@@ -25,7 +25,7 @@ namespace GlucaTrack.Website.Content
                 return;
             }
 
-            LoginRow = (Queries.sp_GetLoginRow)context.Session["LoggedInUser"];
+            LoginRow = (GTService.Common.sp_GetLoginRow)context.Session["LoggedInUser"];
 
             using (QueriesTableAdapters.sp_GetUserImageTableAdapter ta = new QueriesTableAdapters.sp_GetUserImageTableAdapter())
             {

@@ -23,6 +23,8 @@
     <Property Id="WixShellExecTarget" Value="[#ID_435d5775_f4d0_445f_b5d4_f25fdf36b946]" />
     <Property Id="ARPPRODUCTICON" Value="icon" />
     <Property Id="ALLUSERS" Value="0" />
+    <!--<WixVariable Id="WixUISupportPerUser" Value="0" /> 
+    <WixVariable Id="WixUISupportPerMachine" Value="0" />-->
     
     <WixVariable Id="WixUILicenseRtf" Value="EULA.rtf" />
     <WixVariable Id="WixUIBannerBmp" Value="Banner.jpg" />
@@ -36,7 +38,7 @@
     
     <InstallExecuteSequence>
       <!-- <Custom Action="ID1349" After="CostFinalize" />-->
-      <Custom Action="WixCloseApplications" Before="InstallValidate">Installed</Custom>
+      <Custom Action="WixCloseApplications" After="InstallInitialize">Installed</Custom>
       <LaunchConditions Sequence="100">NOT Installed</LaunchConditions>
       <FindRelatedProducts Sequence="200" />
       <AppSearch Sequence="300" />
@@ -64,7 +66,7 @@
       <Custom Action="ARP_HELPLINK" After="CostFinalize" />
       <Custom Action="ARP_COMMENTS" After="CostFinalize" />
       <Custom Action="ARP_URLINFOABOUT" After="CostFinalize" />
-      <Custom Action="LaunchApp" After="InstallFinalize" />
+      <Custom Action="LaunchApp" After="InstallFinalize">NOT Installed</Custom>
     </InstallExecuteSequence>
     
     <InstallUISequence>
@@ -162,17 +164,17 @@
     </Feature>
     
     <UI>
-      <UIRef Id="WixUI_Advanced" />
+      <UIRef Id="WixUI_Advanced"/>
     </UI>
     
     <Condition Message="You must not be an administrator to install this product.">Privileged</Condition>
-    <Condition Message="This product require Windows Vista or newer">VersionNT &gt;= 600</Condition>
+    <Condition Message="This product requires Windows Vista or newer">VersionNT &gt;= 600</Condition>
     
     <CustomAction Id="ID1350" Property="TARGETDIR" Value="[APPLICATIONFOLDER]" HideTarget="no" />
     <CustomAction Id="ARP_HELPLINK" Property="ARPHELPLINK" Value="http://www.glucatrack.com" HideTarget="no" />
     <CustomAction Id="ARP_COMMENTS" Property="ARPCOMMENTS" Value="GlucaTrack Uploading Service" HideTarget="no" />
     <CustomAction Id="ARP_URLINFOABOUT" Property="ARPURLINFOABOUT" Value="http://www.glucatrack.com" HideTarget="no" />
     <CustomAction Id="LaunchApp" Directory="TARGETDIR" ExeCommand="[SystemFolder]cmd.exe /C start GlucaTrack_ServiceNotifyIcon.exe" Return="asyncNoWait" />
-    <CloseApplication xmlns="http://schemas.microsoft.com/wix/UtilExtension" Id="CloseTrayApp" Target="GlucaTrack_ServiceNotifyIcon.exe" RebootPrompt="no" CloseMessage="yes"/> 
+    <CloseApplication xmlns="http://schemas.microsoft.com/wix/UtilExtension" Id="CloseTrayApp" Target="GlucaTrack_ServiceNotifyIcon.exe" RebootPrompt="no" ElevatedCloseMessage="yes" CloseMessage="yes"/> 
   </Product>
 </Wix>

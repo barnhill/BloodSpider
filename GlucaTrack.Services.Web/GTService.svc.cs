@@ -32,7 +32,7 @@ namespace GlucaTrack.Services.Web
             using (CommonTableAdapters.sp_GetApplicationByTokenTableAdapter tokenAdapter = new CommonTableAdapters.sp_GetApplicationByTokenTableAdapter())
             using (Common.sp_GetApplicationByTokenDataTable dtApps = new Common.sp_GetApplicationByTokenDataTable())
             {
-                tokenAdapter.Fill(dtApps, new Guid(StringCipher.DES_Decrypt(Appid)), Assemblyname);
+                tokenAdapter.Fill(dtApps, new Guid(StringCipher.Decrypt(Appid)), StringCipher.Decrypt(Assemblyname));
 
                 if (dtApps != null && dtApps.Rows.Count <= 0)
                 {
@@ -47,7 +47,8 @@ namespace GlucaTrack.Services.Web
             {
                 try
                 {
-                    ta.Fill(d.sp_GetLogin, StringCipher.DES_Decrypt(Username), Password);
+                    //check the login against plain text in the database but the password is encrypted in the database so only decrypt one layer
+                    ta.Fill(d.sp_GetLogin, StringCipher.Decrypt(StringCipher.Decrypt(Username), true), StringCipher.Decrypt(Password));
                     
                     if (d.sp_GetLogin != null && d.sp_GetLogin.Count == 1)
                     {
@@ -195,5 +196,28 @@ namespace GlucaTrack.Services.Web
             return result;
         }
 
+        public void UpdateLastWebLogin(Common user)
+        {
+            if (user.sp_GetLogin == null)
+            {
+                throw new FaultException("UpdateLastWebLogin-1: Session not authenticated.");
+            }
+
+            lock (Authenticated)
+            {
+                if (Authenticated.Count > 0 && Authenticated.Contains(user.sp_GetLogin.FirstOrDefault().sessionid))
+                {
+                    using (CommonTableAdapters.QueriesTableAdapter queries = new CommonTableAdapters.QueriesTableAdapter())
+                    {
+                        queries.sp_UpdateLastWeblogin(user.sp_GetLogin.First().user_id);
+                    }
+                }
+                else
+                {
+                    //not authenticated
+                    throw new FaultException("UpdateLastWebLogin-2: Session not authenticated.");
+                }
+            }
+        }
     }
 }

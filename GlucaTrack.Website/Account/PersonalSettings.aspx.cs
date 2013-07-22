@@ -10,7 +10,7 @@ namespace GlucaTrack.Website.Account
 {
     public partial class PersonalSettings : System.Web.UI.Page
     {
-        Queries.sp_GetLoginRow LoginRow = null;
+        GTService.Common.sp_GetLoginRow LoginRow = null;
 
         private byte [] PendingAvatar
         {
@@ -35,7 +35,7 @@ namespace GlucaTrack.Website.Account
             }
             else
             {
-                LoginRow = (Queries.sp_GetLoginRow)Session["LoggedInUser"];
+                LoginRow = (GTService.Common.sp_GetLoginRow)Session["LoggedInUser"];
 
                 if (Session["LoggedInUserId"] != null)
                     Session["LoggedInUserId"] = LoginRow.user_id;

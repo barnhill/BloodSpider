@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Resources;
 using System.Security.Cryptography;
 using System.Xml.Serialization;
 using System.Diagnostics;
@@ -14,9 +15,6 @@ namespace GlucaTrack.Services.Common
     {
         public static string baseFilepath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GlucaTrack");
         public static DeviceInfo deviceFound = null;
-
-        public static string phraseUsername = "EE0D691F35E6";
-        public static string phrasePassword = "A9EA18258AF4";
 
         public static string serviceName = "GlucaTrack Detector";
 
@@ -72,11 +70,23 @@ namespace GlucaTrack.Services.Common
         // This constant is used to determine the keysize of the encryption algorithm.
         private const int keysize = 256;
 
-        public static string Encrypt(string plainText, string passPhrase)
+        /// <summary>
+        /// Encrypt a string using AES 256bit encryption.
+        /// </summary>
+        /// <param name="plainText">The original string.</param>
+        /// <returns>The encrypted string.</returns>
+        public static string Encrypt(string plainText, bool useDefaultKey = false)
         {
+            if (String.IsNullOrEmpty(plainText))
+            {
+                throw new ArgumentNullException("The string which needs to be encrypted can not be null.");
+            }
+
+            string key = (useDefaultKey) ? "E441699041D7434797DBBF1493A5C15A" : Properties.Settings.Default["Encrypt_Key" + DateTime.Now.Day.ToString()].ToString();
+            
             byte[] initVectorBytes = Encoding.UTF8.GetBytes(initVector);
             byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
-            PasswordDeriveBytes password = new PasswordDeriveBytes(passPhrase, null);
+            PasswordDeriveBytes password = new PasswordDeriveBytes(key, null);
             byte[] keyBytes = password.GetBytes(keysize / 8);
             RijndaelManaged symmetricKey = new RijndaelManaged();
             symmetricKey.Padding = PaddingMode.PKCS7;
@@ -94,11 +104,24 @@ namespace GlucaTrack.Services.Common
             }
         }
 
-        public static string Decrypt(string cipherText, string passPhrase)
+        /// <summary>
+        /// Decrypt a string using AES 256bit encryption.
+        /// </summary>
+        /// <param name="cipherText">The encrypted string.</param>
+        /// <returns>The original string.</returns>
+        public static string Decrypt(string cipherText, bool useDefaultKey = false)
         {
+            if (String.IsNullOrEmpty(cipherText))
+            {
+                throw new ArgumentNullException
+                   ("The string which needs to be decrypted can not be null.");
+            }
+
+            string key = (useDefaultKey) ? "E441699041D7434797DBBF1493A5C15A" : Properties.Settings.Default["Encrypt_Key" + DateTime.Now.Day.ToString()].ToString();
+
             byte[] initVectorBytes = Encoding.ASCII.GetBytes(initVector);
             byte[] cipherTextBytes = Convert.FromBase64String(cipherText);
-            PasswordDeriveBytes password = new PasswordDeriveBytes(passPhrase, null);
+            PasswordDeriveBytes password = new PasswordDeriveBytes(key, null);
             byte[] keyBytes = password.GetBytes(keysize / 8);
             RijndaelManaged symmetricKey = new RijndaelManaged();
             symmetricKey.Padding = PaddingMode.PKCS7;
@@ -122,6 +145,7 @@ namespace GlucaTrack.Services.Common
         /// <returns>The encrypted string.</returns>
         /// <exception cref="ArgumentNullException">This exception will be 
         /// thrown when the original string is null or empty.</exception>
+        [Obsolete("This method is obsolete; use Encrypt instead")]
         public static string DES_Encrypt(string originalString)
         {
             if (String.IsNullOrEmpty(originalString))
@@ -147,6 +171,7 @@ namespace GlucaTrack.Services.Common
         /// <returns>The decrypted string.</returns>
         /// <exception cref="ArgumentNullException">This exception will be thrown 
         /// when the crypted string is null or empty.</exception>
+        [Obsolete("This method is obsolete; use Decrypt instead")]
         public static string DES_Decrypt(string cryptedString)
         {
             if (String.IsNullOrEmpty(cryptedString))
@@ -161,91 +186,6 @@ namespace GlucaTrack.Services.Common
                 cryptoProvider.CreateDecryptor(ASCIIEncoding.ASCII.GetBytes("ZeroCool"), ASCIIEncoding.ASCII.GetBytes("ZeroCool")), CryptoStreamMode.Read);
             StreamReader reader = new StreamReader(cryptoStream);
             return reader.ReadToEnd();
-        }
-
-        static byte[] AES_Encrypt(string plainText, byte[] Key, byte[] IV)
-        {
-            // Check arguments. 
-            if (plainText == null || plainText.Length <= 0)
-                throw new ArgumentNullException("plainText");
-            if (Key == null || Key.Length <= 0)
-                throw new ArgumentNullException("Key");
-            if (IV == null || IV.Length <= 0)
-                throw new ArgumentNullException("Key");
-            byte[] encrypted;
-            // Create an AesCryptoServiceProvider object 
-            // with the specified key and IV. 
-            using (AesCryptoServiceProvider aesAlg = new AesCryptoServiceProvider())
-            {
-                aesAlg.Key = Key;
-                aesAlg.IV = IV;
-
-                // Create a decrytor to perform the stream transform.
-                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
-
-                // Create the streams used for encryption. 
-                using (MemoryStream msEncrypt = new MemoryStream())
-                {
-                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
-                    {
-                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
-                        {
-
-                            //Write all data to the stream.
-                            swEncrypt.Write(plainText);
-                        }
-                        encrypted = msEncrypt.ToArray();
-                    }
-                }
-            }
-
-            // Return the encrypted bytes from the memory stream. 
-            return encrypted;
-        }
-
-        static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
-        {
-            // Check arguments. 
-            if (cipherText == null || cipherText.Length <= 0)
-                throw new ArgumentNullException("cipherText");
-            if (Key == null || Key.Length <= 0)
-                throw new ArgumentNullException("Key");
-            if (IV == null || IV.Length <= 0)
-                throw new ArgumentNullException("IV");
-
-            // Declare the string used to hold 
-            // the decrypted text. 
-            string plaintext = null;
-
-            // Create an AesCryptoServiceProvider object 
-            // with the specified key and IV. 
-            using (AesCryptoServiceProvider aesAlg = new AesCryptoServiceProvider())
-            {
-                aesAlg.Key = Key;
-                aesAlg.IV = IV;
-
-                // Create a decrytor to perform the stream transform.
-                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
-
-                // Create the streams used for decryption. 
-                using (MemoryStream msDecrypt = new MemoryStream(cipherText))
-                {
-                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
-                    {
-                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
-                        {
-
-                            // Read the decrypted bytes from the decrypting stream 
-                            // and place them in a string.
-                            plaintext = srDecrypt.ReadToEnd();
-                        }
-                    }
-                }
-
-            }
-
-            return plaintext;
-
         }
     }
 
