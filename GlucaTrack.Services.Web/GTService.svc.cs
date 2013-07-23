@@ -48,6 +48,8 @@ namespace GlucaTrack.Services.Web
                 try
                 {
                     //check the login against plain text in the database but the password is encrypted in the database so only decrypt one layer
+                    //username is encrypted on the outer layer using the rotating key, and the inner with the fixed key.
+                    //password is encrypted on the outer layer using the rotating key.  The inner layer is never unencrypted.
                     ta.Fill(d.sp_GetLogin, StringCipher.Decrypt(StringCipher.Decrypt(Username), true), StringCipher.Decrypt(Password));
                     
                     if (d.sp_GetLogin != null && d.sp_GetLogin.Count == 1)
