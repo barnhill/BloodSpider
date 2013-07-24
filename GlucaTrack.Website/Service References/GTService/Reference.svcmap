@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2b84e9bb-7de1-4ffd-af4d-4dea62c27278" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="78c39b75-43fb-4a48-9aeb-bdaa4ca68f46" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -21,14 +21,15 @@
     <MetadataSource Address="https://www.glucatrack.com/service/gtservice.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="GTService.disco" MetadataType="Disco" ID="a2e62135-3b60-44e3-87e1-f7e3f9a04b8a" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?disco" />
-    <MetadataFile FileName="GTService.wsdl" MetadataType="Wsdl" ID="82ca7b21-2deb-4b71-8175-de0240f5e711" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?wsdl" />
-    <MetadataFile FileName="GTService.xsd" MetadataType="Schema" ID="d9929e7e-96b9-4bf1-b80f-1cfb1921f112" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd0" />
-    <MetadataFile FileName="GTService1.xsd" MetadataType="Schema" ID="dfa01e76-48c2-4e3d-9b0b-9b8c5aa2e9b1" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd1" />
-    <MetadataFile FileName="Common.xsd" MetadataType="Schema" ID="cb168dc9-4669-4ffd-ba81-34206b1658c6" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd2" />
-    <MetadataFile FileName="GTService2.xsd" MetadataType="Schema" ID="9db5fd1c-5edf-4de6-a952-bba2bd9bba9b" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd3" />
-    <MetadataFile FileName="GTService3.xsd" MetadataType="Schema" ID="4c14efc7-f74b-4f3a-bc82-66518e0771bd" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd4" />
-    <MetadataFile FileName="Records.xsd" MetadataType="Schema" ID="8823126e-5e1d-4643-a940-b9783b9a2594" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd5" />
+    <MetadataFile FileName="GTService.disco" MetadataType="Disco" ID="1f1def47-d39a-4d59-8063-afe72180a977" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?disco" />
+    <MetadataFile FileName="GTService.wsdl" MetadataType="Wsdl" ID="843b08c1-78b4-42e9-9107-297cf148441f" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?wsdl" />
+    <MetadataFile FileName="GTService.xsd" MetadataType="Schema" ID="f70b7f03-3686-4868-8b1c-5005486ec64f" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd0" />
+    <MetadataFile FileName="GTService1.xsd" MetadataType="Schema" ID="f4c7db87-c38d-4928-ae98-7bbf233d1d93" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd1" />
+    <MetadataFile FileName="Common.xsd" MetadataType="Schema" ID="c6edb7b3-c696-498b-a524-4fe5665a70e2" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd2" />
+    <MetadataFile FileName="GTService2.xsd" MetadataType="Schema" ID="94a183cf-3e77-4e9f-aa33-25ac6fb80dba" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd3" />
+    <MetadataFile FileName="GTService3.xsd" MetadataType="Schema" ID="ed0f0c7b-35d2-4322-8850-ff64875fffe7" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd4" />
+    <MetadataFile FileName="Records.xsd" MetadataType="Schema" ID="7622d30b-dfcb-4f61-b053-32f84174f80e" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd5" />
+    <MetadataFile FileName="GTService4.xsd" MetadataType="Schema" ID="4f3fab03-126a-48dd-b755-891c3a9fa364" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd6" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

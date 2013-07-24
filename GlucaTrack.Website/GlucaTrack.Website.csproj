@@ -85,6 +85,7 @@
     <Content Include="Contact.aspx" />
     <Content Include="Content\Main.aspx" />
     <Content Include="Account\Logout.aspx" />
+    <Content Include="Download.aspx" />
     <Content Include="Images\icons\calendar.png" />
     <Content Include="Images\icons\down-green.png" />
     <Content Include="Images\icons\normal-clear.png" />
@@ -155,6 +156,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Styles\dashboard.css" />
+    <Content Include="SupportedMeters.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +215,13 @@
     </Compile>
     <Compile Include="Content\Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Download.aspx.cs">
+      <DependentUpon>Download.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Download.aspx.designer.cs">
+      <DependentUpon>Download.aspx</DependentUpon>
     </Compile>
     <Compile Include="Service References\GTService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -277,6 +286,13 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="SupportedMeters.aspx.cs">
+      <DependentUpon>SupportedMeters.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SupportedMeters.aspx.designer.cs">
+      <DependentUpon>SupportedMeters.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -297,6 +313,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\GTService\GTService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GTService\GTService4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\GTService\Records.xsd" />

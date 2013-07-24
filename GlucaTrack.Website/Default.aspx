@@ -4,6 +4,9 @@
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <div>
+        <a href="SupportedMeters.aspx" id="SupportedMeters">Supported Meters</a>
+    </div>
+    <div>
         <img src="/Images/testcontent.png" />
     </div>
 </asp:Content>

@@ -68,7 +68,7 @@
                         </div>
                         <div style="width:100%;">
                             <a href="/" class="MenuButton"><asp:Label runat="server" ID="lblHome">Home</asp:Label></a>
-                            <a href="/Download" class="MenuButton"><asp:Label runat="server" ID="lblDownload">Download</asp:Label></a>
+                            <a href="/Download.aspx" class="MenuButton"><asp:Label runat="server" ID="lblDownload">Download</asp:Label></a>
                             <a href="/About.aspx" class="MenuButton"><asp:Label runat="server" ID="lblAbout">About</asp:Label></a>
                             <a href="/Contact.aspx" class="MenuButton"><asp:Label runat="server" ID="lblContact">Contact</asp:Label></a>
                         </div>

@@ -24,5 +24,9 @@ namespace GlucaTrack.Services.Web
         [OperationContract]
         [FaultContract(typeof(Exception))]
         void UpdateLastWebLogin(Common user);
+
+        [OperationContract]
+        [FaultContract(typeof(Exception))]
+        Common.sp_GetAllSupportedMetersDataTable GetSupportedMeters();
     }
 }

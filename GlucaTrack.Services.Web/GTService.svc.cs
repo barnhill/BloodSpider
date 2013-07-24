@@ -167,6 +167,34 @@ namespace GlucaTrack.Services.Web
         }
 
         /// <summary>
+        /// Record the last user web login date and time on the users record in the database.
+        /// </summary>
+        /// <param name="user"></param>
+        public void UpdateLastWebLogin(Common user)
+        {
+            if (user.sp_GetLogin == null)
+            {
+                throw new FaultException("UpdateLastWebLogin-1: Session not authenticated.");
+            }
+
+            lock (Authenticated)
+            {
+                if (Authenticated.Count > 0 && Authenticated.Contains(user.sp_GetLogin.FirstOrDefault().sessionid))
+                {
+                    using (CommonTableAdapters.QueriesTableAdapter queries = new CommonTableAdapters.QueriesTableAdapter())
+                    {
+                        queries.sp_UpdateLastWeblogin(user.sp_GetLogin.First().user_id);
+                    }
+                }
+                else
+                {
+                    //not authenticated
+                    throw new FaultException("UpdateLastWebLogin-2: Session not authenticated.");
+                }
+            }
+        }
+        
+        /// <summary>
         /// Record the last sync date and time on the users record in the database.
         /// </summary>
         private bool UpdateLastSync(Common user)
@@ -198,28 +226,21 @@ namespace GlucaTrack.Services.Web
             return result;
         }
 
-        public void UpdateLastWebLogin(Common user)
-        {
-            if (user.sp_GetLogin == null)
-            {
-                throw new FaultException("UpdateLastWebLogin-1: Session not authenticated.");
-            }
 
-            lock (Authenticated)
+
+
+
+        #region RetrieveData
+        public Common.sp_GetAllSupportedMetersDataTable GetSupportedMeters()
+        {
+            using (CommonTableAdapters.sp_GetAllSupportedMetersTableAdapter ta = new CommonTableAdapters.sp_GetAllSupportedMetersTableAdapter())
+            using (Common.sp_GetAllSupportedMetersDataTable dt = new Common.sp_GetAllSupportedMetersDataTable())
             {
-                if (Authenticated.Count > 0 && Authenticated.Contains(user.sp_GetLogin.FirstOrDefault().sessionid))
-                {
-                    using (CommonTableAdapters.QueriesTableAdapter queries = new CommonTableAdapters.QueriesTableAdapter())
-                    {
-                        queries.sp_UpdateLastWeblogin(user.sp_GetLogin.First().user_id);
-                    }
-                }
-                else
-                {
-                    //not authenticated
-                    throw new FaultException("UpdateLastWebLogin-2: Session not authenticated.");
-                }
+                ta.Fill(dt);
+
+                return dt;
             }
         }
+        #endregion
     }
 }
