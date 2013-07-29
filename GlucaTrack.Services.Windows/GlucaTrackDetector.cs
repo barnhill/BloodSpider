@@ -30,7 +30,8 @@ namespace GlucaTrack.Services.Windows
         {
             InitializeComponent();
 
-            
+            background_DeviceReader.WorkerSupportsCancellation = true;
+            background_CommandServer.WorkerSupportsCancellation = true;
         }
 
         protected override void OnStart(string[] args)

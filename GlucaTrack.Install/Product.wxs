@@ -102,10 +102,10 @@
                 Value="[#ID_435d5775_f4d0_445f_b5d4_f25fdf36b946]"
                 Type="string"/>
             <RegistryValue Root="HKCU"
-                Key="Software\Microsoft\GlucaTrack"
-                Name="installed"
-                Type="integer"
-                Value="1" />
+                Key="Software\GlucaTrack\GlucaTrack Windows Service"
+                Name="path"
+                Type="string"
+                Value="[APPLICATIONFOLDER]" />
             <Condition>ASSISTANCE_START_VIA_REGISTRY</Condition>
             <RemoveFolder Id="APPLICATIONFOLDER" On="uninstall" />
           </Component>
