@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlucaTrack.Communication", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlucaTrack.Services.Windows", "GlucaTrack.Services.Windows\GlucaTrack.Services.Windows.csproj", "{465556FC-6204-4E6C-8526-B4039E9F475B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlucaTrack_ServiceNotifyIcon", "GlucaTrack_ServiceNotifyIcon\GlucaTrack_ServiceNotifyIcon.csproj", "{F2CE2DBE-3187-4892-BFA7-BDD29E91AF22}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlucaTrack.Services.Windows.NotifyIcon", "GlucaTrack.Services.Windows.NotifyIcon\GlucaTrack.Services.Windows.NotifyIcon.csproj", "{F2CE2DBE-3187-4892-BFA7-BDD29E91AF22}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlucaTrack.Services.Common", "GlucaTrack.Services.Common\GlucaTrack.Services.Common.csproj", "{28FA9879-6D10-4104-92D3-11C9C55E7053}"
 EndProject

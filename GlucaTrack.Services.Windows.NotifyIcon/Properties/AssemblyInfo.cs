@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GlucaTrack_ServiceNotifyIcon")]
+[assembly: AssemblyTitle("GlucaTrack.Services.Windows.NotifyIcon")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("GlucaTrack_ServiceNotifyIcon")]
+[assembly: AssemblyCompany("GlucaTrack")]
+[assembly: AssemblyProduct("GlucaTrack.Services.Windows.NotifyIcon")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
