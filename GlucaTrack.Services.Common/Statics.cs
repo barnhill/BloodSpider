@@ -66,7 +66,7 @@ namespace GlucaTrack.Services.Common
         // This size of the IV (in bytes) must = (keysize / 8).  Default keysize is 256, so the IV must be
         // 32 bytes long.  Using a 16 character string here gives us 32 bytes when converted to a byte array.
         private const string initVector = "tx81geji350v89u7";
-
+        private const string defaultKey = "E441699041D7434797DBBF1493A5C15A";
         // This constant is used to determine the keysize of the encryption algorithm.
         private const int keysize = 256;
 
@@ -82,7 +82,7 @@ namespace GlucaTrack.Services.Common
                 throw new ArgumentNullException("The string which needs to be encrypted can not be null.");
             }
 
-            string key = (useDefaultKey) ? "E441699041D7434797DBBF1493A5C15A" : Properties.Settings.Default["Encrypt_Key" + DateTime.Now.Day.ToString()].ToString();
+            string key = (useDefaultKey) ? defaultKey : Properties.Settings.Default["Encrypt_Key" + DateTime.Now.Day.ToString()].ToString();
             
             byte[] initVectorBytes = Encoding.UTF8.GetBytes(initVector);
             byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
@@ -117,7 +117,7 @@ namespace GlucaTrack.Services.Common
                    ("The string which needs to be decrypted can not be null.");
             }
 
-            string key = (useDefaultKey) ? "E441699041D7434797DBBF1493A5C15A" : Properties.Settings.Default["Encrypt_Key" + DateTime.Now.Day.ToString()].ToString();
+            string key = (useDefaultKey) ? defaultKey : Properties.Settings.Default["Encrypt_Key" + DateTime.Now.Day.ToString()].ToString();
 
             byte[] initVectorBytes = Encoding.ASCII.GetBytes(initVector);
             byte[] cipherTextBytes = Convert.FromBase64String(cipherText);
@@ -154,8 +154,7 @@ namespace GlucaTrack.Services.Common
             }
             DESCryptoServiceProvider cryptoProvider = new DESCryptoServiceProvider();
             MemoryStream memoryStream = new MemoryStream();
-            CryptoStream cryptoStream = new CryptoStream(memoryStream,
-                cryptoProvider.CreateEncryptor(ASCIIEncoding.ASCII.GetBytes("ZeroCool"), ASCIIEncoding.ASCII.GetBytes("ZeroCool")), CryptoStreamMode.Write);
+            CryptoStream cryptoStream = new CryptoStream(memoryStream, cryptoProvider.CreateEncryptor(ASCIIEncoding.ASCII.GetBytes("ZeroCool"), ASCIIEncoding.ASCII.GetBytes("ZeroCool")), CryptoStreamMode.Write);
             StreamWriter writer = new StreamWriter(cryptoStream);
             writer.Write(originalString);
             writer.Flush();
@@ -176,14 +175,11 @@ namespace GlucaTrack.Services.Common
         {
             if (String.IsNullOrEmpty(cryptedString))
             {
-                throw new ArgumentNullException
-                   ("The string which needs to be decrypted can not be null.");
+                throw new ArgumentNullException("The string which needs to be decrypted can not be null.");
             }
             DESCryptoServiceProvider cryptoProvider = new DESCryptoServiceProvider();
-            MemoryStream memoryStream = new MemoryStream
-                    (Convert.FromBase64String(cryptedString));
-            CryptoStream cryptoStream = new CryptoStream(memoryStream,
-                cryptoProvider.CreateDecryptor(ASCIIEncoding.ASCII.GetBytes("ZeroCool"), ASCIIEncoding.ASCII.GetBytes("ZeroCool")), CryptoStreamMode.Read);
+            MemoryStream memoryStream = new MemoryStream(Convert.FromBase64String(cryptedString));
+            CryptoStream cryptoStream = new CryptoStream(memoryStream, cryptoProvider.CreateDecryptor(ASCIIEncoding.ASCII.GetBytes("ZeroCool"), ASCIIEncoding.ASCII.GetBytes("ZeroCool")), CryptoStreamMode.Read);
             StreamReader reader = new StreamReader(cryptoStream);
             return reader.ReadToEnd();
         }

@@ -81,7 +81,7 @@ namespace GlucaTrack.Services.Web
                 catch (Exception ex)
                 {
                     if (ex is FaultException)
-                        throw ex;
+                        throw;
                     else
                         throw new FaultException("Unexpected error: " + ex.Message);
                 }
@@ -144,7 +144,7 @@ namespace GlucaTrack.Services.Web
                                     if (ex.Message.ToLowerInvariant().Contains("violation of unique key constraint"))
                                         continue;
                                     else
-                                        throw ex;
+                                        throw;
                                 }
                             }
                         }
