@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsbLibrary", "UsbLibrary\Us
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "GlucaTrack.Install", "GlucaTrack.Install\GlucaTrack.Install.wixproj", "{18332F75-349E-453D-BC94-005AFDD773EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlucaTrack.Build", "GlucaTrack.Build\GlucaTrack.Build.csproj", "{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -120,6 +122,16 @@ Global
 		{18332F75-349E-453D-BC94-005AFDD773EE}.Release|Mixed Platforms.Build.0 = Release|x86
 		{18332F75-349E-453D-BC94-005AFDD773EE}.Release|x86.ActiveCfg = Release|x86
 		{18332F75-349E-453D-BC94-005AFDD773EE}.Release|x86.Build.0 = Release|x86
+		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

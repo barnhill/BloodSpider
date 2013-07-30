@@ -36,7 +36,7 @@ namespace GlucaTrack.Services.Windows
 
         static void CloseAllandExit()
         {
-            Process[] localByName = Process.GetProcessesByName("GlucaTrack_ServiceNotifyIcon");
+            Process[] localByName = Process.GetProcessesByName("GlucaTrack.Services.Windows.NotifyIcon");
             Process[] AllProcesses = Process.GetProcesses();
             foreach (Process p in localByName)
             {

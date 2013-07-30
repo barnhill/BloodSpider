@@ -157,7 +157,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::GlucaTrack_ServiceNotifyIcon.Properties.Resources.titleidea4;
+            this.pictureBox1.Image = global::GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.titleidea4;
             this.pictureBox1.Location = new System.Drawing.Point(37, 7);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(136, 37);
@@ -167,7 +167,7 @@
             // 
             // menuItem_Settings
             // 
-            this.menuItem_Settings.Image = global::GlucaTrack_ServiceNotifyIcon.Properties.Resources.Gear_icon;
+            this.menuItem_Settings.Image = global::GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.Gear_icon;
             this.menuItem_Settings.Name = "menuItem_Settings";
             this.menuItem_Settings.Size = new System.Drawing.Size(182, 22);
             this.menuItem_Settings.Text = "Settings";
@@ -175,7 +175,7 @@
             // 
             // menuItem_Website
             // 
-            this.menuItem_Website.Image = global::GlucaTrack_ServiceNotifyIcon.Properties.Resources.Web2_icon;
+            this.menuItem_Website.Image = global::GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.Web2_icon;
             this.menuItem_Website.Name = "menuItem_Website";
             this.menuItem_Website.Size = new System.Drawing.Size(182, 22);
             this.menuItem_Website.Text = "Website";
@@ -183,7 +183,7 @@
             // 
             // menuItem_Exit
             // 
-            this.menuItem_Exit.Image = global::GlucaTrack_ServiceNotifyIcon.Properties.Resources.Exit_icon;
+            this.menuItem_Exit.Image = global::GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.Exit_icon;
             this.menuItem_Exit.ImageTransparentColor = System.Drawing.Color.White;
             this.menuItem_Exit.Name = "menuItem_Exit";
             this.menuItem_Exit.Size = new System.Drawing.Size(182, 22);
