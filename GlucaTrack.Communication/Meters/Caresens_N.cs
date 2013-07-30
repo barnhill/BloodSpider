@@ -352,5 +352,10 @@ namespace GlucaTrack.Communication.Meters.iSens
             //write the command to the serial port
             Port.Write(bytes, 0, bytes.Length);
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+        }
     }
 }

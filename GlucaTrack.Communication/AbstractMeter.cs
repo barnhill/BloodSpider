@@ -8,7 +8,7 @@ using GlucaTrack.Communication;
 
 namespace GlucaTrack.Communication
 {
-    public abstract class AbstractMeter
+    public abstract class AbstractMeter : IDisposable
     {
         #region Private Variables
         private SerialPort _port = new SerialPort("COM1", 9600, Parity.None, 8, StopBits.One);
@@ -162,19 +162,31 @@ namespace GlucaTrack.Communication
             return !Port.IsOpen;
         }
 
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (Port.IsOpen)
+                {
+                    Port.DiscardInBuffer();
+                    Port.DiscardOutBuffer();
+                    Close();
+                }//if
+
+                _port.Dispose();
+
+                _Records.Dispose();
+
+                GC.SuppressFinalize(this);
+            }
+        }
+
         /// <summary>
         /// Clears the buffers, closes the port and disposes of the port object.
         /// </summary>
-        public virtual void Dispose()
+        public void Dispose()
         {
-            if (Port.IsOpen)
-            {
-                Port.DiscardInBuffer();
-                Port.DiscardOutBuffer();
-                Close();
-            }//if
-
-            Port.Dispose();
+            Dispose(true);
         }
 
         #endregion
