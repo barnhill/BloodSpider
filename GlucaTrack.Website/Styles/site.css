@@ -23,6 +23,14 @@ body{}
 .Graph_Header {border:2px #ECEDEF solid; background-color:#ECEDEF; border-top-left-radius:8px; border-top-right-radius:8px; padding-left:10px;}
 
 
+.Front_Page_Main_Container{width:100%; height:900px; padding-top:10px; font-size:large;}
+.Front_Page_Main_Container b{font-size:x-large}
+.Front_Page_Container{width:100%; padding-bottom:20px; height:200px;}
+.Front_Page_Image_Right{width:28%; float:right; text-align:right;}
+.Front_Page_Text_Right{width:60%; float:right;}
+.Front_Page_Image_Left{width:28%; float:left;}
+.Front_Page_Text_Left{width:60%; float:left;}
+
 a {
     color: #0085C6;
     outline: none;
