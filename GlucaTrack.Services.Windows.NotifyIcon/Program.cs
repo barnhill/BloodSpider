@@ -16,12 +16,9 @@ namespace GlucaTrack.Services.Windows
         {
             if (args.Length == 0)
             {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                formSettings form = new formSettings();
-                Application.Run();
+                RunApplication();
             }
-            else if (args.Length == 1)
+            else if (args.Length > 0)
             {
                 switch (args[0])
                 {
@@ -29,9 +26,18 @@ namespace GlucaTrack.Services.Windows
                         CloseAllandExit();
                         break;
                     default:
-                        throw new NotImplementedException();
+                        RunApplication();
+                        break;
                 }
             }
+        }
+
+        static void RunApplication()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            formSettings form = new formSettings();
+            Application.Run();
         }
 
         static void CloseAllandExit()
@@ -40,7 +46,14 @@ namespace GlucaTrack.Services.Windows
             Process[] AllProcesses = Process.GetProcesses();
             foreach (Process p in localByName)
             {
-                p.Kill();
+                try
+                {
+                    p.Kill();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Shutdown Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
             Application.Exit();

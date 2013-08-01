@@ -2,7 +2,15 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
   <Product Version="1.0.1" Id="b01ec04a-59c3-4600-bbaf-5c8e2e2245d3" Name="GlucaTrack" Manufacturer="GlucaTrack" UpgradeCode="d7969321-0242-4910-8929-9cd5102ce44b" Language="1033" Codepage="1252">
     <Package Description="GlucaTrack Service" Manufacturer="GlucaTrack" SummaryCodepage="1252" Languages="1033" InstallerVersion="400" Keywords="Installer" Compressed="yes" />
-     
+    
+    <Upgrade Id="b01ec04a-59c3-4600-bbaf-5c8e2e2245d3">
+      <UpgradeVersion OnlyDetect="no" Property="GLUCATRACK_PREVIOUSVERSIONFOUND" IncludeMinimum="yes" Minimum="0.0.0" Maximum="1.0.0" IncludeMaximum="yes" />
+    </Upgrade>
+    
+    <Icon Id="icon" SourceFile="..\GlucaTrack.Services.Windows.NotifyIcon\blood.ico"/>
+
+    <Media Id="1" Cabinet="Setup_1.cab" EmbedCab="yes" DiskPrompt="CD-ROM #1" CompressionLevel="high" />
+    
     <!--Check for .Net Framework 4.0-->
     <PropertyRef Id='NETFRAMEWORK40FULL'/>
     <PropertyRef Id='NETFRAMEWORK40CLIENT'/>
@@ -12,10 +20,8 @@
       <![CDATA[Installed OR (NETFRAMEWORK40FULL_SERVICING_LEVEL and NOT NETFRAMEWORK40FULL_SERVICING_LEVEL = "#0") OR (NETFRAMEWORK40CLIENT_SERVICING_LEVEL and NETFRAMEWORK40CLIENT_SERVICING_LEVEL = "#0")]]>
     </Condition>
     
-    <Media Id="1" Cabinet="Setup_1.cab" EmbedCab="yes" DiskPrompt="CD-ROM #1" CompressionLevel="high" />
-    
     <!--<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch GlucaTrack" />
-    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="0" /> -->
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />-->
     <Property Id="DiskPrompt" Value="GlucaTrack Service Installation [1]" />
     <Property Id="ASSISTANCE_START_VIA_REGISTRY">1</Property>
     <Property Id="ApplicationFolderName" Value="GlucaTrack" />
@@ -23,22 +29,15 @@
     <Property Id="WixShellExecTarget" Value="[#ID_435d5775_f4d0_445f_b5d4_f25fdf36b946]" />
     <Property Id="ARPPRODUCTICON" Value="icon" />
     <Property Id="ALLUSERS" Value="0" />
-    <Property Id="QtExecCmdLine" Value='"[WindowsFolder]\System32\taskkill.exe" /F /IM GlucaTrack_ServiceNotifyIcon.exe'/>
+    <Property Id="QtExecCmdLine" Value='"[WindowsFolder]\System32\taskkill.exe" /F /IM GlucaTrack.Services.Windows.NotifyIcon.exe'/>
     
     <WixVariable Id="WixUILicenseRtf" Value="EULA.rtf" />
     <WixVariable Id="WixUIBannerBmp" Value="Banner.jpg" />
     <WixVariable Id="WixUIDialogBmp" Value="Dialog.jpg" />
     
-    <Icon Id="icon" SourceFile="..\GlucaTrack_ServiceNotifyIcon\blood.ico"/>
-        
-    <Upgrade Id="d7969321-0242-4910-8929-9cd5102ce44b">
-      <UpgradeVersion OnlyDetect="no" Property="GLUCATRACK_PREVIOUSVERSIONFOUND" IncludeMinimum="yes" Minimum="0.0.0" Maximum="1.0.0" IncludeMaximum="yes" />
-    </Upgrade>
-    
     <InstallExecuteSequence>
-      <Custom Action='Kill_NotifyIcon' Before='InstallValidate'>Installed</Custom>
+      <Custom Action='MyProcess.TaskKill' Before='InstallValidate'/>
       <LaunchConditions Sequence="100">NOT Installed</LaunchConditions>
-      <FindRelatedProducts Sequence="200" />
       <AppSearch Sequence="300" />
       <CCPSearch Sequence="400">NOT Installed</CCPSearch>
       <RMCCPSearch Sequence="600">NOT Installed AND CPP_TEST</RMCCPSearch>
@@ -64,7 +63,7 @@
       <Custom Action="ARP_HELPLINK" After="CostFinalize" />
       <Custom Action="ARP_COMMENTS" After="CostFinalize" />
       <Custom Action="ARP_URLINFOABOUT" After="CostFinalize" />
-      <Custom Action="LaunchApp" After="InstallFinalize">NOT Installed</Custom>
+      <Custom Action="LaunchAppAfterInstall" After="InstallFinalize">Not Installed</Custom>
     </InstallExecuteSequence>
     
     <InstallUISequence>
@@ -73,24 +72,7 @@
       <Custom Action="ARP_COMMENTS" After="CostFinalize" />
       <Custom Action="ARP_URLINFOABOUT" After="CostFinalize" />
     </InstallUISequence>
-    
-    <!--<AdvertiseExecuteSequence>
-      <CostInitialize Sequence="800" />
-      <CostFinalize Sequence="1000" />
-      <InstallValidate Sequence="1400" />
-      <InstallInitialize Sequence="1500" />
-      <CreateShortcuts Sequence="4500" />
-      <RegisterClassInfo Sequence="4600" />
-      <RegisterExtensionInfo Sequence="4700" />
-      <RegisterProgIdInfo Sequence="4800" />
-      <RegisterMIMEInfo Sequence="4900" />
-      <PublishComponents Sequence="6200" />
-      <PublishFeatures Sequence="6300" />
-      <PublishProduct Sequence="6400" />
-      <MsiPublishAssemblies Sequence="6500" />
-      <InstallFinalize Sequence="6600" />
-    </AdvertiseExecuteSequence>-->
-    
+
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramMenuFolder" Name="Programs">
         <Directory Id="ProgramMenuDir" Name="GlucaTrack Service">
@@ -131,19 +113,26 @@
                             Password="[SERVICEPASSWORD]"
                             Start="auto"
                             Type="ownProcess"
-                            Vital="yes"/>
+                            Vital="yes">
+                <util:ServiceConfig xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
+                    FirstFailureActionType="restart"
+                    SecondFailureActionType="restart"
+                    ThirdFailureActionType="restart"
+                    ResetPeriodInDays="1"
+                    RestartServiceDelayInSeconds="20" />
+            </ServiceInstall>
             <ServiceControl Id="StartService" Start="install" Stop="uninstall" Remove="uninstall" Name="GlucaTrack Detector" Wait="yes" />
             <File Id="ID_a75e9a7d_62c9_494b_9bfd_97375598872c" Source="..\GlucaTrack.Services.Windows\bin\Debug\GlucaTrack.Services.Windows.exe" DiskId="1" Name="GlucaTrack.Services.Windows.exe" Vital="yes" />
           </Component>
           <Component Id="UsbLibrary" Guid="77cb8394-b039-47cf-aa90-12c546f561f0">
             <File Id="ID_f91969e3_fd8b_4812_946b_74658199c76f" Source="..\GlucaTrack.Services.Windows\bin\Debug\UsbLibrary.dll" DiskId="1" Name="UsbLibrary.dll" Vital="yes" />
           </Component>
-          <Component Id="GlucaTrack_ServiceNotifyIcon" Guid="2a753a90-8318-44b3-a1c5-a0276630d054">
-            <File Id="ID_435d5775_f4d0_445f_b5d4_f25fdf36b946" Source="..\GlucaTrack_ServiceNotifyIcon\bin\Debug\GlucaTrack_ServiceNotifyIcon.exe" DiskId="1" Name="GlucaTrack_ServiceNotifyIcon.exe" Vital="yes" />
+          <Component Id="GlucaTrack.Services.Windows.NotifyIcon" Guid="2a753a90-8318-44b3-a1c5-a0276630d054">
+            <File Id="ID_435d5775_f4d0_445f_b5d4_f25fdf36b946" Source="..\GlucaTrack.Services.Windows.NotifyIcon\bin\Debug\GlucaTrack.Services.Windows.NotifyIcon.exe" DiskId="1" Name="GlucaTrack.Services.Windows.NotifyIcon.exe" Vital="yes" />
             <RemoveFile Id="ID_435d5775_f4d0_445f_b5d4_f25fdf36b946_remove" Name="ID_435d5775_f4d0_445f_b5d4_f25fdf36b946_remove" On="uninstall"/>
           </Component>
           <Component Id="Icon" Guid="583c402c-27e9-4b82-ad66-b985fe6d3d28">
-            <File Id="ID_88003fd3_f8df_410e_bbde_b59114102d1e" Source="..\GlucaTrack_ServiceNotifyIcon\blood.ico" DiskId="1" Name="blood.ico" Vital="yes" />
+            <File Id="ID_88003fd3_f8df_410e_bbde_b59114102d1e" Source="..\GlucaTrack.Services.Windows.NotifyIcon\blood.ico" DiskId="1" Name="blood.ico" Vital="yes" />
           </Component>
           <Component Id="GlucaTrack.Services.Windows.config" Guid="D73CAA94-4670-419B-9320-8DE46E52BC02">
             <File Id="ID_52D7679F_E573_4944_B8F3_CB129B7F7CFC" Source="..\GlucaTrack.Services.Windows\app.config" DiskId="1" Name="GlucaTrack.Services.Windows.exe.config" Vital="yes" />
@@ -159,7 +148,7 @@
         <ComponentRef Id="GlucaTrack.Services.Common" />
         <ComponentRef Id="GlucaTrack.Services.Windows" />
         <ComponentRef Id="UsbLibrary" />
-        <ComponentRef Id="GlucaTrack_ServiceNotifyIcon" />
+        <ComponentRef Id="GlucaTrack.Services.Windows.NotifyIcon" />
         <ComponentRef Id="Icon" />
         <ComponentRef Id="GlucaTrack.Services.Windows.config" />
         <ComponentRef Id="Registry" />
@@ -168,6 +157,7 @@
     
     <UI>
       <UIRef Id="WixUI_Advanced"/>
+      <!--<UIRef Id="WixUI_Common"/>-->
     </UI>
     
     <Condition Message="You must not be an administrator to install this product.">Privileged</Condition>
@@ -177,7 +167,8 @@
     <CustomAction Id="ARP_HELPLINK" Property="ARPHELPLINK" Value="http://www.glucatrack.com" HideTarget="no" />
     <CustomAction Id="ARP_COMMENTS" Property="ARPCOMMENTS" Value="GlucaTrack Uploading Service" HideTarget="no" />
     <CustomAction Id="ARP_URLINFOABOUT" Property="ARPURLINFOABOUT" Value="http://www.glucatrack.com" HideTarget="no" />
-    <CustomAction Id="LaunchApp" Directory="TARGETDIR" ExeCommand="[SystemFolder]cmd.exe /C start GlucaTrack_ServiceNotifyIcon.exe" Return='ignore' Execute='immediate' />
-    <CustomAction Id="Kill_NotifyIcon" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="immediate" Return="ignore"/>
+    <CustomAction Id="LaunchAppAfterInstall" FileKey="ID_435d5775_f4d0_445f_b5d4_f25fdf36b946" ExeCommand="" Return="asyncNoWait" />
+    <CustomAction Id="MyProcess.TaskKill" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="immediate" Return="ignore"/>
+    
   </Product>
 </Wix>
