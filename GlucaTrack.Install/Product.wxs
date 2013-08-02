@@ -27,7 +27,7 @@
     <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />-->
     <Property Id="DiskPrompt" Value="GlucaTrack Service Installation [1]" />
     <Property Id="ASSISTANCE_START_VIA_REGISTRY">1</Property>
-    <Property Id="ApplicationFolderName" Value="[Manufacturer]" />
+    <Property Id="ApplicationFolderName" Value="GlucaTrack" />
     <Property Id="WixAppFolder" Value="WixPerUserFolder" />
     <Property Id="WixShellExecTarget" Value="[#ID_435d5775_f4d0_445f_b5d4_f25fdf36b946]" />
     <Property Id="ARPPRODUCTICON" Value="icon" />
@@ -86,7 +86,7 @@
     <!-- Files, services, registry entries -->
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder" Name="Program Files Folder">
-        <Directory Id="APPLICATIONFOLDER" Name="[Manufacturer]">
+        <Directory Id="APPLICATIONFOLDER" Name="GlucaTrack">
           <Component Id="$(var.GlucaTrack.Communication.TargetFileName)" Guid="27c4885d-1eb2-4d10-af0d-3e8d0538fa2e">
             <File Id="ID_2d7f715b_d6ee_42c5_aa93_8e23f475a225" Source="$(var.GlucaTrack.Communication.TargetDir)\$(var.GlucaTrack.Communication.TargetFileName)" DiskId="1" Name="$(var.GlucaTrack.Communication.TargetFileName)" Vital="yes"/>
           </Component>
