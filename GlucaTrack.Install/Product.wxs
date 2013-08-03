@@ -22,9 +22,9 @@
     </Condition>
     <Condition Message="You must not be an administrator to install this product.">Privileged</Condition>
     <Condition Message="This product requires Windows Vista or newer">VersionNT &gt;= 600</Condition>
+
+    <Binary Id="taskkill" src='taskkill.exe'/>
     
-    <!--<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch GlucaTrack" />
-    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />-->
     <Property Id="DiskPrompt" Value="GlucaTrack Service Installation [1]" />
     <Property Id="ASSISTANCE_START_VIA_REGISTRY">1</Property>
     <Property Id="ApplicationFolderName" Value="GlucaTrack" />
@@ -32,21 +32,25 @@
     <Property Id="WixShellExecTarget" Value="[#ID_435d5775_f4d0_445f_b5d4_f25fdf36b946]" />
     <Property Id="ARPPRODUCTICON" Value="icon" />
     <Property Id="ALLUSERS" Value="0" />
-    <Property Id="QtExecCmdLine" Value='"[WindowsFolder]\System32\taskkill.exe" /F /IM $(var.GlucaTrack.Services.Windows.NotifyIcon.TargetFileName)'/>
-
+    
     <CustomAction Id="ID1350" Property="TARGETDIR" Value="[APPLICATIONFOLDER]" HideTarget="no" />
     <CustomAction Id="ARP_HELPLINK" Property="ARPHELPLINK" Value="http://www.[Manufacturer].com" HideTarget="no" />
     <CustomAction Id="ARP_COMMENTS" Property="ARPCOMMENTS" Value="[Manufacturer] Uploading Service" HideTarget="no" />
     <CustomAction Id="ARP_URLINFOABOUT" Property="ARPURLINFOABOUT" Value="http://www.[Manufacturer].com" HideTarget="no" />
     <CustomAction Id="LaunchAppAfterInstall" FileKey="ID_435d5775_f4d0_445f_b5d4_f25fdf36b946" ExeCommand="" Return="asyncNoWait" />
-    <CustomAction Id="MyProcess.TaskKill" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="immediate" Return="ignore"/>
+    <CustomAction Id='NotifyIcon.TaskKill' BinaryKey="taskkill" ExeCommand='/F /IM $(var.GlucaTrack.Services.Windows.NotifyIcon.TargetFileName)' Return="ignore"  />
+    <util:CloseApplication Id="VSClose_1" CloseMessage="yes" Target="$(var.GlucaTrack.Services.Windows.NotifyIcon.TargetFileName)" RebootPrompt="no" />
+    <!--<Property Id="QtExecCmdLine" Value='"[SystemFolder]taskkill.exe" /F /IM $(var.GlucaTrack.Services.Windows.NotifyIcon.TargetFileName)'/>-->
+    <!--<CustomAction Id="MyProcess.TaskKill" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="immediate" Return="ignore"/>-->
     
     <WixVariable Id="WixUILicenseRtf" Value="EULA.rtf" />
     <WixVariable Id="WixUIBannerBmp" Value="Banner.jpg" />
     <WixVariable Id="WixUIDialogBmp" Value="Dialog.jpg" />
 
     <InstallExecuteSequence>
-      <Custom Action='MyProcess.TaskKill' Before='InstallValidate'/>
+      <Custom Action="WixCloseApplications" Before="LaunchConditions">Installed</Custom>
+      <Custom Action='NotifyIcon.TaskKill' Before="LaunchConditions">Installed</Custom>
+      <!--<Custom Action="QtExec" Before="LaunchConditions">Installed</Custom>-->
       <LaunchConditions Sequence="100">NOT Installed</LaunchConditions>
       <AppSearch Sequence="300" />
       <CCPSearch Sequence="400">NOT Installed</CCPSearch>
@@ -124,9 +128,6 @@
           <Component Id="$(var.GlucaTrack.Services.Windows.TargetFileName).config" Guid="D73CAA94-4670-419B-9320-8DE46E52BC02">
             <File Id="ID_52D7679F_E573_4944_B8F3_CB129B7F7CFC" Source="$(var.GlucaTrack.Services.Windows.TargetDir)\$(var.GlucaTrack.Services.Windows.TargetFileName).config" DiskId="1" Name="$(var.GlucaTrack.Services.Windows.TargetFileName).config" Vital="yes" />
           </Component>
-          <Component Id="Icon" Guid="583c402c-27e9-4b82-ad66-b985fe6d3d28">
-            <File Id="ID_88003fd3_f8df_410e_bbde_b59114102d1e" Source="$(var.GlucaTrack.Services.Windows.NotifyIcon.ProjectDir)\blood.ico" DiskId="1" Name="blood.ico" Vital="yes" />
-          </Component>
 
           <!-- Registry -->
           <Component Id="Registry" Guid="46243188-c17f-405a-bacf-e92d89430f00">
@@ -158,7 +159,6 @@
         <ComponentRef Id="$(var.UsbLibrary.TargetFileName)" />
         <ComponentRef Id="$(var.GlucaTrack.Services.Windows.NotifyIcon.TargetFileName)" />
         <ComponentRef Id="$(var.GlucaTrack.Services.Windows.TargetFileName).config" />
-        <ComponentRef Id="Icon" />
         <ComponentRef Id="Registry" />
       </Feature>
     </Feature>

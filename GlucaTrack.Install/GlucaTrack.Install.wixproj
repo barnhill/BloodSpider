@@ -42,6 +42,7 @@
     <Content Include="blood.ico" />
     <Content Include="Dialog.jpg" />
     <Content Include="EULA.rtf" />
+    <Content Include="taskkill.exe" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GlucaTrack.Communication\GlucaTrack.Communication.csproj">
