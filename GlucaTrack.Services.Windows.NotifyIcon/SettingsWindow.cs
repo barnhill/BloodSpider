@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.IO.Pipes;
+using System.Resources;
 using System.ServiceProcess;
 using System.Xml.Serialization;
 using GlucaTrack.Services.Common;
@@ -17,6 +18,8 @@ namespace GlucaTrack.Services.Windows
 {
     public partial class formSettings : Form
     {
+        enum Icons : int { Enabled = 0, Disabled = 1, Busy = 2 }
+
         //TODO: move all strings to resource file
         //TODO: add verbose output option for popups
         BackgroundWorker background_CommandServer = new BackgroundWorker();
@@ -24,6 +27,8 @@ namespace GlucaTrack.Services.Windows
         public formSettings()
         {
             InitializeComponent();
+
+            ChangeNotifyIcon(Icons.Disabled);
 
             //make settings window not visible
             ShowSettings(false);
@@ -61,6 +66,8 @@ namespace GlucaTrack.Services.Windows
                 var command = ss.ReadString();
                 var split = command.Split(new string[] { "|" }, StringSplitOptions.None);
 
+                //split = COMMAND, TOOLTIPTITLE, TEXT, ICONTYPE
+
                 ToolTipIcon icon = ToolTipIcon.None;
                 switch (split[3])
                 {
@@ -83,6 +90,17 @@ namespace GlucaTrack.Services.Windows
                         if (result == DialogResult.Yes)
                         {
                             pipeWrite("ULD_YES", string.Empty, string.Empty, 0);
+                        }
+                        break;
+                    case "BUSYICON":
+                        if (notifyIcon1.Icon == GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_enabled)
+                        {
+                            //TODO: change from normal icon to busy icon
+                            notifyIcon1.Icon = GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_busy;
+                        }
+                        else
+                        {
+                            notifyIcon1.Icon = GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_enabled;
                         }
                         break;
                     case "PATH_REQ":
@@ -171,6 +189,9 @@ namespace GlucaTrack.Services.Windows
                 //verify server identity
                 if (ss.ReadString() == "GlucaTrack_Service")
                 {
+                    //show the connected icon
+                    ChangeNotifyIcon(Icons.Enabled);
+
                     //talking to the correct service so send the message
                     ss.WriteString("VERSION|");
                     menuItem_Version.Text = "GlucaTrack " + ss.ReadString();
@@ -304,6 +325,24 @@ namespace GlucaTrack.Services.Windows
                     MessageBox.Show(Statics.serviceName + " service not found on this computer.  Please reinstall.", Statics.serviceName + " service not found", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
+        }
+
+        private void ChangeNotifyIcon(Icons icon)
+        {
+            switch (icon)
+            {
+                case Icons.Enabled:
+                    notifyIcon1.Icon = GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_enabled;
+                    break;
+                case Icons.Disabled:
+                    notifyIcon1.Icon = GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_disabled;
+                    break;
+                case Icons.Busy:
+                    notifyIcon1.Icon = GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_busy;
+                    break;
+                default:
+                    break;
+        }
         }
     }
 }

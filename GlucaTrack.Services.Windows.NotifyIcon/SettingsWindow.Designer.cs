@@ -34,7 +34,10 @@
             this.menuNotifyIcon = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuItem_Version = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItem_Settings = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItem_Website = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItem_Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -44,9 +47,7 @@
             this.chkAutoUpload = new System.Windows.Forms.CheckBox();
             this.tStartService = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.menuItem_Settings = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItem_Website = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItem_Exit = new System.Windows.Forms.ToolStripMenuItem();
+            this.icons = new System.Windows.Forms.ImageList(this.components);
             this.menuNotifyIcon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -82,10 +83,35 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(179, 6);
             // 
+            // menuItem_Settings
+            // 
+            this.menuItem_Settings.Image = global::GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.Gear_icon;
+            this.menuItem_Settings.Name = "menuItem_Settings";
+            this.menuItem_Settings.Size = new System.Drawing.Size(182, 22);
+            this.menuItem_Settings.Text = "Settings";
+            this.menuItem_Settings.Click += new System.EventHandler(this.menuItem_Settings_Click);
+            // 
+            // menuItem_Website
+            // 
+            this.menuItem_Website.Image = global::GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.Web2_icon;
+            this.menuItem_Website.Name = "menuItem_Website";
+            this.menuItem_Website.Size = new System.Drawing.Size(182, 22);
+            this.menuItem_Website.Text = "Website";
+            this.menuItem_Website.Click += new System.EventHandler(this.menuItem_Website_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(179, 6);
+            // 
+            // menuItem_Exit
+            // 
+            this.menuItem_Exit.Image = global::GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.Exit_icon;
+            this.menuItem_Exit.ImageTransparentColor = System.Drawing.Color.White;
+            this.menuItem_Exit.Name = "menuItem_Exit";
+            this.menuItem_Exit.Size = new System.Drawing.Size(182, 22);
+            this.menuItem_Exit.Text = "Exit";
+            this.menuItem_Exit.Click += new System.EventHandler(this.menuItem_Exit_Click);
             // 
             // label1
             // 
@@ -165,30 +191,12 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
-            // menuItem_Settings
+            // icons
             // 
-            this.menuItem_Settings.Image = global::GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.Gear_icon;
-            this.menuItem_Settings.Name = "menuItem_Settings";
-            this.menuItem_Settings.Size = new System.Drawing.Size(182, 22);
-            this.menuItem_Settings.Text = "Settings";
-            this.menuItem_Settings.Click += new System.EventHandler(this.menuItem_Settings_Click);
-            // 
-            // menuItem_Website
-            // 
-            this.menuItem_Website.Image = global::GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.Web2_icon;
-            this.menuItem_Website.Name = "menuItem_Website";
-            this.menuItem_Website.Size = new System.Drawing.Size(182, 22);
-            this.menuItem_Website.Text = "Website";
-            this.menuItem_Website.Click += new System.EventHandler(this.menuItem_Website_Click);
-            // 
-            // menuItem_Exit
-            // 
-            this.menuItem_Exit.Image = global::GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.Exit_icon;
-            this.menuItem_Exit.ImageTransparentColor = System.Drawing.Color.White;
-            this.menuItem_Exit.Name = "menuItem_Exit";
-            this.menuItem_Exit.Size = new System.Drawing.Size(182, 22);
-            this.menuItem_Exit.Text = "Exit";
-            this.menuItem_Exit.Click += new System.EventHandler(this.menuItem_Exit_Click);
+            this.icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("icons.ImageStream")));
+            this.icons.TransparentColor = System.Drawing.Color.Transparent;
+            this.icons.Images.SetKeyName(0, "blood.ico");
+            this.icons.Images.SetKeyName(1, "blood_disabled.ico");
             // 
             // formSettings
             // 
@@ -239,6 +247,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem menuItem_Exit;
         private System.Windows.Forms.Timer tStartService;
+        private System.Windows.Forms.ImageList icons;
     }
 }
 
