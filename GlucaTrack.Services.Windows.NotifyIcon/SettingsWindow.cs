@@ -77,7 +77,8 @@ namespace GlucaTrack.Services.Windows
                         break;
                     case "3": icon = ToolTipIcon.Error;
                         break;
-                    default: break;
+                    default: 
+                        break;
                 }
 
                 switch (split[0].ToUpperInvariant().Trim())
@@ -93,7 +94,7 @@ namespace GlucaTrack.Services.Windows
                         }
                         break;
                     case "BUSYICON":
-                        if (notifyIcon1.Icon == GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_enabled)
+                        if (split[1].ToLowerInvariant() == "busy")
                         {
                             //TODO: change from normal icon to busy icon
                             notifyIcon1.Icon = GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_busy;

@@ -116,6 +116,9 @@ namespace GlucaTrack.Services.Windows
         {
             try
             {
+                //change notify icon to busy
+                pipeWrite("BUSYICON", "busy", string.Empty, 0);
+
                 //read devices data
                 if (Common.Statics.deviceFound != null)
                 {
@@ -236,6 +239,9 @@ namespace GlucaTrack.Services.Windows
 
                 if (e != null && e.Result != null && Common.Statics.deviceFound != null)
                 {
+                    //change notify icon to busy
+                    pipeWrite("BUSYICON", "notbusy", string.Empty, 0);
+
                     EventLog.WriteEntry("Device identified: " + Common.Statics.deviceFound.DeviceDescription, EventLogEntryType.Information, 1);
                     
                     //send command to show message balloon on notify icon
@@ -253,6 +259,9 @@ namespace GlucaTrack.Services.Windows
         private void background_DeviceReader_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             //finished reading - OnReadFinished raised
+
+            //change notify icon to busy
+            pipeWrite("BUSYICON", "notbusy", string.Empty, 0);
         }
         private void background_CommandServer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
