@@ -83,10 +83,10 @@
     <None Include="app.config" />
     <None Include="Documents\Bayer\Bayer-MeterInterface.pdf" />
     <None Include="Documents\MeterList.xlsx" />
-    <None Include="Documents\Nipro\OneTouch Select Protocol.pdf" />
-    <None Include="Documents\Nipro\OneTouch Ultra 2 Protocol.pdf" />
-    <None Include="Documents\Nipro\OneTouch Ultra Mini Protocol.pdf" />
-    <None Include="Documents\Nipro\OneTouch Ultra Protocol.pdf" />
+    <None Include="Documents\LifeScan\OneTouch Select Protocol.pdf" />
+    <None Include="Documents\LifeScan\OneTouch Ultra 2 Protocol.pdf" />
+    <None Include="Documents\LifeScan\OneTouch Ultra Mini Protocol.pdf" />
+    <None Include="Documents\LifeScan\OneTouch Ultra Protocol.pdf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -108,7 +108,7 @@
     <Content Include="Documents\i-Sens\CaresensN_Signal Analysis_Header.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Documents\LifeScan\" />
+    <Folder Include="Documents\Nipro\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UsbLibrary\UsbLibrary.csproj">

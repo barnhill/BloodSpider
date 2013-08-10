@@ -164,7 +164,10 @@ namespace GlucaTrack.Communication.Meters.Bayer
                         {
                             string[] splitData = _TempString.Split(new char[] { '|' });
                             BitArray bitary = new BitArray(Byte.Parse(splitData[1]));
-                            SampleFormat = (bitary.Get(2)) ? SampleFormat.MMOL : SampleFormat.MGDL;
+                            //if (bitary.Length > 1)
+                                SampleFormat = (bitary.Get(2)) ? SampleFormat.MMOL : SampleFormat.MGDL;
+                            //else
+
                             Port.Write(new byte[] { 0x04 }, 0, 1);
                             _CountStep = 0;
                             _TempString = string.Empty;

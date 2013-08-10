@@ -73,7 +73,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
             {
                 if (Port.BytesToRead > 0)
                 {
-                    bool found = Port.ReadExisting().IndexOf("?A") > 0;
+                    bool found = Port.ReadExisting().Contains("?A");
 
                     Dispose();
 
@@ -120,7 +120,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
                         break;
                     case "count": //read serial number from meter
                         string [] countReply = RawData.Split(new char[] { (char)AsciiCodes.STX });
-                        byte[] dataReply = Statics.StrToByteArray(countReply[countReply.Length-1]);
+                        byte[] dataReply = Statics.StrToByteArray(countReply[countReply.Length - 1]);
 
                         SampleCount = 0;
                         SampleCount = dataReply[3];
