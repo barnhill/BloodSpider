@@ -101,13 +101,13 @@
     <Content Include="Service References\GTService\GlucaTrack.Website.GTService.Records.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\GTService\GTService.disco" />
-    <Content Include="Service References\GTService\configuration91.svcinfo" />
-    <Content Include="Service References\GTService\configuration.svcinfo" />
-    <Content Include="Service References\GTService\Reference.svcmap">
+    <None Include="Service References\GTService\GTService.disco" />
+    <None Include="Service References\GTService\configuration91.svcinfo" />
+    <None Include="Service References\GTService\configuration.svcinfo" />
+    <None Include="Service References\GTService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <Content Include="Styles\site.css" />
     <Content Include="Styles\site1.css" />
     <Content Include="Images\unused\background\blood_hand.jpg" />
@@ -298,7 +298,7 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Service References\GTService\GTService.wsdl" />
+    <None Include="Service References\GTService\GTService.wsdl" />
     <None Include="Service References\GTService\GTService.xsd">
       <SubType>Designer</SubType>
     </None>
