@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
-  <Product Version="1.0.1" Id="b01ec04a-59c3-4600-bbaf-5c8e2e2245d3" Name="GlucaTrack" Manufacturer="GlucaTrack" UpgradeCode="d7969321-0242-4910-8929-9cd5102ce44b" Language="1033" Codepage="1252">
+  <?define ProductCode = "b01ec04a-59c3-4600-bbaf-5c8e2e2245d3"?>
+  <?define UpgradeCode = "D2A8440B-02F1-4EFF-BDA3-4451C188CF77"?>
+  <?define ProductVersion = "1.0.1.0"?>
+  <Product Version="$(var.ProductVersion)" Id="*" Name="GlucaTrack" Manufacturer="GlucaTrack" UpgradeCode="$(var.UpgradeCode)" Language="1033" Codepage="1252">
     <Package Description="[Manufacturer] Service" Manufacturer="[Manufacturer]" SummaryCodepage="1252" Languages="1033" InstallerVersion="400" Keywords="Installer" Compressed="yes" />
-    
-    <Upgrade Id="b01ec04a-59c3-4600-bbaf-5c8e2e2245d3">
-      <UpgradeVersion OnlyDetect="no" Property="GLUCATRACK_PREVIOUSVERSIONFOUND" IncludeMinimum="yes" Minimum="0.0.0" Maximum="1.0.0" IncludeMaximum="yes" />
-    </Upgrade>
+
+    <MajorUpgrade
+      Schedule="afterInstallInitialize"
+      DowngradeErrorMessage="A later version of [ProductName] is already installed. Setup will now exit."/>
     
     <Icon Id="icon" SourceFile="$(var.GlucaTrack.Services.Windows.NotifyIcon.ProjectDir)\blood.ico"/>
 
@@ -63,7 +66,6 @@
       <SetODBCFolders Sequence="1100">NOT Installed</SetODBCFolders>
       <MigrateFeatureStates Sequence="1200" />
       <InstallValidate Sequence="1400" />
-      <RemoveExistingProducts Sequence="1480">GLUCATRACK_PREVIOUSVERSIONFOUND</RemoveExistingProducts>
       <InstallInitialize Sequence="1500" />
       <ProcessComponents Sequence="1600" />
       <UnpublishComponents Sequence="1680" />
