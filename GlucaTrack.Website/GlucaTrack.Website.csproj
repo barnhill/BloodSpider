@@ -78,6 +78,10 @@
     <Content Include="Content\Main.aspx" />
     <Content Include="Account\Logout.aspx" />
     <Content Include="Download.aspx" />
+    <Content Include="Images\home\changeyourlife.png" />
+    <Content Include="Images\home\consolidate.png" />
+    <Content Include="Images\home\safeandsecure.png" />
+    <Content Include="Images\home\simpleandeasy.png" />
     <Content Include="Images\icons\calendar.png" />
     <Content Include="Images\icons\down-green.png" />
     <Content Include="Images\icons\normal-clear.png" />
