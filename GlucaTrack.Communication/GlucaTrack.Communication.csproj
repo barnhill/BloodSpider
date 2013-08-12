@@ -62,6 +62,9 @@
     <None Include="Meters\Breeze2.cs" />
     <Compile Include="Meters\Caresens_N.cs" />
     <Compile Include="Meters\Contour_USB.cs" />
+    <Compile Include="Meters\OneTouch_Ultra.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Meters\OneTouch_UltraSmart.cs" />
     <Compile Include="Meters\OneTouch_UltraMini.cs" />
     <Compile Include="Meters\OneTouch_Ultra2.cs" />

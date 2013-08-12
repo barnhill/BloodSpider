@@ -45,6 +45,7 @@ namespace GlucaTrack.Communication
             MeterToClassLookup.Add("Contour", "Bayer.Contour");
             MeterToClassLookup.Add("Breeze2", "Bayer.Breeze2");
 
+            MeterToClassLookup.Add("OneTouch Ultra", "LifeScan.OneTouch_Ultra");
             MeterToClassLookup.Add("OneTouch Ultra 2", "LifeScan.OneTouch_Ultra2");
             MeterToClassLookup.Add("OneTouch Ultra Mini", "LifeScan.OneTouch_UltraMini");
             MeterToClassLookup.Add("OneTouch Ultra Smart", "LifeScan.OneTouch_UltraSmart");
@@ -171,6 +172,9 @@ namespace GlucaTrack.Communication
             DeviceInfo dinfo = null;
             
             string comport = (string)e.Argument;
+
+            if (Thread.CurrentThread.Name == null)
+                Thread.CurrentThread.Name = comport;
 
             var MeterTypes = Assembly.GetExecutingAssembly().GetTypes()
                                  .Where(t => t.IsClass) // Only include classes

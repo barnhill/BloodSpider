@@ -107,6 +107,9 @@ namespace GlucaTrack.Services.Windows
         #region Thread Work
         private void background_DeviceDetector_DoWork(object sender, DoWorkEventArgs e)
         {
+            if (Thread.CurrentThread.Name == null)
+                Thread.CurrentThread.Name = "DeviceDetector";
+
             Common.Statics.deviceFound = null;
             DeviceInfo fdi = Communication.Statics.DetectFirstDevice();
             Common.Statics.deviceFound = fdi;
@@ -116,6 +119,9 @@ namespace GlucaTrack.Services.Windows
         {
             try
             {
+                if (Thread.CurrentThread.Name == null)
+                    Thread.CurrentThread.Name = "DeviceReader";
+
                 //change notify icon to busy
                 pipeWrite("BUSYICON", "busy", string.Empty, 0);
 
@@ -125,7 +131,6 @@ namespace GlucaTrack.Services.Windows
                     if (typeof(IMeter).IsAssignableFrom(Common.Statics.deviceFound.DeviceType))
                     {
                         //serial devices
-                        //IMeter Meter = (IMeter)Activator.CreateInstance(Common.Statics.deviceFound.DeviceType);
                         IMeter Meter = (IMeter)Common.Statics.deviceFound.Device;
                         Meter.ReadFinished += new EventHandler(OnReadFinished);
                         Meter.RecordRead += new EventHandler(OnRecordRead);
@@ -151,7 +156,6 @@ namespace GlucaTrack.Services.Windows
                     else if (typeof(IMeterHID).IsAssignableFrom(Common.Statics.deviceFound.DeviceType))
                     {
                         //HID devices
-                        //IMeterHID Meter = (IMeterHID)Activator.CreateInstance(Common.Statics.deviceFound.DeviceType);
                         IMeterHID Meter = (IMeterHID)Common.Statics.deviceFound.Device;
                         Meter.ReadFinished += new EventHandler(OnReadFinished);
                         Meter.RecordRead += new EventHandler(OnRecordRead);
@@ -170,6 +174,9 @@ namespace GlucaTrack.Services.Windows
         }
         private void background_CommandServer_DoWork(object sender, DoWorkEventArgs e)
         {
+            if (Thread.CurrentThread.Name == null)
+                Thread.CurrentThread.Name = "CommandServer";
+
             NamedPipeServerStream pipeServer = null;
             try
             {
