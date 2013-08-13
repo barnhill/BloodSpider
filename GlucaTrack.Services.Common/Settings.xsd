@@ -12,7 +12,7 @@
   <xs:element name="Settings" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Settings" msprop:Generator_UserDSName="Settings">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Login" msprop:Generator_TableClassName="LoginDataTable" msprop:Generator_TableVarName="tableLogin" msprop:Generator_RowChangedName="LoginRowChanged" msprop:Generator_TablePropName="Login" msprop:Generator_RowDeletingName="LoginRowDeleting" msprop:Generator_RowChangingName="LoginRowChanging" msprop:Generator_RowEvHandlerName="LoginRowChangeEventHandler" msprop:Generator_RowDeletedName="LoginRowDeleted" msprop:Generator_RowClassName="LoginRow" msprop:Generator_UserTableName="Login" msprop:Generator_RowEvArgName="LoginRowChangeEvent">
+        <xs:element name="Login" msprop:Generator_TableClassName="LoginDataTable" msprop:Generator_TableVarName="tableLogin" msprop:Generator_TablePropName="Login" msprop:Generator_RowDeletingName="LoginRowDeleting" msprop:Generator_RowChangingName="LoginRowChanging" msprop:Generator_RowEvHandlerName="LoginRowChangeEventHandler" msprop:Generator_RowDeletedName="LoginRowDeleted" msprop:Generator_UserTableName="Login" msprop:Generator_RowChangedName="LoginRowChanged" msprop:Generator_RowEvArgName="LoginRowChangeEvent" msprop:Generator_RowClassName="LoginRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Username" msprop:Generator_ColumnVarNameInTable="columnUsername" msprop:Generator_ColumnPropNameInRow="Username" msprop:Generator_ColumnPropNameInTable="UsernameColumn" msprop:Generator_UserColumnName="Username" type="xs:string" default="" minOccurs="0" />
@@ -20,10 +20,11 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Options" msprop:Generator_TableClassName="OptionsDataTable" msprop:Generator_TableVarName="tableOptions" msprop:Generator_TablePropName="Options" msprop:Generator_RowDeletingName="OptionsRowDeleting" msprop:Generator_RowChangingName="OptionsRowChanging" msprop:Generator_RowEvHandlerName="OptionsRowChangeEventHandler" msprop:Generator_RowDeletedName="OptionsRowDeleted" msprop:Generator_UserTableName="Options" msprop:Generator_RowChangedName="OptionsRowChanged" msprop:Generator_RowEvArgName="OptionsRowChangeEvent" msprop:Generator_RowClassName="OptionsRow">
+        <xs:element name="Options" msprop:Generator_TableClassName="OptionsDataTable" msprop:Generator_TableVarName="tableOptions" msprop:Generator_RowChangedName="OptionsRowChanged" msprop:Generator_TablePropName="Options" msprop:Generator_RowDeletingName="OptionsRowDeleting" msprop:Generator_RowChangingName="OptionsRowChanging" msprop:Generator_RowEvHandlerName="OptionsRowChangeEventHandler" msprop:Generator_RowDeletedName="OptionsRowDeleted" msprop:Generator_RowClassName="OptionsRow" msprop:Generator_UserTableName="Options" msprop:Generator_RowEvArgName="OptionsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="AutoUpload" msprop:nullValue="false" msprop:Generator_ColumnPropNameInRow="AutoUpload" msprop:Generator_ColumnVarNameInTable="columnAutoUpload" msprop:Generator_ColumnPropNameInTable="AutoUploadColumn" msprop:Generator_UserColumnName="AutoUpload" type="xs:boolean" default="false" minOccurs="0" />
+              <xs:element name="ShowNotifications" msprop:Generator_ColumnVarNameInTable="columnShowNotifications" msprop:Generator_ColumnPropNameInRow="ShowNotifications" msprop:Generator_ColumnPropNameInTable="ShowNotificationsColumn" msprop:Generator_UserColumnName="ShowNotifications" type="xs:boolean" default="true" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

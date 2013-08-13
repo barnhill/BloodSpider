@@ -29,7 +29,6 @@ namespace GlucaTrack.Communication.Meters.LifeScan
             {
                 if (!Port.IsOpen)
                 {
-                    Thread.Sleep(250);
                     Port.Open();
                 }
             }
@@ -37,8 +36,6 @@ namespace GlucaTrack.Communication.Meters.LifeScan
             {
                 return Port.IsOpen;
             }
-
-            Thread.Sleep(250);
 
             //clear the buffers
             Port.DiscardInBuffer();

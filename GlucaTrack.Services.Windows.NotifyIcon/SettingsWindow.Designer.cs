@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formSettings));
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.settingsNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.menuNotifyIcon = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuItem_Version = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -48,16 +48,17 @@
             this.tStartService = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.icons = new System.Windows.Forms.ImageList(this.components);
+            this.chkShowNotifications = new System.Windows.Forms.CheckBox();
             this.menuNotifyIcon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // notifyIcon1
+            // settingsNotifyIcon
             // 
-            this.notifyIcon1.ContextMenuStrip = this.menuNotifyIcon;
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "GlucaTrack Detector";
-            this.notifyIcon1.Visible = true;
+            this.settingsNotifyIcon.ContextMenuStrip = this.menuNotifyIcon;
+            this.settingsNotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("settingsNotifyIcon.Icon")));
+            this.settingsNotifyIcon.Text = "GlucaTrack Detector";
+            this.settingsNotifyIcon.Visible = true;
             // 
             // menuNotifyIcon
             // 
@@ -133,9 +134,9 @@
             // 
             this.txtPassword.Location = new System.Drawing.Point(73, 76);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(100, 20);
             this.txtPassword.TabIndex = 4;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // label2
             // 
@@ -148,7 +149,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(98, 128);
+            this.btnSave.Location = new System.Drawing.Point(98, 147);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 5;
@@ -158,7 +159,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(17, 128);
+            this.btnCancel.Location = new System.Drawing.Point(17, 147);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 6;
@@ -178,7 +179,8 @@
             // 
             // tStartService
             // 
-            this.tStartService.Interval = 60000;
+            this.tStartService.Enabled = true;
+            this.tStartService.Interval = 5000;
             this.tStartService.Tick += new System.EventHandler(this.tStartService_Tick);
             // 
             // pictureBox1
@@ -198,12 +200,23 @@
             this.icons.Images.SetKeyName(0, "blood.ico");
             this.icons.Images.SetKeyName(1, "blood_disabled.ico");
             // 
+            // chkShowNotifications
+            // 
+            this.chkShowNotifications.AutoSize = true;
+            this.chkShowNotifications.Location = new System.Drawing.Point(73, 122);
+            this.chkShowNotifications.Name = "chkShowNotifications";
+            this.chkShowNotifications.Size = new System.Drawing.Size(112, 17);
+            this.chkShowNotifications.TabIndex = 9;
+            this.chkShowNotifications.Text = "Show notifications";
+            this.chkShowNotifications.UseVisualStyleBackColor = true;
+            // 
             // formSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(184, 154);
+            this.ClientSize = new System.Drawing.Size(184, 179);
             this.ControlBox = false;
+            this.Controls.Add(this.chkShowNotifications);
             this.Controls.Add(this.chkAutoUpload);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCancel);
@@ -230,7 +243,7 @@
 
         #endregion
 
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.NotifyIcon settingsNotifyIcon;
         private System.Windows.Forms.ContextMenuStrip menuNotifyIcon;
         private System.Windows.Forms.ToolStripMenuItem menuItem_Version;
         private System.Windows.Forms.ToolStripMenuItem menuItem_Settings;
@@ -248,6 +261,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuItem_Exit;
         private System.Windows.Forms.Timer tStartService;
         private System.Windows.Forms.ImageList icons;
+        private System.Windows.Forms.CheckBox chkShowNotifications;
     }
 }
 

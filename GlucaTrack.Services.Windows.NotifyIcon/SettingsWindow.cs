@@ -23,6 +23,7 @@ namespace GlucaTrack.Services.Windows
         //TODO: move all strings to resource file
         //TODO: add verbose output option for popups
         BackgroundWorker background_CommandServer = new BackgroundWorker();
+        static Settings _settings;
 
         public formSettings()
         {
@@ -84,7 +85,7 @@ namespace GlucaTrack.Services.Windows
                 switch (split[0].ToUpperInvariant().Trim())
                 {
                     case "MSG":
-                        notifyIcon1.ShowBalloonTip(2500, split[1], split[2], icon);
+                        ShowNotificationBalloon(2500, split[1], split[2], icon);
                         break;
                     case "ULD":
                         DialogResult result = MessageBox.Show(split[2], split[1], MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
@@ -94,14 +95,16 @@ namespace GlucaTrack.Services.Windows
                         }
                         break;
                     case "BUSYICON":
-                        if (split[1].ToLowerInvariant() == "busy")
+                        switch (split[1].ToLowerInvariant())
                         {
-                            //TODO: change from normal icon to busy icon
-                            notifyIcon1.Icon = GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_busy;
-                        }
-                        else
-                        {
-                            notifyIcon1.Icon = GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_enabled;
+                            case "busy": ChangeNotifyIcon(Icons.Busy);
+                                break;
+                            case "notbusy": ChangeNotifyIcon(Icons.Enabled);
+                                break;
+                            case "disabled": ChangeNotifyIcon(Icons.Disabled);
+                                break;
+                            default : 
+                                break;
                         }
                         break;
                     case "PATH_REQ":
@@ -152,13 +155,15 @@ namespace GlucaTrack.Services.Windows
 
                     settings.Login.AddLoginRow(loginRow);
 
-                    settings.Options.AddOptionsRow(!chkAutoUpload.Checked);
+                    settings.Options.AddOptionsRow(!chkAutoUpload.Checked, chkShowNotifications.Checked);
+
+                    _settings = settings;
 
                     //save settings file
-                    Statics.SaveSettingsFile(settings);
+                    Statics.SaveSettingsFile(_settings);
 
                     //show that all settings were saved successfully
-                    notifyIcon1.ShowBalloonTip(2500, "GlucaTrack Settings", "User settings were successfully saved.", ToolTipIcon.Info);
+                    ShowNotificationBalloon(2500, "GlucaTrack Settings", "User settings were successfully saved.", ToolTipIcon.Info);
                 }
             }
             catch (UnauthorizedAccessException uaex)
@@ -196,8 +201,7 @@ namespace GlucaTrack.Services.Windows
                     //talking to the correct service so send the message
                     ss.WriteString("VERSION|");
                     menuItem_Version.Text = "GlucaTrack " + ss.ReadString();
-                    notifyIcon1.Text = menuItem_Version.Text;
-                    tStartService.Stop();
+                    settingsNotifyIcon.Text = menuItem_Version.Text;
                 }
             }//try
             catch (System.TimeoutException)
@@ -209,16 +213,15 @@ namespace GlucaTrack.Services.Windows
 
                     service.Start();
                     service.WaitForStatus(ServiceControllerStatus.Running, timeout);
-                    tStartService.Stop();
                     GetVersionFromService();
                 }
                 catch(Exception ex)
                 {
                     if (ex.Message.ToLowerInvariant().Contains("was not found on computer"))
                     {
-                        //service not installed on computer so stop looking for service and display message
-                        tStartService.Stop();
-                        MessageBox.Show(Statics.serviceName + " service not found on this computer.  Please reinstall.", Statics.serviceName + " service not found", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        //service not installed on computer so display the disabled icon
+                        settingsNotifyIcon.Text = "GlucaTrack service not running.";
+                        ChangeNotifyIcon(Icons.Disabled);
                     }
                     else
                     {
@@ -267,12 +270,15 @@ namespace GlucaTrack.Services.Windows
         {
             this.Visible = show;
 
+            //read settings file
+            _settings = Statics.ReadSettingsFile();
+
             if (show)
             {
                 //move settings window to bottom right corner of screen
-                this.Size = new Size(200, 192);
+                this.Size = new Size(200, 217);
                 this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - this.Width, Screen.PrimaryScreen.WorkingArea.Height - this.Height);
-                PopulateScreenFromSettings(Statics.ReadSettingsFile());
+                PopulateScreenFromSettings(_settings);
                 this.Show();
             }
             else
@@ -304,27 +310,34 @@ namespace GlucaTrack.Services.Windows
                 if (optionRow != null)
                 {
                     this.chkAutoUpload.Checked = !optionRow.AutoUpload;
+                    this.chkShowNotifications.Checked = optionRow.ShowNotifications;
                 }
             }
         }
-
+        private void ShowNotificationBalloon(int Timeout, string title, string message, ToolTipIcon icon)
+        {
+            if (_settings.Options.FirstOrDefault().ShowNotifications)
+                settingsNotifyIcon.ShowBalloonTip(Timeout, title, message, icon);
+        }
         private void tStartService_Tick(object sender, EventArgs e)
         {
             ServiceController service = new ServiceController(Statics.serviceName);
             try
             {
-                service.Start();
-                service.WaitForStatus(ServiceControllerStatus.Running, TimeSpan.FromMilliseconds(2000));
-                GetVersionFromService();
-            }
-            catch(Exception ex)
-            {
-                if (ex.Message.ToLowerInvariant().Contains("was not found on computer"))
+                if (service.Status == ServiceControllerStatus.Stopped)
                 {
-                    //service not installed on computer so stop looking for service and display message
-                    tStartService.Stop();
-                    MessageBox.Show(Statics.serviceName + " service not found on this computer.  Please reinstall.", Statics.serviceName + " service not found", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    service.Start();
+                    service.WaitForStatus(ServiceControllerStatus.Running, TimeSpan.FromMilliseconds(2000));
                 }
+                else
+                {
+                    GetVersionFromService();
+                }
+            }
+            catch(Exception)
+            {
+                settingsNotifyIcon.Text = "GlucaTrack service not running.";
+                ChangeNotifyIcon(Icons.Disabled);
             }
         }
 
@@ -333,13 +346,13 @@ namespace GlucaTrack.Services.Windows
             switch (icon)
             {
                 case Icons.Enabled:
-                    notifyIcon1.Icon = GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_enabled;
+                    settingsNotifyIcon.Icon = GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_enabled;
                     break;
                 case Icons.Disabled:
-                    notifyIcon1.Icon = GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_disabled;
+                    settingsNotifyIcon.Icon = GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_disabled;
                     break;
                 case Icons.Busy:
-                    notifyIcon1.Icon = GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_busy;
+                    settingsNotifyIcon.Icon = GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_busy;
                     break;
                 default:
                     break;
