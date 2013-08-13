@@ -51,7 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>blood.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\blood_enabled.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -119,7 +119,6 @@
     <None Include="Resources\titleidea4.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="blood.ico" />
     <None Include="Resources\blood_busy.ico" />
     <Content Include="Resources\blood_disabled.ico" />
     <None Include="Resources\Gear_icon.png" />

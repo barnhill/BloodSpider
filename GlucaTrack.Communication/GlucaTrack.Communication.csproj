@@ -55,6 +55,7 @@
     <Compile Include="IMeter.cs" />
     <Compile Include="Meters\Contour.cs" />
     <None Include="Documents\i-Sens\CaresensN.spm" />
+    <None Include="Documents\LifeScan\OneTouch Ultra.spm" />
     <None Include="Documents\Roche\metertest.pl" />
     <None Include="Documents\Roche\Portmon_connect_no_change_time_hex.log" />
     <None Include="Documents\Roche\Portmon_no_connect_hex.log" />
