@@ -104,6 +104,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="StreamString.cs" />
+    <Compile Include="Update.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="GlucaTrackDetector.resx">

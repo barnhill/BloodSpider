@@ -193,7 +193,35 @@ namespace GlucaTrack.Services.Web
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Is there an application update?
+        /// </summary>
+        /// <param name="appid">Guid of the application checking for an update.</param>
+        /// <param name="version">Current version of the binary.</param>
+        /// <returns></returns>
+        public string IsUpdatePresent(string appid, string version)
+        {
+            using (CommonTableAdapters.sp_GetApplicationLatestVersionTableAdapter ta = new CommonTableAdapters.sp_GetApplicationLatestVersionTableAdapter())
+            using (Common d = new Common())
+            {
+                ta.Fill(d.sp_GetApplicationLatestVersion, Guid.Parse(appid));
+                if (d.sp_GetApplicationLatestVersion.Count() > 0)
+                {
+                    //application found
+                    if (version != d.sp_GetApplicationLatestVersion.First().version)
+                        return d.sp_GetApplicationLatestVersion.First().path; //update found
+                    else
+                        return string.Empty; //no update found
+                }
+                else
+                {
+                    //app not found
+                    return string.Empty;
+                }
+            }
+        }
+
         /// <summary>
         /// Record the last sync date and time on the users record in the database.
         /// </summary>

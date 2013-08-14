@@ -28,6 +28,24 @@
   <wsdl:message name="IGTService_PostGlucoseRecords_ExceptionFault_FaultMessage">
     <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/System" name="detail" element="q2:Exception" />
   </wsdl:message>
+  <wsdl:message name="IGTService_UpdateLastWebLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLastWebLogin" />
+  </wsdl:message>
+  <wsdl:message name="IGTService_UpdateLastWebLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLastWebLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGTService_UpdateLastWebLogin_ExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/System" name="detail" element="q3:Exception" />
+  </wsdl:message>
+  <wsdl:message name="IGTService_IsUpdatePresent_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsUpdatePresent" />
+  </wsdl:message>
+  <wsdl:message name="IGTService_IsUpdatePresent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsUpdatePresentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGTService_IsUpdatePresent_ExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/System" name="detail" element="q4:Exception" />
+  </wsdl:message>
   <wsdl:portType name="IGTService">
     <wsdl:operation name="ValidateLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IGTService/ValidateLogin" message="tns:IGTService_ValidateLogin_InputMessage" />
@@ -38,6 +56,16 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IGTService/PostGlucoseRecords" message="tns:IGTService_PostGlucoseRecords_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGTService/PostGlucoseRecordsResponse" message="tns:IGTService_PostGlucoseRecords_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IGTService/PostGlucoseRecordsExceptionFault" name="ExceptionFault" message="tns:IGTService_PostGlucoseRecords_ExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLastWebLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGTService/UpdateLastWebLogin" message="tns:IGTService_UpdateLastWebLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGTService/UpdateLastWebLoginResponse" message="tns:IGTService_UpdateLastWebLogin_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGTService/UpdateLastWebLoginExceptionFault" name="ExceptionFault" message="tns:IGTService_UpdateLastWebLogin_ExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUpdatePresent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGTService/IsUpdatePresent" message="tns:IGTService_IsUpdatePresent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGTService/IsUpdatePresentResponse" message="tns:IGTService_IsUpdatePresent_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGTService/IsUpdatePresentExceptionFault" name="ExceptionFault" message="tns:IGTService_IsUpdatePresent_ExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IGTService" type="tns:IGTService">
@@ -56,6 +84,30 @@
     </wsdl:operation>
     <wsdl:operation name="PostGlucoseRecords">
       <soap:operation soapAction="http://tempuri.org/IGTService/PostGlucoseRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ExceptionFault">
+        <soap:fault use="literal" name="ExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLastWebLogin">
+      <soap:operation soapAction="http://tempuri.org/IGTService/UpdateLastWebLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ExceptionFault">
+        <soap:fault use="literal" name="ExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="IsUpdatePresent">
+      <soap:operation soapAction="http://tempuri.org/IGTService/IsUpdatePresent" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

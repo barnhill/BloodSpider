@@ -27,6 +27,6 @@ namespace GlucaTrack.Services.Web
 
         [OperationContract]
         [FaultContract(typeof(Exception))]
-        Common.sp_GetAllSupportedMetersDataTable GetSupportedMeters();
+        string IsUpdatePresent(string appid, string version);
     }
 }

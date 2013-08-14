@@ -32,19 +32,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="build-WindowsService.bat" />
-    <None Include="BuildTools\DotNetVer.nsh" />
     <None Include="BuildTools\GlucaTrack_WindowsService_Nullsoft.nsi" />
-    <None Include="EULA.rtf" />
+    <None Include="BuildTools\Plugins\DotNetVer.nsh" />
+    <None Include="BuildTools\Plugins\Inetc_3.zip" />
+    <None Include="BuildTools\Plugins\nsProcess.nsh" />
+    <None Include="BuildTools\Plugins\NsProcess.zip" />
+    <None Include="BuildTools\UI.nsh" />
+    <None Include="BuildTools\Variables.nsh" />
+    <None Include="Resources\EULA.rtf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BuildTools\BuildLog.txt" />
-    <Content Include="EULA.txt" />
-    <Content Include="icon.ico" />
-    <Content Include="NSIS_installheader.bmp" />
-    <Content Include="NSIS_WelcomeImage.bmp" />
+    <Content Include="Resources\EULA.txt" />
+    <Content Include="Resources\icon.ico" />
+    <Content Include="Resources\NSIS_installheader.bmp" />
+    <Content Include="Resources\NSIS_WelcomeImage.bmp" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

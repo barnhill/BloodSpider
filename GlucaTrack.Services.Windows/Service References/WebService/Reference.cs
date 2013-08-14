@@ -72,6 +72,18 @@ namespace GlucaTrack.Services.Windows.WebService {
         [System.ServiceModel.FaultContractAttribute(typeof(GlucaTrack.Services.Windows.WebService.Exception), Action="http://tempuri.org/IGTService/PostGlucoseRecordsExceptionFault", Name="Exception", Namespace="http://schemas.datacontract.org/2004/07/System")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         GlucaTrack.Services.Windows.WebService.PostGlucoseRecordsResponse PostGlucoseRecords(GlucaTrack.Services.Windows.WebService.PostGlucoseRecordsRequest request);
+        
+        // CODEGEN: Parameter 'user' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGTService/UpdateLastWebLogin", ReplyAction="http://tempuri.org/IGTService/UpdateLastWebLoginResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GlucaTrack.Services.Windows.WebService.Exception), Action="http://tempuri.org/IGTService/UpdateLastWebLoginExceptionFault", Name="Exception", Namespace="http://schemas.datacontract.org/2004/07/System")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        GlucaTrack.Services.Windows.WebService.UpdateLastWebLoginResponse UpdateLastWebLogin(GlucaTrack.Services.Windows.WebService.UpdateLastWebLoginRequest request);
+        
+        // CODEGEN: Parameter 'IsUpdatePresentResult' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGTService/IsUpdatePresent", ReplyAction="http://tempuri.org/IGTService/IsUpdatePresentResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GlucaTrack.Services.Windows.WebService.Exception), Action="http://tempuri.org/IGTService/IsUpdatePresentExceptionFault", Name="Exception", Namespace="http://schemas.datacontract.org/2004/07/System")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        GlucaTrack.Services.Windows.WebService.IsUpdatePresentResponse IsUpdatePresent(GlucaTrack.Services.Windows.WebService.IsUpdatePresentRequest request);
     }
     
     /// <summary>
@@ -90,6 +102,10 @@ namespace GlucaTrack.Services.Windows.WebService {
         private sp_GetLoginDataTable tablesp_GetLogin;
         
         private sp_GetApplicationByTokenDataTable tablesp_GetApplicationByToken;
+        
+        private sp_GetAllSupportedMetersDataTable tablesp_GetAllSupportedMeters;
+        
+        private sp_GetApplicationLatestVersionDataTable tablesp_GetApplicationLatestVersion;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -124,6 +140,12 @@ namespace GlucaTrack.Services.Windows.WebService {
                 }
                 if ((ds.Tables["sp_GetApplicationByToken"] != null)) {
                     base.Tables.Add(new sp_GetApplicationByTokenDataTable(ds.Tables["sp_GetApplicationByToken"]));
+                }
+                if ((ds.Tables["sp_GetAllSupportedMeters"] != null)) {
+                    base.Tables.Add(new sp_GetAllSupportedMetersDataTable(ds.Tables["sp_GetAllSupportedMeters"]));
+                }
+                if ((ds.Tables["sp_GetApplicationLatestVersion"] != null)) {
+                    base.Tables.Add(new sp_GetApplicationLatestVersionDataTable(ds.Tables["sp_GetApplicationLatestVersion"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -160,6 +182,26 @@ namespace GlucaTrack.Services.Windows.WebService {
         public sp_GetApplicationByTokenDataTable sp_GetApplicationByToken {
             get {
                 return this.tablesp_GetApplicationByToken;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public sp_GetAllSupportedMetersDataTable sp_GetAllSupportedMeters {
+            get {
+                return this.tablesp_GetAllSupportedMeters;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public sp_GetApplicationLatestVersionDataTable sp_GetApplicationLatestVersion {
+            get {
+                return this.tablesp_GetApplicationLatestVersion;
             }
         }
         
@@ -236,6 +278,12 @@ namespace GlucaTrack.Services.Windows.WebService {
                 if ((ds.Tables["sp_GetApplicationByToken"] != null)) {
                     base.Tables.Add(new sp_GetApplicationByTokenDataTable(ds.Tables["sp_GetApplicationByToken"]));
                 }
+                if ((ds.Tables["sp_GetAllSupportedMeters"] != null)) {
+                    base.Tables.Add(new sp_GetAllSupportedMetersDataTable(ds.Tables["sp_GetAllSupportedMeters"]));
+                }
+                if ((ds.Tables["sp_GetApplicationLatestVersion"] != null)) {
+                    base.Tables.Add(new sp_GetApplicationLatestVersionDataTable(ds.Tables["sp_GetApplicationLatestVersion"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -281,6 +329,18 @@ namespace GlucaTrack.Services.Windows.WebService {
                     this.tablesp_GetApplicationByToken.InitVars();
                 }
             }
+            this.tablesp_GetAllSupportedMeters = ((sp_GetAllSupportedMetersDataTable)(base.Tables["sp_GetAllSupportedMeters"]));
+            if ((initTable == true)) {
+                if ((this.tablesp_GetAllSupportedMeters != null)) {
+                    this.tablesp_GetAllSupportedMeters.InitVars();
+                }
+            }
+            this.tablesp_GetApplicationLatestVersion = ((sp_GetApplicationLatestVersionDataTable)(base.Tables["sp_GetApplicationLatestVersion"]));
+            if ((initTable == true)) {
+                if ((this.tablesp_GetApplicationLatestVersion != null)) {
+                    this.tablesp_GetApplicationLatestVersion.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -295,6 +355,10 @@ namespace GlucaTrack.Services.Windows.WebService {
             base.Tables.Add(this.tablesp_GetLogin);
             this.tablesp_GetApplicationByToken = new sp_GetApplicationByTokenDataTable();
             base.Tables.Add(this.tablesp_GetApplicationByToken);
+            this.tablesp_GetAllSupportedMeters = new sp_GetAllSupportedMetersDataTable();
+            base.Tables.Add(this.tablesp_GetAllSupportedMeters);
+            this.tablesp_GetApplicationLatestVersion = new sp_GetApplicationLatestVersionDataTable();
+            base.Tables.Add(this.tablesp_GetApplicationLatestVersion);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -306,6 +370,18 @@ namespace GlucaTrack.Services.Windows.WebService {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializesp_GetApplicationByToken() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializesp_GetAllSupportedMeters() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializesp_GetApplicationLatestVersion() {
             return false;
         }
         
@@ -369,6 +445,12 @@ namespace GlucaTrack.Services.Windows.WebService {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void sp_GetApplicationByTokenRowChangeEventHandler(object sender, sp_GetApplicationByTokenRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void sp_GetAllSupportedMetersRowChangeEventHandler(object sender, sp_GetAllSupportedMetersRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void sp_GetApplicationLatestVersionRowChangeEventHandler(object sender, sp_GetApplicationLatestVersionRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1195,6 +1277,536 @@ namespace GlucaTrack.Services.Windows.WebService {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class sp_GetAllSupportedMetersDataTable : global::System.Data.TypedTableBase<sp_GetAllSupportedMetersRow> {
+            
+            private global::System.Data.DataColumn columnManufacturer;
+            
+            private global::System.Data.DataColumn columnMeter;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public sp_GetAllSupportedMetersDataTable() {
+                this.TableName = "sp_GetAllSupportedMeters";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal sp_GetAllSupportedMetersDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected sp_GetAllSupportedMetersDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ManufacturerColumn {
+                get {
+                    return this.columnManufacturer;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MeterColumn {
+                get {
+                    return this.columnMeter;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public sp_GetAllSupportedMetersRow this[int index] {
+                get {
+                    return ((sp_GetAllSupportedMetersRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event sp_GetAllSupportedMetersRowChangeEventHandler sp_GetAllSupportedMetersRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event sp_GetAllSupportedMetersRowChangeEventHandler sp_GetAllSupportedMetersRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event sp_GetAllSupportedMetersRowChangeEventHandler sp_GetAllSupportedMetersRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event sp_GetAllSupportedMetersRowChangeEventHandler sp_GetAllSupportedMetersRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Addsp_GetAllSupportedMetersRow(sp_GetAllSupportedMetersRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public sp_GetAllSupportedMetersRow Addsp_GetAllSupportedMetersRow(string Manufacturer, string Meter) {
+                sp_GetAllSupportedMetersRow rowsp_GetAllSupportedMetersRow = ((sp_GetAllSupportedMetersRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Manufacturer,
+                        Meter};
+                rowsp_GetAllSupportedMetersRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowsp_GetAllSupportedMetersRow);
+                return rowsp_GetAllSupportedMetersRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                sp_GetAllSupportedMetersDataTable cln = ((sp_GetAllSupportedMetersDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new sp_GetAllSupportedMetersDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnManufacturer = base.Columns["Manufacturer"];
+                this.columnMeter = base.Columns["Meter"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnManufacturer = new global::System.Data.DataColumn("Manufacturer", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnManufacturer);
+                this.columnMeter = new global::System.Data.DataColumn("Meter", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMeter);
+                this.columnManufacturer.AllowDBNull = false;
+                this.columnManufacturer.MaxLength = 50;
+                this.columnMeter.AllowDBNull = false;
+                this.columnMeter.MaxLength = 50;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public sp_GetAllSupportedMetersRow Newsp_GetAllSupportedMetersRow() {
+                return ((sp_GetAllSupportedMetersRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new sp_GetAllSupportedMetersRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(sp_GetAllSupportedMetersRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.sp_GetAllSupportedMetersRowChanged != null)) {
+                    this.sp_GetAllSupportedMetersRowChanged(this, new sp_GetAllSupportedMetersRowChangeEvent(((sp_GetAllSupportedMetersRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.sp_GetAllSupportedMetersRowChanging != null)) {
+                    this.sp_GetAllSupportedMetersRowChanging(this, new sp_GetAllSupportedMetersRowChangeEvent(((sp_GetAllSupportedMetersRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.sp_GetAllSupportedMetersRowDeleted != null)) {
+                    this.sp_GetAllSupportedMetersRowDeleted(this, new sp_GetAllSupportedMetersRowChangeEvent(((sp_GetAllSupportedMetersRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.sp_GetAllSupportedMetersRowDeleting != null)) {
+                    this.sp_GetAllSupportedMetersRowDeleting(this, new sp_GetAllSupportedMetersRowChangeEvent(((sp_GetAllSupportedMetersRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Removesp_GetAllSupportedMetersRow(sp_GetAllSupportedMetersRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                Common ds = new Common();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "sp_GetAllSupportedMetersDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class sp_GetApplicationLatestVersionDataTable : global::System.Data.TypedTableBase<sp_GetApplicationLatestVersionRow> {
+            
+            private global::System.Data.DataColumn columnversion;
+            
+            private global::System.Data.DataColumn columnpath;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public sp_GetApplicationLatestVersionDataTable() {
+                this.TableName = "sp_GetApplicationLatestVersion";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal sp_GetApplicationLatestVersionDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected sp_GetApplicationLatestVersionDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn versionColumn {
+                get {
+                    return this.columnversion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn pathColumn {
+                get {
+                    return this.columnpath;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public sp_GetApplicationLatestVersionRow this[int index] {
+                get {
+                    return ((sp_GetApplicationLatestVersionRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event sp_GetApplicationLatestVersionRowChangeEventHandler sp_GetApplicationLatestVersionRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event sp_GetApplicationLatestVersionRowChangeEventHandler sp_GetApplicationLatestVersionRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event sp_GetApplicationLatestVersionRowChangeEventHandler sp_GetApplicationLatestVersionRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event sp_GetApplicationLatestVersionRowChangeEventHandler sp_GetApplicationLatestVersionRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Addsp_GetApplicationLatestVersionRow(sp_GetApplicationLatestVersionRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public sp_GetApplicationLatestVersionRow Addsp_GetApplicationLatestVersionRow(string version, string path) {
+                sp_GetApplicationLatestVersionRow rowsp_GetApplicationLatestVersionRow = ((sp_GetApplicationLatestVersionRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        version,
+                        path};
+                rowsp_GetApplicationLatestVersionRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowsp_GetApplicationLatestVersionRow);
+                return rowsp_GetApplicationLatestVersionRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                sp_GetApplicationLatestVersionDataTable cln = ((sp_GetApplicationLatestVersionDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new sp_GetApplicationLatestVersionDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnversion = base.Columns["version"];
+                this.columnpath = base.Columns["path"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnversion = new global::System.Data.DataColumn("version", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnversion);
+                this.columnpath = new global::System.Data.DataColumn("path", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpath);
+                this.columnversion.AllowDBNull = false;
+                this.columnversion.MaxLength = 50;
+                this.columnpath.AllowDBNull = false;
+                this.columnpath.MaxLength = 2147483647;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public sp_GetApplicationLatestVersionRow Newsp_GetApplicationLatestVersionRow() {
+                return ((sp_GetApplicationLatestVersionRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new sp_GetApplicationLatestVersionRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(sp_GetApplicationLatestVersionRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.sp_GetApplicationLatestVersionRowChanged != null)) {
+                    this.sp_GetApplicationLatestVersionRowChanged(this, new sp_GetApplicationLatestVersionRowChangeEvent(((sp_GetApplicationLatestVersionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.sp_GetApplicationLatestVersionRowChanging != null)) {
+                    this.sp_GetApplicationLatestVersionRowChanging(this, new sp_GetApplicationLatestVersionRowChangeEvent(((sp_GetApplicationLatestVersionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.sp_GetApplicationLatestVersionRowDeleted != null)) {
+                    this.sp_GetApplicationLatestVersionRowDeleted(this, new sp_GetApplicationLatestVersionRowChangeEvent(((sp_GetApplicationLatestVersionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.sp_GetApplicationLatestVersionRowDeleting != null)) {
+                    this.sp_GetApplicationLatestVersionRowDeleting(this, new sp_GetApplicationLatestVersionRowChangeEvent(((sp_GetApplicationLatestVersionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Removesp_GetApplicationLatestVersionRow(sp_GetApplicationLatestVersionRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                Common ds = new Common();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "sp_GetApplicationLatestVersionDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class sp_GetLoginRow : global::System.Data.DataRow {
@@ -1638,6 +2250,80 @@ namespace GlucaTrack.Services.Windows.WebService {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class sp_GetAllSupportedMetersRow : global::System.Data.DataRow {
+            
+            private sp_GetAllSupportedMetersDataTable tablesp_GetAllSupportedMeters;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal sp_GetAllSupportedMetersRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablesp_GetAllSupportedMeters = ((sp_GetAllSupportedMetersDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Manufacturer {
+                get {
+                    return ((string)(this[this.tablesp_GetAllSupportedMeters.ManufacturerColumn]));
+                }
+                set {
+                    this[this.tablesp_GetAllSupportedMeters.ManufacturerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Meter {
+                get {
+                    return ((string)(this[this.tablesp_GetAllSupportedMeters.MeterColumn]));
+                }
+                set {
+                    this[this.tablesp_GetAllSupportedMeters.MeterColumn] = value;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class sp_GetApplicationLatestVersionRow : global::System.Data.DataRow {
+            
+            private sp_GetApplicationLatestVersionDataTable tablesp_GetApplicationLatestVersion;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal sp_GetApplicationLatestVersionRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablesp_GetApplicationLatestVersion = ((sp_GetApplicationLatestVersionDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string version {
+                get {
+                    return ((string)(this[this.tablesp_GetApplicationLatestVersion.versionColumn]));
+                }
+                set {
+                    this[this.tablesp_GetApplicationLatestVersion.versionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string path {
+                get {
+                    return ((string)(this[this.tablesp_GetApplicationLatestVersion.pathColumn]));
+                }
+                set {
+                    this[this.tablesp_GetApplicationLatestVersion.pathColumn] = value;
+                }
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1704,6 +2390,74 @@ namespace GlucaTrack.Services.Windows.WebService {
                 }
             }
         }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class sp_GetAllSupportedMetersRowChangeEvent : global::System.EventArgs {
+            
+            private sp_GetAllSupportedMetersRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public sp_GetAllSupportedMetersRowChangeEvent(sp_GetAllSupportedMetersRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public sp_GetAllSupportedMetersRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class sp_GetApplicationLatestVersionRowChangeEvent : global::System.EventArgs {
+            
+            private sp_GetApplicationLatestVersionRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public sp_GetApplicationLatestVersionRowChangeEvent(sp_GetApplicationLatestVersionRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public sp_GetApplicationLatestVersionRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1717,6 +2471,7 @@ namespace GlucaTrack.Services.Windows.WebService {
         public string AssemblyName;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Appid;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
@@ -2464,6 +3219,75 @@ namespace GlucaTrack.Services.Windows.WebService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="UpdateLastWebLogin", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class UpdateLastWebLoginRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public GlucaTrack.Services.Windows.WebService.Common user;
+        
+        public UpdateLastWebLoginRequest() {
+        }
+        
+        public UpdateLastWebLoginRequest(GlucaTrack.Services.Windows.WebService.Common user) {
+            this.user = user;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="UpdateLastWebLoginResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class UpdateLastWebLoginResponse {
+        
+        public UpdateLastWebLoginResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="IsUpdatePresent", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class IsUpdatePresentRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string appid;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string version;
+        
+        public IsUpdatePresentRequest() {
+        }
+        
+        public IsUpdatePresentRequest(string appid, string version) {
+            this.appid = appid;
+            this.version = version;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="IsUpdatePresentResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class IsUpdatePresentResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string IsUpdatePresentResult;
+        
+        public IsUpdatePresentResponse() {
+        }
+        
+        public IsUpdatePresentResponse(string IsUpdatePresentResult) {
+            this.IsUpdatePresentResult = IsUpdatePresentResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IGTServiceChannel : GlucaTrack.Services.Windows.WebService.IGTService, System.ServiceModel.IClientChannel {
     }
@@ -2518,6 +3342,30 @@ namespace GlucaTrack.Services.Windows.WebService {
             inValue.metertype = metertype;
             GlucaTrack.Services.Windows.WebService.PostGlucoseRecordsResponse retVal = ((GlucaTrack.Services.Windows.WebService.IGTService)(this)).PostGlucoseRecords(inValue);
             return retVal.PostGlucoseRecordsResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        GlucaTrack.Services.Windows.WebService.UpdateLastWebLoginResponse GlucaTrack.Services.Windows.WebService.IGTService.UpdateLastWebLogin(GlucaTrack.Services.Windows.WebService.UpdateLastWebLoginRequest request) {
+            return base.Channel.UpdateLastWebLogin(request);
+        }
+        
+        public void UpdateLastWebLogin(GlucaTrack.Services.Windows.WebService.Common user) {
+            GlucaTrack.Services.Windows.WebService.UpdateLastWebLoginRequest inValue = new GlucaTrack.Services.Windows.WebService.UpdateLastWebLoginRequest();
+            inValue.user = user;
+            GlucaTrack.Services.Windows.WebService.UpdateLastWebLoginResponse retVal = ((GlucaTrack.Services.Windows.WebService.IGTService)(this)).UpdateLastWebLogin(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        GlucaTrack.Services.Windows.WebService.IsUpdatePresentResponse GlucaTrack.Services.Windows.WebService.IGTService.IsUpdatePresent(GlucaTrack.Services.Windows.WebService.IsUpdatePresentRequest request) {
+            return base.Channel.IsUpdatePresent(request);
+        }
+        
+        public string IsUpdatePresent(string appid, string version) {
+            GlucaTrack.Services.Windows.WebService.IsUpdatePresentRequest inValue = new GlucaTrack.Services.Windows.WebService.IsUpdatePresentRequest();
+            inValue.appid = appid;
+            inValue.version = version;
+            GlucaTrack.Services.Windows.WebService.IsUpdatePresentResponse retVal = ((GlucaTrack.Services.Windows.WebService.IGTService)(this)).IsUpdatePresent(inValue);
+            return retVal.IsUpdatePresentResult;
         }
     }
 }
