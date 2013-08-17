@@ -34,10 +34,17 @@ namespace GlucaTrack.Services.Windows
 
         static void RunApplication()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            formSettings form = new formSettings();
-            Application.Run();
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                formSettings form = new formSettings();
+                Application.Run();
+            }
+            catch (Exception ex)
+            {
+                EventLog.WriteEntry("Application", ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 100);
+            }
         }
 
         static void CloseAllandExit()

@@ -13,14 +13,14 @@ namespace GlucaTrack.Services.Common
 {
     public class Statics
     {
-        public static string baseFilepath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GlucaTrack");
+        public static string BaseFilepath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GlucaTrack");
         public static DeviceInfo deviceFound = null;
 
         public static string serviceName = "GlucaTrack Detector";
 
         public static void SaveSettingsFile(Settings settings)
         {
-            Directory.CreateDirectory(Statics.baseFilepath);
+            Directory.CreateDirectory(Statics.BaseFilepath);
 
             //write saved file
             var xmlSerial = new XmlSerializer(typeof(Settings));
@@ -28,7 +28,7 @@ namespace GlucaTrack.Services.Common
             {
                 xmlSerial.Serialize(sw, settings);
 
-                using (StreamWriter stream = new StreamWriter(Path.Combine(Statics.baseFilepath, "glucatrack.sav"), false, Encoding.UTF8))
+                using (StreamWriter stream = new StreamWriter(Path.Combine(Statics.BaseFilepath, "glucatrack.sav"), false, Encoding.UTF8))
                 {
                     stream.Write(Convert.ToBase64String(Encoding.UTF8.GetBytes(sw.ToString())));
                 }
@@ -36,7 +36,7 @@ namespace GlucaTrack.Services.Common
         }
         public static Settings ReadSettingsFile()
         {
-            return ReadSettingsFile(Path.Combine(Common.Statics.baseFilepath, "glucatrack.sav"));
+            return ReadSettingsFile(Path.Combine(Common.Statics.BaseFilepath, "glucatrack.sav"));
         }
         public static Settings ReadSettingsFile(string path)
         {
@@ -56,6 +56,37 @@ namespace GlucaTrack.Services.Common
             else
             {
                 return new Settings();
+            }
+        }
+
+        public static void SaveUpdateInfoFile(UpdateInfo uinfo)
+        {
+            Directory.CreateDirectory(Statics.BaseFilepath);
+
+            uinfo.WriteXml(Statics.BaseFilepath + "\\lastupdate.xml");
+        }
+        public static UpdateInfo.Update_InfoRow ReadUpdateInfoFile()
+        {
+            return ReadUpdateInfoFile(Path.Combine(Common.Statics.BaseFilepath, "lastupdate.xml"));
+        }
+        public static UpdateInfo.Update_InfoRow ReadUpdateInfoFile(string path)
+        {
+            //read saved settings file
+            if (File.Exists(path))
+            {
+                using (UpdateInfo ui = new UpdateInfo())
+                {
+                    ui.ReadXml(path);
+
+                    if (ui.Update_Info.Rows.Count > 0)
+                        return ui.Update_Info.First();
+                    else
+                        return null;
+                }
+            }
+            else
+            {
+                return null;
             }
         }
     }

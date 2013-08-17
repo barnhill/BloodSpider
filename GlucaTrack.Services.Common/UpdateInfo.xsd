@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="UpdateInfo" targetNamespace="http://tempuri.org/UpdateInfo.xsd" xmlns:mstns="http://tempuri.org/UpdateInfo.xsd" xmlns="http://tempuri.org/UpdateInfo.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="UpdateInfo" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="UpdateInfo" msprop:Generator_UserDSName="UpdateInfo">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Update_Info" msprop:Generator_TableClassName="Update_InfoDataTable" msprop:Generator_TableVarName="tableUpdate_Info" msprop:Generator_TablePropName="Update_Info" msprop:Generator_RowDeletingName="Update_InfoRowDeleting" msprop:Generator_RowChangingName="Update_InfoRowChanging" msprop:Generator_RowEvHandlerName="Update_InfoRowChangeEventHandler" msprop:Generator_RowDeletedName="Update_InfoRowDeleted" msprop:Generator_UserTableName="Update_Info" msprop:Generator_RowChangedName="Update_InfoRowChanged" msprop:Generator_RowEvArgName="Update_InfoRowChangeEvent" msprop:Generator_RowClassName="Update_InfoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LastUpdateCheck" msdata:DateTimeMode="Local" msprop:Generator_ColumnVarNameInTable="columnLastUpdateCheck" msprop:Generator_ColumnPropNameInRow="LastUpdateCheck" msprop:Generator_ColumnPropNameInTable="LastUpdateCheckColumn" msprop:Generator_UserColumnName="LastUpdateCheck" type="xs:dateTime" default="2000-01-01T00:00:00" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

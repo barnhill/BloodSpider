@@ -1,6 +1,7 @@
 SetCompressor /SOLID lzma
 
-!define PRODUCT_NAME "GlucaTrack Windows Service"
+!define PRODUCT_VERSION "1.0.0.0"
+!define PRODUCT_NAME "GlucaTrack"
 !define PRODUCT_PUBLISHER "GlucaTrack"
 !define PRODUCT_SERVICE_EXE "GlucaTrack.Services.Windows"
 !define PRODUCT_MAIN_EXE "GlucaTrack.Services.Windows.NotifyIcon"

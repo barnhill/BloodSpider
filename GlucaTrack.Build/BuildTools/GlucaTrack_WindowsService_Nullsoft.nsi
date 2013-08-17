@@ -111,6 +111,8 @@ SetOverwrite try
   File "${SOURCEDIR}\UsbLibrary.dll"
   File "${SOURCEDIR}\..\..\..\GlucaTrack.Services.Windows.NotifyIcon\bin\Debug\${PRODUCT_MAIN_EXE}${EXE_EXTENSION}"
 
+  ;Create the program  data folder
+  CreateDirectory "$APPDATA\${PRODUCT_NAME}"
 SectionEnd
 
 ;set the descriptions for the sections
@@ -134,6 +136,7 @@ Section -Post
   WriteRegStr ${HKEY_LOCAL_MACHINE} "${PRODUCT_UNINST_KEY}" "RegCompany" "${PRODUCT_PUBLISHER}"
   WriteRegStr ${HKEY_LOCAL_MACHINE} "${PRODUCT_UNINST_KEY}" "RegOwner" "${PRODUCT_PUBLISHER}"
   WriteRegStr ${HKEY_LOCAL_MACHINE} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
+  WriteRegStr ${HKEY_LOCAL_MACHINE} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegDWORD ${HKEY_LOCAL_MACHINE} "${PRODUCT_UNINST_KEY}" "EstimatedSize" "$0"
 
   ;start service and notify icon after install
@@ -203,10 +206,8 @@ Function Update_Pre
 FunctionEnd 
 
 Function Update_Pre_Finish
-  ReadRegStr $2 HKLM "${PRODUCT_DIR_REGKEY}" ""
 
-  ${If} $2 != ""
-    Abort
-  ${EndIf}
 FunctionEnd
+
+
 

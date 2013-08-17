@@ -21,9 +21,9 @@ namespace GlucaTrack.Services.Windows
         enum Icons : int { Enabled = 0, Disabled = 1, Busy = 2 }
 
         //TODO: move all strings to resource file
-        //TODO: add verbose output option for popups
         BackgroundWorker background_CommandServer = new BackgroundWorker();
         static Settings _settings;
+        string currentVersion = string.Empty;
 
         public formSettings()
         {
@@ -34,14 +34,16 @@ namespace GlucaTrack.Services.Windows
             //make settings window not visible
             ShowSettings(false);
 
+            //gets the version from the service and displays it on the right click menu
+            GetVersionFromService();
+            
+            CheckForUpdates();
+
             //start named pipe communication thread
             background_CommandServer.WorkerSupportsCancellation = true;
             background_CommandServer.DoWork += background_CommandServer_DoWork;
             background_CommandServer.RunWorkerCompleted += background_CommandServer_RunWorkerCompleted;
             background_CommandServer.RunWorkerAsync();
-
-            //gets the version from the service and displays it on the right click menu
-            GetVersionFromService();
         }
 
         #region Threads
@@ -103,12 +105,15 @@ namespace GlucaTrack.Services.Windows
                                 break;
                             case "disabled": ChangeNotifyIcon(Icons.Disabled);
                                 break;
-                            default : 
+                            default:
                                 break;
                         }
                         break;
                     case "PATH_REQ":
-                        pipeWrite("ULD_PATH_RESP", Path.Combine(Common.Statics.baseFilepath, "glucatrack.sav"), string.Empty, 0);
+                        pipeWrite("ULD_PATH_RESP", Path.Combine(Common.Statics.BaseFilepath, "glucatrack.sav"), string.Empty, 0);
+                        break;
+                    case "UPDATE_CHECK_FINISHED":
+                        Windows.Update u = new Windows.Update(split[1]);                        
                         break;
                     default: break;
                 };
@@ -118,7 +123,8 @@ namespace GlucaTrack.Services.Windows
             }
             finally 
             {
-                pipeServer.Close();
+                if  (pipeServer != null)
+                    pipeServer.Close();
             }
         }
         #endregion
@@ -200,7 +206,8 @@ namespace GlucaTrack.Services.Windows
 
                     //talking to the correct service so send the message
                     ss.WriteString("VERSION|");
-                    menuItem_Version.Text = "GlucaTrack " + ss.ReadString();
+                    currentVersion = ss.ReadString();
+                    menuItem_Version.Text = "GlucaTrack " + currentVersion;
                     settingsNotifyIcon.Text = menuItem_Version.Text;
                 }
             }//try
@@ -232,6 +239,51 @@ namespace GlucaTrack.Services.Windows
             finally
             {
                 pipeServerIn.Close();
+            }
+        }
+        private void CheckForUpdates()
+        {
+            NamedPipeClientStream pipeServerIn = null;
+            try
+            {
+                UpdateInfo.Update_InfoRow uir = Statics.ReadUpdateInfoFile();
+                if (uir != null)
+                {
+                    DateTime? dtLastCheck = uir.LastUpdateCheck;
+                    if (dtLastCheck != null && DateTime.Now - dtLastCheck < TimeSpan.FromDays(1))
+                    {
+                        return;
+                    }
+                }
+
+                //save the last time the update check was run
+                UpdateInfo uinfo = new UpdateInfo();
+                uinfo.Update_Info.AddUpdate_InfoRow(DateTime.Now);
+                Statics.SaveUpdateInfoFile(uinfo);
+
+                pipeServerIn = new NamedPipeClientStream(".", "pipeGlucaTrackDetectorIn");
+                if (!pipeServerIn.IsConnected)
+                    pipeServerIn.Connect(2000);
+
+                StreamString ss = new StreamString(pipeServerIn);
+
+                //verify server identity
+                if (ss.ReadString() == "GlucaTrack_Service")
+                {
+                    //show the connected icon
+                    ChangeNotifyIcon(Icons.Enabled);
+
+                    //talking to the correct service so send the message
+                    ss.WriteString("CHECK_FOR_UPDATES|");
+                }
+            }//try
+            catch (Exception ex)
+            { 
+            }
+            finally
+            {
+                if (pipeServerIn != null)
+                    pipeServerIn.Close();
             }
         }
         private void pipeWrite(string command, string Text1, string Text2, int icon)

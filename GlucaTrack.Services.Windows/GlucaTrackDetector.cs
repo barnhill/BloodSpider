@@ -14,11 +14,13 @@ using System.Threading;
 using GlucaTrack.Communication;
 using GlucaTrack.Communication.Meters;
 using GlucaTrack.Services.Common;
+using GlucaTrack.Services.Windows;
 
 namespace GlucaTrack.Services.Windows
 {
     public partial class GlucaTrackDetector : ServiceBase
     {
+        string appId = "65aeed4c-956c-4873-ab4b-335b5e7f7835";
         BackgroundWorker background_DeviceDetector = null;
         BackgroundWorker background_DeviceReader = new BackgroundWorker();
         BackgroundWorker background_CommandServer = new BackgroundWorker();
@@ -222,6 +224,9 @@ namespace GlucaTrack.Services.Windows
                             }
                         }
                         break;
+                    case "CHECK_FOR_UPDATES":
+                        pipeWrite("UPDATE_CHECK_FINISHED", CheckForUpdates(), String.Empty, 1);
+                        break;
                     default: break;
                 };
             }
@@ -276,11 +281,11 @@ namespace GlucaTrack.Services.Windows
         }
         #endregion
 
-        private void pipeWrite(string command)
+        public static void pipeWrite(string command)
         {
             pipeWrite(command, string.Empty, string.Empty, 1);
         }
-        private void pipeWrite(string command, string Text1, string Text2, int icon)
+        public static void pipeWrite(string command, string Text1, string Text2, int icon)
         {
             //icon = (1 = Info, 2 = Warning, 3 = Error)
             NamedPipeClientStream pipeServerOut = null;
@@ -370,7 +375,7 @@ namespace GlucaTrack.Services.Windows
                             EventLog.WriteEntry("Validating User: Begin", EventLogEntryType.Information);
                             
                             //validate user
-                            userinfo = client.ValidateLogin(StringCipher.Encrypt(assemblyName), StringCipher.Encrypt("65aeed4c-956c-4873-ab4b-335b5e7f7835"), 
+                            userinfo = client.ValidateLogin(StringCipher.Encrypt(assemblyName), StringCipher.Encrypt(appId), 
                                                             StringCipher.Encrypt(loginRow.Username), StringCipher.Encrypt(loginRow.Password));
                         }
                         catch (Exception ex)
@@ -415,6 +420,18 @@ namespace GlucaTrack.Services.Windows
             {
                 Errors.ServiceError(new Exception("uploadData-1: Could not upload data due to settings not being populated."));
             }
+        }
+        private string CheckForUpdates()
+        {
+            try
+            {
+                using (WebService.GTServiceClient client = new WebService.GTServiceClient())
+                {
+                    string updatePath = client.IsUpdatePresent(appId, Assembly.GetExecutingAssembly().GetName().Version.ToString());
+                    return updatePath;
+                }
+            }
+            catch { return string.Empty; }
         }
 
         protected virtual void OnReadFinished(object sender, EventArgs e)
