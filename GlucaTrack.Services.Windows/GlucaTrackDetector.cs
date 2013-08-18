@@ -182,7 +182,10 @@ namespace GlucaTrack.Services.Windows
             NamedPipeServerStream pipeServer = null;
             try
             {
-                pipeServer = new NamedPipeServerStream("pipeGlucaTrackDetectorIn", PipeDirection.InOut, 1, PipeTransmissionMode.Message, PipeOptions.Asynchronous);
+                PipeSecurity pipeSecurity = new PipeSecurity();
+                pipeSecurity.AddAccessRule(new PipeAccessRule("Everyone", PipeAccessRights.ReadWrite, System.Security.AccessControl.AccessControlType.Allow));
+                pipeServer = new NamedPipeServerStream("pipeGlucaTrackDetectorIn", PipeDirection.InOut, 1, PipeTransmissionMode.Message, PipeOptions.None, 512, 512, pipeSecurity, HandleInheritability.None);
+                //pipeServer = new NamedPipeServerStream("pipeGlucaTrackDetectorIn", PipeDirection.InOut, 1, PipeTransmissionMode.Message, PipeOptions.Asynchronous);
 
                 pipeServer.WaitForConnection();
 
@@ -236,7 +239,8 @@ namespace GlucaTrack.Services.Windows
             }
             finally
             {
-                pipeServer.Close();
+                if (pipeServer != null)
+                    pipeServer.Close();
             }
         }
         #endregion

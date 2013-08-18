@@ -192,7 +192,7 @@ namespace GlucaTrack.Services.Windows
             NamedPipeClientStream pipeServerIn = null;
             try
             {
-                pipeServerIn = new NamedPipeClientStream(".", "pipeGlucaTrackDetectorIn");
+                pipeServerIn = new NamedPipeClientStream(".", "pipeGlucaTrackDetectorIn", PipeDirection.InOut, PipeOptions.None, System.Security.Principal.TokenImpersonationLevel.Anonymous, HandleInheritability.Inheritable);
                 if (!pipeServerIn.IsConnected)
                     pipeServerIn.Connect(2000);
 
@@ -213,32 +213,11 @@ namespace GlucaTrack.Services.Windows
             }//try
             catch (System.TimeoutException)
             {
-                ServiceController service = new ServiceController(Statics.serviceName);
-                try
-                {
-                    TimeSpan timeout = TimeSpan.FromMilliseconds(2000);
-
-                    service.Start();
-                    service.WaitForStatus(ServiceControllerStatus.Running, timeout);
-                    GetVersionFromService();
-                }
-                catch(Exception ex)
-                {
-                    if (ex.Message.ToLowerInvariant().Contains("was not found on computer"))
-                    {
-                        //service not installed on computer so display the disabled icon
-                        settingsNotifyIcon.Text = "GlucaTrack service not running.";
-                        ChangeNotifyIcon(Icons.Disabled);
-                    }
-                    else
-                    {
-                        tStartService.Start();
-                    }
-                }
             }
             finally
             {
-                pipeServerIn.Close();
+                if (pipeServerIn != null)
+                    pipeServerIn.Close();
             }
         }
         private void CheckForUpdates()
@@ -373,23 +352,24 @@ namespace GlucaTrack.Services.Windows
         }
         private void tStartService_Tick(object sender, EventArgs e)
         {
-            ServiceController service = new ServiceController(Statics.serviceName);
-            try
+
+            using (ServiceController service = new ServiceController(Statics.serviceName))
             {
-                if (service.Status == ServiceControllerStatus.Stopped)
+                try
                 {
-                    service.Start();
-                    service.WaitForStatus(ServiceControllerStatus.Running, TimeSpan.FromMilliseconds(2000));
-                }
-                else
-                {
+                    if (service.Status == ServiceControllerStatus.Stopped)
+                    {
+                        service.Start();
+                        service.WaitForStatus(ServiceControllerStatus.Running, TimeSpan.FromMilliseconds(2000));
+                    }
+
                     GetVersionFromService();
                 }
-            }
-            catch(Exception)
-            {
-                settingsNotifyIcon.Text = "GlucaTrack service not running.";
-                ChangeNotifyIcon(Icons.Disabled);
+                catch (Exception)
+                {
+                    settingsNotifyIcon.Text = "GlucaTrack service not running.";
+                    ChangeNotifyIcon(Icons.Disabled);
+                }
             }
         }
 

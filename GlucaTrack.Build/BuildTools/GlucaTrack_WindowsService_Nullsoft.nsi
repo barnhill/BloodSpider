@@ -139,6 +139,9 @@ Section -Post
   WriteRegStr ${HKEY_LOCAL_MACHINE} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegDWORD ${HKEY_LOCAL_MACHINE} "${PRODUCT_UNINST_KEY}" "EstimatedSize" "$0"
 
+  ;start on windows startup
+  WriteRegStr ${HKEY_CURRENT_USER} "${WINDOWS_AUTORUN_KEY}" "${PRODUCT_NAME}" "$INSTDIR\${PRODUCT_MAIN_EXE}${EXE_EXTENSION}"
+
   ;start service and notify icon after install
   Exec "$INSTDIR\${PRODUCT_SERVICE_EXE}${EXE_EXTENSION} -install"
   Exec "$INSTDIR\${PRODUCT_MAIN_EXE}${EXE_EXTENSION}"

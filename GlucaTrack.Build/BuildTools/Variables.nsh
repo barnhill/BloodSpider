@@ -14,7 +14,9 @@ SetCompressor /SOLID lzma
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\${PRODUCT_NAME}"
 !define PRODUCT_GUID_KEY "Software\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
+!define WINDOWS_AUTORUN_KEY "Software\Microsoft\Windows\CurrentVersion\Run"
 !define HKEY_LOCAL_MACHINE "HKLM"
+!define HKEY_CURRENT_USER "HKCU"
 
 ; ----------------------------------------------------------------------------------
 ; ****************************** SECTION FOR MUI ***********************************

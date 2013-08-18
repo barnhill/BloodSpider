@@ -22,7 +22,35 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsbLibrary", "UsbLibrary\Us
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "GlucaTrack.Install", "GlucaTrack.Install\GlucaTrack.Install.wixproj", "{18332F75-349E-453D-BC94-005AFDD773EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlucaTrack.Build", "GlucaTrack.Build\GlucaTrack.Build.csproj", "{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F1D524FA-BAA9-4778-B1D6-C7BE2422C220}"
+	ProjectSection(SolutionItems) = preProject
+		GlucaTrack.Build\build-WindowsService.bat = GlucaTrack.Build\build-WindowsService.bat
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildTools", "BuildTools", "{24F376C0-F64C-42E7-94A0-549800A598DC}"
+	ProjectSection(SolutionItems) = preProject
+		GlucaTrack.Build\BuildTools\BuildLog.txt = GlucaTrack.Build\BuildTools\BuildLog.txt
+		GlucaTrack.Build\BuildTools\GlucaTrack_WindowsService_Nullsoft.nsi = GlucaTrack.Build\BuildTools\GlucaTrack_WindowsService_Nullsoft.nsi
+		GlucaTrack.Build\BuildTools\UI.nsh = GlucaTrack.Build\BuildTools\UI.nsh
+		GlucaTrack.Build\BuildTools\Variables.nsh = GlucaTrack.Build\BuildTools\Variables.nsh
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{56ED6513-F50B-43A8-82FA-3AC7C88F592F}"
+	ProjectSection(SolutionItems) = preProject
+		GlucaTrack.Build\BuildTools\Plugins\DotNetVer.nsh = GlucaTrack.Build\BuildTools\Plugins\DotNetVer.nsh
+		GlucaTrack.Build\BuildTools\Plugins\Inetc_3.zip = GlucaTrack.Build\BuildTools\Plugins\Inetc_3.zip
+		GlucaTrack.Build\BuildTools\Plugins\nsProcess.nsh = GlucaTrack.Build\BuildTools\Plugins\nsProcess.nsh
+		GlucaTrack.Build\BuildTools\Plugins\NsProcess.zip = GlucaTrack.Build\BuildTools\Plugins\NsProcess.zip
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{729C20AF-4002-456E-8462-4E945C735AB7}"
+	ProjectSection(SolutionItems) = preProject
+		GlucaTrack.Build\Resources\EULA.rtf = GlucaTrack.Build\Resources\EULA.rtf
+		GlucaTrack.Build\Resources\EULA.txt = GlucaTrack.Build\Resources\EULA.txt
+		GlucaTrack.Build\Resources\icon.ico = GlucaTrack.Build\Resources\icon.ico
+		GlucaTrack.Build\Resources\NSIS_installheader.bmp = GlucaTrack.Build\Resources\NSIS_installheader.bmp
+		GlucaTrack.Build\Resources\NSIS_WelcomeImage.bmp = GlucaTrack.Build\Resources\NSIS_WelcomeImage.bmp
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -122,17 +150,13 @@ Global
 		{18332F75-349E-453D-BC94-005AFDD773EE}.Release|Mixed Platforms.Build.0 = Release|x86
 		{18332F75-349E-453D-BC94-005AFDD773EE}.Release|x86.ActiveCfg = Release|x86
 		{18332F75-349E-453D-BC94-005AFDD773EE}.Release|x86.Build.0 = Release|x86
-		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{CC2CBD84-CF66-46EF-A4F3-147F50CDFA24}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{24F376C0-F64C-42E7-94A0-549800A598DC} = {F1D524FA-BAA9-4778-B1D6-C7BE2422C220}
+		{729C20AF-4002-456E-8462-4E945C735AB7} = {F1D524FA-BAA9-4778-B1D6-C7BE2422C220}
+		{56ED6513-F50B-43A8-82FA-3AC7C88F592F} = {24F376C0-F64C-42E7-94A0-549800A598DC}
 	EndGlobalSection
 EndGlobal
