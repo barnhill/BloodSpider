@@ -84,7 +84,8 @@ namespace GlucaTrack.Services.Windows
 
         private static void InstallService()
         {
-            if (IsInstalled()) return;
+            if (IsInstalled()) 
+                return;
 
             try
             {
@@ -141,8 +142,7 @@ namespace GlucaTrack.Services.Windows
         {
             if (!IsInstalled()) return;
 
-            using (ServiceController controller =
-                new ServiceController(Service_Name))
+            using (ServiceController controller = new ServiceController(Service_Name))
             {
                 try
                 {

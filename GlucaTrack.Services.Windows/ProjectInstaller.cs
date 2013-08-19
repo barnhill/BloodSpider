@@ -13,6 +13,12 @@ namespace GlucaTrack.Services.Windows
         public ProjectInstaller()
         {
             InitializeComponent();
+            serviceInstaller1.Description = "Service to monitor glucometers and upload data read from them to the GlucaTrack website.";
+        }
+
+        private void serviceProcessInstaller1_AfterInstall(object sender, InstallEventArgs e)
+        {
+
         }
     }
 }
