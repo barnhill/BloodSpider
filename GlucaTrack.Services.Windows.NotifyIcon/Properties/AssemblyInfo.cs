@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("GlucaTrack.Services.Windows.NotifyIcon")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Notification icon to go with the detecting service.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GlucaTrack")]
 [assembly: AssemblyProduct("GlucaTrack.Services.Windows.NotifyIcon")]

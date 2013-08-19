@@ -222,6 +222,15 @@ namespace GlucaTrack.Services.Web
             }
         }
 
+        public void ReportBug(string appid, string ErrorCode, string StackTrace, string Message, string Version)
+        {
+            using (CommonTableAdapters.QueriesTableAdapter queries = new CommonTableAdapters.QueriesTableAdapter())
+            {
+                queries.sp_InsertBug(appid == null ? Guid.Empty : Guid.Parse(appid), ErrorCode, Message, StackTrace, Version);
+            }
+        }
+               
+        
         /// <summary>
         /// Record the last sync date and time on the users record in the database.
         /// </summary>

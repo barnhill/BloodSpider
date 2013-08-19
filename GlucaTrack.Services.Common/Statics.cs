@@ -14,7 +14,13 @@ namespace GlucaTrack.Services.Common
     public class Statics
     {
         public static string BaseFilepath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GlucaTrack");
+        private static string LocalUpdateFile = "GlucaTrack_Update.exe";
         public static DeviceInfo deviceFound = null;
+
+        public static string LocalUpdateFilePath
+        {
+            get { return Path.Combine(Statics.BaseFilepath, Statics.LocalUpdateFile); }
+        }
 
         public static string serviceName = "GlucaTrack Detector";
 
@@ -55,7 +61,7 @@ namespace GlucaTrack.Services.Common
             }
             else
             {
-                return new Settings();
+                return null;
             }
         }
 
@@ -97,7 +103,7 @@ namespace GlucaTrack.Services.Common
         // This size of the IV (in bytes) must = (keysize / 8).  Default keysize is 256, so the IV must be
         // 32 bytes long.  Using a 16 character string here gives us 32 bytes when converted to a byte array.
         private const string initVector = "tx81geji350v89u7";
-        private const string defaultKey = "E441699041D7434797DBBF1493A5C15A";
+
         // This constant is used to determine the keysize of the encryption algorithm.
         private const int keysize = 256;
 
@@ -113,7 +119,7 @@ namespace GlucaTrack.Services.Common
                 throw new ArgumentNullException("The string which needs to be encrypted can not be null.");
             }
 
-            string key = (useDefaultKey) ? defaultKey : Properties.Settings.Default["Encrypt_Key" + DateTime.Now.Day.ToString()].ToString();
+            string key = (useDefaultKey) ? Properties.Settings.Default.defaultKey : Properties.Settings.Default["Encrypt_Key" + DateTime.Now.Day.ToString()].ToString();
             
             byte[] initVectorBytes = Encoding.UTF8.GetBytes(initVector);
             byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
@@ -148,7 +154,7 @@ namespace GlucaTrack.Services.Common
                    ("The string which needs to be decrypted can not be null.");
             }
 
-            string key = (useDefaultKey) ? defaultKey : Properties.Settings.Default["Encrypt_Key" + DateTime.Now.Day.ToString()].ToString();
+            string key = (useDefaultKey) ? Properties.Settings.Default.defaultKey : Properties.Settings.Default["Encrypt_Key" + DateTime.Now.Day.ToString()].ToString();
 
             byte[] initVectorBytes = Encoding.ASCII.GetBytes(initVector);
             byte[] cipherTextBytes = Convert.FromBase64String(cipherText);
@@ -218,11 +224,6 @@ namespace GlucaTrack.Services.Common
 
     public class Errors
     {
-        public static void Error(Exception ex)
-        {
-            //error in windows application
-        }
-
         public static void ServiceError(Exception ex)
         {
             //error in background service

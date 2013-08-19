@@ -95,5 +95,8 @@
     <Setting Name="Encrypt_Key31" Type="System.String" Scope="Application">
       <Value Profile="(Default)">309938A6D18C4039BAECCA1C6C2277A5</Value>
     </Setting>
+    <Setting Name="defaultKey" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">E441699041D7434797DBBF1493A5C15A</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

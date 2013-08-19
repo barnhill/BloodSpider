@@ -16,27 +16,34 @@ namespace GlucaTrack.Services.Windows
         /// </summary>
         static void Main(string [] args)
         {
-            if (args.Length == 0)
+            try
             {
-                // Run your service normally.
-                ServiceBase[] ServicesToRun = new ServiceBase[] { new GlucaTrackDetector() };
-                ServiceBase.Run(ServicesToRun);
-            }
-            else if (args.Length == 1)
-            {
-                switch (args[0])
+                if (args.Length == 0)
                 {
-                    case "-install":
-                        InstallService();
-                        StartService();
-                        break;
-                    case "-uninstall":
-                        StopService();
-                        UninstallService();
-                        break;
-                    default:
-                        throw new NotImplementedException();
+                    // Run your service normally.
+                    ServiceBase[] ServicesToRun = new ServiceBase[] { new GlucaTrackDetector() };
+                    ServiceBase.Run(ServicesToRun);
                 }
+                else if (args.Length == 1)
+                {
+                    switch (args[0])
+                    {
+                        case "-install":
+                            InstallService();
+                            StartService();
+                            break;
+                        case "-uninstall":
+                            StopService();
+                            UninstallService();
+                            break;
+                        default:
+                            throw new NotImplementedException();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                GlucaTrackDetector.ReportBug("WS001", ex.StackTrace, ex.Message);
             }
         }
 

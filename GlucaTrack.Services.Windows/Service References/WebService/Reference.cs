@@ -12,7 +12,7 @@ namespace GlucaTrack.Services.Windows.WebService {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18054")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18060")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -84,6 +84,12 @@ namespace GlucaTrack.Services.Windows.WebService {
         [System.ServiceModel.FaultContractAttribute(typeof(GlucaTrack.Services.Windows.WebService.Exception), Action="http://tempuri.org/IGTService/IsUpdatePresentExceptionFault", Name="Exception", Namespace="http://schemas.datacontract.org/2004/07/System")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         GlucaTrack.Services.Windows.WebService.IsUpdatePresentResponse IsUpdatePresent(GlucaTrack.Services.Windows.WebService.IsUpdatePresentRequest request);
+        
+        // CODEGEN: Parameter 'appid' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGTService/ReportBug", ReplyAction="http://tempuri.org/IGTService/ReportBugResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GlucaTrack.Services.Windows.WebService.Exception), Action="http://tempuri.org/IGTService/ReportBugExceptionFault", Name="Exception", Namespace="http://schemas.datacontract.org/2004/07/System")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        GlucaTrack.Services.Windows.WebService.ReportBugResponse ReportBug(GlucaTrack.Services.Windows.WebService.ReportBugRequest request);
     }
     
     /// <summary>
@@ -96,7 +102,7 @@ namespace GlucaTrack.Services.Windows.WebService {
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
     [global::System.Xml.Serialization.XmlRootAttribute("Common")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18054")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18060")]
     public partial class Common : global::System.Data.DataSet {
         
         private sp_GetLoginDataTable tablesp_GetLogin;
@@ -2521,7 +2527,7 @@ namespace GlucaTrack.Services.Windows.WebService {
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
     [global::System.Xml.Serialization.XmlRootAttribute("Records")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18054")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18060")]
     public partial class Records : global::System.Data.DataSet {
         
         private RecordDataTable tableRecord;
@@ -3288,6 +3294,54 @@ namespace GlucaTrack.Services.Windows.WebService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ReportBug", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ReportBugRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string appid;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string ErrorCode;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string StackTrace;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Message;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Version;
+        
+        public ReportBugRequest() {
+        }
+        
+        public ReportBugRequest(string appid, string ErrorCode, string StackTrace, string Message, string Version) {
+            this.appid = appid;
+            this.ErrorCode = ErrorCode;
+            this.StackTrace = StackTrace;
+            this.Message = Message;
+            this.Version = Version;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ReportBugResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ReportBugResponse {
+        
+        public ReportBugResponse() {
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IGTServiceChannel : GlucaTrack.Services.Windows.WebService.IGTService, System.ServiceModel.IClientChannel {
     }
@@ -3366,6 +3420,21 @@ namespace GlucaTrack.Services.Windows.WebService {
             inValue.version = version;
             GlucaTrack.Services.Windows.WebService.IsUpdatePresentResponse retVal = ((GlucaTrack.Services.Windows.WebService.IGTService)(this)).IsUpdatePresent(inValue);
             return retVal.IsUpdatePresentResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        GlucaTrack.Services.Windows.WebService.ReportBugResponse GlucaTrack.Services.Windows.WebService.IGTService.ReportBug(GlucaTrack.Services.Windows.WebService.ReportBugRequest request) {
+            return base.Channel.ReportBug(request);
+        }
+        
+        public void ReportBug(string appid, string ErrorCode, string StackTrace, string Message, string Version) {
+            GlucaTrack.Services.Windows.WebService.ReportBugRequest inValue = new GlucaTrack.Services.Windows.WebService.ReportBugRequest();
+            inValue.appid = appid;
+            inValue.ErrorCode = ErrorCode;
+            inValue.StackTrace = StackTrace;
+            inValue.Message = Message;
+            inValue.Version = Version;
+            GlucaTrack.Services.Windows.WebService.ReportBugResponse retVal = ((GlucaTrack.Services.Windows.WebService.IGTService)(this)).ReportBug(inValue);
         }
     }
 }

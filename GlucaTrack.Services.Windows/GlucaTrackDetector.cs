@@ -20,7 +20,7 @@ namespace GlucaTrack.Services.Windows
 {
     public partial class GlucaTrackDetector : ServiceBase
     {
-        string appId = "65aeed4c-956c-4873-ab4b-335b5e7f7835";
+        static string appId = "65aeed4c-956c-4873-ab4b-335b5e7f7835";
         BackgroundWorker background_DeviceDetector = null;
         BackgroundWorker background_DeviceReader = new BackgroundWorker();
         BackgroundWorker background_CommandServer = new BackgroundWorker();
@@ -230,6 +230,9 @@ namespace GlucaTrack.Services.Windows
                     case "CHECK_FOR_UPDATES":
                         pipeWrite("UPDATE_CHECK_FINISHED", CheckForUpdates(), String.Empty, 1);
                         break;
+                    case "REPORT_BUG":
+
+                        break;
                     default: break;
                 };
             }
@@ -285,11 +288,11 @@ namespace GlucaTrack.Services.Windows
         }
         #endregion
 
-        public static void pipeWrite(string command)
+        private static void pipeWrite(string command)
         {
             pipeWrite(command, string.Empty, string.Empty, 1);
         }
-        public static void pipeWrite(string command, string Text1, string Text2, int icon)
+        private static void pipeWrite(string command, string Text1, string Text2, int icon)
         {
             //icon = (1 = Info, 2 = Warning, 3 = Error)
             NamedPipeClientStream pipeServerOut = null;
@@ -321,6 +324,7 @@ namespace GlucaTrack.Services.Windows
                 pipeServerOut.Close();
             }
         }
+        
         private void startPipeServerThread()
         {
             if (background_CommandServer != null)
@@ -362,6 +366,7 @@ namespace GlucaTrack.Services.Windows
             background_DeviceReader.RunWorkerCompleted += background_DeviceReader_RunWorkerCompleted;
             background_DeviceReader.RunWorkerAsync();
         }
+        
         private void uploadData(object oMeter)
         {
             if (settings != null)
@@ -436,6 +441,13 @@ namespace GlucaTrack.Services.Windows
                 }
             }
             catch { return string.Empty; }
+        }
+        public static void ReportBug(string ErrorCode, string StackTrace, string Message)
+        {
+            using (WebService.GTServiceClient client = new WebService.GTServiceClient())
+            {
+                client.ReportBug(appId, ErrorCode, StackTrace, Message, Assembly.GetCallingAssembly().GetName().Version.ToString());
+            }
         }
 
         protected virtual void OnReadFinished(object sender, EventArgs e)

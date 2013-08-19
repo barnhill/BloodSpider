@@ -104,4 +104,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ReportBug">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="appid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="StackTrace" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Version" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportBugResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

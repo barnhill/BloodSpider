@@ -28,5 +28,9 @@ namespace GlucaTrack.Services.Web
         [OperationContract]
         [FaultContract(typeof(Exception))]
         string IsUpdatePresent(string appid, string version);
+
+        [OperationContract]
+        [FaultContract(typeof(Exception))]
+        void ReportBug(string appid, string ErrorCode, string StackTrace, string Message, string Version);
     }
 }

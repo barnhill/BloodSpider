@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
+using System.Management;
 using System.Text;
 using System.Windows.Forms;
 using System.Net;
@@ -15,22 +16,12 @@ namespace GlucaTrack.Services.Windows
     public partial class Update
     {
         string _updatePath = string.Empty;
-        string _localUpdateFilename = Statics.BaseFilepath + "\\" + "GlucaTrack_Update.exe";
-
+        
         public Update(string updatePath)
         {
             _updatePath = updatePath;
 
-            //get rid of an old update
-            if (File.Exists(_localUpdateFilename))
-            {
-                File.Delete(_localUpdateFilename);
-            }
-
-            if (!string.IsNullOrWhiteSpace(updatePath))
-            {
-                DoUpdate();
-            }
+            DoUpdate();
         }
 
         private void DoUpdate()
@@ -48,7 +39,7 @@ namespace GlucaTrack.Services.Windows
                     System.Threading.Thread.Sleep(500);
                     wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(wc_DownloadProgressChanged);
                     wc.DownloadFileCompleted += new AsyncCompletedEventHandler(wc_DownloadFileCompleted);
-                    wc.DownloadFileAsync(new Uri(_updatePath), _localUpdateFilename);
+                    wc.DownloadFileAsync(new Uri(_updatePath), Statics.LocalUpdateFilePath);
                 }//using
             }//try
             catch (Exception)
@@ -86,8 +77,11 @@ namespace GlucaTrack.Services.Windows
         {
             //start the installer for the update
             Process p = new Process();
-            p.StartInfo = new ProcessStartInfo(_localUpdateFilename);
+            p.StartInfo = new ProcessStartInfo(Statics.LocalUpdateFilePath);
             p.StartInfo.Verb = "runas";
+            p.StartInfo.Arguments = "/S"; //NSIS silent install
+            p.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+            p.StartInfo.CreateNoWindow = true;
             p.Start();
 
             //close the current program

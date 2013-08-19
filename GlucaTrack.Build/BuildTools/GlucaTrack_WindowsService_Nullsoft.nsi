@@ -18,7 +18,7 @@ BrandingText "Copyright © GlucaTrack"
 ; ----------------------------------------------------------------------------------
 Name "${PRODUCT_NAME}"
 OutFile "${PRODUCT_PUBLISHER}_Windows_Setup.exe"
-InstallDir "$PROGRAMFILES\${PRODUCT_PUBLISHER}\${PRODUCT_NAME}"
+InstallDir "$PROGRAMFILES\${PRODUCT_PUBLISHER}"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" "$INSTDIR"
 ShowInstDetails show
 ShowUnInstDetails show
@@ -127,6 +127,7 @@ Section -Post
   IntFmt $0 "0x%08X" $0
   WriteUninstaller "$INSTDIR\uninst.exe"
   WriteRegStr ${HKEY_LOCAL_MACHINE} "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\${PRODUCT_SERVICE_EXE}${EXE_EXTENSION}"
+  WriteRegStr ${HKEY_CURRENT_USER} "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\${PRODUCT_SERVICE_EXE}${EXE_EXTENSION}"
   WriteRegStr ${HKEY_LOCAL_MACHINE} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
   WriteRegStr ${HKEY_LOCAL_MACHINE} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
   WriteRegStr ${HKEY_LOCAL_MACHINE} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\${PRODUCT_SERVICE_EXE}${EXE_EXTENSION}"
@@ -150,7 +151,7 @@ SectionEnd
 Function .onInstSuccess
   HideWindow
 
-  ReadRegStr $2 HKLM "${PRODUCT_DIR_REGKEY}" ""
+  ReadRegStr $2 ${HKEY_LOCAL_MACHINE} "${PRODUCT_DIR_REGKEY}" ""
 
   ${If} ${ALREADYINSTALLED} != "1"
     Abort
@@ -181,19 +182,19 @@ Section Uninstall
   Delete "$INSTDIR\GlucaTrack.Services.Windows.exe.config"
   Delete "$INSTDIR\UsbLibrary.dll"
   Delete "$INSTDIR\${PRODUCT_MAIN_EXE}${EXE_EXTENSION}"
+
+  Delete "$INSTDIR\GlucaTrack.Services.Windows.InstallLog"
+  Delete "$INSTDIR\uninst.exe"
 	
   ;Remove Installation Directory
-  RMDir /r $INSTDIR
+  RMDir $INSTDIR
 
-  ;Remove APPDATA xml files and cars directory
-  ;Delete "$APPDATA\${PRODUCT_NAME}\glucatrack.sav"
-  ;RMDir /r "$APPDATA\${PRODUCT_NAME}"
-
-  ;Remove Installation Directory
-  RMDir "$INSTDIR"
+  ;Remove APPDATA saved settings and temporary files
+  RMDir /r "$APPDATA\${PRODUCT_NAME}"
 
   DeleteRegKey ${HKEY_LOCAL_MACHINE} "${PRODUCT_UNINST_KEY}"
   DeleteRegKey ${HKEY_LOCAL_MACHINE} "${PRODUCT_DIR_REGKEY}"
+  DeleteRegKey ${HKEY_CURRENT_USER} "${PRODUCT_DIR_REGKEY}"
   SetAutoClose true
 SectionEnd
 
@@ -201,7 +202,7 @@ SectionEnd
 ; ********************** SECTION FOR SUPPORTING FUNCTIONS **************************
 ; ----------------------------------------------------------------------------------
 Function Update_Pre
-  ReadRegStr $2 HKLM "${PRODUCT_DIR_REGKEY}" ""
+  ReadRegStr $2 ${HKEY_CURRENT_USER} "${PRODUCT_DIR_REGKEY}" ""
 
   ${If} $2 != ""
     Abort
@@ -209,7 +210,11 @@ Function Update_Pre
 FunctionEnd 
 
 Function Update_Pre_Finish
+  ReadRegStr $2 ${HKEY_CURRENT_USER} "${PRODUCT_DIR_REGKEY}" ""
 
+  ${If} $2 != ""
+    Abort
+  ${EndIf}
 FunctionEnd
 
 

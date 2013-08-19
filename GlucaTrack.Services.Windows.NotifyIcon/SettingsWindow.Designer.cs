@@ -49,6 +49,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.icons = new System.Windows.Forms.ImageList(this.components);
             this.chkShowNotifications = new System.Windows.Forms.CheckBox();
+            this.tLookForUpdate = new System.Windows.Forms.Timer(this.components);
             this.menuNotifyIcon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -59,6 +60,7 @@
             this.settingsNotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("settingsNotifyIcon.Icon")));
             this.settingsNotifyIcon.Text = "GlucaTrack Detector";
             this.settingsNotifyIcon.Visible = true;
+            this.settingsNotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.settingsNotifyIcon_MouseDoubleClick);
             // 
             // menuNotifyIcon
             // 
@@ -210,6 +212,12 @@
             this.chkShowNotifications.Text = "Show notifications";
             this.chkShowNotifications.UseVisualStyleBackColor = true;
             // 
+            // tLookForUpdate
+            // 
+            this.tLookForUpdate.Enabled = true;
+            this.tLookForUpdate.Interval = 10000;
+            this.tLookForUpdate.Tick += new System.EventHandler(this.tLookForUpdate_Tick);
+            // 
             // formSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -226,6 +234,7 @@
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "formSettings";
@@ -262,6 +271,7 @@
         private System.Windows.Forms.Timer tStartService;
         private System.Windows.Forms.ImageList icons;
         private System.Windows.Forms.CheckBox chkShowNotifications;
+        private System.Windows.Forms.Timer tLookForUpdate;
     }
 }
 

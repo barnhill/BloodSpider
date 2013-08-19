@@ -301,5 +301,14 @@ namespace GlucaTrack.Services.Common.Properties {
                 return ((string)(this["Encrypt_Key31"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("E441699041D7434797DBBF1493A5C15A")]
+        public string defaultKey {
+            get {
+                return ((string)(this["defaultKey"]));
+            }
+        }
     }
 }

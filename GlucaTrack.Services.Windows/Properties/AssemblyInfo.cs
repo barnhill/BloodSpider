@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("GlucaTrack Detector")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("GlucaTrack service to detect meters and read data from them, and then upload that data to the website.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GlucaTrack")]
 [assembly: AssemblyProduct("GlucaTrack Detector")]

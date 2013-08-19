@@ -46,6 +46,15 @@
   <wsdl:message name="IGTService_IsUpdatePresent_ExceptionFault_FaultMessage">
     <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/System" name="detail" element="q4:Exception" />
   </wsdl:message>
+  <wsdl:message name="IGTService_ReportBug_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportBug" />
+  </wsdl:message>
+  <wsdl:message name="IGTService_ReportBug_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportBugResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGTService_ReportBug_ExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/System" name="detail" element="q5:Exception" />
+  </wsdl:message>
   <wsdl:portType name="IGTService">
     <wsdl:operation name="ValidateLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IGTService/ValidateLogin" message="tns:IGTService_ValidateLogin_InputMessage" />
@@ -66,6 +75,11 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IGTService/IsUpdatePresent" message="tns:IGTService_IsUpdatePresent_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGTService/IsUpdatePresentResponse" message="tns:IGTService_IsUpdatePresent_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IGTService/IsUpdatePresentExceptionFault" name="ExceptionFault" message="tns:IGTService_IsUpdatePresent_ExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportBug">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGTService/ReportBug" message="tns:IGTService_ReportBug_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGTService/ReportBugResponse" message="tns:IGTService_ReportBug_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGTService/ReportBugExceptionFault" name="ExceptionFault" message="tns:IGTService_ReportBug_ExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IGTService" type="tns:IGTService">
@@ -108,6 +122,18 @@
     </wsdl:operation>
     <wsdl:operation name="IsUpdatePresent">
       <soap:operation soapAction="http://tempuri.org/IGTService/IsUpdatePresent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ExceptionFault">
+        <soap:fault use="literal" name="ExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ReportBug">
+      <soap:operation soapAction="http://tempuri.org/IGTService/ReportBug" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
