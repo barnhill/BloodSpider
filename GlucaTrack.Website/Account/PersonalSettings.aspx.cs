@@ -222,7 +222,7 @@ namespace GlucaTrack.Website.Account
             {
                 using (System.Drawing.Image img = ScaleImage(System.Drawing.Image.FromStream(fileUpload.FileContent), 64, 64))
                 {
-                    PendingAvatar = Statics.imageToByteArray(img);
+                    PendingAvatar = GlucaTrack.Services.Common.Statics.imageToByteArray(img);
                 }
             }
         }

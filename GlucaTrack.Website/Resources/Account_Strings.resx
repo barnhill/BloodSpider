@@ -420,4 +420,28 @@
     <value>September</value>
     <comment>9th month</comment>
   </data>
+  <data name="Link_ResetPassword" xml:space="preserve">
+    <value>Reset Password</value>
+    <comment>Reset password link on the login page</comment>
+  </data>
+  <data name="Button_SendEmail" xml:space="preserve">
+    <value>Send Email</value>
+    <comment>Send email button on the reset password page</comment>
+  </data>
+  <data name="Email_ResetPasswordBody" xml:space="preserve">
+    <value>&lt;b&gt;GlucaTrack Reset Password Request&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;We hear you forgot your password.  Dont worry, click the following URL or copy/paste the link into your browser's URL address to set your new password:&lt;br/&gt;&lt;br/&gt;</value>
+    <comment>Email body of the email sent when requesting to change the password on your account</comment>
+  </data>
+  <data name="Email_ResetPasswordSubject" xml:space="preserve">
+    <value>GlucaTrack Password Reset Request</value>
+    <comment>Email subject line when reseting the password on your account</comment>
+  </data>
+  <data name="Label_EmailInvalid_Error" xml:space="preserve">
+    <value>Invalid email address entered.  No user exists with that email address.</value>
+    <comment>Displayed on the reset password screen when an invalid user email is entered</comment>
+  </data>
+  <data name="Label_EmailSentSuccessfully" xml:space="preserve">
+    <value>&lt;br/&gt;&lt;br/&gt;Email Sent Successfully.  You should receive an email shortly with a reset password link in it.&lt;br/&gt;&lt;br/&gt;Click on this link and you will be able to reset your password.&lt;br/&gt;&lt;br/&gt;</value>
+    <comment>Displays after the user has requested to reset their password</comment>
+  </data>
 </root>

@@ -15,6 +15,7 @@ namespace GlucaTrack.Website.Account
         protected void Page_Load(object sender, EventArgs e)
         {
             RegisterHyperLink.NavigateUrl = "Register.aspx";
+            ((HyperLink)LoginContainer.FindControl("linkResetPassword")).NavigateUrl = "~/Account/ResetPassword.aspx";
 
             SetResources();
 
@@ -31,13 +32,14 @@ namespace GlucaTrack.Website.Account
             ((Label)LoginContainer.FindControl("lblPassword")).Text = Resources.Account_Strings.Label_Password;
             ((Label)LoginContainer.FindControl("lblRememberMe")).Text = Resources.Account_Strings.Label_RememberMe;
             ((Button)LoginContainer.FindControl("btnLogin")).Text = Resources.Account_Strings.Button_Login;
+            ((HyperLink)LoginContainer.FindControl("linkResetPassword")).Text = Resources.Account_Strings.Link_ResetPassword;
 
             //failure text
             this.LoginContainer.FailureText = Resources.Account_Strings.Login_Failure;
 
             //link below login control
             this.lblDontHave.Text = Resources.Account_Strings.Label_DontHaveAccount;
-            this.RegisterHyperLink.Text = Resources.Account_Strings.Label_RegisterLink;
+            this.RegisterHyperLink.Text = Resources.Account_Strings.Label_RegisterLink; 
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)

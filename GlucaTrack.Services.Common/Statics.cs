@@ -95,6 +95,14 @@ namespace GlucaTrack.Services.Common
                 return null;
             }
         }
+        public static byte[] imageToByteArray(System.Drawing.Image imageIn)
+        {
+            using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
+            {
+                imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                return ms.ToArray();
+            }
+        }
     }
 
     public static class StringCipher

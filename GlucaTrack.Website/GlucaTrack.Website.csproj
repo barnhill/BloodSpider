@@ -74,6 +74,8 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\Register2.aspx" />
     <Content Include="Account\RegistrationComplete.aspx" />
+    <Content Include="Account\ResetPassword.aspx" />
+    <Content Include="Account\ResetPassword2.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\Main.aspx" />
     <Content Include="Account\Logout.aspx" />
@@ -94,6 +96,10 @@
     <Content Include="Images\testcontent.png" />
     <Content Include="Content\UserImage.ashx" />
     <Content Include="GlucaTrack.pfx" />
+    <Content Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </Content>
     <None Include="Service References\GTService\Common.xsd" />
     <Content Include="Service References\GTService\GlucaTrack.Website.GTService.Common.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -198,6 +204,20 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ResetPassword2.aspx.cs">
+      <DependentUpon>ResetPassword2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ResetPassword2.aspx.designer.cs">
+      <DependentUpon>ResetPassword2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -218,6 +238,11 @@
     </Compile>
     <Compile Include="Download.aspx.designer.cs">
       <DependentUpon>Download.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Service References\GTService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -345,13 +370,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\GTService\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\GlucaTrack.Services.Common\GlucaTrack.Services.Common.csproj">
       <Project>{28fa9879-6d10-4104-92d3-11c9c55e7053}</Project>
       <Name>GlucaTrack.Services.Common</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\GTService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

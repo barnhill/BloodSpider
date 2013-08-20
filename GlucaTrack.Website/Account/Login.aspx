@@ -31,7 +31,8 @@
                     <asp:ValidatorCalloutExtender ID="RequiredFieldUsername_ValidatorCalloutExtender" runat="server" TargetControlID="RequiredField_Username" />
                     <asp:ValidatorCalloutExtender ID="RequiredFieldPassword_ValidatorCalloutExtender" runat="server" TargetControlID="RequiredField_Password" />
 
-                    <asp:Button runat="server" ID="btnLogin" CommandName="Login" Text="Log in" Font-Bold="True" class="LogButton" OnClick="btnLogin_Click" />
+                    <asp:Button runat="server" ID="btnLogin" CommandName="Login" Text="Log in" Font-Bold="True" class="LogButton" OnClick="btnLogin_Click" /><br />
+                    <asp:HyperLink ID="linkResetPassword" runat="server" Font-Size="Small" ViewStateMode="Disabled">[Reset Password]</asp:HyperLink>
             </LayoutTemplate>
         </asp:Login>
         <p>

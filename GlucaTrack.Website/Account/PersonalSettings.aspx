@@ -1,4 +1,4 @@
-﻿<%@ Page Title="GlucaTrack" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PersonalSettings.aspx.cs" Inherits="GlucaTrack.Website.Account.PersonalSettings" %>
+﻿<%@ Page Title="Personal Settings" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PersonalSettings.aspx.cs" Inherits="GlucaTrack.Website.Account.PersonalSettings" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
