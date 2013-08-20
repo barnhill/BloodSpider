@@ -8,7 +8,6 @@
       <xsd:import schemaLocation="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd2" namespace="http://tempuri.org/Common.xsd" />
       <xsd:import schemaLocation="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd3" />
       <xsd:import schemaLocation="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd5" namespace="http://tempuri.org/Records.xsd" />
-      <xsd:import schemaLocation="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/GlucaTrack.Services.Web" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IGTService_ValidateLogin_InputMessage">
@@ -38,14 +37,23 @@
   <wsdl:message name="IGTService_UpdateLastWebLogin_ExceptionFault_FaultMessage">
     <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/System" name="detail" element="q3:Exception" />
   </wsdl:message>
-  <wsdl:message name="IGTService_GetSupportedMeters_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetSupportedMeters" />
+  <wsdl:message name="IGTService_IsUpdatePresent_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsUpdatePresent" />
   </wsdl:message>
-  <wsdl:message name="IGTService_GetSupportedMeters_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetSupportedMetersResponse" />
+  <wsdl:message name="IGTService_IsUpdatePresent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsUpdatePresentResponse" />
   </wsdl:message>
-  <wsdl:message name="IGTService_GetSupportedMeters_ExceptionFault_FaultMessage">
+  <wsdl:message name="IGTService_IsUpdatePresent_ExceptionFault_FaultMessage">
     <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/System" name="detail" element="q4:Exception" />
+  </wsdl:message>
+  <wsdl:message name="IGTService_ReportBug_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportBug" />
+  </wsdl:message>
+  <wsdl:message name="IGTService_ReportBug_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportBugResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGTService_ReportBug_ExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/System" name="detail" element="q5:Exception" />
   </wsdl:message>
   <wsdl:portType name="IGTService">
     <wsdl:operation name="ValidateLogin">
@@ -63,10 +71,15 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IGTService/UpdateLastWebLoginResponse" message="tns:IGTService_UpdateLastWebLogin_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IGTService/UpdateLastWebLoginExceptionFault" name="ExceptionFault" message="tns:IGTService_UpdateLastWebLogin_ExceptionFault_FaultMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetSupportedMeters">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGTService/GetSupportedMeters" message="tns:IGTService_GetSupportedMeters_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGTService/GetSupportedMetersResponse" message="tns:IGTService_GetSupportedMeters_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IGTService/GetSupportedMetersExceptionFault" name="ExceptionFault" message="tns:IGTService_GetSupportedMeters_ExceptionFault_FaultMessage" />
+    <wsdl:operation name="IsUpdatePresent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGTService/IsUpdatePresent" message="tns:IGTService_IsUpdatePresent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGTService/IsUpdatePresentResponse" message="tns:IGTService_IsUpdatePresent_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGTService/IsUpdatePresentExceptionFault" name="ExceptionFault" message="tns:IGTService_IsUpdatePresent_ExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportBug">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGTService/ReportBug" message="tns:IGTService_ReportBug_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGTService/ReportBugResponse" message="tns:IGTService_ReportBug_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGTService/ReportBugExceptionFault" name="ExceptionFault" message="tns:IGTService_ReportBug_ExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IGTService" type="tns:IGTService">
@@ -107,8 +120,20 @@
         <soap:fault use="literal" name="ExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="GetSupportedMeters">
-      <soap:operation soapAction="http://tempuri.org/IGTService/GetSupportedMeters" style="document" />
+    <wsdl:operation name="IsUpdatePresent">
+      <soap:operation soapAction="http://tempuri.org/IGTService/IsUpdatePresent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ExceptionFault">
+        <soap:fault use="literal" name="ExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ReportBug">
+      <soap:operation soapAction="http://tempuri.org/IGTService/ReportBug" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

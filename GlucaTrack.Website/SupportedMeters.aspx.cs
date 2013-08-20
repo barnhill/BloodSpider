@@ -19,20 +19,22 @@ namespace GlucaTrack.Website
         {
             treeSupportedMeters.Nodes.Clear();
 
-            using (GTService.GTServiceClient client = new GTService.GTServiceClient())
+            using (QueriesTableAdapters.sp_GetAllSupportedMetersTableAdapter ta = new QueriesTableAdapters.sp_GetAllSupportedMetersTableAdapter())
             {
-                GTService.Common.sp_GetAllSupportedMetersDataTable dt = client.GetSupportedMeters();
-
-                foreach (string manufacturer in (from DataRow dRow in dt.Rows select dRow["Manufacturer"]).Distinct())
+                using (Queries.sp_GetAllSupportedMetersDataTable dt = new Queries.sp_GetAllSupportedMetersDataTable())
                 {
-                    //add each manufacturer
-                    TreeNode manufacturerNode = new TreeNode(manufacturer);
-                    foreach (DataRow meterRow in dt.Select("Manufacturer = '" + manufacturer + "'"))
+                    ta.Fill(dt);
+                    foreach (string manufacturer in (from DataRow dRow in dt.Rows select dRow["Manufacturer"]).Distinct())
                     {
-                        manufacturerNode.ChildNodes.Add(new TreeNode(meterRow["Meter"].ToString()));
-                    }
+                        //add each manufacturer
+                        TreeNode manufacturerNode = new TreeNode(manufacturer);
+                        foreach (DataRow meterRow in dt.Select("Manufacturer = '" + manufacturer + "'"))
+                        {
+                            manufacturerNode.ChildNodes.Add(new TreeNode(meterRow["Meter"].ToString()));
+                        }
 
-                    treeSupportedMeters.Nodes.Add(manufacturerNode);
+                        treeSupportedMeters.Nodes.Add(manufacturerNode);
+                    }
                 }
             }
         }

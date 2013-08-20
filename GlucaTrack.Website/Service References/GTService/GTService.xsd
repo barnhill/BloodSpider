@@ -89,30 +89,35 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetSupportedMeters">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetSupportedMetersResponse">
+  <xs:element name="IsUpdatePresent">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetSupportedMetersResult" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="Common.sp_GetAllSupportedMetersDataTable" Namespace="http://schemas.datacontract.org/2004/07/GlucaTrack.Services.Web" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
-              <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
-            </xs:sequence>
-            <xs:attribute fixed="http://tempuri.org/Common.xsd" name="namespace" />
-            <xs:attribute fixed="sp_GetAllSupportedMetersDataTable" name="tableTypeName" />
-          </xs:complexType>
-        </xs:element>
+        <xs:element minOccurs="0" name="appid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="version" nillable="true" type="xs:string" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsUpdatePresentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsUpdatePresentResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportBug">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="appid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="StackTrace" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Version" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportBugResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
 </xs:schema>

@@ -29,7 +29,6 @@
     <MetadataFile FileName="GTService2.xsd" MetadataType="Schema" ID="94a183cf-3e77-4e9f-aa33-25ac6fb80dba" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd3" />
     <MetadataFile FileName="GTService3.xsd" MetadataType="Schema" ID="ed0f0c7b-35d2-4322-8850-ff64875fffe7" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd4" />
     <MetadataFile FileName="Records.xsd" MetadataType="Schema" ID="7622d30b-dfcb-4f61-b053-32f84174f80e" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd5" />
-    <MetadataFile FileName="GTService4.xsd" MetadataType="Schema" ID="4f3fab03-126a-48dd-b755-891c3a9fa364" SourceId="1" SourceUrl="https://www.glucatrack.com/Service/GTService.svc?xsd=xsd6" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

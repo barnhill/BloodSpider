@@ -336,9 +336,6 @@
     <None Include="Service References\GTService\GTService3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GTService\GTService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\GTService\Records.xsd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
