@@ -23,13 +23,13 @@
             </div>        
             <div  class="Front_Page_Text_Right">
                 <b>Consolidate</b><br /><br />
-                <p>One brand of meter or several for home, car, and office, compile it all in one place and access it from anywhere.</p>
+                <p>Whether you use one brand of meter or have several at home, work and in the car, bring all of your records together in one place accessible from anywhere.</p>
             </div>
         </div>
         <div class="Front_Page_Container">
             <div class="Front_Page_Text_Left">
-                <b>Safe and secure</b><br /><br />
-                <p>Safe, secure, encrypted.  Sleep easy knowing your information is protected with AES-256bit encryption.</p>
+                <b>Safe and Secure</b><br /><br />
+                <p>Safe, secure, encrypted.  Sleep easy knowing your information is protected with AES-256bit data encryption and transported via 128bit SSL.</p>
             </div>        
             <div class="Front_Page_Image_Right">
                 <img src="Images/home/safeandsecure.png" />
@@ -40,8 +40,8 @@
                 <img src="Images/home/changeyourlife.png" />
             </div>        
             <div  class="Front_Page_Text_Right">
-                <b>Change your life</b><br /><br />
-                <p>Take control of your diabetes by viewing, and acting upon trends spotted on your personalized graphical dashboard.</p>
+                <b>Change Your Life</b><br /><br />
+                <p> Make an investment in yourself by making more informed decisions for a healthier life.  Take control of your diabetes by viewing, and acting upon trends spotted on your personalized graphical dashboard.</p>
             </div>
         </div>        
     </div>
