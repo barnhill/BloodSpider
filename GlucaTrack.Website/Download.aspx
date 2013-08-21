@@ -5,8 +5,12 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     Free GlucaTrack Download<br /><br />
-    [Version]<br /><br />
-    [Button]<br /><br />
+
+    <div>
+        [Dyanamic Download Buttons Here]
+    </div>
+    
+    <br /><br />
 
     <a href="About.aspx">What is GlucaTrack?</a><br /><br />
 

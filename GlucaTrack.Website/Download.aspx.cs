@@ -11,7 +11,20 @@ namespace GlucaTrack.Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            using (QueriesTableAdapters.sp_GetApplicationVersionsTableAdapter ta = new QueriesTableAdapters.sp_GetApplicationVersionsTableAdapter())
+            {
+                using (Queries.sp_GetApplicationVersionsDataTable dt = new Queries.sp_GetApplicationVersionsDataTable())
+                {
+                    ta.Fill(dt);
+                    PopulateVersionButtons(dt);
+                }
+            }
+        }
 
+        private void PopulateVersionButtons(Queries.sp_GetApplicationVersionsDataTable dt)
+        {
+            if (dt.Rows.Count <= 0)
+                return;
         }
     }
 }
