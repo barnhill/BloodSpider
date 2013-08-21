@@ -1,11 +1,12 @@
-﻿<%@ Page Title="Download" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Download.aspx.cs" Inherits="GlucaTrack.Website.Download" %>
+﻿<%@ Page Title="Free GlucaTrack Download" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Download.aspx.cs" Inherits="GlucaTrack.Website.Download" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    Free GlucaTrack Download<br /><br />
-
+    <hgroup id="Hgroup1" class="title" runat="server">
+        <h1 id="H1" runat="server"><%: Title %>.</h1>
+        </hgroup><br /><br />
     <div>
         [Dyanamic Download Buttons Here]
     </div>
