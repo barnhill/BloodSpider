@@ -61,6 +61,15 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change Password.
+        /// </summary>
+        internal static string Button_ChangePassword {
+            get {
+                return ResourceManager.GetString("Button_ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continue.
         /// </summary>
         internal static string Button_Continue {
@@ -421,6 +430,15 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Password.
+        /// </summary>
+        internal static string Label_NewPassword {
+            get {
+                return ResourceManager.GetString("Label_NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         internal static string Label_Password {
@@ -435,6 +453,15 @@ namespace GlucaTrack.Website.Resources {
         internal static string Label_Password_RequiredError {
             get {
                 return ResourceManager.GetString("Label_Password_RequiredError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password was changed successfully.  Next time you login you will be required to use this new password..
+        /// </summary>
+        internal static string Label_PasswordChangedSuccessfully {
+            get {
+                return ResourceManager.GetString("Label_PasswordChangedSuccessfully", resourceCulture);
             }
         }
         

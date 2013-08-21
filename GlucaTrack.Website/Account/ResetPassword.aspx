@@ -10,6 +10,7 @@
         <h1><%: Title %></h1>
     </hgroup>
     <link href="/Styles/login.css" rel="stylesheet" />
+    <br />
     <asp:UpdatePanel runat="server" ID="upBeforeSend" style="width:100%;">
         <ContentTemplate>
             <p class="validation-summary-errors">
@@ -26,7 +27,7 @@
                 <asp:ValidatorCalloutExtender ID="EmailFormat_ValidatorCalloutExtender" runat="server" TargetControlID="RegularExpressionEmailFormat" />
             </div>
             <div>
-                <asp:Label runat="server" ID="lblEmail" AssociatedControlID="txtEmail">[Email]</asp:Label>
+                <asp:Label runat="server" ID="lblEmail" AssociatedControlID="txtEmail">[Email]</asp:Label><br />
                 <asp:TextBox runat="server" ID="txtEmail" Width="375px"/><br />
             </div>
             <asp:Button runat="server" ID="btnSendEmail" CommandName="Login" Text="[Send Email]" Font-Bold="True" class="LogButton" OnClick="btnLogin_Click" />

@@ -7,7 +7,7 @@
         <h1 runat="server"><%: Title %>.</h1>
         </hgroup>
                     <p class="message-info">
-                        <asp:Label runat="server" ID="lblMessageInfo">Info</asp:Label>
+                        <asp:Label runat="server" ID="lblMessageInfo">[Info]</asp:Label>
                     </p>
                     
                         <div><asp:RequiredFieldValidator ID="RequiredFieldUsername" runat="server" ControlToValidate="UserName"
@@ -33,12 +33,12 @@
                                     CssClass="field-validation-error" 
                                     Display="None"
                                     ControlToValidate="Password" 
-                                    ErrorMessage="Password must be at least 6 nonblank characters."
+                                    ErrorMessage="[Password length invalid]"
                                     ValidationExpression="[^\s]{6,50}" /> </div>
                         <div><asp:CompareValidator ID="ComparePassword" runat="server" ControlToCompare="Password" ControlToValidate="ConfirmPassword"
                                     CssClass="field-validation-error" 
                                     Display="None" 
-                                    ErrorMessage="The password and confirmation password do not match." /></div>                
+                                    ErrorMessage="[Compare passwords do not match]" /></div>                
                     
                     <asp:ValidatorCalloutExtender ID="RequiredFieldUsername_ValidatorCalloutExtender" runat="server" TargetControlID="RequiredFieldUsername" />
                     <asp:ValidatorCalloutExtender ID="RequiredFieldEmail_ValidatorCalloutExtender" runat="server" TargetControlID="RequiredFieldEmail" />

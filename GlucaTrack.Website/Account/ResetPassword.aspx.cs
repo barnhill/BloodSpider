@@ -57,7 +57,7 @@ namespace GlucaTrack.Website.Account
                     {
                         //valid email entered
                         ErrorMessage.Text = string.Empty;
-                        string encrypted_userid = GlucaTrack.Services.Common.StringCipher.Encrypt(dt.Rows[0]["User_id"].ToString());
+                        string encrypted_userid = GlucaTrack.Services.Common.StringCipher.Encrypt(dt.Rows[0]["login"].ToString().Trim());
                         
                         if (SendEmail(encrypted_userid))
                             SetVisibleControls(true);
@@ -96,7 +96,7 @@ namespace GlucaTrack.Website.Account
         {
             string ResetLink = "<a href='#'>#</a>";
 
-            string webpath = "https://www.glucatrack.com/Account/ResetPassword2.aspx?encoding=" + encrypted_userid;
+            string webpath = "https://www.glucatrack.com/Account/ResetPassword2.aspx?u=" + encrypted_userid;
 
             return ResetLink.Replace("#", webpath);
         }

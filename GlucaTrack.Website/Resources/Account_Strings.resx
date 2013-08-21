@@ -444,4 +444,16 @@
     <value>&lt;br/&gt;&lt;br/&gt;Email Sent Successfully.  You should receive an email shortly with a reset password link in it.&lt;br/&gt;&lt;br/&gt;Click on this link and you will be able to reset your password.&lt;br/&gt;&lt;br/&gt;</value>
     <comment>Displays after the user has requested to reset their password</comment>
   </data>
+  <data name="Button_ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+    <comment>Displays on the second page of the password change process</comment>
+  </data>
+  <data name="Label_NewPassword" xml:space="preserve">
+    <value>New Password</value>
+    <comment>Label for the new password field</comment>
+  </data>
+  <data name="Label_PasswordChangedSuccessfully" xml:space="preserve">
+    <value>Password was changed successfully.  Next time you login you will be required to use this new password.</value>
+    <comment>Displays on the second page of the password change process to let the user know their password has changed successfully</comment>
+  </data>
 </root>

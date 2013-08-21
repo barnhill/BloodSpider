@@ -36,6 +36,7 @@ namespace GlucaTrack.Website.Account
             this.RequiredFieldConfirmPassword.Text = Resources.Account_Strings.Label_ConfirmPassword_RequiredError;
             this.RegularExpressionEmailFormat.Text = Resources.Account_Strings.Label_EmailFormat_Error;
             this.RegularExpressionPasswordLength.Text = Resources.Account_Strings.Label_PasswordLength_Error;
+            this.ComparePassword.Text = Resources.Account_Strings.Label_PasswordCompare_Error;
 
             //buttons
             string spaces = "&nbsp;&nbsp;&nbsp;&nbsp;";
