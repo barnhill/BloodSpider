@@ -10,7 +10,6 @@ namespace GlucaTrack.Website
 {
     public partial class SiteMaster : MasterPage
     {
-        //TODO: recognize logged in user and hide login/register buttons and show welcome message and signout
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;

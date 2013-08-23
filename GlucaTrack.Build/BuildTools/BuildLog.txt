@@ -124,12 +124,12 @@ Using lzma (compress whole) compression.
 
 EXE header size:              126464 / 34816 bytes
 Install code:                          (41895 bytes)
-Install data:                          (1163978 bytes)
+Install data:                          (1164490 bytes)
 Uninstall code+data:                   (131002 bytes)
-Compressed data:              188219 / 1336875 bytes
-CRC (0x72809F58):                  4 / 4 bytes
+Compressed data:              188404 / 1337387 bytes
+CRC (0xC2C110BC):                  4 / 4 bytes
 
-Total size:                   314687 / 1371695 bytes (22.9%)
+Total size:                   314872 / 1372207 bytes (22.9%)
 
 8 warnings:
   unknown variable/constant "mui.ComponentsPage.DescriptionText" detected, ignoring (macro:MUI_DESCRIPTION_BEGIN:4)

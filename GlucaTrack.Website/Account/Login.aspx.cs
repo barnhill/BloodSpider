@@ -11,7 +11,6 @@ namespace GlucaTrack.Website.Account
 {
     public partial class Login : Page
     {
-        //TODO: implement 'Forgot Username/Password'
         protected void Page_Load(object sender, EventArgs e)
         {
             RegisterHyperLink.NavigateUrl = "Register.aspx";
