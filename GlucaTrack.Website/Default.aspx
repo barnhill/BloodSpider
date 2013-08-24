@@ -45,7 +45,6 @@
     <script>
         //configure the paths of the images, plus corresponding target links
         slideshowimages("one.jpg", "two.jpg", "three.jpg")
-        slideshowlinks("", "", "")
 
         //configure the speed of the slideshow, in milliseconds
         var slideshowspeed = 5000

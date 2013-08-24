@@ -31,10 +31,10 @@
                 min: 0,
                 max: 15,
                 greenFrom: 4.5,
-                greenTo: 6,
+                greenTo: 7,
                 yellowFrom: 0,
                 yellowTo: 4.5,
-                redFrom: 6,
+                redFrom: 7,
                 redTo: 15,
                 minorTicks: 1
             };
@@ -52,10 +52,10 @@
                 min: 0,
                 max: 200,
                 greenFrom: 82,
-                greenTo: 126,
+                greenTo: 154,
                 yellowFrom: 0,
                 yellowTo: 82,
-                redFrom: 126,
+                redFrom: 154,
                 redTo: 200,
                 minorTicks: 1
             };
