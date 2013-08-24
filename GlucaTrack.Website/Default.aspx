@@ -41,13 +41,14 @@
     <div>
         <a href="SupportedMeters.aspx" id="SupportedMeters">Supported Meters</a>
     </div>
-    <a href="javascript:gotoshow()"><img src="one.jpg" name="slide" border=0 width=300 height=375></a>
+    <a href="javascript:gotoshow()"><img src="/Images/home/rotator/test.png" name="slide" border=0 width=900 height=400></a>
     <script>
         //configure the paths of the images, plus corresponding target links
-        slideshowimages("one.jpg", "two.jpg", "three.jpg")
+        var imageBasePath = "/Images/home/rotator/"
+        slideshowimages(imageBasePath + "test.png", imageBasePath + "upload.png", imageBasePath + "track.png")
 
         //configure the speed of the slideshow, in milliseconds
-        var slideshowspeed = 5000
+        var slideshowspeed = 8000
 
         var whichlink = 0
         var whichimage = 0
