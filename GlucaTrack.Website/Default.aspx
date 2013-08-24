@@ -1,12 +1,71 @@
 ﻿<%@ Page Title="GlucaTrack" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="GlucaTrack.Website._Default" %>
 
+<asp:Content runat="server" ID="HeadContent" ContentPlaceHolderID="HeadContent">
+    <script language="JavaScript1.1">
+        <!--
+
+        /*
+        JavaScript Image slideshow:
+        By JavaScript Kit (www.javascriptkit.com)
+        Over 200+ free JavaScript here!
+        */
+
+        var slideimages=new Array()
+        var slidelinks=new Array()
+        function slideshowimages(){
+        for (i=0;i<slideshowimages.arguments.length;i++){
+        slideimages[i]=new Image()
+        slideimages[i].src=slideshowimages.arguments[i]
+        }
+        }
+
+        function slideshowlinks(){
+        for (i=0;i<slideshowlinks.arguments.length;i++)
+        slidelinks[i]=slideshowlinks.arguments[i]
+        }
+
+        function gotoshow(){
+        if (!window.winslide||winslide.closed)
+        winslide=window.open(slidelinks[whichlink])
+        else
+        winslide.location=slidelinks[whichlink]
+        winslide.focus()
+        }
+
+        //-->
+    </script>
+</asp:Content>
 <asp:Content runat="server" ID="FeaturedContent" ContentPlaceHolderID="FeaturedContent">
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <div>
         <a href="SupportedMeters.aspx" id="SupportedMeters">Supported Meters</a>
     </div>
-    <img style=" border-bottom:2px #ECEDEF solid; padding-bottom:30px;" src="Images/testcontent.png" />
+    <a href="javascript:gotoshow()"><img src="one.jpg" name="slide" border=0 width=300 height=375></a>
+    <script>
+        //configure the paths of the images, plus corresponding target links
+        slideshowimages("one.jpg", "two.jpg", "three.jpg")
+        slideshowlinks("", "", "")
+
+        //configure the speed of the slideshow, in milliseconds
+        var slideshowspeed = 5000
+
+        var whichlink = 0
+        var whichimage = 0
+        function slideit() {
+            if (!document.images)
+                return
+            document.images.slide.src = slideimages[whichimage].src
+            whichlink = whichimage
+            if (whichimage < slideimages.length - 1)
+                whichimage++
+            else
+                whichimage = 0
+            setTimeout("slideit()", slideshowspeed)
+        }
+        slideit()
+    </script>
+
     <div class="Front_Page_Main_Container">
         <div class="Front_Page_Container">
             <div class="Front_Page_Text_Left">

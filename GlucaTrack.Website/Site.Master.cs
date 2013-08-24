@@ -153,7 +153,7 @@ namespace GlucaTrack.Website
             Session.Remove("OnSave");
 
             Session.Add("OnSave", Request.ServerVariables["URL"]);
-            Response.Redirect("../Account/PersonalSettings.aspx");
+            Response.Redirect("/Account/PersonalSettings.aspx");
         }
     }
 }

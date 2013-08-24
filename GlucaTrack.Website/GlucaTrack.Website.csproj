@@ -94,7 +94,6 @@
     <Content Include="Images\grid_style\grd_pgr.png" />
     <Content Include="Images\master\blankavatar.jpg" />
     <Content Include="Images\master\logo.png" />
-    <Content Include="Images\testcontent.png" />
     <Content Include="Content\UserImage.ashx" />
     <Content Include="GlucaTrack.pfx" />
     <Content Include="Properties\Settings.settings">
@@ -318,6 +317,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\home\rotator\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
