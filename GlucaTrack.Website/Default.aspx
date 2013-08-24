@@ -38,34 +38,36 @@
 <asp:Content runat="server" ID="FeaturedContent" ContentPlaceHolderID="FeaturedContent">
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <div>
+    <%--<div>
         <a href="SupportedMeters.aspx" id="SupportedMeters">Supported Meters</a>
+    </div>--%>
+    <div style="padding-top:10px;">
+        <a href="javascript:gotoshow()"><img src="/Images/home/rotator/test.png" name="slide" border=0 width=900 height=400></a>
+        
+        <script>
+            //configure the paths of the images, plus corresponding target links
+            var imageBasePath = "/Images/home/rotator/"
+            slideshowimages(imageBasePath + "test.png", imageBasePath + "upload.png", imageBasePath + "track.png")
+
+            //configure the speed of the slideshow, in milliseconds
+            var slideshowspeed = 8000
+
+            var whichlink = 0
+            var whichimage = 0
+            function slideit() {
+                if (!document.images)
+                    return
+                document.images.slide.src = slideimages[whichimage].src
+                whichlink = whichimage
+                if (whichimage < slideimages.length - 1)
+                    whichimage++
+                else
+                    whichimage = 0
+                setTimeout("slideit()", slideshowspeed)
+            }
+            slideit()
+        </script>
     </div>
-    <a href="javascript:gotoshow()"><img src="/Images/home/rotator/test.png" name="slide" border=0 width=900 height=400></a>
-    <script>
-        //configure the paths of the images, plus corresponding target links
-        var imageBasePath = "/Images/home/rotator/"
-        slideshowimages(imageBasePath + "test.png", imageBasePath + "upload.png", imageBasePath + "track.png")
-
-        //configure the speed of the slideshow, in milliseconds
-        var slideshowspeed = 8000
-
-        var whichlink = 0
-        var whichimage = 0
-        function slideit() {
-            if (!document.images)
-                return
-            document.images.slide.src = slideimages[whichimage].src
-            whichlink = whichimage
-            if (whichimage < slideimages.length - 1)
-                whichimage++
-            else
-                whichimage = 0
-            setTimeout("slideit()", slideshowspeed)
-        }
-        slideit()
-    </script>
-
     <div class="Front_Page_Main_Container">
         <div class="Front_Page_Container">
             <div class="Front_Page_Text_Left">
