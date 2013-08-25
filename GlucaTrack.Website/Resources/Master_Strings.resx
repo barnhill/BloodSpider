@@ -142,11 +142,11 @@
     <comment>Tab on the master page that links back to the home page</comment>
   </data>
   <data name="Label_Login" xml:space="preserve">
-    <value>Log in</value>
+    <value>Log In</value>
     <comment>Link on the master page that sends the user to the login page</comment>
   </data>
   <data name="Label_Logout" xml:space="preserve">
-    <value>Logout</value>
+    <value>Log Out</value>
     <comment>Link on the master page that logs the user out.</comment>
   </data>
   <data name="Label_MyData" xml:space="preserve">

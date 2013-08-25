@@ -13,12 +13,12 @@ namespace GlucaTrack.Website.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            RegisterHyperLink.NavigateUrl = "Register.aspx";
-            linkResetPassword.NavigateUrl = "~/Account/ResetPassword.aspx";
+            this.RegisterHyperLink.NavigateUrl = "Register.aspx";
+            this.linkResetPassword.NavigateUrl = "~/Account/ResetPassword.aspx";
 
             SetResources();
 
-            //ReadRememberMeCookie();
+            ReadRememberMeCookie();
 
             LoginContainer.Authenticate += LoginContainer_Authenticate;
             LoginContainer.DestinationPageUrl = "~/Content/Main.aspx";
@@ -39,6 +39,7 @@ namespace GlucaTrack.Website.Account
             this.lblDontHave.Text = Resources.Account_Strings.Label_DontHaveAccount;
             this.RegisterHyperLink.Text = Resources.Account_Strings.Label_RegisterLink;
             this.linkResetPassword.Text = Resources.Account_Strings.Link_ResetPassword;
+            this.lblResetPassword.Text = Resources.Account_Strings.Label_ResetPassword;
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)

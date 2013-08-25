@@ -126,7 +126,7 @@
     <comment>Button to finish registration on the last page of registration</comment>
   </data>
   <data name="Button_Login" xml:space="preserve">
-    <value>    Sign in    </value>
+    <value>    Log In    </value>
     <comment>Login button</comment>
   </data>
   <data name="Button_SavePersonalSettings" xml:space="preserve">
@@ -293,7 +293,7 @@
     <comment>Note to the user on the registration step 1 screen that lets the user know the password rules</comment>
   </data>
   <data name="Label_RememberMe" xml:space="preserve">
-    <value>Remember me?</value>
+    <value>Keep me logged in</value>
     <comment>Remember me checkbox</comment>
   </data>
   <data name="Label_Sex" xml:space="preserve">
@@ -455,5 +455,9 @@
   <data name="Label_PasswordChangedSuccessfully" xml:space="preserve">
     <value>Password was changed successfully.  Next time you login you will be required to use this new password.</value>
     <comment>Displays on the second page of the password change process to let the user know their password has changed successfully</comment>
+  </data>
+  <data name="Label_ResetPassword" xml:space="preserve">
+    <value>Forget your password?</value>
+    <comment>Displays on the login page beside the link to reset the password to your account</comment>
   </data>
 </root>

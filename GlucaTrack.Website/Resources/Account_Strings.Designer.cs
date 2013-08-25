@@ -88,7 +88,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to     Sign in    .
+        ///   Looks up a localized string similar to     Log In    .
         /// </summary>
         internal static string Button_Login {
             get {
@@ -529,11 +529,20 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remember me?.
+        ///   Looks up a localized string similar to Keep me logged in.
         /// </summary>
         internal static string Label_RememberMe {
             get {
                 return ResourceManager.GetString("Label_RememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forget your password?.
+        /// </summary>
+        internal static string Label_ResetPassword {
+            get {
+                return ResourceManager.GetString("Label_ResetPassword", resourceCulture);
             }
         }
         
