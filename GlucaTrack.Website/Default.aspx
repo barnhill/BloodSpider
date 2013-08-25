@@ -42,7 +42,7 @@
         <a href="SupportedMeters.aspx" id="SupportedMeters">Supported Meters</a>
     </div>--%>
     <div style="padding-top:10px;">
-        <a><img src="/Images/home/rotator/test.png" name="slide" border=0 width=900 height=400></a>
+        <a><img src="/Images/home/rotator/test.jpg" name="slide" border=0 width=900 height=400></a>
         
         <script>
             //configure the paths of the images, plus corresponding target links
