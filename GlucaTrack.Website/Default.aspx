@@ -41,7 +41,6 @@
     <%--<div>
         <a href="SupportedMeters.aspx" id="SupportedMeters">Supported Meters</a>
     </div>--%>
-    <b>this is a test</b>
     <div style="padding-top:10px;">
         <a href="javascript:gotoshow()"><img src="/Images/home/rotator/test.png" name="slide" border=0 width=900 height=400></a>
         
