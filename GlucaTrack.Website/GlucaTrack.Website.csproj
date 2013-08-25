@@ -99,6 +99,7 @@
     <Content Include="Images\master\blankavatar.jpg" />
     <Content Include="Images\master\logo.png" />
     <Content Include="Content\UserImage.ashx" />
+    <Content Include="js\ImageRotator.js" />
     <Content Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
