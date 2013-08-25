@@ -103,6 +103,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\GlucaTrack.pubxml" />
     <None Include="Service References\GTService\Common.xsd" />
     <Content Include="Service References\GTService\GlucaTrack.Website.GTService.Common.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
