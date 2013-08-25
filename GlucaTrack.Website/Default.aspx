@@ -47,7 +47,7 @@
         <script>
             //configure the paths of the images, plus corresponding target links
             var imageBasePath = "/Images/home/rotator/"
-            slideshowimages(imageBasePath + "test.png", imageBasePath + "upload.png", imageBasePath + "track.png")
+            slideshowimages(imageBasePath + "test.jpg", imageBasePath + "upload.jpg", imageBasePath + "track.jpg")
 
             //configure the speed of the slideshow, in milliseconds
             var slideshowspeed = 8000

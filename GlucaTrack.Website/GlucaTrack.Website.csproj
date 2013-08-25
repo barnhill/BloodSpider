@@ -84,9 +84,9 @@
     <Content Include="Images\download\download.png" />
     <Content Include="Images\home\changeyourlife.png" />
     <Content Include="Images\home\consolidate.png" />
-    <Content Include="Images\home\rotator\test.png" />
-    <Content Include="Images\home\rotator\track.png" />
-    <Content Include="Images\home\rotator\upload.png" />
+    <Content Include="Images\home\rotator\test.jpg" />
+    <Content Include="Images\home\rotator\track.jpg" />
+    <Content Include="Images\home\rotator\upload.jpg" />
     <Content Include="Images\home\safeandsecure.png" />
     <Content Include="Images\home\simpleandeasy.png" />
     <Content Include="Images\icons\calendar.png" />
