@@ -529,7 +529,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keep me logged in.
+        ///   Looks up a localized string similar to Remember me.
         /// </summary>
         internal static string Label_RememberMe {
             get {

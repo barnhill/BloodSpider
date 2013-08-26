@@ -18,10 +18,13 @@ namespace GlucaTrack.Website.Account
 
             SetResources();
 
-            ReadRememberMeCookie();
-
             LoginContainer.Authenticate += LoginContainer_Authenticate;
             LoginContainer.DestinationPageUrl = "~/Content/Main.aspx";
+
+            if (!Page.IsPostBack)
+            {
+                ReadRememberMeCookie();
+            }
         }
 
         private void SetResources()
@@ -58,32 +61,60 @@ namespace GlucaTrack.Website.Account
                     //successful login
                     GTService.Common.sp_GetLoginRow loginRow = common.sp_GetLogin.First();
                     Session.Add("LoggedInUser", loginRow);
-
                     e.Authenticated = true;
+
+                    //set auth cookie
+                    if (LoginContainer.RememberMeSet)
+                    {
+                        HttpCookie cookie = new HttpCookie(GlucaTrack.Services.Common.Statics.AuthenticationCookie);
+                        FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, StringCipher.Encrypt(this.LoginContainer.UserName, true), DateTime.Now, DateTime.Now.AddDays(30), true, string.Empty);
+                        cookie.Value = FormsAuthentication.Encrypt(authTicket);
+                        cookie.Expires = authTicket.Expiration;
+                        Response.Cookies.Add(cookie);
+                    }
+                    else
+                    {
+                        HttpCookie cookie = new HttpCookie(GlucaTrack.Services.Common.Statics.AuthenticationCookie);
+                        cookie.Expires = DateTime.Now.AddDays(-1d);
+                        Response.Cookies.Add(cookie);
+                    }
 
                     //update last_weblogin datetime
                     client.UpdateLastWebLogin(common);
                 }
-                catch
+                catch (Exception ex)
                 {
                     //unsuccessful login
                     Session.Clear();
                     FormsAuthentication.SignOut();
                     e.Authenticated = false;
                 }
+            
             }
         }
 
         //TODO: finish remember me logic
         private void ReadRememberMeCookie()
         {
-            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            HttpCookie authCookie = Request.Cookies[GlucaTrack.Services.Common.Statics.AuthenticationCookie];
 
-            if (authCookie != null && !string.IsNullOrEmpty(authCookie.Value) && authCookie.Expires > DateTime.Now)
+            if (authCookie != null && !string.IsNullOrEmpty(authCookie.Value))
             {
                 FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
-                LoginContainer.UserName = authTicket.Name;
-                LoginContainer.RememberMeSet = true;
+
+                if (!authTicket.Expired)
+                {
+                    this.LoginContainer.UserName = GlucaTrack.Services.Common.StringCipher.Decrypt(authTicket.Name, true);
+                    this.LoginContainer.RememberMeSet = true;
+                }
+                else
+                {
+                    //expired
+                    LoginContainer.UserName = string.Empty;
+                    LoginContainer.RememberMeSet = false;
+                    Session.Clear();
+                    FormsAuthentication.SignOut();
+                }
             }
         }
     }

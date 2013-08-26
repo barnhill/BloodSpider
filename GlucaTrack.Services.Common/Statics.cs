@@ -16,6 +16,7 @@ namespace GlucaTrack.Services.Common
         public static string BaseFilepath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GlucaTrack");
         private static string LocalUpdateFile = "GlucaTrack_Update.exe";
         public static DeviceInfo deviceFound = null;
+        public static string AuthenticationCookie = "GlucaTrack_Authentication_Cookie";
 
         public static string LocalUpdateFilePath
         {

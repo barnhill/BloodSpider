@@ -293,7 +293,7 @@
     <comment>Note to the user on the registration step 1 screen that lets the user know the password rules</comment>
   </data>
   <data name="Label_RememberMe" xml:space="preserve">
-    <value>Keep me logged in</value>
+    <value>Remember me</value>
     <comment>Remember me checkbox</comment>
   </data>
   <data name="Label_Sex" xml:space="preserve">

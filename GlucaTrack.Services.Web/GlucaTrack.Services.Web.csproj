@@ -103,6 +103,7 @@
     <Content Include="Common.xss">
       <DependentUpon>Common.xsd</DependentUpon>
     </Content>
+    <Content Include="GlucaTrack.pfx" />
     <None Include="Properties\PublishProfiles\GlucaTrack Service.pubxml" />
     <None Include="Properties\PublishProfiles\GlucaTrack.pubxml" />
     <None Include="Web.Debug.config">
@@ -127,11 +128,10 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>GlucaTrack.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

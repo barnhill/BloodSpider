@@ -25,6 +25,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F1D524FA-BAA9-4778-B1D6-C7BE2422C220}"
 	ProjectSection(SolutionItems) = preProject
 		GlucaTrack.Build\build-WindowsService.bat = GlucaTrack.Build\build-WindowsService.bat
+		GlucaTrack.pfx = GlucaTrack.pfx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildTools", "BuildTools", "{24F376C0-F64C-42E7-94A0-549800A598DC}"
@@ -47,6 +48,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{
 	ProjectSection(SolutionItems) = preProject
 		GlucaTrack.Build\Resources\EULA.rtf = GlucaTrack.Build\Resources\EULA.rtf
 		GlucaTrack.Build\Resources\EULA.txt = GlucaTrack.Build\Resources\EULA.txt
+		GlucaTrack.Communication\GlucaTrack.pfx = GlucaTrack.Communication\GlucaTrack.pfx
 		GlucaTrack.Build\Resources\icon.ico = GlucaTrack.Build\Resources\icon.ico
 		GlucaTrack.Build\Resources\NSIS_installheader.bmp = GlucaTrack.Build\Resources\NSIS_installheader.bmp
 		GlucaTrack.Build\Resources\NSIS_WelcomeImage.bmp = GlucaTrack.Build\Resources\NSIS_WelcomeImage.bmp
