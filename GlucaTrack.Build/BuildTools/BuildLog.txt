@@ -99,6 +99,7 @@
 8>Project not selected to build for this solution configuration 
 9>------ Build started: Project: GlucaTrack.Website, Configuration: Debug Any CPU ------
 9>c:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets(1605,5): warning MSB3245: Could not resolve this reference. Could not locate the assembly "System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35". Check to make sure the assembly exists on disk. If this reference is required by your code, you may get compilation errors.
+9>C:\Users\bbarnhill\Desktop\Dropbox\Projects\GlucaTrack\GlucaTrack.Website\Account\Login.aspx.cs(85,34,85,36): warning CS0168: The variable 'ex' is declared but never used
 9>  GlucaTrack.Website -> C:\Users\bbarnhill\Desktop\Dropbox\Projects\GlucaTrack\GlucaTrack.Website\bin\GlucaTrack.Website.dll
 ========== Build: 7 succeeded, 0 failed, 0 up-to-date, 2 skipped ==========
 
@@ -125,12 +126,12 @@ Using lzma (compress whole) compression.
 
 EXE header size:              126464 / 34816 bytes
 Install code:                          (41895 bytes)
-Install data:                          (1164496 bytes)
+Install data:                          (1165008 bytes)
 Uninstall code+data:                   (131002 bytes)
-Compressed data:              189267 / 1337393 bytes
-CRC (0xA4084E13):                  4 / 4 bytes
+Compressed data:              189376 / 1337905 bytes
+CRC (0x41E542A2):                  4 / 4 bytes
 
-Total size:                   315735 / 1372213 bytes (23.0%)
+Total size:                   315844 / 1372725 bytes (23.0%)
 
 8 warnings:
   unknown variable/constant "mui.ComponentsPage.DescriptionText" detected, ignoring (macro:MUI_DESCRIPTION_BEGIN:4)

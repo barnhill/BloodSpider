@@ -122,6 +122,12 @@ namespace GlucaTrack.Website.Account
 
         private void SetResources()
         {
+            //div titles
+            this.lblProfileImage.Text = Resources.Account_Strings.Label_ProfileImageSection;
+            this.lblDiabetes.Text = Resources.Account_Strings.Label_DiabetesInfoSection;
+            this.lblPersonal.Text = Resources.Account_Strings.Label_PersonalInfoSection;
+            this.lblAccount.Text = Resources.Account_Strings.Label_AccountInfoSection;
+
             this.lblLowNormal.Text = Resources.Account_Strings.Label_LowNormal;
             this.lblHighNormal.Text = Resources.Account_Strings.Label_HighNormal;
             this.lblMorningStart.Text = Resources.Account_Strings.Label_StartMorning;

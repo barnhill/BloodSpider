@@ -138,7 +138,7 @@
     <comment>Header for registration step 1</comment>
   </data>
   <data name="Label_Address1" xml:space="preserve">
-    <value>Address line 1</value>
+    <value>Address Line 1</value>
     <comment>1st line of address on 2nd page of registration</comment>
   </data>
   <data name="Label_Address1_RequiredError" xml:space="preserve">
@@ -146,11 +146,11 @@
     <comment>Address 1 required field on 2nd page of registration</comment>
   </data>
   <data name="Label_Address2" xml:space="preserve">
-    <value>Address line 2</value>
+    <value>Address Line 2</value>
     <comment>2nd line of address on 2nd page of registration</comment>
   </data>
   <data name="Label_Birthdate" xml:space="preserve">
-    <value>Birthdate</value>
+    <value>Date of Birth</value>
     <comment>Label for the birthdate field.</comment>
   </data>
   <data name="Label_Birthdate_RequiredError" xml:space="preserve">
@@ -182,7 +182,7 @@
     <comment>Country required field on 2nd page of registration</comment>
   </data>
   <data name="Label_DiabetesType" xml:space="preserve">
-    <value>Type of diabetes</value>
+    <value>Type of Diabetes</value>
     <comment>Type of diabetes label on 2nd page of registration</comment>
   </data>
   <data name="Label_DiabetesType_RequiredError" xml:space="preserve">
@@ -194,7 +194,7 @@
     <comment>Displays below the Sign in button on the login page to see if the user needs to sign up for a new account.</comment>
   </data>
   <data name="Label_EmailAddress" xml:space="preserve">
-    <value>Email address</value>
+    <value>Email Address</value>
     <comment>Label for the email address fields</comment>
   </data>
   <data name="Label_EmailAddress_RequiredError" xml:space="preserve">
@@ -206,7 +206,7 @@
     <comment>Displays if the email address does not meet the requirements for a valid email address format.</comment>
   </data>
   <data name="Label_Firstname" xml:space="preserve">
-    <value>First name</value>
+    <value>First Name</value>
     <comment>First name label on the 2nd page of registration</comment>
   </data>
   <data name="Label_Firstname_RequiredError" xml:space="preserve">
@@ -218,7 +218,7 @@
     <comment>Displays on the logout screen when the user is logging out.</comment>
   </data>
   <data name="Label_HighNormal" xml:space="preserve">
-    <value>High end of normal</value>
+    <value>High End of Normal</value>
     <comment>Displays on the personal settings page</comment>
   </data>
   <data name="Label_IncomeRange" xml:space="preserve">
@@ -230,7 +230,7 @@
     <comment>Displays on the 2nd page of the registration screens.</comment>
   </data>
   <data name="Label_Lastname" xml:space="preserve">
-    <value>Last name</value>
+    <value>Last Name</value>
     <comment>Last name label on the 2nd page of registration</comment>
   </data>
   <data name="Label_Lastname_RequiredError" xml:space="preserve">
@@ -238,18 +238,18 @@
     <comment>Last name is required field on 2nd page of registration</comment>
   </data>
   <data name="Label_LastSync" xml:space="preserve">
-    <value>Last sync</value>
+    <value>Last Meter Sync</value>
     <comment>Label for the last sync field</comment>
   </data>
   <data name="Label_LastWebLogin" xml:space="preserve">
-    <value>Last logged into website</value>
+    <value>Website Last Accessed</value>
   </data>
   <data name="Label_LowNormal" xml:space="preserve">
-    <value>Low end of normal</value>
+    <value>Low End of Normal</value>
     <comment>Displays on the personal settings page</comment>
   </data>
   <data name="Label_Middlename" xml:space="preserve">
-    <value>Middle name</value>
+    <value>Middle Name</value>
     <comment>Middle name label on the 2nd page of registration</comment>
   </data>
   <data name="Label_Middlename_RequiredError" xml:space="preserve">
@@ -293,7 +293,7 @@
     <comment>Note to the user on the registration step 1 screen that lets the user know the password rules</comment>
   </data>
   <data name="Label_RememberMe" xml:space="preserve">
-    <value>Remember me</value>
+    <value>Remember Me</value>
     <comment>Remember me checkbox</comment>
   </data>
   <data name="Label_Sex" xml:space="preserve">
@@ -305,15 +305,15 @@
     <comment>Displays on the 2nd page of the registration screens.</comment>
   </data>
   <data name="Label_StartAfternoon" xml:space="preserve">
-    <value>Start afternoon</value>
+    <value>Start Afternoon</value>
     <comment>Label on the personal settings screen for the starting of the afternoon</comment>
   </data>
   <data name="Label_StartMorning" xml:space="preserve">
-    <value>Start morning</value>
+    <value>Start Morning</value>
     <comment>Label on the personal settings screen for the starting of the morning</comment>
   </data>
   <data name="Label_StartNight" xml:space="preserve">
-    <value>Start night</value>
+    <value>Start Night</value>
     <comment>Label on the personal settings screen for the starting of the night</comment>
   </data>
   <data name="Label_State" xml:space="preserve">
@@ -369,7 +369,7 @@
     <comment>Displays on the registration screen if the username is already taken</comment>
   </data>
   <data name="Label_UserType" xml:space="preserve">
-    <value>User account type</value>
+    <value>User Account Type</value>
     <comment>Label for the account type field</comment>
   </data>
   <data name="Month_1" xml:space="preserve">
@@ -459,5 +459,21 @@
   <data name="Label_ResetPassword" xml:space="preserve">
     <value>Forget your password?</value>
     <comment>Displays on the login page beside the link to reset the password to your account</comment>
+  </data>
+  <data name="Label_AccountInfoSection" xml:space="preserve">
+    <value>Account Information</value>
+    <comment>Displays above the account information section on the personal settings page</comment>
+  </data>
+  <data name="Label_DiabetesInfoSection" xml:space="preserve">
+    <value>Set Your Ranges</value>
+    <comment>Displays above the diabetes information section on the personal settings page</comment>
+  </data>
+  <data name="Label_PersonalInfoSection" xml:space="preserve">
+    <value>A Little About You</value>
+    <comment>Displays above the personal information section on the personal settings page</comment>
+  </data>
+  <data name="Label_ProfileImageSection" xml:space="preserve">
+    <value>Profile Image</value>
+    <comment>Displays above the profile image section on the personal settings page</comment>
   </data>
 </root>

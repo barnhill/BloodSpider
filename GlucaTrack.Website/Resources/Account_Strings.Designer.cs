@@ -142,7 +142,16 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Address line 1.
+        ///   Looks up a localized string similar to Account Information.
+        /// </summary>
+        internal static string Label_AccountInfoSection {
+            get {
+                return ResourceManager.GetString("Label_AccountInfoSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address Line 1.
         /// </summary>
         internal static string Label_Address1 {
             get {
@@ -160,7 +169,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Address line 2.
+        ///   Looks up a localized string similar to Address Line 2.
         /// </summary>
         internal static string Label_Address2 {
             get {
@@ -169,7 +178,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Birthdate.
+        ///   Looks up a localized string similar to Date of Birth.
         /// </summary>
         internal static string Label_Birthdate {
             get {
@@ -241,7 +250,16 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type of diabetes.
+        ///   Looks up a localized string similar to Set Your Ranges.
+        /// </summary>
+        internal static string Label_DiabetesInfoSection {
+            get {
+                return ResourceManager.GetString("Label_DiabetesInfoSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type of Diabetes.
         /// </summary>
         internal static string Label_DiabetesType {
             get {
@@ -268,7 +286,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email address.
+        ///   Looks up a localized string similar to Email Address.
         /// </summary>
         internal static string Label_EmailAddress {
             get {
@@ -313,7 +331,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First name.
+        ///   Looks up a localized string similar to First Name.
         /// </summary>
         internal static string Label_Firstname {
             get {
@@ -340,7 +358,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to High end of normal.
+        ///   Looks up a localized string similar to High End of Normal.
         /// </summary>
         internal static string Label_HighNormal {
             get {
@@ -367,7 +385,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last name.
+        ///   Looks up a localized string similar to Last Name.
         /// </summary>
         internal static string Label_Lastname {
             get {
@@ -385,7 +403,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last sync.
+        ///   Looks up a localized string similar to Last Meter Sync.
         /// </summary>
         internal static string Label_LastSync {
             get {
@@ -394,7 +412,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last logged into website.
+        ///   Looks up a localized string similar to Website Last Accessed.
         /// </summary>
         internal static string Label_LastWebLogin {
             get {
@@ -403,7 +421,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Low end of normal.
+        ///   Looks up a localized string similar to Low End of Normal.
         /// </summary>
         internal static string Label_LowNormal {
             get {
@@ -412,7 +430,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Middle name.
+        ///   Looks up a localized string similar to Middle Name.
         /// </summary>
         internal static string Label_Middlename {
             get {
@@ -484,6 +502,24 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A Little About You.
+        /// </summary>
+        internal static string Label_PersonalInfoSection {
+            get {
+                return ResourceManager.GetString("Label_PersonalInfoSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile Image.
+        /// </summary>
+        internal static string Label_ProfileImageSection {
+            get {
+                return ResourceManager.GetString("Label_ProfileImageSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Race.
         /// </summary>
         internal static string Label_Race {
@@ -529,7 +565,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remember me.
+        ///   Looks up a localized string similar to Remember Me.
         /// </summary>
         internal static string Label_RememberMe {
             get {
@@ -565,7 +601,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start afternoon.
+        ///   Looks up a localized string similar to Start Afternoon.
         /// </summary>
         internal static string Label_StartAfternoon {
             get {
@@ -574,7 +610,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start morning.
+        ///   Looks up a localized string similar to Start Morning.
         /// </summary>
         internal static string Label_StartMorning {
             get {
@@ -583,7 +619,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start night.
+        ///   Looks up a localized string similar to Start Night.
         /// </summary>
         internal static string Label_StartNight {
             get {
@@ -646,7 +682,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User account type.
+        ///   Looks up a localized string similar to User Account Type.
         /// </summary>
         internal static string Label_UserType {
             get {

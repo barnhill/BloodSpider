@@ -22,7 +22,7 @@
     
      <div class="Settings_Content" id="divProfileImage" runat="server" style="width:900px;">
         <div class="Settings_Header">
-            <h4><asp:Label runat="server" ID="lblProfileImage" Text="Profile Image"/></h4>                   
+            <h4><asp:Label runat="server" ID="lblProfileImage" Text="[Profile Image]"/></h4>                   
         </div>
         
         <asp:UpdatePanel ID="upUpload" runat="server" UpdateMode="Conditional">
@@ -48,17 +48,11 @@
     </div>
     <div class="Settings_Content" id="divDiabetes" runat="server" style="width:900px; margin-top:10px;">
         <div class="Settings_Header">
-            <h4><asp:Label runat="server" ID="lblDiabetes" Text="Information about your diabetes and days testing"/></h4>                   
+            <h4><asp:Label runat="server" ID="lblDiabetes" Text="[Diabetes Information]"/></h4>                   
         </div>
          <div style="height:220px; padding-top:10px; padding-left:10px;">
             <div style="width:45%; float:left;">
-                <asp:UpdatePanel runat="server" ID="upDiabetesType" style="width:100%;">
-                    <ContentTemplate>
-                        <asp:Label ID="lblDiabetesType" runat="server" AssociatedControlID="ddDiabetesType">[DiabetesType]</asp:Label><br />
-                        <asp:DropDownList ID="ddDiabetesType" runat="server" DataSourceID="DiabetesTypes_DataSource" DataTextField = "name" DataValueField = "diabetestypes_id" 
-                            class="dropdownlist" AutoPostBack="true"/>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+                
                 <br />
                 <asp:Label ID="lblLowNormal" runat="server" AssociatedControlID="fvLowNormal">[Low normal]</asp:Label><br />
                 <asp:FormView ID="fvLowNormal" runat="server" DataKeyNames="user_id" DataSourceID="PersonalSettings_DataSource">
@@ -95,7 +89,7 @@
 
      <div class="Graph_Content" id="divPersonal" runat="server" style="width:900px; margin-top:10px;">
         <div class=" Graph_Header">
-            <h4><asp:Label runat="server" ID="lblPersonal" Text="Information about you"/></h4>                   
+            <h4><asp:Label runat="server" ID="lblPersonal" Text="[Personal Information]"/></h4>                   
         </div>
         <div style="height:70px; padding-left:10px; padding-top:10px;">
             <div style="width:33%; float:left;">
@@ -141,6 +135,15 @@
                             &nbsp;
                 <asp:DropDownList ID="ddBirthdate_Year" runat="server" class="dropdownlist"/> 
             </div>
+        </div>
+        <div style="height:90px; padding-left:10px;">
+            <asp:UpdatePanel runat="server" ID="upDiabetesType" style="width:100%;">
+                <ContentTemplate>
+                    <asp:Label ID="lblDiabetesType" runat="server" AssociatedControlID="ddDiabetesType">[DiabetesType]</asp:Label><br />
+                    <asp:DropDownList ID="ddDiabetesType" runat="server" DataSourceID="DiabetesTypes_DataSource" DataTextField = "name" DataValueField = "diabetestypes_id" 
+                        class="dropdownlist" AutoPostBack="true"/>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
         <div style="height:90px; padding-left:10px;">
             <asp:Label ID="lblEmail" runat="server">[Email]</asp:Label><br />
@@ -200,7 +203,7 @@
 
     <div class="Settings_Content" id="divAccount" runat="server" style="width:900px; margin-top:10px;">
         <div class="Settings_Header">
-            <h4><asp:Label runat="server" ID="lblAccount" Text="Account type Information"/></h4>                   
+            <h4><asp:Label runat="server" ID="lblAccount" Text="[Account Information]"/></h4>                   
         </div>
         <div style="height:60px; padding-left:10px; padding-top:10px;">
             <div style="width:33%; float:left;">

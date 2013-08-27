@@ -148,33 +148,6 @@ namespace GlucaTrack.Website.Account {
         protected global::System.Web.UI.WebControls.Label lblDiabetes;
         
         /// <summary>
-        /// upDiabetesType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upDiabetesType;
-        
-        /// <summary>
-        /// lblDiabetesType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDiabetesType;
-        
-        /// <summary>
-        /// ddDiabetesType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddDiabetesType;
-        
-        /// <summary>
         /// lblLowNormal control.
         /// </summary>
         /// <remarks>
@@ -434,6 +407,33 @@ namespace GlucaTrack.Website.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddBirthdate_Year;
+        
+        /// <summary>
+        /// upDiabetesType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upDiabetesType;
+        
+        /// <summary>
+        /// lblDiabetesType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDiabetesType;
+        
+        /// <summary>
+        /// ddDiabetesType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddDiabetesType;
         
         /// <summary>
         /// lblEmail control.
