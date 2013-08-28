@@ -26,7 +26,7 @@ namespace GlucaTrack.Services.Windows
         BackgroundWorker background_CommandServer = new BackgroundWorker();
         ManagementEventWatcher watcher = null;
         WqlEventQuery query = new WqlEventQuery("SELECT * FROM __InstanceCreationEvent WITHIN 2 WHERE TargetInstance ISA 'Win32_PnPEntity'");
-        Settings settings = null;
+        static Settings settings = null;
 
         public GlucaTrackDetector()
         {
@@ -172,6 +172,7 @@ namespace GlucaTrack.Services.Windows
             catch (Exception ex)
             {
                 Errors.ServiceError(ex);
+                GlucaTrackDetector.ReportException("W0002", ex);
             }
         }
         private void background_CommandServer_DoWork(object sender, DoWorkEventArgs e)
@@ -239,6 +240,7 @@ namespace GlucaTrack.Services.Windows
             catch (Exception ex)
             {
                 Errors.ServiceError(ex);
+                GlucaTrackDetector.ReportException("W0003", ex);
             }
             finally
             {
@@ -273,6 +275,7 @@ namespace GlucaTrack.Services.Windows
             catch (Exception ex)
             {
                 Errors.ServiceError(ex);
+                GlucaTrackDetector.ReportException("W0004", ex);
             }
         }
         private void background_DeviceReader_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -313,11 +316,14 @@ namespace GlucaTrack.Services.Windows
             }//try
             catch (System.TimeoutException)
             {
-                Errors.ServiceError(new Exception("Notify icon app not started so no settings file could be read.  Aborting read."));
+                Exception ex = new Exception("Notify icon app not started so no settings file could be read.  Aborting read.");
+                Errors.ServiceError(ex);
+                GlucaTrackDetector.ReportException("W0005", ex);
             }
             catch (Exception ex)
             {
                 Errors.ServiceError(ex);
+                GlucaTrackDetector.ReportException("W0006", ex);
             }
             finally 
             {
@@ -391,6 +397,7 @@ namespace GlucaTrack.Services.Windows
                         {
                             //could not validate user
                             Errors.ServiceError(ex);
+                            GlucaTrackDetector.ReportException("W0007", ex);
                         }
                         finally 
                         {
@@ -417,17 +424,22 @@ namespace GlucaTrack.Services.Windows
                         catch(Exception ex)
                         {
                             Errors.ServiceError(ex);
+                            GlucaTrackDetector.ReportException("W0008", ex);
                         }
                     }
                     else
                     {
-                        Errors.ServiceError(new Exception("uploadData-2: Could not upload data due to settings not being populated."));
+                        Exception ex = new Exception("uploadData-2: Could not upload data due to settings not being populated.");
+                        Errors.ServiceError(ex);
+                        GlucaTrackDetector.ReportException("W0009", ex);
                     }
                 }
             }
             else
             {
-                Errors.ServiceError(new Exception("uploadData-1: Could not upload data due to settings not being populated."));
+                Exception ex = new Exception("uploadData-1: Could not upload data due to settings not being populated.");
+                Errors.ServiceError(ex);
+                GlucaTrackDetector.ReportException("W000A", ex);
             }
         }
         private string CheckForUpdates()
@@ -441,13 +453,6 @@ namespace GlucaTrack.Services.Windows
                 }
             }
             catch { return string.Empty; }
-        }
-        public static void ReportBug(string ErrorCode, string StackTrace, string Message)
-        {
-            using (WebService.GTServiceClient client = new WebService.GTServiceClient())
-            {
-                client.ReportBug(appId, ErrorCode, StackTrace, Message, Assembly.GetCallingAssembly().GetName().Version.ToString());
-            }
         }
 
         protected virtual void OnReadFinished(object sender, EventArgs e)
@@ -469,6 +474,7 @@ namespace GlucaTrack.Services.Windows
             catch (Exception ex)
             {
                 Errors.ServiceError(ex);
+                GlucaTrackDetector.ReportException("W000B", ex);
             }
         }
         protected virtual void OnRecordRead(object sender, EventArgs e)
@@ -482,6 +488,24 @@ namespace GlucaTrack.Services.Windows
             HeaderReadEventArgs headArgs = (HeaderReadEventArgs)e;
             
             pipeWrite("MSG", string.Format("Reading Glucose Values"), string.Format("from {0}", ((AbstractMeter)headArgs.Meter).MeterDescription), 1);
+        }
+
+        public static void ReportException(string ErrorCode, Exception ex)
+        {
+            try
+            {
+                if (settings == null || settings.Options == null || settings.Options.Rows.Count == 0 || !Convert.ToBoolean(settings.Options.Rows[0]["AutoReportErrors"]))
+                    return;
+
+                using (WebService.GTServiceClient client = new WebService.GTServiceClient())
+                {
+                    client.ReportBug(appId, ErrorCode, ex.StackTrace ?? string.Empty, ex.Message ?? string.Empty, Assembly.GetCallingAssembly().GetName().Version.ToString());
+                }
+            }
+            catch(Exception ex2)
+            {
+                Errors.ServiceError(ex2);
+            }
         }
     }
 }

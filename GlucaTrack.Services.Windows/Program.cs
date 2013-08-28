@@ -43,7 +43,7 @@ namespace GlucaTrack.Services.Windows
             }
             catch (Exception ex)
             {
-                GlucaTrackDetector.ReportBug("WS001", ex.StackTrace, ex.Message);
+                GlucaTrackDetector.ReportException("W0001", ex);
             }
         }
 

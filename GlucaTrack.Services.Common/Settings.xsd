@@ -25,6 +25,7 @@
             <xs:sequence>
               <xs:element name="AutoUpload" msprop:nullValue="false" msprop:Generator_ColumnPropNameInRow="AutoUpload" msprop:Generator_ColumnVarNameInTable="columnAutoUpload" msprop:Generator_ColumnPropNameInTable="AutoUploadColumn" msprop:Generator_UserColumnName="AutoUpload" type="xs:boolean" default="false" minOccurs="0" />
               <xs:element name="ShowNotifications" msprop:Generator_ColumnVarNameInTable="columnShowNotifications" msprop:Generator_ColumnPropNameInRow="ShowNotifications" msprop:Generator_ColumnPropNameInTable="ShowNotificationsColumn" msprop:Generator_UserColumnName="ShowNotifications" type="xs:boolean" default="true" minOccurs="0" />
+              <xs:element name="AutoReportErrors" msprop:Generator_ColumnVarNameInTable="columnAutoReportErrors" msprop:Generator_ColumnPropNameInRow="AutoReportErrors" msprop:Generator_ColumnPropNameInTable="AutoReportErrorsColumn" msprop:Generator_UserColumnName="AutoReportErrors" type="xs:boolean" default="true" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

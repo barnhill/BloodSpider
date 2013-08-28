@@ -26,7 +26,7 @@ namespace GlucaTrack.Services.Windows
         BackgroundWorker background_CommandServer = new BackgroundWorker();
         static Settings _settings;
         string currentVersion = string.Empty;
-        Size _windowSize = new Size(200, 217);
+        Size _windowSize = new Size(193, 262);
 
         public formSettings()
         {
@@ -185,45 +185,7 @@ namespace GlucaTrack.Services.Windows
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //save settings on save button click
-            try
-            {
-                using (Settings settings = new Settings())
-                {
-                    Settings.LoginRow loginRow = settings.Login.NewLoginRow();
-                    loginRow.Username = StringCipher.Encrypt(this.txtUsername.Text.Trim(), true);
-                    loginRow.Password = StringCipher.Encrypt(this.txtPassword.Text.Trim(), true);
-
-                    settings.Login.AddLoginRow(loginRow);
-
-                    settings.Options.AddOptionsRow(!chkAutoUpload.Checked, chkShowNotifications.Checked);
-
-                    _settings = settings;
-
-                    //save settings file
-                    Statics.SaveSettingsFile(_settings);
-
-                    //show that all settings were saved successfully
-                    ShowNotificationBalloon(3000, "GlucaTrack Settings", "User settings were successfully saved.", ToolTipIcon.Info);
-                }
-            }
-            catch (UnauthorizedAccessException uaex)
-            {
-                Error("002", uaex);
-            }
-            catch (Exception ex)
-            {
-                if (string.IsNullOrWhiteSpace(this.txtUsername.Text))
-                    ShowNotificationBalloon(10000, "GlucaTrack Settings", "Username can not be blank.", ToolTipIcon.Error);
-                else if (string.IsNullOrWhiteSpace(this.txtPassword.Text))
-                    ShowNotificationBalloon(10000, "GlucaTrack Settings", "Password can not be blank.", ToolTipIcon.Error);
-
-                Error("003", ex);
-            }
-            finally
-            {
-                ShowWindow(false);
-            }
+            SaveSettings();
         }
         private void settingsNotifyIcon_BalloonTipClicked(object sender, EventArgs e)
         {
@@ -273,6 +235,48 @@ namespace GlucaTrack.Services.Windows
             ReportBug("WA" + ErrorCode, ex.StackTrace, ex.Message);
         }
 
+        private void SaveSettings()
+        {
+            //save settings on save button click
+            try
+            {
+                using (Settings settings = new Settings())
+                {
+                    Settings.LoginRow loginRow = settings.Login.NewLoginRow();
+                    loginRow.Username = StringCipher.Encrypt(this.txtUsername.Text.Trim(), true);
+                    loginRow.Password = StringCipher.Encrypt(this.txtPassword.Text.Trim(), true);
+
+                    settings.Login.AddLoginRow(loginRow);
+
+                    settings.Options.AddOptionsRow(!chkAutoUpload.Checked, chkShowNotifications.Checked, chkAutoReportErrors.Checked);
+
+                    _settings = settings;
+
+                    //save settings file
+                    Statics.SaveSettingsFile(_settings);
+
+                    //show that all settings were saved successfully
+                    ShowNotificationBalloon(3000, "GlucaTrack Settings", "User settings were successfully saved.", ToolTipIcon.Info);
+                }
+            }
+            catch (UnauthorizedAccessException uaex)
+            {
+                Error("002", uaex);
+            }
+            catch (Exception ex)
+            {
+                if (string.IsNullOrWhiteSpace(this.txtUsername.Text))
+                    ShowNotificationBalloon(10000, "GlucaTrack Settings", "Username can not be blank.", ToolTipIcon.Error);
+                else if (string.IsNullOrWhiteSpace(this.txtPassword.Text))
+                    ShowNotificationBalloon(10000, "GlucaTrack Settings", "Password can not be blank.", ToolTipIcon.Error);
+
+                Error("003", ex);
+            }
+            finally
+            {
+                ShowWindow(false);
+            }
+        }
         private void GetVersionFromService()
         {
             NamedPipeClientStream pipeServerIn = null;
@@ -383,6 +387,7 @@ namespace GlucaTrack.Services.Windows
                 {
                     this.chkAutoUpload.Checked = !optionRow.AutoUpload;
                     this.chkShowNotifications.Checked = optionRow.ShowNotifications;
+                    this.chkAutoReportErrors.Checked = optionRow.AutoReportErrors;
                 }
             }
         }
@@ -450,7 +455,8 @@ namespace GlucaTrack.Services.Windows
                     //move settings window to bottom right corner of the screen
                     this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - this.Width, Screen.PrimaryScreen.WorkingArea.Height - this.Height);
                 }
-                PopulateScreenFromSettings(_settings);
+
+                PopulateScreenFromSettings(Statics.ReadSettingsFile());
                 this.Show();
             }
             else
@@ -465,6 +471,10 @@ namespace GlucaTrack.Services.Windows
 
             if (_settings == null || _settings.Options == null)
             {
+                _settings = new Settings();
+                _settings.Options.AddOptionsRow(!chkAutoUpload.Checked, chkShowNotifications.Checked, chkAutoReportErrors.Checked);
+                _settings.Login.AddLoginRow(string.Empty, string.Empty);
+
                 return false;
             }
 

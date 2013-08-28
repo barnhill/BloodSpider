@@ -581,6 +581,8 @@ namespace GlucaTrack.Services.Common {
             
             private global::System.Data.DataColumn columnShowNotifications;
             
+            private global::System.Data.DataColumn columnAutoReportErrors;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public OptionsDataTable() {
@@ -632,6 +634,14 @@ namespace GlucaTrack.Services.Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AutoReportErrorsColumn {
+                get {
+                    return this.columnAutoReportErrors;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -667,11 +677,12 @@ namespace GlucaTrack.Services.Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public OptionsRow AddOptionsRow(bool AutoUpload, bool ShowNotifications) {
+            public OptionsRow AddOptionsRow(bool AutoUpload, bool ShowNotifications, bool AutoReportErrors) {
                 OptionsRow rowOptionsRow = ((OptionsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         AutoUpload,
-                        ShowNotifications};
+                        ShowNotifications,
+                        AutoReportErrors};
                 rowOptionsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowOptionsRow);
                 return rowOptionsRow;
@@ -696,6 +707,7 @@ namespace GlucaTrack.Services.Common {
             internal void InitVars() {
                 this.columnAutoUpload = base.Columns["AutoUpload"];
                 this.columnShowNotifications = base.Columns["ShowNotifications"];
+                this.columnAutoReportErrors = base.Columns["AutoReportErrors"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -705,8 +717,11 @@ namespace GlucaTrack.Services.Common {
                 base.Columns.Add(this.columnAutoUpload);
                 this.columnShowNotifications = new global::System.Data.DataColumn("ShowNotifications", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnShowNotifications);
+                this.columnAutoReportErrors = new global::System.Data.DataColumn("AutoReportErrors", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAutoReportErrors);
                 this.columnAutoUpload.DefaultValue = ((bool)(false));
                 this.columnShowNotifications.DefaultValue = ((bool)(true));
+                this.columnAutoReportErrors.DefaultValue = ((bool)(true));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -952,6 +967,22 @@ namespace GlucaTrack.Services.Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool AutoReportErrors {
+                get {
+                    try {
+                        return ((bool)(this[this.tableOptions.AutoReportErrorsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AutoReportErrors\' in table \'Options\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOptions.AutoReportErrorsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsAutoUploadNull() {
                 return this.IsNull(this.tableOptions.AutoUploadColumn);
             }
@@ -972,6 +1003,18 @@ namespace GlucaTrack.Services.Common {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetShowNotificationsNull() {
                 this[this.tableOptions.ShowNotificationsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAutoReportErrorsNull() {
+                return this.IsNull(this.tableOptions.AutoReportErrorsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAutoReportErrorsNull() {
+                this[this.tableOptions.AutoReportErrorsColumn] = global::System.Convert.DBNull;
             }
         }
         

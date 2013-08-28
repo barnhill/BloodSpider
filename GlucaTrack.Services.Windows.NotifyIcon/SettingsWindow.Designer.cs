@@ -50,6 +50,7 @@
             this.icons = new System.Windows.Forms.ImageList(this.components);
             this.chkShowNotifications = new System.Windows.Forms.CheckBox();
             this.tLookForUpdate = new System.Windows.Forms.Timer(this.components);
+            this.chkAutoReportErrors = new System.Windows.Forms.CheckBox();
             this.menuNotifyIcon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -119,7 +120,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 57);
+            this.label1.Location = new System.Drawing.Point(22, 52);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 1;
@@ -127,23 +128,23 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(73, 54);
+            this.txtUsername.Location = new System.Drawing.Point(22, 66);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(100, 20);
+            this.txtUsername.Size = new System.Drawing.Size(135, 20);
             this.txtUsername.TabIndex = 2;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(73, 76);
+            this.txtPassword.Location = new System.Drawing.Point(22, 106);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(100, 20);
+            this.txtPassword.Size = new System.Drawing.Size(135, 20);
             this.txtPassword.TabIndex = 4;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 79);
+            this.label2.Location = new System.Drawing.Point(22, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 3;
@@ -151,9 +152,9 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(98, 147);
+            this.btnSave.Location = new System.Drawing.Point(90, 194);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.Size = new System.Drawing.Size(75, 25);
             this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -161,9 +162,9 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(17, 147);
+            this.btnCancel.Location = new System.Drawing.Point(12, 194);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -172,7 +173,7 @@
             // chkAutoUpload
             // 
             this.chkAutoUpload.AutoSize = true;
-            this.chkAutoUpload.Location = new System.Drawing.Point(73, 105);
+            this.chkAutoUpload.Location = new System.Drawing.Point(22, 136);
             this.chkAutoUpload.Name = "chkAutoUpload";
             this.chkAutoUpload.Size = new System.Drawing.Size(112, 17);
             this.chkAutoUpload.TabIndex = 8;
@@ -188,7 +189,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.titleidea4;
-            this.pictureBox1.Location = new System.Drawing.Point(37, 7);
+            this.pictureBox1.Location = new System.Drawing.Point(21, 7);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(136, 37);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -205,7 +206,9 @@
             // chkShowNotifications
             // 
             this.chkShowNotifications.AutoSize = true;
-            this.chkShowNotifications.Location = new System.Drawing.Point(73, 122);
+            this.chkShowNotifications.Checked = true;
+            this.chkShowNotifications.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowNotifications.Location = new System.Drawing.Point(22, 153);
             this.chkShowNotifications.Name = "chkShowNotifications";
             this.chkShowNotifications.Size = new System.Drawing.Size(112, 17);
             this.chkShowNotifications.TabIndex = 9;
@@ -218,12 +221,25 @@
             this.tLookForUpdate.Interval = 10000;
             this.tLookForUpdate.Tick += new System.EventHandler(this.tLookForUpdate_Tick);
             // 
+            // chkAutoReportErrors
+            // 
+            this.chkAutoReportErrors.AutoSize = true;
+            this.chkAutoReportErrors.Checked = true;
+            this.chkAutoReportErrors.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAutoReportErrors.Location = new System.Drawing.Point(22, 170);
+            this.chkAutoReportErrors.Name = "chkAutoReportErrors";
+            this.chkAutoReportErrors.Size = new System.Drawing.Size(87, 17);
+            this.chkAutoReportErrors.TabIndex = 10;
+            this.chkAutoReportErrors.Text = "Report errors";
+            this.chkAutoReportErrors.UseVisualStyleBackColor = true;
+            // 
             // formSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(184, 179);
+            this.ClientSize = new System.Drawing.Size(177, 224);
             this.ControlBox = false;
+            this.Controls.Add(this.chkAutoReportErrors);
             this.Controls.Add(this.chkShowNotifications);
             this.Controls.Add(this.chkAutoUpload);
             this.Controls.Add(this.pictureBox1);
@@ -272,6 +288,7 @@
         private System.Windows.Forms.ImageList icons;
         private System.Windows.Forms.CheckBox chkShowNotifications;
         private System.Windows.Forms.Timer tLookForUpdate;
+        private System.Windows.Forms.CheckBox chkAutoReportErrors;
     }
 }
 
