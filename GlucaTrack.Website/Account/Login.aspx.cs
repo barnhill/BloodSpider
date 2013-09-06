@@ -23,7 +23,11 @@ namespace GlucaTrack.Website.Account
 
             if (!Page.IsPostBack)
             {
-                ReadRememberMeCookie();
+                try
+                {
+                    ReadRememberMeCookie();
+                }
+                catch { }
             }
         }
 

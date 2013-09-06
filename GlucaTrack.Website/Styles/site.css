@@ -55,7 +55,7 @@ input, textarea {
         -moz-border-radius: 5px;
         border-radius: 5px;
     }
-input:focus {
+input:focus, textarea:focus {
         outline: none;
         border-color: #A4D4E6;
         -moz-box-shadow: 0 0 7px #A4D4E6;

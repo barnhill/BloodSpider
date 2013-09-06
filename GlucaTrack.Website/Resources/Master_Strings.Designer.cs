@@ -61,6 +61,15 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Send Email.
+        /// </summary>
+        internal static string Button_SendEmail {
+            get {
+                return ResourceManager.GetString("Button_SendEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ABOUT.
         /// </summary>
         internal static string Label_About {
@@ -97,6 +106,15 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email:.
+        /// </summary>
+        internal static string Label_Email {
+            get {
+                return ResourceManager.GetString("Label_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to !.
         /// </summary>
         internal static string Label_Exclamation {
@@ -129,6 +147,33 @@ namespace GlucaTrack.Website.Resources {
         internal static string Label_Logout {
             get {
                 return ResourceManager.GetString("Label_Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message:.
+        /// </summary>
+        internal static string Label_Message {
+            get {
+                return ResourceManager.GetString("Label_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message failed to send to GlucaTrack.  Please try again later..
+        /// </summary>
+        internal static string Label_MessageStatus_Fail {
+            get {
+                return ResourceManager.GetString("Label_MessageStatus_Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your message has been successfully sent to GlucaTrack&apos;s staff.  We will respond as soon as possible..
+        /// </summary>
+        internal static string Label_MessageStatus_Success {
+            get {
+                return ResourceManager.GetString("Label_MessageStatus_Success", resourceCulture);
             }
         }
         

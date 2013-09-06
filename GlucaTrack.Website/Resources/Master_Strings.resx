@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Button_SendEmail" xml:space="preserve">
+    <value>Send Email</value>
+    <comment>Text on the send email button on the contact us page</comment>
+  </data>
   <data name="Label_About" xml:space="preserve">
     <value>ABOUT</value>
     <comment>Button on the master page that links to the about the company and product page</comment>
@@ -133,9 +137,13 @@
     <value>DOWNLOAD</value>
     <comment>Button on the master page that links to the download page</comment>
   </data>
+  <data name="Label_Email" xml:space="preserve">
+    <value>Email:</value>
+    <comment>Title of the email field on the contact us page</comment>
+  </data>
   <data name="Label_Exclamation" xml:space="preserve">
     <value>!</value>
-    <comment>Exclamation point after the welcome back message.</comment>
+    <comment>Exclamation point after the welcome back message</comment>
   </data>
   <data name="Label_Home" xml:space="preserve">
     <value>HOME</value>
@@ -149,9 +157,21 @@
     <value>Log Out</value>
     <comment>Link on the master page that logs the user out.</comment>
   </data>
+  <data name="Label_Message" xml:space="preserve">
+    <value>Message:</value>
+    <comment>Title of the message field on the contact us page</comment>
+  </data>
+  <data name="Label_MessageStatus_Fail" xml:space="preserve">
+    <value>Message failed to send to GlucaTrack.  Please try again later.</value>
+    <comment>Displays if the email was not sent successfully from the contact page</comment>
+  </data>
+  <data name="Label_MessageStatus_Success" xml:space="preserve">
+    <value>Your message has been successfully sent to GlucaTrack's staff.  We will respond as soon as possible.</value>
+    <comment>Displays if the email was sent successfully from the contact page</comment>
+  </data>
   <data name="Label_MyData" xml:space="preserve">
     <value>My Data</value>
-    <comment>My data button on the master page that links to the dashboard.</comment>
+    <comment>My data button on the master page that links to the dashboard</comment>
   </data>
   <data name="Label_Register" xml:space="preserve">
     <value>Register</value>
@@ -159,6 +179,6 @@
   </data>
   <data name="Label_WelcomeMessage" xml:space="preserve">
     <value>Welcome back, </value>
-    <comment>Welcome message in the header if logged in.</comment>
+    <comment>Welcome message in the header if logged in</comment>
   </data>
 </root>
