@@ -7,11 +7,81 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GlucaTrack.Website
-{
-
-
-    public partial class _Default
-    {
+namespace GlucaTrack.Website {
+    
+    
+    public partial class _Default {
+        
+        /// <summary>
+        /// lblFirstTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFirstTitle;
+        
+        /// <summary>
+        /// lblFirstContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFirstContent;
+        
+        /// <summary>
+        /// lblSecondTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSecondTitle;
+        
+        /// <summary>
+        /// lblSecondContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSecondContent;
+        
+        /// <summary>
+        /// lblThirdTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblThirdTitle;
+        
+        /// <summary>
+        /// lblThirdContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblThirdContent;
+        
+        /// <summary>
+        /// lblFourthTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFourthTitle;
+        
+        /// <summary>
+        /// lblFourthContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFourthContent;
     }
 }

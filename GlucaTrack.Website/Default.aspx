@@ -39,8 +39,8 @@
     <div class="Front_Page_Main_Container">
         <div class="Front_Page_Container">
             <div class="Front_Page_Text_Left">
-                <b>Easy and Simple</b><br /><br />
-                <p>Simply plug in your supported glucometer to your computer and sit back and relax.  No more dried up pens or fumbling with that old logbook.</p>
+                <b><asp:Label id=lblFirstTitle runat="server">[Title 1]</asp:Label></b><br /><br />
+                <p><asp:Label id=lblFirstContent runat="server">[Content 1]</asp:Label></p>
             </div>        
             <div class="Front_Page_Image_Right">
                 <img src="Images/home/simpleandeasy.png" />
@@ -51,14 +51,14 @@
                 <img src="Images/home/consolidate.png" />
             </div>        
             <div  class="Front_Page_Text_Right">
-                <b>Consolidate</b><br /><br />
-                <p>Whether you use one brand of meter or have several at home, work and in the car, bring all of your records together in one place accessible from anywhere.</p>
+                <b><asp:Label id=lblSecondTitle runat="server">[Title 2]</asp:Label></b><br /><br />
+                <p><asp:Label id=lblSecondContent runat="server">[Content 2]</asp:Label></p>
             </div>
         </div>
         <div class="Front_Page_Container">
             <div class="Front_Page_Text_Left">
-                <b>Safe and Secure</b><br /><br />
-                <p>Safe, secure, encrypted.  Sleep easy knowing your information is protected with AES-256bit data encryption and transported via 128bit SSL.</p>
+                <b><asp:Label id=lblThirdTitle runat="server">[Title 3]</asp:Label></b><br /><br />
+                <p><asp:Label id=lblThirdContent runat="server">[Content 3]</asp:Label></p>
             </div>        
             <div class="Front_Page_Image_Right">
                 <img src="Images/home/safeandsecure.png" />
@@ -69,8 +69,8 @@
                 <img src="Images/home/changeyourlife.png" />
             </div>        
             <div  class="Front_Page_Text_Right">
-                <b>Change Your Life</b><br /><br />
-                <p> Make an investment in yourself by making more informed decisions for a healthier life.  Take control of your diabetes by viewing, and acting upon trends spotted on your personalized graphical dashboard.</p>
+                <b><asp:Label id=lblFourthTitle runat="server">[Title 4]</asp:Label></b><br /><br />
+                <p><asp:Label id=lblFourthContent runat="server">[Content 4]</asp:Label></p>
             </div>
         </div>        
     </div>
