@@ -33,13 +33,13 @@ namespace GlucaTrack.Website
 
         protected void TimerRedirect_Tick(object sender, EventArgs e)
         {
-            HttpCookie authCookie = Request.Cookies[GlucaTrack.Services.Common.Statics.AuthenticationCookie];
+            //HttpCookie authCookie = Request.Cookies[GlucaTrack.Services.Common.Statics.AuthenticationCookie];
 
-            if (authCookie != null)
-            {
-                authCookie.Expires = DateTime.Now.AddDays(-1d);
-                Response.Cookies.Add(authCookie);
-            }
+            //if (authCookie != null)
+            //{
+            //    authCookie.Expires = DateTime.Now.AddDays(-1d);
+            //    Response.Cookies.Add(authCookie);
+            //}
 
             FormsAuthentication.SignOut();
             Session.Clear();

@@ -565,7 +565,7 @@ namespace GlucaTrack.Website.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remember Me.
+        ///   Looks up a localized string similar to Remember Username.
         /// </summary>
         internal static string Label_RememberMe {
             get {

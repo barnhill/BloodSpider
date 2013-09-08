@@ -85,7 +85,7 @@
     <asp:UpdatePanel ID="upMiddleContent" runat="server">
         <ContentTemplate>
             <div id="divTopOptions" runat="server" style="display: inline-block;">
-                <asp:DropDownList ID="ddDateRange" runat="server" AutoPostBack="True" CssClass="dropdownlist">
+                <asp:DropDownList ID="ddDateRange" runat="server" AutoPostBack="True" CssClass="dropdownlist" OnSelectedIndexChanged="ddDateRange_SelectedIndexChanged">
                     <asp:ListItem Text="Last 7 days" Value="7" Selected="True" />
                     <asp:ListItem Text="Last 14 days" Value="14" />
                     <asp:ListItem Text="Last 30 days" Value="30" />

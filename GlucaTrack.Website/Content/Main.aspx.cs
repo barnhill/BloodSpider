@@ -33,6 +33,20 @@ namespace GlucaTrack.Website.Content
                     Session["LoggedInUserId"] = LoginRow.user_id;
                 else
                     Session.Add("LoggedInUserId", LoginRow.user_id);
+
+                if (!IsPostBack && Session["SelectedDays"] != null)
+                {
+                    //selected days exists so set the dropdown accordingly
+                    ddDateRange.SelectedItem.Selected = false;
+                    foreach (ListItem item in ddDateRange.Items)
+                    {
+                        if (Convert.ToInt16(Session["SelectedDays"].ToString()) == Convert.ToInt16(item.Value))
+                        {
+                            item.Selected = true;
+                            break;
+                        }
+                    }
+                }
             }
 
             SetResources();
@@ -40,6 +54,16 @@ namespace GlucaTrack.Website.Content
             PopulateDashboard();
 
             upMainChart.Update();
+        }
+
+        private void StoreSelectedDateRangeSetting()
+        {
+            try
+            {
+                Session.Remove("SelectedDays");
+            }
+            catch { }
+            Session.Add("SelectedDays", ddDateRange.SelectedValue);
         }
 
         private void SetResources()
@@ -319,6 +343,17 @@ namespace GlucaTrack.Website.Content
                     }
                 }
             }
+        }
+
+        protected void ddDateRange_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            StoreSelectedDateRangeSetting();
+
+            SetResources();
+
+            PopulateDashboard();
+
+            upMainChart.Update();
         }
     }
 
