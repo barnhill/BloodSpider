@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="In the Beginning" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="GlucaTrack.Website.About" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <div style="background-image:url('Images/about/about.jpg'); background-repeat:no-repeat; height:430px;">
-        <div style="width:600px; padding:20px 0px 0px 0px;">
+    <div style="background-image:url('Images/about/about.jpg'); background-repeat:no-repeat; background-position:bottom; height:430px;">
+        <div style="width:570px; padding:20px 0px 0px 0px;">
             <hgroup class="title">
                 <h3>Our Mission</h3>
             </hgroup><br />

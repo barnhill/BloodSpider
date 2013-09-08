@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <hgroup id="Hgroup1" class="title" runat="server">
+    <hgroup id="Hgroup1" class="title" runat="server" style="padding-top: 10px;">
         <h1 id="H1" runat="server"><%: Title %>.</h1>
         </hgroup>
     <br /><br />
