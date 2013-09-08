@@ -22,13 +22,13 @@ namespace GlucaTrack.Website {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Hgroup1;
         
         /// <summary>
-        /// H1 control.
+        /// H3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H3;
         
         /// <summary>
         /// lblWinVersion control.

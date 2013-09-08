@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="Contact Us" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="GlucaTrack.Website.Contact" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <hgroup class="title" style="padding-top: 10px;">
-        <h1><%: Title %>.</h1><br />
+    <hgroup class="title" style="padding-top: 20px;">
+        <h3><%: Title %></h3><br />
         <h4>We look forward to your comments.  Please feel free to send us your thoughts, concerns, or challenges.</h4>
     </hgroup>
     <br />
