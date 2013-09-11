@@ -270,7 +270,7 @@ namespace GlucaTrack.Communication.Meters.LifeScan
             string fullcommand = string.Empty;
 
             //if (!command.EndsWith("DMP"))
-            fullcommand += Convert.ToChar(Int32.Parse("0d", NumberStyles.HexNumber)).ToString();
+            //fullcommand += Convert.ToChar(Int32.Parse("0d", NumberStyles.HexNumber)).ToString();
 
             fullcommand += Convert.ToChar(Int32.Parse("11", NumberStyles.HexNumber)).ToString();
             fullcommand += Convert.ToChar(Int32.Parse("0d", NumberStyles.HexNumber)).ToString();

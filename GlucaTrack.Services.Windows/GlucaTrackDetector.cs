@@ -34,6 +34,8 @@ namespace GlucaTrack.Services.Windows
 
             background_DeviceReader.WorkerSupportsCancellation = true;
             background_CommandServer.WorkerSupportsCancellation = true;
+
+            pipeWrite("BUSYICON", "notbusy", string.Empty, 0);
         }
 
         protected override void OnStart(string[] args)
@@ -112,10 +114,21 @@ namespace GlucaTrack.Services.Windows
             if (Thread.CurrentThread.Name == null)
                 Thread.CurrentThread.Name = "DeviceDetector";
 
-            Common.Statics.deviceFound = null;
-            DeviceInfo fdi = Communication.Statics.DetectFirstDevice();
-            Common.Statics.deviceFound = fdi;
-            e.Result = fdi;
+            //change notify icon to busy
+            pipeWrite("BUSYICON", "busy", string.Empty, 0);
+
+            try
+            {
+                Common.Statics.deviceFound = null;
+                DeviceInfo fdi = Communication.Statics.DetectFirstDevice();
+                Common.Statics.deviceFound = fdi;
+                e.Result = fdi;
+            }
+            finally
+            {
+                //change notify icon to busy
+                pipeWrite("BUSYICON", "notbusy", string.Empty, 0);
+            }
         }
         private void background_DeviceReader_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -260,9 +273,6 @@ namespace GlucaTrack.Services.Windows
 
                 if (e != null && e.Result != null && Common.Statics.deviceFound != null)
                 {
-                    //change notify icon to busy
-                    pipeWrite("BUSYICON", "notbusy", string.Empty, 0);
-
                     EventLog.WriteEntry("Device identified: " + Common.Statics.deviceFound.DeviceDescription, EventLogEntryType.Information, 1);
                     
                     //send command to show message balloon on notify icon

@@ -23,7 +23,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
             MeterDescription = "Bayer Breeze 2";
         }
 
-        public override bool Open()
+        public bool Open()
         {
             Port.DtrEnable = true;
 
@@ -50,7 +50,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
             return Port.IsOpen;
         }
 
-        public override bool Connect(string COMport)
+        public bool Connect(string COMport)
         {
             if (Port != null)
             {
@@ -63,7 +63,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
             return Open();
         }
 
-        public override bool IsMeterConnected(string COMport)
+        public bool IsMeterConnected(string COMport)
         {
             Connect(COMport);
 
@@ -94,7 +94,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
             return _MeterFound;
         }
 
-        public override void DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        public void DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             _TempString += Port.ReadExisting();
 
@@ -240,7 +240,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
                         return;
                     }
 
-                    OnHeaderRead(new HeaderReadEventArgs(SampleCount));
+                    OnHeaderRead(new HeaderReadEventArgs(SampleCount, this));
 
                     Console.WriteLine("Header: " + fullframe);
                 }//if
@@ -294,7 +294,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
             {
                 _HeaderRead = false;
                 Port.DataReceived -= new System.IO.Ports.SerialDataReceivedEventHandler(DataReceived);
-                OnReadFinished(e);
+                OnReadFinished(new ReadFinishedEventArgs(this));
                 Close();
                 Dispose();
                 return;
@@ -305,7 +305,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
                 Port.Write(Statics.GetStringFromAsciiCode((byte)AsciiCodes.ACK));
         }
 
-        public override void ReadData()
+        public void ReadData()
         {
             if (!Port.IsOpen)
                 throw new Exception("Port is closed.");

@@ -15,6 +15,7 @@ using System.ServiceProcess;
 using System.Threading;
 using System.Xml.Serialization;
 using GlucaTrack.Services.Common;
+using GlucaTrack.Services.Windows.NotifyIcon.Properties;
 
 namespace GlucaTrack.Services.Windows
 {
@@ -24,9 +25,11 @@ namespace GlucaTrack.Services.Windows
 
         //TODO: move all strings to resource file
         BackgroundWorker background_CommandServer = new BackgroundWorker();
-        static Settings _settings;
+        static GlucaTrack.Services.Common.Settings _settings;
         string currentVersion = string.Empty;
         Size _windowSize = new Size(193, 262);
+        bool busy;
+        int state = 0;
 
         public formSettings()
         {
@@ -240,9 +243,9 @@ namespace GlucaTrack.Services.Windows
             //save settings on save button click
             try
             {
-                using (Settings settings = new Settings())
+                using (GlucaTrack.Services.Common.Settings settings = new GlucaTrack.Services.Common.Settings())
                 {
-                    Settings.LoginRow loginRow = settings.Login.NewLoginRow();
+                    GlucaTrack.Services.Common.Settings.LoginRow loginRow = settings.Login.NewLoginRow();
                     loginRow.Username = StringCipher.Encrypt(this.txtUsername.Text.Trim(), true);
                     loginRow.Password = StringCipher.Encrypt(this.txtPassword.Text.Trim(), true);
 
@@ -291,8 +294,9 @@ namespace GlucaTrack.Services.Windows
                 //verify server identity
                 if (ss.ReadString() == "GlucaTrack_Service")
                 {
-                    //show the connected icon
-                    ChangeNotifyIcon(Icons.Enabled);
+                    //show the connected icon, if not busy
+                    if (!busy)
+                        ChangeNotifyIcon(Icons.Enabled);
 
                     //talking to the correct service so send the message
                     ss.WriteString("VERSION|");
@@ -304,6 +308,7 @@ namespace GlucaTrack.Services.Windows
             }//try
             catch (System.TimeoutException)
             {
+                ChangeNotifyIcon(Icons.Disabled);
             }
             finally
             {
@@ -366,11 +371,11 @@ namespace GlucaTrack.Services.Windows
                     pipeServerIn.Close();
             }
         }
-        private void PopulateScreenFromSettings(Settings settings)
+        private void PopulateScreenFromSettings(GlucaTrack.Services.Common.Settings settings)
         {
             if (settings != null && settings.Login != null)
             {
-                Settings.LoginRow loginRow = settings.Login.FirstOrDefault();
+                GlucaTrack.Services.Common.Settings.LoginRow loginRow = settings.Login.FirstOrDefault();
 
                 if (loginRow != null)
                 {
@@ -381,7 +386,7 @@ namespace GlucaTrack.Services.Windows
 
             if (settings != null && settings.Options != null)
             {
-                Settings.OptionsRow optionRow = settings.Options.FirstOrDefault();
+                GlucaTrack.Services.Common.Settings.OptionsRow optionRow = settings.Options.FirstOrDefault();
 
                 if (optionRow != null)
                 {
@@ -403,23 +408,45 @@ namespace GlucaTrack.Services.Windows
         }
         private void ChangeNotifyIcon(Icons icon)
         {
+            bool changed = false;
             switch (icon)
             {
                 case Icons.Enabled:
-                    settingsNotifyIcon.Icon = GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_enabled;
+                    if (state != 0)
+                    {
+                        settingsNotifyIcon.Icon = Resources.blood_enabled;
+                        changed = true;
+                        state = 0;
+                    }
+                    busy = false;
                     break;
                 case Icons.Disabled:
-                    settingsNotifyIcon.Icon = GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_disabled;
+                    if (state != 1)
+                    {
+                        settingsNotifyIcon.Icon = Resources.blood_disabled;
+                        changed = true;
+                        state = 1;
+                    }
+                    busy = false;
                     break;
                 case Icons.Busy:
-                    settingsNotifyIcon.Icon = GlucaTrack.Services.Windows.NotifyIcon.Properties.Resources.blood_busy;
+                    if (state != 2)
+                    {
+                        settingsNotifyIcon.Icon = Resources.blood_busy;
+                        changed = true;
+                        state = 2;
+                    }
+                    busy = true;
                     break;
                 default:
                     break;
             }
 
-            settingsNotifyIcon.Visible = false;
-            settingsNotifyIcon.Visible = true;
+            if (changed)
+            {
+                settingsNotifyIcon.Visible = false;
+                settingsNotifyIcon.Visible = true;
+            }
         }
         private void PerformUpdate(string webPath)
         {
@@ -471,7 +498,7 @@ namespace GlucaTrack.Services.Windows
 
             if (_settings == null || _settings.Options == null)
             {
-                _settings = new Settings();
+                _settings = new GlucaTrack.Services.Common.Settings();
                 _settings.Options.AddOptionsRow(!chkAutoUpload.Checked, chkShowNotifications.Checked, chkAutoReportErrors.Checked);
                 _settings.Login.AddLoginRow(string.Empty, string.Empty);
 
