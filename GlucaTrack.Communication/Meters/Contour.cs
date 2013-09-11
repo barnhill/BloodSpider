@@ -222,7 +222,7 @@ namespace GlucaTrack.Communication.Meters.Bayer
                     string accesspassword = headerrecord[3];
                     string softwareversion = typeandserial[1].Split(new char[] { '\\' })[0];
                     string eepromversion = typeandserial[1].Split(new char[] { '\\' })[1];
-                    MeterDescription = typeandserial[0];
+                    //MeterDescription = typeandserial[0];
 
                     string MeterType = SplitTypeandSerial(typeandserial[2])[0];
                     SerialNumber = SplitTypeandSerial(typeandserial[2])[1];
