@@ -128,10 +128,10 @@ EXE header size:              126464 / 34816 bytes
 Install code:                          (41895 bytes)
 Install data:                          (1167056 bytes)
 Uninstall code+data:                   (131002 bytes)
-Compressed data:              189741 / 1339953 bytes
-CRC (0xE534F0C8):                  4 / 4 bytes
+Compressed data:              189538 / 1339953 bytes
+CRC (0x03A30A65):                  4 / 4 bytes
 
-Total size:                   316209 / 1374773 bytes (23.0%)
+Total size:                   316006 / 1374773 bytes (22.9%)
 
 8 warnings:
   unknown variable/constant "mui.ComponentsPage.DescriptionText" detected, ignoring (macro:MUI_DESCRIPTION_BEGIN:4)
