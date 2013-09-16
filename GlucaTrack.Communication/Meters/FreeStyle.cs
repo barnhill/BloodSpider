@@ -77,7 +77,6 @@ namespace GlucaTrack.Communication.Meters.Abbott
 
             ReadData(true);
 
-            _TestMode = false;
             _HeaderRead = false;
             _TestPassed = false;
 
@@ -86,9 +85,9 @@ namespace GlucaTrack.Communication.Meters.Abbott
 
         public void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            if (Port == null)
+            if (Port == null || !Port.IsOpen)
                 return;
-
+            
             RawData += Port.ReadExisting();
 
             //header already read so grab the records
@@ -100,9 +99,12 @@ namespace GlucaTrack.Communication.Meters.Abbott
                     while ((line = reader.ReadLine()) != null)
                     {
                         //end record encountered
-                        if (RawData.Contains("END"))
+                        if (line.Contains("END"))
                         {
+                            _TestPassed = true;
                             _ReadFinished = true;
+                            RawData = String.Empty;
+                            _autoResetEvent.Set();
                             
                             break;
                         }//if
@@ -166,13 +168,7 @@ namespace GlucaTrack.Communication.Meters.Abbott
 
                 //set serial number
                 SerialNumber = header[1];
-
-                if (_TestMode)
-                {
-                    _TestPassed = true;
-                    return;
-                }
-
+                
 #if DEBUG
                 Console.WriteLine("SERIAL: " + SerialNumber);
 #endif
@@ -180,17 +176,14 @@ namespace GlucaTrack.Communication.Meters.Abbott
                 //set sample count
                 SampleCount = int.Parse(header[4]);
 
-                DeviceInfo d = new DeviceInfo();
-                
                 OnHeaderRead(new HeaderReadEventArgs(SampleCount, this));
+                
             }//if
         }
 
         public void ReadData(bool testMode)
         {
             _TestMode = testMode;
-
-            ThreadPool.QueueUserWorkItem(new WaitCallback(ReadHelper), _autoResetEvent);
 
             _ReadFinished = false;
             _TestPassed = false;
@@ -207,24 +200,32 @@ namespace GlucaTrack.Communication.Meters.Abbott
                 Port.DiscardInBuffer();
             }
 
+            RawData = String.Empty;
+
             //send the memory dump command to the device
             Port.Write("mem");
 
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
+
+            ThreadPool.QueueUserWorkItem(new WaitCallback(ReadHelper), _autoResetEvent);
 
             // Wait for work method to signal.
-            if (_autoResetEvent.WaitOne(_TestMode ? 5000 : 30000, false))
+            if (_autoResetEvent.WaitOne(60000, false))
             {
-                Console.WriteLine("Read Finished Successfully");
+                //Console.WriteLine("Read Finished Successfully");
+                Thread.Sleep(1000);
                 Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
-
-                OnReadFinished(new ReadFinishedEventArgs(this));
+                
+                if (!_TestMode)
+                    OnReadFinished(new ReadFinishedEventArgs(this));
+                
                 Dispose();
             }
             else
             {
-                Console.WriteLine("Timed out waiting for meter to finish reading.");
                 Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
+                Dispose();
+                Console.WriteLine("Timed out waiting for meter to finish reading.");
             }
         }
 
@@ -235,15 +236,10 @@ namespace GlucaTrack.Communication.Meters.Abbott
 
         private static void ReadHelper(object stateInfo)
         {
-            DateTime start = DateTime.Now;
-            while (!_ReadFinished && !_TestPassed && (DateTime.Now-start).TotalMilliseconds < 30000)
+            while (true)
             {
-                //do nothing but sleep and recheck
                 Thread.Sleep(100);
             }
-
-            //signal that read has finished
-            ((AutoResetEvent)stateInfo).Set();
         }
 
     }

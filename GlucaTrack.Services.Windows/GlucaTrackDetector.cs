@@ -147,25 +147,37 @@ namespace GlucaTrack.Services.Windows
                     {
                         //serial devices
                         IMeter Meter = (IMeter)Common.Statics.deviceFound.Device;
-                        Meter.ReadFinished += new EventHandler(OnReadFinished);
-                        Meter.RecordRead += new EventHandler(OnRecordRead);
-                        Meter.HeaderRead += new EventHandler(OnHeaderRead);
 
-                        int connectionTries = 0;
-                        while (!Meter.Connect(Common.Statics.deviceFound.ComPortName) && connectionTries < 30)
+                        if (Meter != null)
                         {
-                            Thread.Sleep(100);
-                            connectionTries++;
-                        }
+                            Meter.ReadFinished += new EventHandler(OnReadFinished);
+                            Meter.RecordRead += new EventHandler(OnRecordRead);
+                            Meter.HeaderRead += new EventHandler(OnHeaderRead);
 
-                        EventLog.WriteEntry(string.Format("Begin reading data from {0}.", Common.Statics.deviceFound.DeviceDescription), EventLogEntryType.Information);
+                            try
+                            {
+                                int connectionTries = 0;
+                                while (!Meter.Connect(Common.Statics.deviceFound.ComPortName) && connectionTries < 30)
+                                {
+                                    Thread.Sleep(100);
+                                    connectionTries++;
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Errors.ServiceError(ex);
+                                GlucaTrackDetector.ReportException("W000C", ex);
+                            }
 
-                        if (Meter.IsPortOpen)
-                        {
-                            Meter.Port.DiscardInBuffer();
-                            Meter.Port.DiscardOutBuffer();
+                            EventLog.WriteEntry(string.Format("Begin reading data from {0}.", Common.Statics.deviceFound.DeviceDescription), EventLogEntryType.Information);
 
-                            Meter.ReadData();
+                            if (Meter.IsPortOpen)
+                            {
+                                Meter.Port.DiscardInBuffer();
+                                Meter.Port.DiscardOutBuffer();
+
+                                Meter.ReadData();
+                            }
                         }
                     }
                     else if (typeof(IMeterHID).IsAssignableFrom(Common.Statics.deviceFound.DeviceType))
@@ -245,7 +257,6 @@ namespace GlucaTrack.Services.Windows
                         pipeWrite("UPDATE_CHECK_FINISHED", CheckForUpdates(), String.Empty, 1);
                         break;
                     case "REPORT_BUG":
-
                         break;
                     default: break;
                 };
@@ -277,6 +288,8 @@ namespace GlucaTrack.Services.Windows
                     
                     //send command to show message balloon on notify icon
                     pipeWrite("MSG", "Found Meter", Common.Statics.deviceFound.DeviceDescription, 1);
+
+                    Thread.Sleep(1000); //delay to promote showing message
 
                     //request the path to the settings file
                     pipeWrite("PATH_REQ");

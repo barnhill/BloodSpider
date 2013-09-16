@@ -44,6 +44,10 @@ namespace GlucaTrack.Communication.Meters.iSens
             {
                 return Port.IsOpen;
             }
+            catch (System.IO.IOException)
+            {
+                return Port.IsOpen;
+            }
 
             Thread.Sleep(250);
 

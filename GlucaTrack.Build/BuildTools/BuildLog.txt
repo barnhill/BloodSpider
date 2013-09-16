@@ -85,6 +85,8 @@
 1>C:\Users\bbarnhill\Desktop\Dropbox\Projects\GlucaTrack\UsbLibrary\UsbHidPort.cs(127,32,127,47): warning CS1591: Missing XML comment for publicly visible type or member 'UsbLibrary.UsbHidPort.SpecifiedDevice'
 1>  UsbLibrary -> C:\Users\bbarnhill\Desktop\Dropbox\Projects\GlucaTrack\UsbLibrary\bin\Debug\UsbLibrary.dll
 3>------ Build started: Project: GlucaTrack.Communication, Configuration: Debug Any CPU ------
+3>C:\Users\bbarnhill\Desktop\Dropbox\Projects\GlucaTrack\GlucaTrack.Communication\Meters\FreeStyle.cs(15,21,15,32): warning CS0414: The field 'GlucaTrack.Communication.Meters.Abbott.FreeStyle._TestPassed' is assigned but its value is never used
+3>C:\Users\bbarnhill\Desktop\Dropbox\Projects\GlucaTrack\GlucaTrack.Communication\Meters\FreeStyle.cs(16,21,16,34): warning CS0414: The field 'GlucaTrack.Communication.Meters.Abbott.FreeStyle._ReadFinished' is assigned but its value is never used
 3>  GlucaTrack.Communication -> C:\Users\bbarnhill\Desktop\Dropbox\Projects\GlucaTrack\GlucaTrack.Communication\bin\Debug\GlucaTrack.Communication.dll
 4>------ Build started: Project: GlucaTrack.Services.Common, Configuration: Debug Any CPU ------
 4>  GlucaTrack.Services.Common -> C:\Users\bbarnhill\Desktop\Dropbox\Projects\GlucaTrack\GlucaTrack.Services.Common\bin\Debug\GlucaTrack.Services.Common.dll
@@ -128,10 +130,10 @@ EXE header size:              126464 / 34816 bytes
 Install code:                          (41895 bytes)
 Install data:                          (1167056 bytes)
 Uninstall code+data:                   (131002 bytes)
-Compressed data:              189538 / 1339953 bytes
-CRC (0x03A30A65):                  4 / 4 bytes
+Compressed data:              189653 / 1339953 bytes
+CRC (0x8D5D1EDC):                  4 / 4 bytes
 
-Total size:                   316006 / 1374773 bytes (22.9%)
+Total size:                   316121 / 1374773 bytes (22.9%)
 
 8 warnings:
   unknown variable/constant "mui.ComponentsPage.DescriptionText" detected, ignoring (macro:MUI_DESCRIPTION_BEGIN:4)
