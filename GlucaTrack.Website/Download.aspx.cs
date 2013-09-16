@@ -28,7 +28,7 @@ namespace GlucaTrack.Website
 
             Queries.sp_GetApplicationVersionsRow drow = dt.Where(i => i.Name.Contains("Windows Service")).FirstOrDefault();
 
-            lblWinVersion.Text = "Version: " + drow.version;
+            lblWinVersion.Text = "Latest Version: " + drow.version;
         }
     }
 }

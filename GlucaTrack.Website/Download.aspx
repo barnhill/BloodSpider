@@ -4,11 +4,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <div style="padding-top:10px; height:320px;">   
+    <div style="padding-top:20px; height:320px;">   
         <div style="float:left; width:500px;">
             <hgroup id="Hgroup1" class="title" runat="server">
                 <h3 id="H1" runat="server"><%: Title %>.</h3>
-                </hgroup>
+            </hgroup>
             <br /><br />
             <div style="text-align: center; width: 250px;">
                 <a href="/download/GlucaTrack_Windows_Setup.exe"><img src="Images/download/download.png" /></a><br />
