@@ -80,6 +80,7 @@
     <Content Include="Content\Main.aspx" />
     <Content Include="Account\Logout.aspx" />
     <Content Include="Download.aspx" />
+    <Content Include="Errors\Default.aspx" />
     <Content Include="Images\about\about.jpg" />
     <Content Include="Images\download\download.png" />
     <Content Include="Images\download\downloads.png" />
@@ -245,6 +246,13 @@
     </Compile>
     <Compile Include="Download.aspx.designer.cs">
       <DependentUpon>Download.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Errors\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Errors\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
