@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{64D9EB22-887A-433F-8BAD-5E9CC7647EBB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BloodSpider.Communication</RootNamespace>
+    <AssemblyName>BloodSpider.Communication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>BloodSpider.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractMeter.cs" />
+    <Compile Include="BMeterComm.cs" />
+    <Compile Include="IMeterHID.cs" />
+    <Compile Include="IMeter.cs" />
+    <Compile Include="Meters\Contour.cs" />
+    <None Include="Documents\i-Sens\CaresensN.spm" />
+    <None Include="Documents\LifeScan\OneTouch Ultra.spm" />
+    <None Include="Documents\Roche\metertest.pl" />
+    <None Include="Documents\Roche\Portmon_connect_no_change_time_hex.log" />
+    <None Include="Documents\Roche\Portmon_no_connect_hex.log" />
+    <None Include="BloodSpider.pfx" />
+    <None Include="Meters\Breeze2.cs" />
+    <Compile Include="Meters\Caresens_N.cs" />
+    <Compile Include="Meters\Contour_USB.cs" />
+    <Compile Include="Meters\OneTouch_Ultra.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Meters\OneTouch_UltraSmart.cs" />
+    <Compile Include="Meters\OneTouch_UltraMini.cs" />
+    <Compile Include="Meters\OneTouch_Ultra2.cs" />
+    <Compile Include="Meters\FreeStyle.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Records.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Records.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Statics.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Documents\Bayer\Bayer-MeterInterface.pdf" />
+    <None Include="Documents\MeterList.xlsx" />
+    <None Include="Documents\LifeScan\OneTouch Select Protocol.pdf" />
+    <None Include="Documents\LifeScan\OneTouch Ultra 2 Protocol.pdf" />
+    <None Include="Documents\LifeScan\OneTouch Ultra Mini Protocol.pdf" />
+    <None Include="Documents\LifeScan\OneTouch Ultra Protocol.pdf" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Records.xsc">
+      <DependentUpon>Records.xsd</DependentUpon>
+    </None>
+    <None Include="Records.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Records.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Records.xss">
+      <DependentUpon>Records.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Documents\i-Sens\CaresensN_Signal Analysis.txt" />
+    <Content Include="Documents\i-Sens\CaresensN_Signal Analysis_Header.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Documents\Nipro\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UsbLibrary\UsbLibrary.csproj">
+      <Project>{71e42a6d-c432-4c03-bf4f-abfd2a3173e0}</Project>
+      <Name>UsbLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>if exist "$(TargetPath).locked" del "$(TargetPath).locked"
+if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)" "$(TargetPath).locked"</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
