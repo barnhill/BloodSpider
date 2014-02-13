@@ -36,10 +36,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>BloodSpider.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -59,7 +60,6 @@
     <None Include="Documents\Roche\metertest.pl" />
     <None Include="Documents\Roche\Portmon_connect_no_change_time_hex.log" />
     <None Include="Documents\Roche\Portmon_no_connect_hex.log" />
-    <None Include="BloodSpider.pfx" />
     <None Include="Meters\Breeze2.cs" />
     <Compile Include="Meters\Caresens_N.cs" />
     <Compile Include="Meters\Contour_USB.cs" />
