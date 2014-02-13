@@ -132,37 +132,37 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="blood.ico" />
+    <None Include="Service References\WebService\Common1.xsd" />
+    <None Include="Service References\WebService\GTService1.disco" />
     <None Include="Service References\WebService\GlucaTrack.Services.Windows.WebService.Common.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\WebService\GlucaTrack.Services.Windows.WebService.Records.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\WebService\GTService1.wsdl" />
+    <None Include="Service References\WebService\GTService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebService\GTService41.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebService\GTService42.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebService\GTService43.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebService\Records1.xsd" />
     <None Include="Service References\WebService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\WebService\configuration.svcinfo" />
     <None Include="Service References\WebService\configuration91.svcinfo" />
-    <None Include="Service References\WebService\Common.xsd" />
-    <None Include="Service References\WebService\GTService.disco" />
     <None Include="Service Controls\install.bat" />
     <None Include="Service Controls\InstallUtil.InstallLog" />
     <None Include="Service Controls\remove.bat" />
-    <None Include="Service References\WebService\GTService.wsdl" />
-    <None Include="Service References\WebService\GTService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\WebService\GTService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\WebService\GTService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\WebService\GTService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\WebService\Records.xsd" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\WebService\" />

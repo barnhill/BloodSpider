@@ -27,7 +27,7 @@ namespace BloodSpider.Services.Web.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=www.BloodSpider.com;Initial Catalog=BloodSpider;User ID=BloodSpider;P" +
-            "assword=1BloodSpider")]
+            "assword=1bloodspider")]
         public string BloodSpiderConnectionString1 {
             get {
                 return ((string)(this["BloodSpiderConnectionString1"]));

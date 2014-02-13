@@ -21,14 +21,14 @@
     <MetadataSource Address="https://www.BloodSpider.com/service/gtservice.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="GTService.disco" MetadataType="Disco" ID="1f1def47-d39a-4d59-8063-afe72180a977" SourceId="1" SourceUrl="https://www.BloodSpider.com/Service/GTService.svc?disco" />
-    <MetadataFile FileName="GTService.wsdl" MetadataType="Wsdl" ID="843b08c1-78b4-42e9-9107-297cf148441f" SourceId="1" SourceUrl="https://www.BloodSpider.com/Service/GTService.svc?wsdl" />
-    <MetadataFile FileName="GTService.xsd" MetadataType="Schema" ID="f70b7f03-3686-4868-8b1c-5005486ec64f" SourceId="1" SourceUrl="https://www.BloodSpider.com/Service/GTService.svc?xsd=xsd0" />
-    <MetadataFile FileName="GTService1.xsd" MetadataType="Schema" ID="f4c7db87-c38d-4928-ae98-7bbf233d1d93" SourceId="1" SourceUrl="https://www.BloodSpider.com/Service/GTService.svc?xsd=xsd1" />
-    <MetadataFile FileName="Common.xsd" MetadataType="Schema" ID="c6edb7b3-c696-498b-a524-4fe5665a70e2" SourceId="1" SourceUrl="https://www.BloodSpider.com/Service/GTService.svc?xsd=xsd2" />
-    <MetadataFile FileName="GTService2.xsd" MetadataType="Schema" ID="94a183cf-3e77-4e9f-aa33-25ac6fb80dba" SourceId="1" SourceUrl="https://www.BloodSpider.com/Service/GTService.svc?xsd=xsd3" />
-    <MetadataFile FileName="GTService3.xsd" MetadataType="Schema" ID="ed0f0c7b-35d2-4322-8850-ff64875fffe7" SourceId="1" SourceUrl="https://www.BloodSpider.com/Service/GTService.svc?xsd=xsd4" />
-    <MetadataFile FileName="Records.xsd" MetadataType="Schema" ID="7622d30b-dfcb-4f61-b053-32f84174f80e" SourceId="1" SourceUrl="https://www.BloodSpider.com/Service/GTService.svc?xsd=xsd5" />
+    <MetadataFile FileName="GTService1.disco" MetadataType="Disco" ID="0f57d158-a04e-4296-8c6d-48777a80bf39" SourceId="1" SourceUrl="https://www.bloodspider.com/service/GTService.svc?disco" />
+    <MetadataFile FileName="GTService1.wsdl" MetadataType="Wsdl" ID="c8d5d051-3610-48ee-a170-4561eb23afd9" SourceId="1" SourceUrl="https://www.bloodspider.com/service/GTService.svc?wsdl" />
+    <MetadataFile FileName="Common1.xsd" MetadataType="Schema" ID="a0294924-dc84-4a6b-ae1d-168aea644a88" SourceId="1" SourceUrl="https://www.bloodspider.com/service/GTService.svc?xsd=xsd2" />
+    <MetadataFile FileName="GTService4.xsd" MetadataType="Schema" ID="9d04050c-bd54-44f5-b6de-73077ac2fce5" SourceId="1" SourceUrl="https://www.bloodspider.com/service/GTService.svc?xsd=xsd3" />
+    <MetadataFile FileName="GTService41.xsd" MetadataType="Schema" ID="aaff48ed-65a8-4cf8-9bfd-0ff47cb4ec90" SourceId="1" SourceUrl="https://www.bloodspider.com/service/GTService.svc?xsd=xsd0" />
+    <MetadataFile FileName="GTService42.xsd" MetadataType="Schema" ID="985465b8-d16e-4d16-aeda-b4e594a4a83a" SourceId="1" SourceUrl="https://www.bloodspider.com/service/GTService.svc?xsd=xsd1" />
+    <MetadataFile FileName="GTService43.xsd" MetadataType="Schema" ID="a4c0f51f-0e4c-4db7-b600-baa59c817127" SourceId="1" SourceUrl="https://www.bloodspider.com/service/GTService.svc?xsd=xsd4" />
+    <MetadataFile FileName="Records1.xsd" MetadataType="Schema" ID="e92394f9-b1b6-4f71-bde8-7f6cc0655b01" SourceId="1" SourceUrl="https://www.bloodspider.com/service/GTService.svc?xsd=xsd5" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

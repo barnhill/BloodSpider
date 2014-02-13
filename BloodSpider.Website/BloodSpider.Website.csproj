@@ -108,20 +108,34 @@
     </Content>
     <None Include="Properties\PublishProfiles\BloodSpider Website.pubxml" />
     <None Include="Properties\PublishProfiles\BloodSpider.pubxml" />
-    <None Include="Service References\GTService\Common.xsd" />
     <Content Include="Service References\GTService\GlucaTrack.Website.GTService.Common.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\GTService\GlucaTrack.Website.GTService.Records.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\GTService\GTService.disco" />
+    <None Include="Service References\GTService\Common1.xsd" />
     <None Include="Service References\GTService\configuration91.svcinfo" />
     <None Include="Service References\GTService\configuration.svcinfo" />
+    <None Include="Service References\GTService\GTService1.wsdl" />
+    <None Include="Service References\GTService\GTService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GTService\GTService41.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GTService\GTService42.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GTService\GTService43.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GTService\Records1.xsd" />
     <None Include="Service References\GTService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\GTService\GTService1.disco" />
     <Content Include="Styles\site.css" />
     <Content Include="Styles\site1.css" />
     <Content Include="Images\unused\background\blood_hand.jpg" />
@@ -342,20 +356,6 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\GTService\GTService.wsdl" />
-    <None Include="Service References\GTService\GTService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GTService\GTService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GTService\GTService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GTService\GTService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GTService\Records.xsd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
