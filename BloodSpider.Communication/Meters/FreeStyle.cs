@@ -12,8 +12,6 @@ namespace BloodSpider.Communication.Meters.Abbott
     {
         static bool _HeaderRead;
         static bool _TestMode;
-        static bool _TestPassed;
-        static bool _ReadFinished;
 
         private AutoResetEvent _autoResetEvent = new AutoResetEvent(false);
 
@@ -78,7 +76,6 @@ namespace BloodSpider.Communication.Meters.Abbott
             ReadData(true);
 
             _HeaderRead = false;
-            _TestPassed = false;
 
             return !string.IsNullOrEmpty(SerialNumber);
         }
@@ -101,8 +98,6 @@ namespace BloodSpider.Communication.Meters.Abbott
                         //end record encountered
                         if (line.Contains("END"))
                         {
-                            _TestPassed = true;
-                            _ReadFinished = true;
                             RawData = String.Empty;
                             _autoResetEvent.Set();
                             
@@ -184,9 +179,7 @@ namespace BloodSpider.Communication.Meters.Abbott
         public void ReadData(bool testMode)
         {
             _TestMode = testMode;
-
-            _ReadFinished = false;
-            _TestPassed = false;
+            
             _HeaderRead = false;
 
             Port.DataReceived -= new SerialDataReceivedEventHandler(DataReceived);
